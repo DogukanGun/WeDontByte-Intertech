@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="@string/bottom_navigation_home_button"
+        android:icon="@drawable/ic_baseline_home"
+        android:id="@+id/accountInformationNav"
+        />
+    <item
+        android:id="@+id/moneyTransferNav"
+        android:title="@string/bottom_navigation_money_transfer_button"
+        android:icon="@drawable/ic_baseline_credit_card"
+        />
+</menu>
