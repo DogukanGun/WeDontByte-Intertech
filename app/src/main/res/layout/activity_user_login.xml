@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+            name="getUserLoginViewModel"
+            type="com.example.intertech_account.view_model.GetUserLoginViewModel" />
+    </data>
+    
+    
+
+<androidx.constraintlayout.widget.ConstraintLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C162E"
+    tools:context=".view.login_page.activity.UserLoginActivity">
+
+    <TextView
+        android:id="@+id/login_page_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="50dp"
+        android:width="0dp"
+        android:height="50dp"
+        android:background="#140F26"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/login_screen_username_field"
+        android:shadowColor="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#F8F8F8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/login_page_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:width="0dp"
+        android:height="100dp"
+        android:background="#140F26"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/login_screen_password_field"
+        android:inputType="textPassword"
+        android:shadowColor="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#F8F8F8"
+        app:layout_constraintEnd_toEndOf="@+id/login_page_username"
+        app:layout_constraintStart_toStartOf="@+id/login_page_username"
+        app:layout_constraintTop_toBottomOf="@+id/login_page_username" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:background="#1AD5AD"
+        android:backgroundTint="#FFFFFF"
+        android:text="Button"
+        android:onClick="@{() -> getUserLoginViewModel.requestToLogin(loginPageUsername.getText().toString(), loginPagePassword.getText().toString())}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_page_password" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

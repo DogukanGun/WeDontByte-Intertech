@@ -7,8 +7,19 @@
         android:id="@+id/accountInformationNav"
         />
     <item
-        android:id="@+id/moneyTransferNav"
         android:title="@string/bottom_navigation_money_transfer_button"
+        android:id="@+id/moneyTransferNav"
+
         android:icon="@drawable/ic_baseline_credit_card"
+        />
+    <item
+        android:id="@+id/userInformation"
+        android:title="@string/bottom_navigation_user_information"
+        android:icon="@drawable/ic_baseline_people_alt"
+        />
+    <item
+        android:id="@+id/showNearestATM"
+        android:title="@string/bottom_navigation_atm"
+        android:icon="@drawable/ic_baseline_atm"
         />
 </menu>
