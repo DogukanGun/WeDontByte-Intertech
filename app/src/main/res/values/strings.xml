@@ -8,6 +8,7 @@
     <string name="bottom_navigation_atm">ATM</string>
     <string name="login_screen_username_field">Kullanıcı İsmi</string>
     <string name="login_screen_password_field">Şifre</string>
+    <string name="title_activity_splash_screen">Selam</string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>
