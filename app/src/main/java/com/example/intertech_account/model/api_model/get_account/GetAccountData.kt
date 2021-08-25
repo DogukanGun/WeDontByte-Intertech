@@ -8,3 +8,11 @@ data class GetAccountData(
     @SerializedName("AccountList")
     var getAccountList:Array<GetAccountList>
 )
+
+
+//    : Comparable<GetAccountData>{
+//    override fun compareTo(other: GetAccountData): Int {
+//        return if ("AccountListMessage" != other.type) 1
+//        else 0
+//    }
+//}

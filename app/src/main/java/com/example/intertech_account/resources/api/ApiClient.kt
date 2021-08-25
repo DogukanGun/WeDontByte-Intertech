@@ -10,7 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiClient {
     private var retrofit: Retrofit? = null
     fun getClient(): ApiInterface {
-
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

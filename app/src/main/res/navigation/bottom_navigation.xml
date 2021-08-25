@@ -12,4 +12,9 @@
         android:id="@+id/allAccountsFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.AllAccountsFragment"
         android:label="AllAccountsFragment" />
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragment"
+        android:label="fragment_main_page"
+        tools:layout="@layout/fragment_main_page" />
 </navigation>

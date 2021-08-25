@@ -1,8 +1,10 @@
 package com.example.intertech_account.view.login_page.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.ActivityUserLoginBinding
@@ -16,6 +18,10 @@ class UserLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.getUserLoginViewModel=getUserLoginViewModel
+        binding.button.setOnClickListener {
+            val intent = Intent(this, UserLoginActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

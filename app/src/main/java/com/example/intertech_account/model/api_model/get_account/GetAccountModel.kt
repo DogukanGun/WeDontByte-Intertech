@@ -9,5 +9,6 @@ data class GetAccountModel (
     var getAccountData: GetAccountData
 
 
-){}
+)
+
 

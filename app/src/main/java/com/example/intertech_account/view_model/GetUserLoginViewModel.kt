@@ -1,6 +1,8 @@
 package com.example.intertech_account.view_model
 
+ import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
+import com.example.intertech_account.view.login_page.activity.UserLoginActivity
 
 class GetUserLoginViewModel:ViewModel() {
     //TODO muhammet bu kisima ekleme yapicaksin
@@ -13,7 +15,7 @@ class GetUserLoginViewModel:ViewModel() {
     //fun apiRequest():GetAccountList gibi olucak
 
     fun requestToLogin(username:String,password:String){
-        print("dendende")
+
     }
     fun apiRequest(){
 

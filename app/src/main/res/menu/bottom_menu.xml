@@ -4,7 +4,7 @@
     <item
         android:title="@string/bottom_navigation_home_button"
         android:icon="@drawable/ic_baseline_home"
-        android:id="@+id/accountInformationNav"
+        android:id="@+id/mainPageFragment"
         />
     <item
         android:title="@string/bottom_navigation_money_transfer_button"

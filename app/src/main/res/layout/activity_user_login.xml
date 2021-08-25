@@ -64,7 +64,6 @@
         android:background="#1AD5AD"
         android:backgroundTint="#FFFFFF"
         android:text="Button"
-        android:onClick="@{() -> getUserLoginViewModel.requestToLogin(loginPageUsername.getText().toString(), loginPagePassword.getText().toString())}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
