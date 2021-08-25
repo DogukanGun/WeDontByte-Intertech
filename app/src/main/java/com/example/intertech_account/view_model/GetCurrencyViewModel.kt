@@ -2,9 +2,6 @@ package com.example.intertech_account.view_model
 
 import androidx.lifecycle.ViewModel
 import com.example.intertech_account.model.api_model.GetCurrencyModel
-import com.example.intertech_account.model.api_model.get_account.GetAccountBodyModel
-import com.example.intertech_account.model.api_model.get_account.GetAccountModel
-import com.example.intertech_account.model.api_model.get_account.GetAccountParameters
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyBodyModel
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyHeader
  import com.example.intertech_account.resources.api.ApiClient
