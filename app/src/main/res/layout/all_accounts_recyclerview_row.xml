@@ -6,9 +6,52 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/all_account_recycler_constrait" android:layout_width="match_parent" android:layout_height="160dp">
-        <TextView android:id="@+id/hesap_ismi_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="24dp" android:text="Hesap ismi" android:textSize="25dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
-        <TextView android:id="@+id/sube_ismi_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="8dp" android:text="Maltepe" android:textSize="20dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/hesap_ismi_tv"/>
-        <TextView android:id="@+id/bakiye_no_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:layout_marginEnd="16dp" android:text="$1500" android:textSize="40dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
-        <TextView android:id="@+id/iban_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="116dp" android:text="TR11546416513241654684163" android:textSize="20dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/hesap_ismi_tv"
+            android:layout_width="194dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="50dp"
+            android:text="Hesap ismi"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toStartOf="@+id/bakiye_no_tv"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sube_ismi_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Maltepe"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hesap_ismi_tv" />
+
+        <TextView
+            android:id="@+id/bakiye_no_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:text="$1500"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/iban_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="76dp"
+            android:text="TR11546416513241654684163"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

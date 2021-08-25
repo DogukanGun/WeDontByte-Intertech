@@ -27,7 +27,7 @@ class AllAccountsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_all_accounts,container,false)
-        var adapter=AllAccountsAdapter(emptyArray<GetAccountList>())
+        var adapter=AllAccountsAdapter(arrayListOf())
 
         binding.allAccounts.adapter=adapter
         binding.allAccounts.layoutManager=LinearLayoutManager(activity)

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.UserInformationRecyclerviewRowBinding
 
 
-class UserInformationAdapter(val userInformation:ArrayList<String>):RecyclerView.Adapter<UserInformationAdapter.UserInformationHolder>()  {
+class UserInformationAdapter(private var processNames: List<String>, private var balances: List<String>):RecyclerView.Adapter<UserInformationAdapter.UserInformationHolder>()  {
 
 
     class UserInformationHolder(val binding:UserInformationRecyclerviewRowBinding): RecyclerView.ViewHolder(binding.root){
@@ -19,16 +19,14 @@ class UserInformationAdapter(val userInformation:ArrayList<String>):RecyclerView
     }
 
     override fun onBindViewHolder(holder: UserInformationHolder, position: Int) {
-//        holder.binding.text = "Definition {$position}"
-        //burada bir label yarattigini ve isminin labelX oldugunu dusun
-        //icine bir sey yazmak icin binding.labelX yapicaksin
-        //burada position hangi hucrenin yuklendigini gosterir
-
+        holder.binding.cardViewProcessName.text = processNames[position]
+        holder.binding.cardViewBalance.text = balances[position]
     }
 
     
     override fun getItemCount(): Int {
-        return userInformation.size
+        return balances.size
     }
+
 }
 

@@ -9,6 +9,10 @@
     <string name="login_screen_username_field">Kullanıcı İsmi</string>
     <string name="login_screen_password_field">Şifre</string>
     <string name="title_activity_splash_screen">Selam</string>
+    <string name="app_title">Mobil Cüzdan</string>
+    <string name="favorite">Favori</string>
+    <string name="search">Ara</string>
+
     <!-- Strings used for fragments for navigation -->
 
 </resources>
