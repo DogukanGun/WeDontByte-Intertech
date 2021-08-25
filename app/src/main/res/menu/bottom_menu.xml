@@ -9,7 +9,6 @@
     <item
         android:title="@string/bottom_navigation_money_transfer_button"
         android:id="@+id/moneyTransferNav"
-
         android:icon="@drawable/ic_baseline_credit_card"
         />
     <item

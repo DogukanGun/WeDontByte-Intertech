@@ -1,7 +1,7 @@
 package com.example.intertech_account.model.api_model.get_account
 
 import com.google.gson.annotations.SerializedName
-data class GetCorporateAccountTransactionListGetAccountList(
+data class GetAccountList(
     @SerializedName("IsBlockedAccount")
     var isBlocked:Boolean,
     @SerializedName("BranchName")

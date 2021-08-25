@@ -2,17 +2,4 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bottom_navigation"
-    app:startDestination="@id/accountInformationNav">
-
-    <fragment
-        android:id="@+id/accountInformationNav"
-        android:name="com.example.intertech_account.view.main_page.fragment.AccountInformation"
-        android:label="fragment_account_information"
-        tools:layout="@layout/fragment_account_information" />
-    <fragment
-        android:id="@+id/moneyTransferNav"
-        android:name="com.example.intertech_account.view.main_page.fragment.MoneyTransfer"
-        android:label="fragment_money_transfer"
-        tools:layout="@layout/fragment_money_transfer" />
-</navigation>
+    android:id="@+id/bottom_navigation" />

@@ -13,7 +13,7 @@ class GetUserLoginViewModel:ViewModel() {
     //fun apiRequest():GetAccountList gibi olucak
 
     fun requestToLogin(username:String,password:String){
-
+        print("dendende")
     }
     fun apiRequest(){
 
