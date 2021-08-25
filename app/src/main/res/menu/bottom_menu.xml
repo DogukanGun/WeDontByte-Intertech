@@ -8,11 +8,11 @@
         />
     <item
         android:title="@string/bottom_navigation_money_transfer_button"
-        android:id="@+id/moneyTransferNav"
+        android:id="@+id/allAccountsFragment"
         android:icon="@drawable/ic_baseline_credit_card"
         />
     <item
-        android:id="@+id/userInformation"
+        android:id="@+id/userInformationFragment"
         android:title="@string/bottom_navigation_user_information"
         android:icon="@drawable/ic_baseline_people_alt"
         />
