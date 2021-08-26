@@ -5,7 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/all_account_recycler_constrait" android:layout_width="match_parent" android:layout_height="160dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all_account_recycler_constrait"
+        android:layout_width="match_parent"
+        android:layout_height="110dp">
+
         <TextView
             android:id="@+id/hesap_ismi_tv"
             android:layout_width="194dp"
@@ -52,6 +56,5 @@
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
