@@ -16,5 +16,12 @@
         android:id="@+id/mainPageFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragment"
         android:label="fragment_main_page"
-        tools:layout="@layout/fragment_main_page" />
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/action_mainPageFragment_to_userInformationFragment"
+            app:destination="@id/userInformationFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
 </navigation>

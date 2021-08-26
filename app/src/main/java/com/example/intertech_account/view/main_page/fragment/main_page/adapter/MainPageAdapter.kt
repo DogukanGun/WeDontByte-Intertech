@@ -5,36 +5,41 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.HomeScreenTransactionRowBinding
 import com.example.intertech_account.databinding.UserInformationRecyclerviewRowBinding
+import com.example.intertech_account.model.api_model.get_corporate_account_transaction_list.GetCorporateAccountTransactionListModel
+import com.example.intertech_account.model.api_model.get_corporate_account_transaction_list.GetCorporateAccountTranscationListTransactions
 import com.example.intertech_account.view.main_page.fragment.user_information.adapter.UserInformationAdapter
 
-class MainPageAdapter (private var destinationAccountTiles: List<String>,
-                       private var transactionNames: List<String>,
-                       private var amounts: List<String>,
-                       private var time: List<String>,
-                       private var date: List<String>)
+class MainPageAdapter ()
     :RecyclerView.Adapter<MainPageAdapter.MainPageHolder>()   {
+    private  var transactions:Array<GetCorporateAccountTranscationListTransactions> = emptyArray()
 
 
     class MainPageHolder(val binding:HomeScreenTransactionRowBinding ): RecyclerView.ViewHolder(binding.root){
 
     }
 
+    fun addList(transactions: Array<GetCorporateAccountTranscationListTransactions>){
+        this.transactions=transactions
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainPageHolder {
         val binding = HomeScreenTransactionRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return MainPageHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MainPageHolder, position: Int) {
-        holder.binding.destinationValue.text = destinationAccountTiles[position]
-        holder.binding.transactionValue.text = transactionNames[position]
-        holder.binding.amountValue.text = amounts[position]
-        holder.binding.timeValue.text = time[position]
-        holder.binding.dateValue.text = date[position]
+        if (transactions.isNotEmpty()){
+            holder.binding.destinationValue.text = transactions.get(position).destinationAccountTitle
+            holder.binding.transactionValue.text = transactions.get(position).transactionName
+            holder.binding.amountValue.text = transactions.get(position).amount.toString()
+            holder.binding.dateValue.text = transactions.get(position).date.toString()
+        }
+
     }
 
 
     override fun getItemCount(): Int {
-        return destinationAccountTiles.size
+        return transactions.size
     }
 }
 

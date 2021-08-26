@@ -3,18 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/favorite"
-        android:icon="@drawable/ic_baseline_favorite"
-        android:title="@string/favorite"
-        android:contentDescription="@string/favorite"
+        android:id="@+id/userInformationTopBarButton"
+        android:icon="@drawable/ic_baseline_people_alt"
+        android:title="@string/userInformation"
+        android:contentDescription="@string/userInformation"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/search"
-        android:icon="@drawable/ic_baseline_search"
-        android:title="@string/search"
-        android:contentDescription="@string/search"
-        app:showAsAction="ifRoom" />
 
 
 </menu>

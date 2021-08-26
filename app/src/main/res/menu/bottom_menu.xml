@@ -11,14 +11,5 @@
         android:id="@+id/allAccountsFragment"
         android:icon="@drawable/ic_baseline_credit_card"
         />
-    <item
-        android:id="@+id/userInformationFragment"
-        android:title="@string/bottom_navigation_user_information"
-        android:icon="@drawable/ic_baseline_people_alt"
-        />
-    <item
-        android:id="@+id/showNearestATM"
-        android:title="@string/bottom_navigation_atm"
-        android:icon="@drawable/ic_baseline_atm"
-        />
+
 </menu>

@@ -5,4 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class GetCorporateAccountTransactionList(
     @SerializedName("Transactions")
     var transactions:Array<GetCorporateAccountTranscationListTransactions>
-)
+){
+
+}

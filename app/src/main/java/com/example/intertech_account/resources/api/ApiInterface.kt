@@ -10,6 +10,8 @@ import com.example.intertech_account.model.api_model.get_account.GetAccountBodyM
 import com.example.intertech_account.model.api_model.get_corporate_account_transaction_list.GetCorporateAccountTransactionListBodyModel
 import com.example.intertech_account.model.api_model.get_corporate_account_transaction_list.GetCorporateAccountTransactionListModel
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyBodyModel
+import com.example.intertech_account.model.api_model.get_customer.GetCustomerBodyModel
+import com.example.intertech_account.model.api_model.get_customer.GetCustomerModel
 import retrofit2.Response
 
 interface ApiInterface {
@@ -33,6 +35,13 @@ interface ApiInterface {
         "Content-Type:application/json",
         "Ocp-Apim-Subscription-Key:e9cf2abaf9264596b62dc962b1c6a0d7",
     )
-    suspend fun getCorporateAccountTransactionList(@Body getCorporateAccountTransactionList: GetCorporateAccountTransactionListBodyModel): Response<GetCorporateAccountTransactionListModel>
+    suspend fun getCorporateAccountTransactionList(@Body getCorporateAccountTransactionListBodyModel: GetCorporateAccountTransactionListBodyModel): Response<GetCorporateAccountTransactionListModel>
+
+    @POST("customers/GetCustomer")
+    @Headers(
+        "Content-Type:application/json",
+        "Ocp-Apim-Subscription-Key:e9cf2abaf9264596b62dc962b1c6a0d7",
+    )
+    suspend fun getCustomerInfo(@Body getCustomerInfoBodyModel: GetCustomerBodyModel): Response<GetCustomerModel>
 
 }

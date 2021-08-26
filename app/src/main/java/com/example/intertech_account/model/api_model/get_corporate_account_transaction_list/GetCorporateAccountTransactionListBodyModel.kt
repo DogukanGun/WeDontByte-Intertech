@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class GetCorporateAccountTransactionListBodyModel(
     @SerializedName("Header")
     var header: GetCorporateAccountTransactionListHeader,
-    @SerializedName("Header")
+    @SerializedName("Parameters")
     var parameters:Array<GetCorporateAccountTransactionListParameter>,
 
     ){

@@ -12,7 +12,6 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     open class AllAccountsHolder(val binding:AllAccountsRecyclerviewRowBinding): RecyclerView.ViewHolder(binding.root){
 
-
     }
     inner class TitleViewHolder(binding:AllAccountsRecyclerviewRowBinding): AllAccountsHolder(binding){
 

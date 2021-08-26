@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
 
-    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/all_account_recycler_constrait" android:layout_width="match_parent" android:layout_height="160dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all_account_recycler_constrait"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
         <TextView
             android:id="@+id/hesap_ismi_tv"
             android:layout_width="194dp"
@@ -14,7 +16,9 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="50dp"
             android:text="Hesap ismi"
-            android:textSize="25dp"
+            android:textColor="#E61C5D"
+            android:textSize="26sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/bakiye_no_tv"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +31,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="Maltepe"
-            android:textSize="15dp"
+             android:textColor="#E61C5D"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hesap_ismi_tv" />
 
@@ -38,7 +44,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:text="$1500"
-            android:textSize="30dp"
+            android:textColor="#E61C5D"
+            android:textSize="23sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,9 +57,22 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="76dp"
             android:text="TR11546416513241654684163"
-            android:textSize="20dp"
+            android:textColor="#E61C5D"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/sideScreenColor"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="#ff8c00"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/hesap_ismi_tv"
+
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>

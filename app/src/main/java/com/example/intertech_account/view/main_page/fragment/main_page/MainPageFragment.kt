@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,10 +16,13 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentMainPageBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountData
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
+import com.example.intertech_account.model.api_model.get_corporate_account_transaction_list.GetCorporateAccountTransactionListModel
+import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AccountsInformationFragmentAdapter
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
 import com.example.intertech_account.view.main_page.fragment.main_page.adapter.MainPageAdapter
 import com.example.intertech_account.view_model.GetAccountViewModel
+import com.example.intertech_account.view_model.GetCorporateAccountTransactionViewModel
 
 
 class MainPageFragment : Fragment() {
@@ -32,6 +36,9 @@ class MainPageFragment : Fragment() {
     private lateinit var binding:FragmentMainPageBinding
     private val getAccountViewModel: GetAccountViewModel by viewModels()
     private lateinit var getAccountModel: GetAccountModel
+
+    private val getCorporateAccountTransactionViewModel: GetCorporateAccountTransactionViewModel by viewModels()
+    private lateinit var getCorporateAccountTransactionListModel: GetCorporateAccountTransactionListModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +47,23 @@ class MainPageFragment : Fragment() {
 
         binding=
             DataBindingUtil.inflate(inflater,R.layout.fragment_main_page,container,false)
+        createAccountInformation()
+        createRecyclerView()
+        Constant.isUserInformationTopBarButtonClick.observe(viewLifecycleOwner,{
+            if (it==true){
+                Constant.isUserInformationTopBarButtonClick.value=false
+                listenTopBarButton()
+            }
+        })
+
+        return binding.root
+    }
+//    private fun listenTopBarButton(){
+//        val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
+//        navHostFragment.findNavController().navigate(action)
+//
+//    }
+    private fun createAccountInformation(){
         binding.accountsInformation.adapter=AccountsInformationFragmentAdapter(emptyArray(),
             this
         )
@@ -51,17 +75,29 @@ class MainPageFragment : Fragment() {
                 this
             )
             binding.accountsInformation.adapter=adapter_
-            val recyclerView = binding.transactions
-            recyclerView.layoutManager =  LinearLayoutManager(activity)
-            recyclerView.adapter = MainPageAdapter(destinationAccountTitles,transactionNames,amounts,times,dates)
-            val dividerItemDecoration = DividerItemDecoration(
-                recyclerView.context,1
-            )
-            recyclerView.addItemDecoration(dividerItemDecoration)
-            updateRecyclerView()
 
         })
-        return binding.root
+    }
+    private fun createRecyclerView(){
+        val recyclerView = binding.transactions
+        recyclerView.layoutManager =  LinearLayoutManager(activity)
+        recyclerView.adapter = MainPageAdapter()
+        getCorporateAccountTransactionViewModel.apiRequest()
+        getCorporateAccountTransactionViewModel.getCorporateAccountTransactionResult.observe(viewLifecycleOwner,{
+            getCorporateAccountTransactionListModel=it
+            if (getCorporateAccountTransactionListModel != null){
+                val recyclerView = binding.transactions
+                recyclerView.layoutManager =  LinearLayoutManager(activity)
+                var adapter = recyclerView.adapter as MainPageAdapter
+//                adapter.addList(getCorporateAccountTransactionListModel.getCorporateAccountTransactionListData.getCorporateAccountTransactionList[0].transactions)
+                val dividerItemDecoration = DividerItemDecoration(
+                    recyclerView.context,1
+                )
+                recyclerView.addItemDecoration(dividerItemDecoration)
+            }
+
+
+        })
     }
     private fun addToRecyclerView(destinationAccountTitle: String, transactionName: String, amount: String, time: String, date: String)
     {
@@ -89,6 +125,9 @@ class MainPageFragment : Fragment() {
         }
 
     }
-
+    fun listenTopBarButton(){
+        val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
+        Constant.navHostFragment.findNavController().navigate(action)
+    }
 
 }

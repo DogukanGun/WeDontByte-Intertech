@@ -17,20 +17,25 @@ class UserLoginActivity : AppCompatActivity() {
     private lateinit var binding:ActivityUserLoginBinding
     private val getUserLoginViewModel:GetUserLoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_user_login)
+        binding= ActivityUserLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.getUserLoginViewModel=getUserLoginViewModel
-        binding.button.setOnClickListener {
-            if (binding.loginPagePassword.text.toString()=="deneme" && binding.loginPageUsername.text.toString()=="deneme"){
+        binding.loginPagePassword.error=null
+        binding.loginPageLoginButton.setOnClickListener {
+            if (binding.loginPagePasswordTextField.text.toString()=="deneme"){
+
+            }
+            if(binding.loginPageUsernameTextField.text.toString()=="deneme") {
+
+            }
                 Toast.makeText(this,"Doğru şifre. Giriş yapılıyor...",Toast.LENGTH_LONG).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-            }else{
-                Toast.makeText(this,"Yanlış Kullanıcı İsmi veya Parola. Lütfen Tekrar Deneyiniz ?"
-                ,Toast.LENGTH_LONG).show()
-            }
 
+        }
+
+        binding.loginPageHelpMe.setOnClickListener {
+            // TODO burada web view ile denizbanka yonlendir
         }
 
     }

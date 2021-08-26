@@ -10,7 +10,10 @@
     <string name="login_screen_password_field">Password</string>
     <string name="title_activity_splash_screen">Hi </string>
     <string name="app_title">Mobile Wallet</string>
-    <string name="favorite">Favorite</string>
+    <string name="userInformation">User</string>
     <string name="search">Search</string>
+    <string name="lost_password">Forget Password</string>
+    <string name="exit_message">Good Bye...</string>
+
 
 </resources>

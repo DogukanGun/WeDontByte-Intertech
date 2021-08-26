@@ -26,7 +26,7 @@ class AccountsInformationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_accounts_information,container,false)
+        binding = FragmentAccountsInformationBinding.inflate(layoutInflater)
         if (isFragmentUsedByViewPager){
             updateLabel(0)
             var spinnerList:ArrayList<String> = arrayListOf<String>()

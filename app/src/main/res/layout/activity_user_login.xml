@@ -1,74 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    
-    <data>
-        <variable
-            name="getUserLoginViewModel"
-            type="com.example.intertech_account.view_model.GetUserLoginViewModel" />
-    </data>
-    
-    
-
-<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C162E"
+    android:background="@drawable/login_menu_image"
     tools:context=".view.login_page.activity.UserLoginActivity">
 
-    <EditText
-        android:id="@+id/login_page_username"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginPageUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="50dp"
         android:width="0dp"
         android:height="50dp"
-        android:background="#140F26"
-        android:inputType="text"
         android:gravity="center_horizontal|center_vertical"
         android:hint="@string/login_screen_username_field"
+        android:inputType="text"
         android:shadowColor="#FFFFFF"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#F8F8F8"
+        android:textColor="#2b075b"
+        android:textColorHint="#2b075b"
+        android:textStyle="bold"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.313">
 
-    <EditText
-        android:id="@+id/login_page_password"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPageUsernameTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginPagePassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="50dp"
         android:width="0dp"
         android:height="100dp"
-        android:background="#140F26"
         android:gravity="center_horizontal|center_vertical"
         android:hint="@string/login_screen_password_field"
-        android:inputType="textPassword"
+
         android:shadowColor="#FFFFFF"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#F8F8F8"
-        app:layout_constraintEnd_toEndOf="@+id/login_page_username"
-        app:layout_constraintStart_toStartOf="@+id/login_page_username"
-        app:layout_constraintTop_toBottomOf="@+id/login_page_username" />
+        android:textColor="#2b075b"
+        android:textColorHint="#2b075b"
+        android:textStyle="bold"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPageUsername">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPagePasswordTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/loginPageLoginButton"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:background="#1AD5AD"
-        android:backgroundTint="#FFFFFF"
-        android:text="Button"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#350476 "
+        android:text="GİRİŞ"
+        android:textColor="#fff4de"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_page_password" />
+        app:layout_constraintTop_toBottomOf="@+id/loginPagePassword"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/loginPageHelpMe"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#350476 "
+        android:text="Yardım"
+        android:textColor="#fff4de"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/loginPageLoginButton"
+        app:layout_constraintEnd_toEndOf="@+id/loginPagePassword"
+        app:layout_constraintHorizontal_bias="0.418"
+        app:layout_constraintStart_toEndOf="@+id/loginPageLoginButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginPagePassword" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>

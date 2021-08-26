@@ -4,10 +4,10 @@ import com.example.intertech_account.model.api_model.get_account.GetAccountData
 import com.google.gson.annotations.SerializedName
 
 data class GetCorporateAccountTransactionListModel(
-    @SerializedName("type")
+    @SerializedName("\$type")
     var type:String,
     @SerializedName("Data")
-    var getCorporateAccountTransactionListData:GetCorporateAccountTransactionListData
+    var data:GetCorporateAccountTransactionListData
 
 ){
 
