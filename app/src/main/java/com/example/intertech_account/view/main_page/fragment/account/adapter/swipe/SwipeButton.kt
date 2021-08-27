@@ -1,4 +1,4 @@
-package com.example.intertech_account.view.main_page.fragment.account.adapter.swipe
+package com.example.intertech_account.view.main_page.fragment.account.adapter
 
 import android.content.Context
 import android.content.res.Resources
@@ -6,7 +6,6 @@ import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
-import com.example.intertech_account.resources.common_variables.Constant
 
 class SwipeButton(private val context:Context,
                   private val text:String,
@@ -21,10 +20,12 @@ class SwipeButton(private val context:Context,
     init{
         resources = context.resources
     }
-    //requireContext
     fun onClick(x:Float,y:Float):Boolean{
-        if(clickRegion != null && clickRegion!!.contains(x,y)){
 
+        if(clickRegion == null){
+        }
+
+        if(clickRegion != null && clickRegion!!.contains(x,y)){
             listener.onClick(pos)
             return true
         }
@@ -57,6 +58,8 @@ class SwipeButton(private val context:Context,
             c.drawBitmap(bitmap,(rectF.left+rectF.right)/2,(rectF.top+rectF.bottom)/2,p)
 
         }
+        clickRegion = rectF
+        this.pos = pos
 
 
     }

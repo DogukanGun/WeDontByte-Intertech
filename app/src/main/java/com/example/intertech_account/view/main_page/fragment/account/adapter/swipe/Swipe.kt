@@ -1,23 +1,21 @@
-package com.example.intertech_account.view.main_page.fragment.account.adapter.swipe
+package com.example.intertech_account.view.main_page.fragment.account.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Point
 import android.graphics.Rect
 import android.graphics.RectF
+import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-abstract class Swipe (var adapter: AllAccountsAdapter,
-                      context:Context,
+abstract class Swipe (context:Context,
                       private val recyclerView: RecyclerView,
                       internal val buttonWidth:Int):ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT){
 
@@ -32,15 +30,15 @@ abstract class Swipe (var adapter: AllAccountsAdapter,
                                         buffer:MutableList<SwipeButton>)
     private val gestureListener = object:GestureDetector.SimpleOnGestureListener(){
         override fun onSingleTapUp(e: MotionEvent?): Boolean {
-            for(button in buttonList!!)
+            for(button in buttonList!!){
+                Log.d("Info","click detected1 x: ${e!!.x}, y: ${e!!.y}")
                 if(button.onClick(e!!.x,e!!.y))
-                    break
+                    break}
 
             return true
         }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private val onTouchListener = View.OnTouchListener { _, motionEvent ->
         if (swipePosition < 0) return@OnTouchListener false
         val point = Point(motionEvent.rawX.toInt(), motionEvent.rawY.toInt())
@@ -81,7 +79,7 @@ abstract class Swipe (var adapter: AllAccountsAdapter,
 
         attachSwipe()
 
-            }
+    }
 
     private fun attachSwipe() {
         val itemTouchHelper=ItemTouchHelper(this)
@@ -122,23 +120,23 @@ abstract class Swipe (var adapter: AllAccountsAdapter,
     ): Boolean {
         return false
     }
-/*
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        var pos:Int = viewHolder.adapterPosition
-        adapter.deleteAccount(pos)
-    }*/
+    /*
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            var pos:Int = viewHolder.adapterPosition
+            adapter.deleteAccount(pos)
+        }*/
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val pos = viewHolder.adapterPosition
-    if(swipePosition !=pos)
-        removeQueue.add(swipePosition)
-    swipePosition = pos
-    if(buttonBuffer.containsKey(swipePosition))
-        buttonList=buttonBuffer[swipePosition]
-    else
-        buttonList!!.clear()
-    buttonBuffer.clear()
-    swipeThreshold = 0.1f*buttonList!!.size.toFloat()*buttonWidth.toFloat()
-    recoverSwipeItem()
+        if(swipePosition !=pos)
+            removeQueue.add(swipePosition)
+        swipePosition = pos
+        if(buttonBuffer.containsKey(swipePosition))
+            buttonList=buttonBuffer[swipePosition]
+        else
+            buttonList!!.clear()
+        buttonBuffer.clear()
+        swipeThreshold = 0.5f*buttonList!!.size.toFloat()*buttonWidth.toFloat()
+        recoverSwipeItem()
     }
 
     override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {

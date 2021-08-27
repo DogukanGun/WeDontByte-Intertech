@@ -6,29 +6,24 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAllAccountsBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
-import com.example.intertech_account.view.main_page.fragment.account.adapter.swipe.Swipe
-import com.example.intertech_account.view.main_page.fragment.account.adapter.swipe.SwipeButton
-import com.example.intertech_account.view.main_page.fragment.account.adapter.swipe.SwipeButtonClickListener
-import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragmentDirections
-import com.example.intertech_account.view.splash_screen.SplashScreen
+import com.example.intertech_account.view.main_page.fragment.account.adapter.Swipe
+import com.example.intertech_account.view.main_page.fragment.account.adapter.SwipeButton
+import com.example.intertech_account.view.main_page.fragment.account.adapter.SwipeButtonClickListener
 import com.example.intertech_account.view_model.GetAccountViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -109,11 +104,12 @@ class AllAccountsFragment : Fragment() {
         System.exit(0)
     }
     private fun createSwipe(){
-        val swipe=object: Swipe(adapter,activity as MainActivity,binding.allAccounts,200){
+        val swipe=object: Swipe(activity as MainActivity ,binding.allAccounts,200){
             override fun instantiateSwipeButton(
                 viewHolder: RecyclerView.ViewHolder,
                 buffer: MutableList<SwipeButton>
             ) {
+
 
 
 
@@ -125,26 +121,26 @@ class AllAccountsFragment : Fragment() {
                         Color.parseColor("#FF3C30"),
                         object: SwipeButtonClickListener {
                             override fun onClick(pos: Int) {
-
-                             }
-
-                        })
-                )
-
-                buffer.add(
-                    SwipeButton(activity as MainActivity,
-                        "Update",
-                        30,
-                        0,
-                        Color.parseColor("#FF9502"),
-                        object: SwipeButtonClickListener {
-                            override fun onClick(pos: Int) {
-                                Toast.makeText(activity as MainActivity,"Delete ID"+pos, Toast.LENGTH_SHORT).show()
-
+                                var action = AllAccountsFragmentDirections.actionAllAccountsFragmentToSimpleAccountFragment()
+                                Constant.navHostFragment.findNavController().navigate(action)
                             }
 
                         })
                 )
+                /*
+                buffer.add(
+                    SwipeButton(activity as MainActivity,
+                    "Update",
+                    30,
+                    0,
+                    Color.parseColor("#FF9502"),
+                    object: SwipeButtonClickListener {
+                        override fun onClick(pos: Int) {
+                            Toast.makeText(activity as MainActivity,"Delete ID"+pos, Toast.LENGTH_SHORT).show()
+                        }
+
+                    })
+                )*/
 
 
             }
