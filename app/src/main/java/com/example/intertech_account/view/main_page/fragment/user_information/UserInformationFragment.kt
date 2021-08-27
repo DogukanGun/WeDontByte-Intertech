@@ -45,20 +45,14 @@ class UserInformationFragment : Fragment() {
             getCustomerModel=it
             var adapter_=binding.recyclerView.adapter as? UserInformationAdapter
             var x = listOf("Name ","Surname ", "Citizienship Id ", "Birth Date", "Email ", "Telephone Number")
-            var Info = listOf("deneme" ,
-                "deneme",
-                "deneme",
-                "deneme",
-                "deneme",
-                "deneme"
+
+            var Info = listOf(getCustomerModel.getCustomerData.shortName ,
+                getCustomerModel.getCustomerData.shortName,
+                getCustomerModel.getCustomerData.citizenshipNumber,
+                getCustomerModel.getCustomerData.birthDate,
+                getCustomerModel.getCustomerData.email,
+                getCustomerModel.getCustomerData.getMobilePhoneList.number
             )
-//            var Info = listOf(getCustomerModel.getCustomerData.shortName ,
-//                getCustomerModel.getCustomerData.shortName,
-//                getCustomerModel.getCustomerData.citizenshipNumber,
-//                getCustomerModel.getCustomerData.birthDate,
-//                getCustomerModel.getCustomerData.email,
-//                getCustomerModel.getCustomerData.getMobilePhoneList.number
-//            )
             adapter_!!.addInfo(x,Info)
 
         })

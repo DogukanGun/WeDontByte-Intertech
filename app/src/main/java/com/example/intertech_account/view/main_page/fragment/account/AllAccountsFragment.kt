@@ -1,23 +1,21 @@
 package com.example.intertech_account.view.main_page.fragment.account
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAllAccountsBinding
-import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.example.intertech_account.resources.common_variables.Constant
- import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
+import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
 import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragmentDirections
 import com.example.intertech_account.view_model.GetAccountViewModel
+
 
 class AllAccountsFragment : Fragment() {
 
@@ -42,7 +40,7 @@ class AllAccountsFragment : Fragment() {
                 adapter_!!.addAccount(getAccountModel.getAccountData.getAccountList)
 
         })
-
+        
         return binding.root
 
     }

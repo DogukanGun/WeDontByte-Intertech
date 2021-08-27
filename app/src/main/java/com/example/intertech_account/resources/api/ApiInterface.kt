@@ -37,11 +37,10 @@ interface ApiInterface {
     )
     suspend fun getCorporateAccountTransactionList(@Body getCorporateAccountTransactionListBodyModel: GetCorporateAccountTransactionListBodyModel): Response<GetCorporateAccountTransactionListModel>
 
-    @POST("customers/GetCustomer")
+    @POST("customers/GetCustomerInfoForThirdParty")
     @Headers(
         "Content-Type:application/json",
-        "Ocp-Apim-Subscription-Key:e9cf2abaf9264596b62dc962b1c6a0d7",
+        "Ocp-Apim-Subscription-Key:75164f09243444ff913254565353c68d",
     )
-    suspend fun getCustomerInfo(@Body getCustomerInfoBodyModel: GetCustomerBodyModel): Response<GetCustomerModel>
-
+    suspend fun getCustomerInfo(@Body getCustomerInfo: GetCustomerBodyModel): Response<GetCustomerModel>
 }
