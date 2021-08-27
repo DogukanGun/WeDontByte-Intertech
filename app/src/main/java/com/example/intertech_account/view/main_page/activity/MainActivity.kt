@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,6 +21,7 @@ import com.example.intertech_account.databinding.ActivityMainBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragmentDirections
+import com.example.intertech_account.view.main_page.fragment.user_information.UserInformationFragment
 import com.example.intertech_account.view_model.GetAccountViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -41,13 +43,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.toolbar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            var id = menuItem.itemId
             when (menuItem.itemId) {
                 R.id.userInformationTopBarButton -> {
-
-                    Constant.isUserInformationTopBarButtonClick.value=true
-
+//                     findNavController().navigate(R.id.action_allAccountsFragment_to_simpleAccountFragment)
+//                    if(Constant.isUserInformationTopBarButtonClick.value==0){
+//                        Constant.isUserInformationTopBarButtonClick.value=1
+//                    }
+                    if (Constant.isUserInformationTopBarButtonClick.value==0) {
+                        Constant.isUserInformationTopBarButtonClick.value = 1
+                    }
                     true
                 }
+
                 else -> {
                    false
                 }

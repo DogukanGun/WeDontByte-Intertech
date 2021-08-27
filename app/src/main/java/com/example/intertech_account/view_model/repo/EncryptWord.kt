@@ -16,3 +16,8 @@ class EncryptWord(var userPassword:String) {
 
     }
 }
+
+
+// toas message fragment da nasil gosterilir
+// toolbar button nasil kullanilir
+//sagdan swipe icin hazir kutuphane var mi

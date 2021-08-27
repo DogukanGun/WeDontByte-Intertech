@@ -1,11 +1,13 @@
 package com.example.intertech_account.view_model
 
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.intertech_account.model.api_model.get_account.*
 import com.example.intertech_account.resources.api.ApiClient
 import com.example.intertech_account.resources.api.ApiInterface
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +34,7 @@ class GetAccountViewModel : ViewModel(){
         val getAccountGetAccountBodyModel: GetAccountBodyModel =
             GetAccountBodyModel(getAccountHeader,getAccountParameterList)
 
-        job = CoroutineScope(Dispatchers.IO).launch {
+        job = CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
             val response = ApiClient.getClient().getAccounts(getAccountGetAccountBodyModel)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
@@ -55,7 +57,9 @@ class GetAccountViewModel : ViewModel(){
         job?.cancel()
     }
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
-        println("Error: ${throwable.localizedMessage}")
+        errorMessage.value="ApiError"
+        Log.d("GetAccountViewModel", throwable.localizedMessage!!)
+
     }
 }
 

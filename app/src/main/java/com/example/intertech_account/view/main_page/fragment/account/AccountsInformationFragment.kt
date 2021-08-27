@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAccountsInformationBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
+import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view_model.GetAccountViewModel
 
 

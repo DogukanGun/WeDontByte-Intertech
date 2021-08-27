@@ -1,5 +1,6 @@
-package com.example.intertech_account.view.main_page.fragment.account.adapter
+package com.example.intertech_account.view.main_page.fragment.account.adapter.swipe
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Point
@@ -10,6 +11,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -38,6 +40,7 @@ abstract class Swipe (var adapter: AllAccountsAdapter,
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private val onTouchListener = View.OnTouchListener { _, motionEvent ->
         if (swipePosition < 0) return@OnTouchListener false
         val point = Point(motionEvent.rawX.toInt(), motionEvent.rawY.toInt())
@@ -50,7 +53,7 @@ abstract class Swipe (var adapter: AllAccountsAdapter,
             motionEvent.action == MotionEvent.ACTION_DOWN
 
         ) {
-            if (rect.top > point.y && rect.bottom > point.y)
+            if (rect.top < point.y && rect.bottom > point.y)
                 gestureDetector.onTouchEvent((motionEvent))
             else {
                 removeQueue.add(swipePosition)
@@ -134,7 +137,7 @@ abstract class Swipe (var adapter: AllAccountsAdapter,
     else
         buttonList!!.clear()
     buttonBuffer.clear()
-    swipeThreshold = 0.5f*buttonList!!.size.toFloat()*buttonWidth.toFloat()
+    swipeThreshold = 0.1f*buttonList!!.size.toFloat()*buttonWidth.toFloat()
     recoverSwipeItem()
     }
 

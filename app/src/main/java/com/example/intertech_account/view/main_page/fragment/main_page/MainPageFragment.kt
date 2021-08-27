@@ -1,25 +1,22 @@
 package com.example.intertech_account.view.main_page.fragment.main_page
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentMainPageBinding
-import com.example.intertech_account.model.api_model.get_account.GetAccountData
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.example.intertech_account.model.api_model.get_corporate_account_transaction_list.GetCorporateAccountTransactionListModel
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AccountsInformationFragmentAdapter
-import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
 import com.example.intertech_account.view.main_page.fragment.main_page.adapter.MainPageAdapter
 import com.example.intertech_account.view_model.GetAccountViewModel
 import com.example.intertech_account.view_model.GetCorporateAccountTransactionViewModel
@@ -47,22 +44,21 @@ class MainPageFragment : Fragment() {
 
         binding=
             DataBindingUtil.inflate(inflater,R.layout.fragment_main_page,container,false)
+        Constant.currentBottomMenu=0
         createAccountInformation()
         createRecyclerView()
+        setHasOptionsMenu(true)
         Constant.isUserInformationTopBarButtonClick.observe(viewLifecycleOwner,{
-            if (it==true){
-                Constant.isUserInformationTopBarButtonClick.value=false
-                listenTopBarButton()
+            if (it==1 && Constant.currentBottomMenu==0){
+                Constant.isUserInformationTopBarButtonClick.value=2
+                val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
+                Constant.navHostFragment.findNavController().navigate(action)
             }
         })
 
         return binding.root
     }
-//    private fun listenTopBarButton(){
-//        val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
-//        navHostFragment.findNavController().navigate(action)
-//
-//    }
+
     private fun createAccountInformation(){
         binding.accountsInformation.adapter=AccountsInformationFragmentAdapter(emptyArray(),
             this
@@ -125,9 +121,4 @@ class MainPageFragment : Fragment() {
         }
 
     }
-    fun listenTopBarButton(){
-        val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
-        Constant.navHostFragment.findNavController().navigate(action)
-    }
-
 }

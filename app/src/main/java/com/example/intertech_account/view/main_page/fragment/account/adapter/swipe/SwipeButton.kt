@@ -1,27 +1,30 @@
-package com.example.intertech_account.view.main_page.fragment.account.adapter
+package com.example.intertech_account.view.main_page.fragment.account.adapter.swipe
 
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.os.Build.VERSION_CODES.P
 import androidx.core.content.ContextCompat
+import com.example.intertech_account.resources.common_variables.Constant
 
 class SwipeButton(private val context:Context,
                   private val text:String,
                   private val textSize:Int,
                   private val imageResId:Int,
                   private val color:Int,
-                  private val listener:SwipeButtonClickListener) {
+                  private val listener: SwipeButtonClickListener
+) {
     private var pos : Int = 0
     private var clickRegion: RectF?=null
     private val resources:Resources
     init{
         resources = context.resources
     }
+    //requireContext
     fun onClick(x:Float,y:Float):Boolean{
         if(clickRegion != null && clickRegion!!.contains(x,y)){
+
             listener.onClick(pos)
             return true
         }

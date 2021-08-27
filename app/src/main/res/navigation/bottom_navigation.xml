@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_navigation"
-    app:startDestination="@id/allAccountsFragment">
+    app:startDestination="@id/mainPageFragment">
     <fragment
         android:id="@+id/userInformationFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.user_information.UserInformationFragment"
@@ -11,7 +11,14 @@
     <fragment
         android:id="@+id/allAccountsFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.AllAccountsFragment"
-        android:label="AllAccountsFragment" />
+        android:label="AllAccountsFragment" >
+        <action
+            android:id="@+id/action_allAccountsFragment_to_simpleAccountFragment"
+            app:destination="@id/simpleAccountFragment" />
+        <action
+            android:id="@+id/action_allAccountsFragment_to_userInformationFragment"
+            app:destination="@id/userInformationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainPageFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragment"
@@ -24,4 +31,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_enter_anim" />
     </fragment>
+    <fragment
+        android:id="@+id/simpleAccountFragment"
+        android:name="com.example.intertech_account.view.main_page.fragment.account.SimpleAccountFragment"
+        android:label="fragment_simple_account"
+        tools:layout="@layout/fragment_simple_account" />
 </navigation>

@@ -38,7 +38,7 @@ class GetCustomerViewModel  : ViewModel(){
         val getCustomerGetCustomerBodyModel: GetCustomerBodyModel =
             GetCustomerBodyModel(getCustomerHeader,getCustomerParameterList)
 
-        job = CoroutineScope(Dispatchers.IO).launch {
+        job = CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
             val response = ApiClient.getClient().getCustomerInfo(getCustomerGetCustomerBodyModel)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
