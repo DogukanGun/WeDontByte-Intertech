@@ -10,6 +10,14 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     private val EMPTY_ITEM = 0
     private val NORMAL_ITEM = 1
 
+    private val roles: HashMap<String, Int> = hashMapOf(
+        "TRY" to 0,
+        "USD" to 1,
+        "EUR" to 2,
+        "GBP" to 3
+
+    )
+
     open class AllAccountsHolder(val binding:AllAccountsRecyclerviewRowBinding): RecyclerView.ViewHolder(binding.root){
 
     }
@@ -17,24 +25,53 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     }
 
-    fun deleteAccount(position: Int){
-        allAccounts.removeAt(position)
-        notifyItemRemoved(position)
-
-    }
     fun addAccount(item:Array<GetAccountList>){
-        item.sortBy { account -> account.currency }
-        var AllAccountsArrayList : ArrayList<GetAccountList> = arrayListOf()
+        val comparator = Comparator { o1: GetAccountList, o2: GetAccountList ->
+            return@Comparator roles[o1.currency]!! - roles[o2.currency]!!
+        }
+        item.sortWith(comparator)
+
+        //item.sortBy { account -> account.currency }
+        val AllAccountsArrayList : ArrayList<GetAccountList> = arrayListOf()
 
         for (i in 0 until item.size)
         {
-            if(i == 0)AllAccountsArrayList.add(GetAccountList(isBlocked = false,"maltepe","birinci",false,"Title",0.15,00.10,1500.2,1800.5,1600.5,1850.0,"benimHesabım","TR1159465168416516841634623",false,88.50))
+            if(i == 0)AllAccountsArrayList.add(GetAccountList(isBlocked = false,
+                                                "maltepe",
+                                                "birinci",
+                                                false,
+                                                "Title",
+                                                0.15,
+                                                00.10,
+                                                1500.2,
+                                                1800.5,
+                                                1600.5,
+                                                1850.0,
+                                                "benimHesabım",
+                                                "TR1159465168416516841634623",
+                                                false,88.50))
 
             AllAccountsArrayList.add(item[i])
+
             if(i < item.size-1 && item[i+1].currency != item[i].currency ){
-                AllAccountsArrayList.add(GetAccountList(isBlocked = false,"maltepe","birinci",false,"Title",0.15,00.10,1500.2,1800.5,1600.5,1850.0,"benimHesabım","TR1159465168416516841634623",false,88.50))
+
+                AllAccountsArrayList.add(GetAccountList(isBlocked = false,
+                    "maltepe",
+                    "birinci",
+                    false,
+                    "Title",
+                    0.15,
+                    00.10,
+                    1500.2,
+                    1800.5,
+                    1600.5,
+                    1850.0,
+                    "benimHesabım",
+                    "TR1159465168416516841634623",
+                    false,88.50))
             }
         }
+
         allAccounts=AllAccountsArrayList
         notifyDataSetChanged()
     }
@@ -65,7 +102,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 holder.binding.ibanTv.text = ""
                 holder.binding.bakiyeNoTv.text =""
                 holder.binding.hesapIsmiTv.text =""
-                holder.binding.subeIsmiTv.text =allAccounts[position+1].currency.toString()+" Hesaplarım"
+                holder.binding.subeIsmiTv.text = allAccounts[position+1].currency+" Hesaplarım"
                 holder.binding.subeIsmiTv.textSize = 30.toFloat()
             }
             else -> {
