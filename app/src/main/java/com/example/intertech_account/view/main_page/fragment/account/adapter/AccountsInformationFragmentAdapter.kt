@@ -12,7 +12,6 @@ import com.example.intertech_account.view.main_page.fragment.account.AccountsInf
 class AccountsInformationFragmentAdapter(var bankFragments: Array<GetAccountData>, fragment: Fragment): FragmentStateAdapter(fragment)
 
 {
-
     override fun getItemCount(): Int {
         return bankFragments.size
     }
@@ -22,8 +21,11 @@ class AccountsInformationFragmentAdapter(var bankFragments: Array<GetAccountData
         if (bankFragments[0].getAccountList.isNotEmpty()){
             fragment.isFragmentUsedByViewPager=true
             fragment.getAccountModel=GetAccountModel("",bankFragments[0])
+
         }
         return fragment
 
     }
+
+
 }

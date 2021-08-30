@@ -1,142 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:background="@drawable/wallet_background_image"
-
-    android:layout_height="wrap_content"
-    tools:context=".view.main_page.fragment.account.AccountsInformationFragment">
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/buttonConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:background="@drawable/intertech_background_settings"
+        tools:context=".view.main_page.fragment.account.AccountsInformationFragment">
 
-        <TextView
-            android:id="@+id/accountType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="#F8F2F2"
-
-            android:text="Hesap Turu"
-            android:textColor="@color/white"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintEnd_toStartOf="@+id/buttonConstraintLayout"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.035">
 
-        <Spinner
-            android:id="@+id/accountName"
+            <TextView
+                android:id="@+id/accountType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fffdd0"
+                android:text="Hesap Turu"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <TextView
+                android:id="@+id/subeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="6dp"
+                android:backgroundTint="#F8F2F2"
+                android:text="Şube"
+                android:textColor="#fffdd0"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/accountType"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.413" />
+
+            <Spinner
+                android:id="@+id/accountName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:backgroundTint="#fffdd0"
+                android:foregroundTint="#fffdd0"
+                android:textSize="20dp"
+                android:popupBackground="#20222C"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.918" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Kullanabilir Bakiye"
+                android:textColor="#fffdd0"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/accountBalance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/accountType"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/accountBalance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:text="Hesap Bakiyesi"
+                android:textColor="#fffdd0"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/accountName"
+                app:layout_constraintEnd_toEndOf="@+id/accountName"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/accountName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/shortcutButtons"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="24dp"
-            android:backgroundTint="@color/white"
-            android:foregroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Kullanabilir Bakiye"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/accountBalance"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accountType"
-            app:layout_constraintVertical_bias="0.125"/>
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/accountBalance"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:gravity="center_horizontal"
-            android:text="Hesap Bakiyesi"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/accountName"
-            app:layout_constraintEnd_toEndOf="@+id/accountName"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/accountName" />
+            <Button
+                android:id="@+id/qrButton"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                app:backgroundTint="@null"
+                android:background="@drawable/qr"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/billsButton"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toEndOf="@+id/sendMoneyButton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.083" />
 
-        <TextView
-            android:id="@+id/transactionText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Transactions"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView3"
-            app:layout_constraintHorizontal_bias="0.417"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.267" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/billsButton"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                app:backgroundTint="@null"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/bill"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/qrButton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.093" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/shortcutButtons"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+            <Button
+                android:id="@+id/sendMoneyButton"
+                app:backgroundTint="@null"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="18dp"
+                android:background="@drawable/money_transfer"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/qrButton"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.083" />
 
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#930077"
-            android:text="QR"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button7"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button5"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.096" />
+            <TextView
+                android:id="@+id/sendMoneyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/money_transfer"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/sendMoneyButton"
+                app:layout_constraintStart_toStartOf="@+id/sendMoneyButton"
+                app:layout_constraintTop_toBottomOf="@+id/sendMoneyButton"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#930077"
-            android:text="Fatura Ode"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button6"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.096" />
+            <TextView
+                android:id="@+id/qrTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/qr_button"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/qrButton"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/qrButton"
+                app:layout_constraintTop_toBottomOf="@+id/qrButton"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#930077"
-            android:text="Para Gonder"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button6"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.096" />
+            <TextView
+                android:id="@+id/billsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/payment_button"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/billsButton"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/billsButton"
+                app:layout_constraintTop_toBottomOf="@+id/billsButton"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -144,14 +214,15 @@
             android:gravity="center"
             android:text="Transactions"
             android:textColor="@color/white"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button6"
-            app:layout_constraintVertical_bias="0.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/shortcutButtons"
+            app:layout_constraintVertical_bias="0.428" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

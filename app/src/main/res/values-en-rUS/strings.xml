@@ -16,6 +16,14 @@
     <string name="exit_message">Good Bye...</string>
     <string name="relode_page">Connection Error</string>
     <string name="relode_page_button">Try Again</string>
+    <string name="payment_button">Payment</string>
+    <string name="qr_button">QR</string>
+    <string name="money_transfer">Money Transfer</string>
+    <string name="drawMoney">Draw Money</string>
+    <string name="depositMoney">Deposit Money</string>
+    <string name="destinationIban">Destination Iban</string>
+    <string name="okey_button">Okey</string>
+    <string name="cancel_button">Cancel</string>
 
 
 </resources>

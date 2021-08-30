@@ -12,15 +12,17 @@ import androidx.fragment.app.viewModels
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAccountsInformationBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
+import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
+import com.example.intertech_account.resources.common_variables.QrOperation
 import com.example.intertech_account.view_model.GetAccountViewModel
 
 
 class AccountsInformationFragment : Fragment() {
     private val getAccountViewModel: GetAccountViewModel by viewModels()
     lateinit var getAccountModel: GetAccountModel
+    private lateinit var currentIban:String
     var isFragmentUsedByViewPager=false
-    var positionOfCurrentSpinneer=0
     lateinit var binding:FragmentAccountsInformationBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +42,9 @@ class AccountsInformationFragment : Fragment() {
                 spinnerList
             )
             binding.accountName.adapter=adapter
+            binding.qrButton.setOnClickListener {
+                Button.qrButtonPressed.value=QrOperation(true,currentIban,false)
+            }
             isFragmentUsedByViewPager=false
             binding.accountName.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -48,8 +53,7 @@ class AccountsInformationFragment : Fragment() {
                     position: Int,
                     id: Long
                 ) {
-                        updateLabel(position)
-
+                    updateLabel(position)
 
                 }
 
@@ -67,7 +71,7 @@ class AccountsInformationFragment : Fragment() {
     fun updateLabel(position:Int){
         binding.accountType.text = getAccountModel.getAccountData.getAccountList[position].accountName
         binding.accountBalance.text = getAccountModel.getAccountData.getAccountList[position].availableBalance.toString()
-
+        currentIban = getAccountModel.getAccountData.getAccountList[position].iban
     }
 
 }

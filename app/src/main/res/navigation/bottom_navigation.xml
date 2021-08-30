@@ -30,10 +30,26 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_QRCodeOptionSelectFragment"
+            app:destination="@id/QRCodeOptionSelectFragment" />
     </fragment>
     <fragment
         android:id="@+id/simpleAccountFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.SimpleAccountFragment"
         android:label="fragment_simple_account"
         tools:layout="@layout/fragment_simple_account" />
+    <fragment
+        android:id="@+id/QRCodeOptionSelectFragment"
+        android:name="com.example.intertech_account.view.main_page.fragment.qr_operation.QRCodeOptionSelectFragment"
+        android:label="fragment_q_r_code_option_select"
+        tools:layout="@layout/fragment_q_r_code_option_select" >
+        <argument
+            android:name="iban"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_QRCodeOptionSelectFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment"
+            app:popUpTo="@id/mainPageFragment" />
+    </fragment>
 </navigation>

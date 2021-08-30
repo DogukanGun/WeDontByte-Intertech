@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/recyclerview_settings"
+    tools:context=".view.main_page.fragment.qr_operation.QRCodeOptionSelectFragment">
+
+    <RadioButton
+        android:id="@+id/drawMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="#350476"
+        android:button="@drawable/qr_radio_button"
+        android:checked="true"
+        android:text="@string/drawMoney"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/depositMoney"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioButton
+        android:id="@+id/depositMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:background="@null"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="#350476"
+        android:button="@drawable/qr_radio_button"
+        android:checked="true"
+        android:text="@string/payment_button"
+        app:layout_constraintEnd_toStartOf="@+id/drawMoney"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/destinationIban"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="40dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="@string/destinationIban"
+        android:textColor="#2b075b"
+        android:textColorHint="#2b075b"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="40dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textColor="#2b075b"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/destinationIban"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="172dp"
+        android:background="@drawable/button_settings"
+        android:text="Button"
+        android:textColor="#fff4de"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/destinationIban"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/destinationIban" />
+
+    <TextView
+        android:id="@+id/tr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="TR"
+        android:textColor="#2b075b"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/amount"
+        app:layout_constraintEnd_toEndOf="@+id/depositMoney"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="@+id/depositMoney"
+        app:layout_constraintTop_toBottomOf="@+id/depositMoney" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="TextView"
+        android:textColor="#2b075b"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/amount"
+        app:layout_constraintEnd_toEndOf="@+id/drawMoney"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/drawMoney"
+        app:layout_constraintTop_toBottomOf="@+id/drawMoney" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

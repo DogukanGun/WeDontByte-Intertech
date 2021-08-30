@@ -19,6 +19,7 @@ import com.example.intertech_Customer.view_model.GetCustomerViewModel
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentUserInformationBinding
 import com.example.intertech_account.model.api_model.get_customer.GetCustomerModel
+import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.user_information.adapter.UserInformationAdapter
@@ -108,6 +109,6 @@ class UserInformationFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Constant.isUserInformationTopBarButtonClick.value=0
+        Button.isUserInformationTopBarButtonClick.value=0
     }
 }

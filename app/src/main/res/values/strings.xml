@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Intertech-Account</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="bottom_navigation_home_button">Ana Sayfa</string>
     <string name="bottom_navigation_money_transfer_button">Hesap İşlemleri</string>
@@ -16,6 +15,14 @@
     <string name="exit_message">Görüşürüz...</string>
     <string name="relode_page">İnternet Bağlantınızda Hata Var</string>
     <string name="relode_page_button">Tekrar Dene</string>
-    <!-- Strings used for fragments for navigation -->
+    <string name="payment_button">Ödemeler</string>
+    <string name="qr_button">Qr Kod</string>
+    <string name="money_transfer">Para Gönder</string>
+    <string name="drawMoney">Para Çek</string>
+    <string name="depositMoney">Para Yatır</string>
+    <string name="destinationIban">Gönderilecek Iban</string>
+    <string name="okey_button">Tamam</string>
+    <string name="cancel_button">İptal</string>
+
 
 </resources>
