@@ -6,9 +6,13 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import androidx.core.view.iterator
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -18,7 +22,6 @@ import androidx.test.core.app.ApplicationProvider
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAllAccountsBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
-import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
@@ -35,6 +38,10 @@ class AllAccountsFragment : Fragment() {
     private val getAccountViewModel: GetAccountViewModel by viewModels()
     private lateinit var getAccountModel: GetAccountModel
     private var adapter=AllAccountsAdapter(arrayListOf())
+    private var checkBoxList: HashMap<String,CheckBox> = hashMapOf()
+    private lateinit var adapter_:AllAccountsAdapter
+    private var currencyStates: HashMap<String,Int> =hashMapOf()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,19 +51,58 @@ class AllAccountsFragment : Fragment() {
 
         Constant.currentBottomMenu=1
         controlError()
-        getData()
+        getData(savedInstanceState)
         createSwipe()
-        Button.isUserInformationTopBarButtonClick.observe(viewLifecycleOwner,{
-            if (it==1 && Constant.currentBottomMenu==1){
-                Button.isUserInformationTopBarButtonClick.value=2
-                val action = AllAccountsFragmentDirections.actionAllAccountsFragmentToUserInformationFragment()
+
+        Constant.isUserInformationTopBarButtonClick.observe(viewLifecycleOwner) {
+            if (it == 1 && Constant.currentBottomMenu == 1) {
+                Constant.isUserInformationTopBarButtonClick.value = 2
+                val action =
+                    AllAccountsFragmentDirections.actionAllAccountsFragmentToUserInformationFragment()
                 Constant.navHostFragment.findNavController().navigate(action)
             }
-        })
-        
+        }
+
+
+
+
+
         return binding.root
 
     }
+    private fun checkboxCreator(currencyNames:List<String>,savedInstanceState: Bundle?,){
+
+        super.onCreate(savedInstanceState)
+        val linearLayout = binding.linearLayoutAccountSelection as LinearLayout
+        for (item in currencyNames) {
+            val checkBox = CheckBox(activity)
+            checkBox.text = item
+            checkBox.isChecked = false
+            currencyStates[item] = 0
+            checkBoxList.put(item, checkBox)
+            linearLayout.addView(checkBox)
+        }
+
+
+    }
+    private fun checkBoxController(currencyString: String) {
+        checkBoxList[currencyString]?.setOnCheckedChangeListener{ compoundButton ,b ->
+            if(compoundButton.isChecked){
+                currencyStates[currencyString] = 1
+                adapter_.modifyAccount(currencyStates)
+                Toast.makeText(activity as MainActivity, "${currencyString} Getirildi", Toast.LENGTH_LONG).show()
+
+            }
+            if(!compoundButton.isChecked){
+                currencyStates[currencyString] = 0
+                adapter_.modifyAccount(currencyStates)
+                Toast.makeText(activity as MainActivity, "${currencyString} Kaldırıldı", Toast.LENGTH_LONG).show()
+            }
+
+
+        }
+    }
+
     private fun controlError(){
         getAccountViewModel.errorMessage.observe(viewLifecycleOwner,{
             if (it=="ApiError"){
@@ -64,16 +110,24 @@ class AllAccountsFragment : Fragment() {
             }
         })
     }
-    private fun getData(){
-
+    private fun getData(savedInstanceState:Bundle?){
 
         binding.allAccounts.adapter=adapter
         binding.allAccounts.layoutManager=LinearLayoutManager(activity)
         getAccountViewModel.apiRequest()
         getAccountViewModel.getAccountList.observe(viewLifecycleOwner,{
             getAccountModel=it
-            var adapter_=binding.allAccounts.adapter as? AllAccountsAdapter
-            adapter_!!.addAccount(getAccountModel.getAccountData.getAccountList)
+            adapter_= (binding.allAccounts.adapter as? AllAccountsAdapter)!!
+            adapter_.addAccount(getAccountModel.getAccountData.getAccountList)
+            val currencyNames :List<String> = adapter_.getCurrencyList()
+
+            checkboxCreator(currencyNames,savedInstanceState)
+
+            for(i in currencyStates){
+                checkBoxController(i.key)
+            }
+
+
 
         })
     }
@@ -119,9 +173,13 @@ class AllAccountsFragment : Fragment() {
                         "Deneme",
                         30,
                         0,
-                        Color.parseColor("#2b075b"),
+                        Color.parseColor("#FF3C30"),
                         object: SwipeButtonClickListener {
                             override fun onClick(pos: Int) {
+
+
+
+
                                 var action = AllAccountsFragmentDirections.actionAllAccountsFragmentToSimpleAccountFragment()
                                 Constant.navHostFragment.findNavController().navigate(action)
                             }
