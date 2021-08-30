@@ -119,7 +119,7 @@ class AllAccountsFragment : Fragment() {
                         "Deneme",
                         30,
                         0,
-                        Color.parseColor("#FF3C30"),
+                        Color.parseColor("#2b075b"),
                         object: SwipeButtonClickListener {
                             override fun onClick(pos: Int) {
                                 var action = AllAccountsFragmentDirections.actionAllAccountsFragmentToSimpleAccountFragment()

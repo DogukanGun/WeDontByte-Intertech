@@ -19,11 +19,20 @@
     <string name="payment_button">Payment</string>
     <string name="qr_button">QR</string>
     <string name="money_transfer">Money Transfer</string>
+    <string name="transactions">Transactions</string>
+    <string name="accountBalance">Total Balance</string>
     <string name="drawMoney">Draw Money</string>
     <string name="depositMoney">Deposit Money</string>
     <string name="destinationIban">Destination Iban</string>
-    <string name="okey_button">Okey</string>
+    <string name="enterAmount">Enter Amount</string>
+    <string name="okay_button">Okay</string>
     <string name="cancel_button">Cancel</string>
-
-
+    <string name="languages">Languages</string>
+    <string name="settings">Settings</string>
+    <string name="userName">Name</string>
+    <string name="userSurname">Surname</string>
+    <string name="citizenshipID">ID</string>
+    <string name="birthdate">Birth Date</string>
+    <string name="email">E-mail</string>
+    <string name="phoneNumber">Phone Number</string>
 </resources>

@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#20263b"
+    android:background="@color/black"
     tools:context=".view.main_page.fragment.account.AllAccountsFragment">
 
     <androidx.recyclerview.widget.RecyclerView

@@ -18,11 +18,20 @@
     <string name="payment_button">Ödemeler</string>
     <string name="qr_button">Qr Kod</string>
     <string name="money_transfer">Para Gönder</string>
+    <string name="transactions">İşlemler</string>
+    <string name="accountBalance">Kullanılabilir Bakiye</string>
     <string name="drawMoney">Para Çek</string>
     <string name="depositMoney">Para Yatır</string>
     <string name="destinationIban">Gönderilecek Iban</string>
-    <string name="okey_button">Tamam</string>
+    <string name="enterAmount">Miktar Giriniz</string>
+    <string name="okay_button">Tamam</string>
     <string name="cancel_button">İptal</string>
-
-
+    <string name="languages">Diller</string>
+    <string name="settings">Ayarlar</string>
+    <string name="userName">Ad</string>
+    <string name="userSurname">Soyad</string>
+    <string name="citizenshipID">TC</string>
+    <string name="birthdate">Doğum Tarihi</string>
+    <string name="email">E-posta</string>
+    <string name="phoneNumber">Telefon Numarası</string>
 </resources>

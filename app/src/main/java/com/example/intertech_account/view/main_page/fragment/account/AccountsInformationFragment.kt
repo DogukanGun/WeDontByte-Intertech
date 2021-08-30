@@ -63,14 +63,12 @@ class AccountsInformationFragment : Fragment() {
             })
         }
 
-
-
         return binding.root
     }
 
     fun updateLabel(position:Int){
         binding.accountType.text = getAccountModel.getAccountData.getAccountList[position].accountName
-        binding.accountBalance.text = getAccountModel.getAccountData.getAccountList[position].availableBalance.toString()
+        binding.accountBalance.text = getAccountModel.getAccountData.getAccountList[position].availableBalance.toString() + " " + getAccountModel.getAccountData.getAccountList[position].currency.toString()
         currentIban = getAccountModel.getAccountData.getAccountList[position].iban
     }
 

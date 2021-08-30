@@ -54,7 +54,11 @@ class UserInformationFragment : Fragment() {
         getCustomerViewModel.getCustomerInfo.observe(viewLifecycleOwner,{
             getCustomerModel=it
             var adapter_=binding.recyclerView.adapter as? UserInformationAdapter
-            var x = listOf("Name ","Surname ", "Citizienship Id ", "Birth Date", "Email ", "Telephone Number")
+
+            //TELEFONUN DILINE GORE USER INFO SAYFASINDA NAME SURNAME YERINE AD SOYAD SEKLINDE YAZACAK
+            var x = listOf(getString(R.string.userName),getString(R.string.userSurname),
+                getString(R.string.citizenshipID), getString(R.string.birthdate)
+                , getString(R.string.email), getString(R.string.phoneNumber))
 
             var Info = listOf(getCustomerModel.getCustomerData.shortName ,
                 getCustomerModel.getCustomerData.shortName,

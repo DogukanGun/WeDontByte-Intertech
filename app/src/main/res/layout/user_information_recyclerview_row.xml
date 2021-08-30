@@ -7,8 +7,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginBottom="1dp"
+        android:layout_height="53.5dp"
+        android:layout_marginBottom="1.5dp"
         android:background="@drawable/recyclerview_settings">
 
 
@@ -20,15 +20,16 @@
             android:layout_weight="4"
             android:gravity="center_vertical"
             android:text="UserInfoType"
-            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#2b075b"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:fontFamily="sans-serif-black"
             android:id="@+id/cardViewBalance"
             android:layout_width="100dp"
             android:layout_height="match_parent"
@@ -41,7 +42,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/cardViewProcessName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"  />
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
 </layout>

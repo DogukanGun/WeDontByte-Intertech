@@ -37,10 +37,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginPageUsernameTextField"
-            android:background="@android:color/transparent"
-            android:textStyle="bold"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,10 +70,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginPagePasswordTextField"
             android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:background="@android:color/transparent"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,11 +82,11 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:backgroundTint="#350476 "
         android:text="GİRİŞ"
         android:textColor="#fff4de"
         android:textStyle="bold"
         android:background="@drawable/button_settings"
+        android:backgroundTint="#2b075b"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.295"
@@ -99,10 +99,9 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:backgroundTint="#350476 "
         android:text="Yardım"
-        android:background="@drawable/button_settings"
         android:textColor="#fff4de"
+        android:background="@drawable/button_settings"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/loginPageLoginButton"
         app:layout_constraintEnd_toEndOf="@+id/loginPagePassword"

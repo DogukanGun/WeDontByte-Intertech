@@ -9,40 +9,58 @@
     android:background="@drawable/recyclerview_settings"
     tools:context=".view.main_page.fragment.qr_operation.QRCodeOptionSelectFragment">
 
-    <RadioButton
-        android:id="@+id/drawMoney"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/qrRadioGroup"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="50dp"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="#350476"
-        android:button="@drawable/qr_radio_button"
-        android:checked="true"
-        android:text="@string/drawMoney"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/depositMoney"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioButton
-        android:id="@+id/depositMoney"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
-        android:background="@null"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="#350476"
-        android:button="@drawable/qr_radio_button"
-        android:checked="true"
-        android:text="@string/payment_button"
-        app:layout_constraintEnd_toStartOf="@+id/drawMoney"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125">
+
+        <RadioButton
+            android:id="@+id/drawMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:button="@drawable/qr_radio_button"
+            android:background="@drawable/qr_radio_button_selected"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="@string/drawMoney"
+            android:textColor="#2b075b"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.696"
+            app:layout_constraintStart_toEndOf="@+id/depositMoney"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.127" />
+
+        <RadioButton
+            android:id="@+id/depositMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/payment_button"
+            android:background="@null"
+            android:padding="10dp"
+            android:button="@drawable/qr_radio_button"
+            android:textColor="#2b075b"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.256"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/drawMoney"
+            app:layout_constraintVertical_bias="0.0" />
+    </RadioGroup>
 
     <EditText
         android:id="@+id/destinationIban"
@@ -52,15 +70,18 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="40dp"
         android:ems="10"
+        android:hint="@string/destinationIban"
         android:inputType="numberDecimal"
-        android:text="@string/destinationIban"
+        android:textAlignment="center"
         android:textColor="#2b075b"
         android:textColorHint="#2b075b"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.677" />
 
     <EditText
         android:id="@+id/amount"
@@ -72,55 +93,48 @@
         android:ems="10"
         android:inputType="numberDecimal"
         android:textColor="#2b075b"
+        android:textColorHint="#2b075b"
+        android:hint="@string/enterAmount"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/destinationIban"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.623" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="172dp"
         android:background="@drawable/button_settings"
         android:text="Button"
+        android:backgroundTint="#808080"
+        android:enabled="false"
         android:textColor="#fff4de"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/destinationIban"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/destinationIban" />
-
-    <TextView
-        android:id="@+id/tr"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="TR"
-        android:textColor="#2b075b"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/amount"
-        app:layout_constraintEnd_toEndOf="@+id/depositMoney"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="@+id/depositMoney"
-        app:layout_constraintTop_toBottomOf="@+id/depositMoney" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/destinationIban"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.786" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="TextView"
+        android:text="IbanText"
         android:textColor="#2b075b"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/amount"
-        app:layout_constraintEnd_toEndOf="@+id/drawMoney"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/drawMoney"
-        app:layout_constraintTop_toBottomOf="@+id/drawMoney" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.276" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
