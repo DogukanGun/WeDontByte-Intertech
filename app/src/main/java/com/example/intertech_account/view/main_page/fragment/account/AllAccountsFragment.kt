@@ -74,6 +74,7 @@ class AllAccountsFragment : Fragment() {
 
         super.onCreate(savedInstanceState)
         val linearLayout = binding.linearLayoutAccountSelection as LinearLayout
+        linearLayout.removeAllViews()
         for (item in currencyNames) {
             val checkBox = CheckBox(activity)
             checkBox.text = item
