@@ -1,7 +1,7 @@
 package com.example.intertech_account.model.api_model.get_customer
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
+// Respondun data kısmının detayları
 
 data class GetCustomerData (
     @SerializedName("\$type")
@@ -11,7 +11,7 @@ data class GetCustomerData (
     @SerializedName("CitizenshipNumber")
     var citizenshipNumber: String,
     @SerializedName("BirthDate")
-    var birthDate: String, //?????
+    var birthDate: String,
     @SerializedName("Email")
     var email: String,
     @SerializedName("MobilePhoneNumber")
