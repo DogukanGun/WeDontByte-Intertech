@@ -2,6 +2,7 @@ package com.example.intertech_account.view.main_page.fragment.main_page
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -13,8 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentMainPageBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
+import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
-import com.example.intertech_account.resources.common_variables.Button
+ import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AccountsInformationFragmentAdapter
 import com.example.intertech_account.view.main_page.fragment.main_page.adapter.MainPageAdapter
@@ -42,8 +44,10 @@ class MainPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
 
-        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_main_page,container,false)
+        binding=
+            DataBindingUtil.inflate(inflater,R.layout.fragment_main_page,container,false)
         Constant.currentBottomMenu=0
         createAccountInformation()
         createRecyclerView()
@@ -69,10 +73,6 @@ class MainPageFragment : Fragment() {
             }
         })
     }
-
-
-    //Api request geldiğinde transactionlar doldurulması
-
     private fun createAccountInformation(){
         binding.accountsInformation.adapter=AccountsInformationFragmentAdapter(emptyArray(),
             this
@@ -88,10 +88,6 @@ class MainPageFragment : Fragment() {
 
         })
     }
-
-
-    //RecyclerView oluşturulması
-
     private fun createRecyclerView(){
         val recyclerView = binding.transactions
         recyclerView.layoutManager =  LinearLayoutManager(activity)
@@ -113,10 +109,6 @@ class MainPageFragment : Fragment() {
 
         })
     }
-
-
-    //RecyclerView ekleme
-
     private fun addToRecyclerView(destinationAccountTitle: String, transactionName: String, amount: String, time: String, date: String)
     {
         destinationAccountTitles.add(destinationAccountTitle)

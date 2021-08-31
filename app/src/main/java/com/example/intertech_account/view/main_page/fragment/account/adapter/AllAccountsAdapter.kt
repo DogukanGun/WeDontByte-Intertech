@@ -3,6 +3,7 @@ package com.example.intertech_account.view.main_page.fragment.account.adapter
 import android.graphics.Color
 import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewGraphRowBinding
@@ -10,9 +11,15 @@ import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBindi
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewTitleRowBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.ChartTouchListener
+import com.github.mikephil.charting.listener.OnChartGestureListener
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import java.lang.ref.WeakReference
 
 class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsRecyclerViewHolder>()  {
     private val ITEM_GRAPH = 0
@@ -20,6 +27,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     private val ITEM_ACCOUNT = 2
 
     private var originalallAccounts:ArrayList<GetAccountList> = ArrayList()
+
 
 
     //TL Hesaplarının başa gelmesi için Hashmap
@@ -181,7 +189,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 holder.getBind().textViewTitleRow.text = "${allAccounts[position+1].currency} Hesaplarım"
             }
             is AllAccountsRecyclerViewHolder.GraphViewHolder -> {
-                DrawingPieChart(holder.getBind())
+                drawingPieChart(holder.getBind())
             }
         }
 
@@ -210,7 +218,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     // TODO PirChart içini dinamik olarak seçilen şeye göre dolur veya PieChartta seçilen hesapları altta getir !!!!
 
-    private fun DrawingPieChart(binding: AllAccountsRecyclerviewGraphRowBinding)
+    private fun drawingPieChart(binding: AllAccountsRecyclerviewGraphRowBinding)
     {
         //SET PIE ENTRIES (ENTER THE AMOUNT OF MONEY IN HERE)
         val pieEntries = arrayListOf<PieEntry>()
@@ -255,6 +263,16 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         intertechPieChart.description.textColor = Color.WHITE
 
 
+        intertechPieChart.setOnChartValueSelectedListener(object :OnChartValueSelectedListener{
+            override fun onValueSelected(e: Entry?, h: Highlight?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onNothingSelected() {
+                TODO("Not yet implemented")
+            }
+
+        })
         //CENTER SPACE INCREMENT/DECREMENT OF THE PIECHART
         intertechPieChart.holeRadius = 20f
 

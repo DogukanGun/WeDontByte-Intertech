@@ -30,7 +30,9 @@ import com.example.intertech_account.view.main_page.fragment.account.adapter.All
 import com.example.intertech_account.view.main_page.fragment.account.adapter.Swipe
 import com.example.intertech_account.view.main_page.fragment.account.adapter.SwipeButton
 import com.example.intertech_account.view.main_page.fragment.account.adapter.SwipeButtonClickListener
+import com.example.intertech_account.view_model.GetAccountDetailWithChartsViewModel
 import com.example.intertech_account.view_model.GetAccountViewModel
+import com.github.mikephil.charting.data.PieEntry
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -38,12 +40,14 @@ class AllAccountsFragment : Fragment() {
 
     private lateinit var binding:FragmentAllAccountsBinding
     private val getAccountViewModel: GetAccountViewModel by viewModels()
+    private val getAccountDetailWithChartsViewModel: GetAccountDetailWithChartsViewModel by viewModels()
     private lateinit var getAccountModel: GetAccountModel
     private var adapter=AllAccountsAdapter(arrayListOf())
     private var checkBoxList: HashMap<String,CheckBox> = hashMapOf()
     private lateinit var adapter_:AllAccountsAdapter
     private var currencyStates: HashMap<String,Int> =hashMapOf()
 
+    private lateinit var pieChartEntries:ArrayList<PieEntry>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,6 +68,7 @@ class AllAccountsFragment : Fragment() {
                 Constant.navHostFragment.findNavController().navigate(action)
             }
         }
+
 
         return binding.root
 
@@ -139,12 +144,12 @@ class AllAccountsFragment : Fragment() {
             adapter_= (binding.allAccounts.adapter as? AllAccountsAdapter)!!
             adapter_.addAccount(getAccountModel.getAccountData.getAccountList)
             val currencyNames :List<String> = adapter_.getCurrencyList()
-
             checkboxCreator(currencyNames,savedInstanceState)
-
             for(i in currencyStates){
                 checkBoxController(i.key)
             }
+            getAccountDetailWithChartsViewModel.getAccountModel=it
+            pieChartEntries=getAccountDetailWithChartsViewModel.createPieChartEntries()
 
         })
     }
@@ -198,7 +203,7 @@ class AllAccountsFragment : Fragment() {
                     //TODO Buraya istenidiği kadar buton eklenebilir
                     buffer.add(
                         SwipeButton(activity as MainActivity,
-                            "Deneme",
+                            "",
                             30,
                             0,
                             Color.parseColor("#2b075b"),

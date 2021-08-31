@@ -29,11 +29,11 @@ class AccountsInformationFragment : Fragment() {
         binding = FragmentAccountsInformationBinding.inflate(layoutInflater)
         if (isFragmentUsedByViewPager){
             updateLabel(0)
-            var spinnerList:ArrayList<String> = arrayListOf<String>()
+            val spinnerList:ArrayList<String> = arrayListOf<String>()
 
             //Bütün hesapların eklenmesi
             for(index in getAccountModel.getAccountData.getAccountList){
-                spinnerList.add(index.iban)
+                spinnerList.add(index.accountName)
             }
             val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
                 requireContext(),
@@ -68,7 +68,7 @@ class AccountsInformationFragment : Fragment() {
     //Hesap sayfasının bilgi güncellemesi
 
     fun updateLabel(position:Int){
-        binding.accountType.text = getAccountModel.getAccountData.getAccountList[position].accountName
+        binding.accountType.text = getAccountModel.getAccountData.getAccountList[position].iban
         binding.accountBalance.text = getAccountModel.getAccountData.getAccountList[position].availableBalance.toString() + " " + getAccountModel.getAccountData.getAccountList[position].currency.toString()
         currentIban = getAccountModel.getAccountData.getAccountList[position].iban
     }

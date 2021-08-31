@@ -65,23 +65,3 @@ class GetAccountViewModel : ViewModel(){
 
     }
 }
-
-//ApiClient.getClient().getAccounts(getAccountGetAccountBodyModel).enqueue(object :
-//    Callback<GetAccountModel> {
-//
-//
-//    override fun onFailure(call: Call<GetAccountModel>, t: Throwable) {
-//        print("hehehehe" + t.localizedMessage)
-//    }
-//
-//    override fun onResponse(
-//        call: Call<GetAccountModel>,
-//        response: Response<GetAccountModel>
-//    ) {
-//        if (response.body() != null) {
-//            getAccountList.value = response.body()!!
-//
-//        }
-//    }
-//
-//})

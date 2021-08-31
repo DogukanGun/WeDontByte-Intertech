@@ -28,8 +28,6 @@ class SimpleAccountFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
-        return binding.root
+         return binding.root
     }
-
 }
-    // Buradaki DrawingPieChart AllAccountsAdapter içinde

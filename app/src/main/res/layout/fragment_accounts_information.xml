@@ -35,25 +35,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.305" />
+            app:layout_constraintVertical_bias="0.916" />
 
         <TextView
             android:id="@+id/subeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="6dp"
             android:backgroundTint="#F8F2F2"
             android:text="Şube"
             android:textColor="#2b075b"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/accountType"
+            app:layout_constraintBottom_toTopOf="@+id/accountName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.6" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/accountName"
@@ -67,10 +65,10 @@
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.694"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.872" />
+            app:layout_constraintVertical_bias="0.341" />
 
         <TextView
             android:id="@+id/textView3"
@@ -152,7 +150,7 @@
             android:layout_marginStart="18dp"
             android:background="@drawable/money_transfer"
             android:textColor="@color/white"
-            android:textSize="16dp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/qrButton"
             app:layout_constraintHorizontal_bias="0.5"
