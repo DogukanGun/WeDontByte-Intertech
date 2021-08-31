@@ -2,7 +2,6 @@ package com.example.intertech_account.view.main_page.fragment.main_page
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -14,16 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentMainPageBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
-import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
-import com.example.intertech_account.model.api_model.get_corporate_account_transaction_list.GetCorporateAccountTransactionListModel
 import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AccountsInformationFragmentAdapter
 import com.example.intertech_account.view.main_page.fragment.main_page.adapter.MainPageAdapter
 import com.example.intertech_account.view_model.GetAccountTransactionViewModel
 import com.example.intertech_account.view_model.GetAccountViewModel
-import com.example.intertech_account.view_model.GetCorporateAccountTransactionViewModel
 
 
 class MainPageFragment : Fragment() {

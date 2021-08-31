@@ -4,7 +4,10 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -81,6 +84,12 @@ class AllAccountsFragment : Fragment() {
             checkBox.isChecked = false
             currencyStates[item] = 0
             checkBoxList.put(item, checkBox)
+
+            checkBox.buttonTintList = ColorStateList.valueOf(Color.WHITE);
+            checkBox.setTextColor(Color.WHITE)
+            checkBox.setTypeface(checkBox.typeface, Typeface.BOLD)
+            checkBox.textSize = 18F
+
             linearLayout.addView(checkBox)
         }
 
@@ -174,7 +183,7 @@ class AllAccountsFragment : Fragment() {
                         "Deneme",
                         30,
                         0,
-                        Color.parseColor("#FF3C30"),
+                        Color.parseColor("#2b075b"),
                         object: SwipeButtonClickListener {
                             override fun onClick(pos: Int) {
 

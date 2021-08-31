@@ -4,11 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.HomeScreenTransactionRowBinding
-import com.example.intertech_account.databinding.UserInformationRecyclerviewRowBinding
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
-import com.example.intertech_account.model.api_model.get_corporate_account_transaction_list.GetCorporateAccountTransactionListModel
-import com.example.intertech_account.model.api_model.get_corporate_account_transaction_list.GetCorporateAccountTranscationListTransactions
-import com.example.intertech_account.view.main_page.fragment.user_information.adapter.UserInformationAdapter
 
 class MainPageAdapter ()
     :RecyclerView.Adapter<MainPageAdapter.MainPageHolder>()   {

@@ -46,7 +46,7 @@ class AccountsInformationFragment : Fragment() {
                 Button.qrButtonPressed.value=QrOperation(true,currentIban,false)
             }
             isFragmentUsedByViewPager=false
-            binding.accountName.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            binding.accountName.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parentView: AdapterView<*>?,
                     selectedItemView: View?,
@@ -60,7 +60,7 @@ class AccountsInformationFragment : Fragment() {
                 override fun onNothingSelected(parentView: AdapterView<*>?) {
                     // your code here
                 }
-            })
+            }
         }
 
         return binding.root
