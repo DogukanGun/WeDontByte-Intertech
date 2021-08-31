@@ -1,11 +1,10 @@
 package com.example.intertech_account.resources.api
 
 import com.example.intertech_account.resources.common_variables.Constant
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+// API requestlerinin atılması
 
 object ApiClient {
     private var retrofit: Retrofit? = null
