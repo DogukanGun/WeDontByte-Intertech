@@ -6,9 +6,9 @@
     android:background="@drawable/recyclerview_settings"
     tools:context=".view.main_page.fragment.account.SimpleAccountFragment">
 
-    <TextView
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/allAccountsPieChart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

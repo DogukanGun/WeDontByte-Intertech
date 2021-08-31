@@ -1,10 +1,14 @@
 package com.example.intertech_account.view.main_page.fragment.account.adapter
 
+import android.text.Layout
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
+import com.google.android.material.resources.TextAppearance
+import java.awt.font.TextAttribute
 
 class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsAdapter.AllAccountsHolder>()  {
     private val EMPTY_ITEM = 0
@@ -149,7 +153,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 holder.binding.bakiyeNoTv.text =""
                 holder.binding.hesapIsmiTv.text =""
                 holder.binding.subeIsmiTv.text = allAccounts[position+1].currency+" Hesaplarım"
-                holder.binding.subeIsmiTv.textSize = 30.toFloat()
+                holder.binding.subeIsmiTv.textSize = 18.toFloat()
             }
             else -> {
                 holder.binding.bakiyeNoTv.text = allAccounts[position].balance.toString() + allAccounts[position].currency

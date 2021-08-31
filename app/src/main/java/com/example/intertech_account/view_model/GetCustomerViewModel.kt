@@ -4,16 +4,11 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.intertech_account.R
-import com.example.intertech_account.model.api_model.get_account.*
 import com.example.intertech_account.model.api_model.get_customer.*
 import com.example.intertech_account.resources.api.ApiClient
 import com.example.intertech_account.resources.api.ApiInterface
 import com.example.intertech_account.resources.common_variables.Constant
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.sql.Date
 
 class GetCustomerViewModel  : ViewModel(){
 

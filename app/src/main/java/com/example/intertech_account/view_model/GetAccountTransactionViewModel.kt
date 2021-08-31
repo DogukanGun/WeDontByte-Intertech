@@ -2,15 +2,11 @@ package com.example.intertech_account.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigator
 import com.example.intertech_account.R
 import com.example.intertech_account.model.api_model.get_account_transaction_list.*
 import com.example.intertech_account.resources.api.ApiClient
 import com.example.intertech_account.resources.common_variables.Constant
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import javax.inject.Inject
-import javax.inject.Named
 
 class GetAccountTransactionViewModel:ViewModel() {
 

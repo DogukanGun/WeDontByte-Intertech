@@ -6,12 +6,9 @@ import com.example.intertech_account.R
 import com.example.intertech_account.model.api_model.GetCurrencyModel
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyBodyModel
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyHeader
- import com.example.intertech_account.resources.api.ApiClient
+import com.example.intertech_account.resources.api.ApiClient
 import com.example.intertech_account.resources.common_variables.Constant
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class GetCurrencyViewModel():ViewModel() {
     lateinit var currency:String

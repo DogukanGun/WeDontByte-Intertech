@@ -1,6 +1,7 @@
 package com.example.intertech_account.view.main_page.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,10 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.ActivityMainBinding
 import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import java.util.*
 
 
@@ -89,6 +94,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
 
     private fun restartApp(language: String){
         BaseActivity.dLocale = Locale(language)

@@ -9,11 +9,7 @@ import com.example.intertech_account.model.api_model.get_account.*
 import com.example.intertech_account.resources.api.ApiClient
 import com.example.intertech_account.resources.api.ApiInterface
 import com.example.intertech_account.resources.common_variables.Constant
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class GetAccountViewModel : ViewModel(){
     private lateinit var apiService: ApiInterface
