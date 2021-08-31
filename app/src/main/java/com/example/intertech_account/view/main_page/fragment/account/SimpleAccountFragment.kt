@@ -28,61 +28,8 @@ class SimpleAccountFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
-        DrawingPieChart()
         return binding.root
     }
 
-    private fun DrawingPieChart()
-    {
-        //SET PIE ENTRIES (ENTER THE AMOUNT OF MONEY IN HERE)
-        val pieEntries = arrayListOf<PieEntry>()
-        pieEntries.add(PieEntry(1000.0F))
-        pieEntries.add(PieEntry(2000.0F))
-        pieEntries.add(PieEntry(3000.0F))
-        pieEntries.add(PieEntry(4000.0F))
-
-        //GET PIE CHART COMPONENT FROM XML
-        var intertechPieChart : PieChart = binding.allAccountsPieChart
-
-        //SETUP PIE ANIMATION
-        intertechPieChart.animateXY(1000,1000)
-
-        //SETUP PIE CHART COLORS
-        val pieDataSet = PieDataSet(pieEntries, "BURAYA RENKLERİN ANLAMLARINI YAZ <3")
-        pieDataSet.setColors(
-            Color.CYAN,
-            Color.YELLOW,
-            Color.RED,
-            Color.GREEN
-        )
-        intertechPieChart.setEntryLabelTextSize(18f)
-
-
-        //SETTING UP PIE DATA INTO PieData
-        val pieData = PieData(pieDataSet)
-
-        //SET TEXT IN THE MIDDLE OF THE PIECHART
-        intertechPieChart.centerText = "CENTER TEXT <3"
-        intertechPieChart.setCenterTextColor(Color.BLACK)
-        intertechPieChart.setCenterTextSize(18f)
-
-        //IF YOU WANT TO HIDE THE ENTRIES, MAKE SET THIS AS ENABLE
-        //intertechPieChart.legend.isEnabled = false
-
-        //SET/HIDE DESCRIPTION
-        intertechPieChart.description.isEnabled = true
-        intertechPieChart.description.text = "THIS IS MY DESCRIPTION!"
-        intertechPieChart.description.textAlign = Paint.Align.CENTER
-        intertechPieChart.description.textSize = 18f
-        intertechPieChart.description.textColor = Color.WHITE
-
-
-        //CENTER SPACE INCREMENT/DECREMENT OF THE PIECHART
-        intertechPieChart.holeRadius = 20f
-
-
-        pieData.setDrawValues(true)
-        intertechPieChart.data = pieData
-    }
-
 }
+    // Buradaki DrawingPieChart AllAccountsAdapter içinde

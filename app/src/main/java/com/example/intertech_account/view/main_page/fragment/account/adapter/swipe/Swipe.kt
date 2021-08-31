@@ -1,5 +1,6 @@
 package com.example.intertech_account.view.main_page.fragment.account.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Point
@@ -8,6 +9,7 @@ import android.graphics.RectF
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.view.get
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
@@ -48,8 +50,16 @@ abstract class Swipe (context:Context,
 
     // Touch event handler
 
+    @SuppressLint("ClickableViewAccessibility")
     private val onTouchListener = View.OnTouchListener { _, motionEvent ->
         if (swipePosition < 0) return@OnTouchListener false
+        /*
+        if((recyclerView.findViewHolderForAdapterPosition(swipePosition)?.itemViewType ?:  0) as Boolean){
+            return@OnTouchListener false
+        }
+        if((recyclerView.findViewHolderForAdapterPosition(swipePosition)?.itemViewType ?:  1) as Boolean){
+            return@OnTouchListener false
+        }*/
         val point = Point(motionEvent.rawX.toInt(), motionEvent.rawY.toInt())
         val swipeViewHolder = recyclerView.findViewHolderForAdapterPosition(swipePosition)
         val swipedItem = swipeViewHolder!!.itemView

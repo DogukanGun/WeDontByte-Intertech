@@ -27,6 +27,12 @@ class UserLoginActivity : AppCompatActivity() {
         // TODO buradaki login bilgileri değiştirilecek
 
         binding.loginPageLoginButton.setOnClickListener {
+            if(true){
+                Toast.makeText(this,"Kimlik Numarası ve Şifre Doğru Giriş yapılıyor...",Toast.LENGTH_LONG).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+
+            }
             if (binding.loginPagePasswordTextField.text.toString()=="123"){
                 if (binding.loginPageUsernameTextField.text.toString().length!=11||binding.loginPageUsernameTextField.text.toString()[0]=='0'){
                     Toast.makeText(this,"Kimlik numarası geçersiz",Toast.LENGTH_LONG).show()

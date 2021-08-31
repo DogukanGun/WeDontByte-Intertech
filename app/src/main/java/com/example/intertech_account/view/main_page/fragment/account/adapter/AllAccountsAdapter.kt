@@ -1,18 +1,24 @@
 package com.example.intertech_account.view.main_page.fragment.account.adapter
 
-import android.text.Layout
-import android.view.Gravity
+import android.graphics.Color
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.intertech_account.databinding.AllAccountsRecyclerviewGraphRowBinding
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBinding
+import com.example.intertech_account.databinding.AllAccountsRecyclerviewTitleRowBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
-import com.google.android.material.resources.TextAppearance
-import java.awt.font.TextAttribute
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 
-class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsAdapter.AllAccountsHolder>()  {
-    private val EMPTY_ITEM = 0
-    private val NORMAL_ITEM = 1
+class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsRecyclerViewHolder>()  {
+    private val ITEM_GRAPH = 0
+    private val ITEM_TITLE = 1
+    private val ITEM_ACCOUNT = 2
+
     private var originalallAccounts:ArrayList<GetAccountList> = ArrayList()
 
 
@@ -25,12 +31,6 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     )
 
-    open class AllAccountsHolder(val binding:AllAccountsRecyclerviewRowBinding): RecyclerView.ViewHolder(binding.root){
-
-    }
-    inner class TitleViewHolder(binding:AllAccountsRecyclerviewRowBinding): AllAccountsHolder(binding){
-
-    }
 
     //Boş gelen RecyclerView doldurmak için fonksiyon
 
@@ -51,6 +51,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 names.add(item.currency)
         }
         names.remove("Title")
+        names.remove("Graph")
         return names
     }
 
@@ -72,7 +73,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 "maltepe",
                 "birinci",
                 false,
-                "Title",
+                "Graph",
                 0.15,
                 00.10,
                 1500.2,
@@ -81,7 +82,21 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 1850.0,
                 "benimHesabım",
                 "TR1159465168416516841634623",
-                false,88.50))}
+                false,88.50))
+                AllAccountsArrayList.add(GetAccountList(isBlocked = false,
+                    "maltepe",
+                    "birinci",
+                    false,
+                    "Title",
+                    0.15,
+                    00.10,
+                    1500.2,
+                    1800.5,
+                    1600.5,
+                    1850.0,
+                    "benimHesabım",
+                    "TR1159465168416516841634623",
+                    false,88.50))}
 
             AllAccountsArrayList.add(item[i])
 
@@ -123,22 +138,30 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllAccountsHolder {
-        if(viewType == 1) {
-            val binding = AllAccountsRecyclerviewRowBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllAccountsRecyclerViewHolder {
+        return when(viewType){
+            ITEM_TITLE -> AllAccountsRecyclerViewHolder.TitleViewHolder(
+                AllAccountsRecyclerviewTitleRowBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
             )
-            return AllAccountsHolder(binding)
-        }
-        else{
-            val binding = AllAccountsRecyclerviewRowBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+            ITEM_ACCOUNT -> AllAccountsRecyclerViewHolder.AccountViewHolder(
+                AllAccountsRecyclerviewRowBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
             )
-            return TitleViewHolder(binding)
+            ITEM_GRAPH -> AllAccountsRecyclerViewHolder.GraphViewHolder(
+                AllAccountsRecyclerviewGraphRowBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+            else -> throw IllegalArgumentException("Invalid ViewType Provided")
         }
 
     }
@@ -146,39 +169,97 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     //Row bilgilerinin düzenlenmesi
 
-    override fun onBindViewHolder(holder: AllAccountsHolder, position: Int) {
+    override fun onBindViewHolder(holder: AllAccountsRecyclerViewHolder, position: Int) {
         when (holder) {
-            is TitleViewHolder -> {
-                holder.binding.ibanTv.text = ""
-                holder.binding.bakiyeNoTv.text =""
-                holder.binding.hesapIsmiTv.text =""
-                holder.binding.subeIsmiTv.text = allAccounts[position+1].currency+" Hesaplarım"
-                holder.binding.subeIsmiTv.textSize = 18.toFloat()
+            is AllAccountsRecyclerViewHolder.AccountViewHolder -> {
+                holder.getBind().bakiyeNoTv.text = allAccounts[position].balance.toString() + allAccounts[position].currency
+                holder.getBind().ibanTv.text = allAccounts[position].iban
+                holder.getBind().subeIsmiTv.text = allAccounts[position].branch
+                holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
             }
-            else -> {
-                holder.binding.bakiyeNoTv.text = allAccounts[position].balance.toString() + allAccounts[position].currency
-                holder.binding.ibanTv.text = allAccounts[position].iban
-                holder.binding.subeIsmiTv.text = allAccounts[position].branch
-                holder.binding.hesapIsmiTv.text = allAccounts[position].accountName
+            is AllAccountsRecyclerViewHolder.TitleViewHolder -> {
+                holder.getBind().textViewTitleRow.text = "${allAccounts[position+1].currency} Hesaplarım"
+            }
+            is AllAccountsRecyclerViewHolder.GraphViewHolder -> {
+                DrawingPieChart(holder.getBind())
             }
         }
 
 
     }
-
-
-    // Title veya element ayrışımı için gerekli
     override fun getItemViewType(position: Int): Int {
         return if (allAccounts[position].currency == "Title"){
-            EMPTY_ITEM
-        }else{
-            NORMAL_ITEM
+            ITEM_TITLE
+        }
+        else if(allAccounts[position].currency == "Graph"){
+            ITEM_GRAPH
+        }
+        else{
+            ITEM_ACCOUNT
         }
     }
+
 
 
     override fun getItemCount(): Int {
 
         return allAccounts.size
+    }
+
+
+
+    // TODO PirChart içini dinamik olarak seçilen şeye göre dolur veya PieChartta seçilen hesapları altta getir !!!!
+
+    private fun DrawingPieChart(binding: AllAccountsRecyclerviewGraphRowBinding)
+    {
+        //SET PIE ENTRIES (ENTER THE AMOUNT OF MONEY IN HERE)
+        val pieEntries = arrayListOf<PieEntry>()
+        pieEntries.add(PieEntry(1000.0F))
+        pieEntries.add(PieEntry(2000.0F))
+        pieEntries.add(PieEntry(3000.0F))
+        pieEntries.add(PieEntry(4000.0F))
+
+        //GET PIE CHART COMPONENT FROM XML
+        var intertechPieChart : PieChart = binding.allAccountsPieChart
+
+        //SETUP PIE ANIMATION
+        intertechPieChart.animateXY(1000,1000)
+
+        //SETUP PIE CHART COLORS
+        val pieDataSet = PieDataSet(pieEntries, "BURAYA RENKLERİN ANLAMLARINI YAZ <3")
+        pieDataSet.setColors(
+            Color.CYAN,
+            Color.YELLOW,
+            Color.RED,
+            Color.GREEN
+        )
+        intertechPieChart.setEntryLabelTextSize(18f)
+
+
+        //SETTING UP PIE DATA INTO PieData
+        val pieData = PieData(pieDataSet)
+
+        //SET TEXT IN THE MIDDLE OF THE PIECHART
+        intertechPieChart.centerText = "CENTER TEXT <3"
+        intertechPieChart.setCenterTextColor(Color.BLACK)
+        intertechPieChart.setCenterTextSize(18f)
+
+        //IF YOU WANT TO HIDE THE ENTRIES, MAKE SET THIS AS ENABLE
+        //intertechPieChart.legend.isEnabled = false
+
+        //SET/HIDE DESCRIPTION
+        intertechPieChart.description.isEnabled = true
+        intertechPieChart.description.text = "THIS IS MY DESCRIPTION!"
+        intertechPieChart.description.textAlign = Paint.Align.CENTER
+        intertechPieChart.description.textSize = 18f
+        intertechPieChart.description.textColor = Color.WHITE
+
+
+        //CENTER SPACE INCREMENT/DECREMENT OF THE PIECHART
+        intertechPieChart.holeRadius = 20f
+
+
+        pieData.setDrawValues(true)
+        intertechPieChart.data = pieData
     }
 }

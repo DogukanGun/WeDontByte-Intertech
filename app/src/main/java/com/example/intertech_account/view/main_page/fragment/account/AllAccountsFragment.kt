@@ -146,8 +146,6 @@ class AllAccountsFragment : Fragment() {
                 checkBoxController(i.key)
             }
 
-
-
         })
     }
 
@@ -194,29 +192,29 @@ class AllAccountsFragment : Fragment() {
                 viewHolder: RecyclerView.ViewHolder,
                 buffer: MutableList<SwipeButton>
             ) {
+                if(viewHolder.itemViewType == 2) {
 
 
-
-                //TODO Buraya istenidiği kadar buton eklenebilir
-                buffer.add(
-                    SwipeButton(activity as MainActivity,
-                        "Deneme",
-                        30,
-                        0,
-                        Color.parseColor("#2b075b"),
-                        object: SwipeButtonClickListener {
-                            override fun onClick(pos: Int) {
-
+                    //TODO Buraya istenidiği kadar buton eklenebilir
+                    buffer.add(
+                        SwipeButton(activity as MainActivity,
+                            "Deneme",
+                            30,
+                            0,
+                            Color.parseColor("#2b075b"),
+                            object : SwipeButtonClickListener {
+                                override fun onClick(pos: Int) {
 
 
+                                    var action =
+                                        AllAccountsFragmentDirections.actionAllAccountsFragmentToSimpleAccountFragment()
+                                    Constant.navHostFragment.findNavController().navigate(action)
+                                }
 
-                                var action = AllAccountsFragmentDirections.actionAllAccountsFragmentToSimpleAccountFragment()
-                                Constant.navHostFragment.findNavController().navigate(action)
-                            }
+                            })
+                    )
 
-                        })
-                )
-                /*
+                    /*
                 buffer.add(
                     SwipeButton(activity as MainActivity,
                     "Update",
@@ -231,6 +229,8 @@ class AllAccountsFragment : Fragment() {
                     })
                 )*/
 
+
+                }
 
             }
         }
