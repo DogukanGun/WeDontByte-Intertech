@@ -1,11 +1,12 @@
 package com.example.intertech_account.model.api_model.get_customer
 
 import com.google.gson.annotations.SerializedName
+
 // Respondun data kısmının detayları
 
-data class GetCustomerData (
+data class GetCustomerData(
     @SerializedName("\$type")
-    var type:String,
+    var type: String,
     @SerializedName("ShortName")
     var shortName: String,
     @SerializedName("CitizenshipNumber")
@@ -15,5 +16,5 @@ data class GetCustomerData (
     @SerializedName("Email")
     var email: String,
     @SerializedName("MobilePhoneNumber")
-    var getMobilePhoneList:GetMobilePhoneNumber
+    var getMobilePhoneList: GetMobilePhoneNumber
 )

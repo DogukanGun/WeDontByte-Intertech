@@ -1,37 +1,38 @@
 package com.example.intertech_account.model.api_model.get_account
 
-// Respond data'nın parametreleri
+// Respond datanın bilgileri
 
 import com.google.gson.annotations.SerializedName
+
 data class GetAccountList(
     @SerializedName("IsBlockedAccount")
-    var isBlocked:Boolean,
+    var isBlocked: Boolean,
     @SerializedName("BranchName")
-    var branch:String,
+    var branch: String,
     @SerializedName("ShortName")
-    var name:String,
+    var name: String,
     @SerializedName("IsClosed")
-    var isClosed:Boolean,
+    var isClosed: Boolean,
     @SerializedName("CurrencyCode")
-    var currency:String,
+    var currency: String,
     @SerializedName("ReceivableInterestRate")
-    var interestRate:Double,
+    var interestRate: Double,
     @SerializedName("DebtInterestRate")
-    var debtInterestRate:Double,
+    var debtInterestRate: Double,
     @SerializedName("AmountOfBalance")
-    var balance:Double,
+    var balance: Double,
     @SerializedName("AmountOfBalanceGross")
-    var grossBalance:Double,
+    var grossBalance: Double,
     @SerializedName("AvailableCaptainBalance")
-    var captainBalance:Double,
+    var captainBalance: Double,
     @SerializedName("AvailableBalance")
-    var availableBalance:Double,
+    var availableBalance: Double,
     @SerializedName("AccountName")
-    var accountName:String,
+    var accountName: String,
     @SerializedName("IBANNo")
-    var iban:String,
+    var iban: String,
     @SerializedName("HasSchoolPayment")
-    var isSchoolPaymentComing:Boolean,
+    var isSchoolPaymentComing: Boolean,
     @SerializedName("AvailableCreditDeposit")
-    var creditDeposit:Double
+    var creditDeposit: Double
 )

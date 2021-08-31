@@ -1,38 +1,37 @@
 package com.example.intertech_account.model.api_model.get_account_transaction_list
 
 import com.google.gson.annotations.SerializedName
+
 // Respondun data kısmındaki activity collectionın detayları
 data class GetAccountTransactionListTransactions(
     @SerializedName("\$type")
-    var type:String,
+    var type: String,
     @SerializedName("Date")
-    var date:String,
+    var date: String,
     @SerializedName("DueDate")
-    var dueDate:String,
+    var dueDate: String,
     @SerializedName("Explanation")
-    var explanation:String,
+    var explanation: String,
     @SerializedName("Amount")
-    var amount:Double,
+    var amount: Double,
     @SerializedName("RemainingBalance")
-    var remainingBalance:Double,
+    var remainingBalance: Double,
     @SerializedName("TransactionReference")
-    var transactionReference:String,
+    var transactionReference: String,
     @SerializedName("TransactionCode")
-    var transactionCode:String,
+    var transactionCode: String,
     @SerializedName("TransactionBranchCode")
-    var transactionBranchCode:String,
+    var transactionBranchCode: String,
     @SerializedName("ChannelCode")
-    var channelCode:String,
+    var channelCode: String,
     @SerializedName("Time")
-    var time:String,
+    var time: String,
     @SerializedName("UserCode")
-    var userCode:String,
+    var userCode: String,
     @SerializedName("GroupRef")
-    var groupRef:String,
+    var groupRef: String,
     @SerializedName("AvailableBalance")
-    var availableBalance:Double,
+    var availableBalance: Double,
     @SerializedName("ReferenceNumber")
-    var referenceNumber:String
-) {
-
-}
+    var referenceNumber: String
+)

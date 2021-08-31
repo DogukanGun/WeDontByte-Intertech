@@ -1,6 +1,7 @@
 package com.example.intertech_account.model.api_model.get_account_transaction_list
 
 import com.google.gson.annotations.SerializedName
+
 // Request gönderme parametreleri
 data class GetAccountTransactionListParameter(
 
@@ -14,12 +15,10 @@ data class GetAccountTransactionListParameter(
     @SerializedName("SourceAccount")
     var getSourceAccount: GetSourceAccount,
     @SerializedName("AssociationCode")
-    var associationCode:String,
+    var associationCode: String,
     @SerializedName("QueryStartDate")
-    var queryStartDate:String,
+    var queryStartDate: String,
     @SerializedName("QueryEndDate")
-    var queryEndDate:String
+    var queryEndDate: String
 
-) {
-
-}
+)

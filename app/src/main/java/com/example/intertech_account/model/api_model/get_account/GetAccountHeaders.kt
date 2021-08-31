@@ -7,13 +7,13 @@ import com.google.gson.annotations.SerializedName
 data class GetAccountHeaders(
 
     @SerializedName("AppKey")
-    var AppKey:String,
+    var AppKey: String,
     @SerializedName("Channel")
-    var Channel:String,
+    var Channel: String,
     @SerializedName("ChannelSessionId")
-    var ChannelSessionId:String,
+    var ChannelSessionId: String,
     @SerializedName("ChannelRequestId")
-    var ChannelRequestId:String,
-){
+    var ChannelRequestId: String,
+) {
 
 }
