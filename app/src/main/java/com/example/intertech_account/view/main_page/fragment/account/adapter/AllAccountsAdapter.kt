@@ -1,10 +1,7 @@
 package com.example.intertech_account.view.main_page.fragment.account.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
@@ -14,6 +11,8 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     private val NORMAL_ITEM = 1
     private var originalallAccounts:ArrayList<GetAccountList> = ArrayList()
 
+
+    //TL Hesaplarının başa gelmesi için Hashmap
     private val roles: HashMap<String, Int> = hashMapOf(
         "TRY" to 0,
         "USD" to 1,
@@ -29,6 +28,8 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     }
 
+    //Boş gelen RecyclerView doldurmak için fonksiyon
+
     fun addAccount(item:Array<GetAccountList>){
         val AllAccountsArrayList : ArrayList<GetAccountList> = rearrangeList(item.toCollection(ArrayList()))
 
@@ -38,6 +39,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     }
 
+    // Kullanıcının sahip olduğu hesap türler(TL, Dolar, Euro,vs.)
     fun getCurrencyList():List<String>{
         val names=ArrayList<String>()
         for(item in originalallAccounts){
@@ -47,6 +49,9 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         names.remove("Title")
         return names
     }
+
+
+    // Başlıkların seçili olan hesaplara göre oluşturulup tekrar sıralanması
 
     fun rearrangeList(item:ArrayList<GetAccountList>):ArrayList<GetAccountList>{
         val comparator = Comparator { o1: GetAccountList, o2: GetAccountList ->
@@ -98,6 +103,9 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         return AllAccountsArrayList
     }
 
+
+    //Seçienleri belirleme
+
     fun modifyAccount(statesOfCurriencies:HashMap<String,Int>){
         val AllAccountsArrayList : ArrayList<GetAccountList> = arrayListOf()
         allAccounts=ArrayList()
@@ -109,6 +117,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         notifyDataSetChanged()
 
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllAccountsHolder {
         if(viewType == 1) {
@@ -130,6 +139,9 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     }
 
+
+    //Row bilgilerinin düzenlenmesi
+
     override fun onBindViewHolder(holder: AllAccountsHolder, position: Int) {
         when (holder) {
             is TitleViewHolder -> {
@@ -150,6 +162,8 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     }
 
+
+    // Title veya element ayrışımı için gerekli
     override fun getItemViewType(position: Int): Int {
         return if (allAccounts[position].currency == "Title"){
             EMPTY_ITEM
@@ -157,6 +171,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             NORMAL_ITEM
         }
     }
+
 
     override fun getItemCount(): Int {
 

@@ -20,7 +20,6 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentUserInformationBinding
 import com.example.intertech_account.model.api_model.get_customer.GetCustomerModel
 import com.example.intertech_account.resources.common_variables.Button
-import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.user_information.adapter.UserInformationAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -41,7 +40,7 @@ class UserInformationFragment : Fragment() {
 
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager =  LinearLayoutManager(activity)
-        var adapter = UserInformationAdapter(processNamesList,balanceList)
+        val adapter = UserInformationAdapter(processNamesList,balanceList)
         //var adapter = UserInformationAdapter(emptyList(), emptyList())
         recyclerView.adapter = adapter
         val dividerItemDecoration = DividerItemDecoration(
@@ -53,14 +52,14 @@ class UserInformationFragment : Fragment() {
 
         getCustomerViewModel.getCustomerInfo.observe(viewLifecycleOwner,{
             getCustomerModel=it
-            var adapter_=binding.recyclerView.adapter as? UserInformationAdapter
+            val adapter_=binding.recyclerView.adapter as? UserInformationAdapter
 
             //TELEFONUN DILINE GORE USER INFO SAYFASINDA NAME SURNAME YERINE AD SOYAD SEKLINDE YAZACAK
-            var x = listOf(getString(R.string.userName),getString(R.string.userSurname),
+            val x = listOf(getString(R.string.userName),getString(R.string.userSurname),
                 getString(R.string.citizenshipID), getString(R.string.birthdate)
                 , getString(R.string.email), getString(R.string.phoneNumber))
 
-            var Info = listOf(getCustomerModel.getCustomerData.shortName ,
+            val Info = listOf(getCustomerModel.getCustomerData.shortName ,
                 getCustomerModel.getCustomerData.shortName,
                 getCustomerModel.getCustomerData.citizenshipNumber,
                 getCustomerModel.getCustomerData.birthDate,

@@ -42,10 +42,8 @@ class MainPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
 
-        binding=
-            DataBindingUtil.inflate(inflater,R.layout.fragment_main_page,container,false)
+        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_main_page,container,false)
         Constant.currentBottomMenu=0
         createAccountInformation()
         createRecyclerView()
@@ -71,6 +69,10 @@ class MainPageFragment : Fragment() {
             }
         })
     }
+
+
+    //Api request geldiğinde transactionlar doldurulması
+
     private fun createAccountInformation(){
         binding.accountsInformation.adapter=AccountsInformationFragmentAdapter(emptyArray(),
             this
@@ -86,6 +88,10 @@ class MainPageFragment : Fragment() {
 
         })
     }
+
+
+    //RecyclerView oluşturulması
+
     private fun createRecyclerView(){
         val recyclerView = binding.transactions
         recyclerView.layoutManager =  LinearLayoutManager(activity)
@@ -107,6 +113,10 @@ class MainPageFragment : Fragment() {
 
         })
     }
+
+
+    //RecyclerView ekleme
+
     private fun addToRecyclerView(destinationAccountTitle: String, transactionName: String, amount: String, time: String, date: String)
     {
         destinationAccountTitles.add(destinationAccountTitle)

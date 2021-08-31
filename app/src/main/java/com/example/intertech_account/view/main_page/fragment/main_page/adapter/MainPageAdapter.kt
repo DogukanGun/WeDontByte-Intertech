@@ -15,14 +15,22 @@ class MainPageAdapter ()
 
     }
 
+
+    // Ana sayfadaki transactionların response geldikten sonra eklenmesi
+
     fun addList(transactions: Array<GetAccountTransactionList>){
         this.transactions=transactions
         notifyDataSetChanged()
     }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainPageHolder {
         val binding = HomeScreenTransactionRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return MainPageHolder(binding)
     }
+
+
+    //Transactionların doldurulması
 
     override fun onBindViewHolder(holder: MainPageHolder, position: Int) {
         if (transactions.isNotEmpty()){

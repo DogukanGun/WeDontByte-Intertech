@@ -16,6 +16,8 @@ class AccountsInformationFragmentAdapter(var bankFragments: Array<GetAccountData
         return bankFragments.size
     }
 
+    //Create the User Information Fragment
+
     override fun createFragment(position: Int): Fragment {
         val fragment = AccountsInformationFragment()
         if (bankFragments[0].getAccountList.isNotEmpty()){

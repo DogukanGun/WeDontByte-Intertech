@@ -16,14 +16,10 @@ class SwipeButton(private val context:Context,
 ) {
     private var pos : Int = 0
     private var clickRegion: RectF?=null
-    private val resources:Resources
-    init{
-        resources = context.resources
-    }
-    fun onClick(x:Float,y:Float):Boolean{
+    private val resources:Resources = context.resources
+    // tıklama buton içerisindeyse swipe a tıklama at
 
-        if(clickRegion == null){
-        }
+    fun onClick(x:Float,y:Float):Boolean{
 
         if(clickRegion != null && clickRegion!!.contains(x,y)){
             listener.onClick(pos)
@@ -31,6 +27,10 @@ class SwipeButton(private val context:Context,
         }
         return false
     }
+
+
+    // Button çizme
+
     fun onDraw(c: Canvas, rectF:RectF, pos:Int){
         val p = Paint()
         p.color=color
@@ -63,6 +63,10 @@ class SwipeButton(private val context:Context,
 
 
     }
+
+
+    // Bir fikrim yok :D
+
     private fun drawableToBitmap(d:Drawable?):Bitmap{
         if(d is BitmapDrawable)return d.bitmap
         val bitmap =Bitmap.createBitmap(d!!.intrinsicWidth,d.intrinsicHeight,Bitmap.Config.ARGB_8888)

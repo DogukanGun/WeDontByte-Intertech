@@ -9,13 +9,12 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.core.view.iterator
-import androidx.databinding.DataBindingUtil.setContentView
+import android.widget.CheckBox
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -73,6 +72,9 @@ class AllAccountsFragment : Fragment() {
         return binding.root
 
     }
+
+    // Hesap ayrılımları için checkboxlistin gelen para birimlerine göre oluşturulması
+
     private fun checkboxCreator(currencyNames:List<String>,savedInstanceState: Bundle?,){
 
         super.onCreate(savedInstanceState)
@@ -95,6 +97,10 @@ class AllAccountsFragment : Fragment() {
 
 
     }
+
+
+    //Checkboxların basılması kontrolü ve RecyclerViewin yeniden sıralanması
+
     private fun checkBoxController(currencyString: String) {
         checkBoxList[currencyString]?.setOnCheckedChangeListener{ compoundButton ,b ->
             if(compoundButton.isChecked){
@@ -113,6 +119,9 @@ class AllAccountsFragment : Fragment() {
         }
     }
 
+
+    //Error check
+
     private fun controlError(){
         getAccountViewModel.errorMessage.observe(viewLifecycleOwner,{
             if (it=="ApiError"){
@@ -120,6 +129,10 @@ class AllAccountsFragment : Fragment() {
             }
         })
     }
+
+
+    //İlk geldiğinde response a göre Recycler View doldurulması
+
     private fun getData(savedInstanceState:Bundle?){
 
         binding.allAccounts.adapter=adapter
@@ -141,6 +154,10 @@ class AllAccountsFragment : Fragment() {
 
         })
     }
+
+
+    //Error check
+
     private fun showApiErrorMessage(){
         Snackbar.make(binding.root, R.string.relode_page,Snackbar.LENGTH_INDEFINITE)
             .setAction(R.string.relode_page_button){
@@ -151,6 +168,10 @@ class AllAccountsFragment : Fragment() {
             .setBackgroundTint(Color.WHITE)
             .show()
     }
+
+
+    //TODO ?
+
     private fun relodePage(){
         val intent = Intent(
             ApplicationProvider.getApplicationContext<Context>(),
@@ -168,6 +189,9 @@ class AllAccountsFragment : Fragment() {
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent)
         System.exit(0)
     }
+
+    //Swipe ve içindeki butonların oluşturulması
+
     private fun createSwipe(){
         val swipe=object: Swipe(activity as MainActivity ,binding.allAccounts,200){
             override fun instantiateSwipeButton(
@@ -177,7 +201,7 @@ class AllAccountsFragment : Fragment() {
 
 
 
-
+                //TODO Buraya istenidiği kadar buton eklenebilir
                 buffer.add(
                     SwipeButton(activity as MainActivity,
                         "Deneme",

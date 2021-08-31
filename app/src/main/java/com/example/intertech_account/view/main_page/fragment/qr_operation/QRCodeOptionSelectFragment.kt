@@ -1,29 +1,24 @@
 package com.example.intertech_account.view.main_page.fragment.qr_operation
 
 import android.app.AlertDialog
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.PorterDuff
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentQRCodeOptionSelectBinding
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.resources.common_variables.QrOperation
-import com.example.intertech_account.view.login_page.activity.UserLoginActivity
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view_model.QrCodeGenerateViewModel
 
+
+//TODO ?
 class QRCodeOptionSelectFragment : Fragment() {
 
     private lateinit var binding:FragmentQRCodeOptionSelectBinding

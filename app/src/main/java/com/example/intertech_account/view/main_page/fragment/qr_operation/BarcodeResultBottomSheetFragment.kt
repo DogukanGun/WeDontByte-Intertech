@@ -26,6 +26,7 @@ class BarcodeResultBottomSheetFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_barcode_result_bottom_sheet, container, false)
     }
 
+    // TODO ?
 
     fun updateURL(url: String) {
         fetchUrlMetaData(url) { title, desc ->

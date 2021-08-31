@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAccountsInformationBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.example.intertech_account.resources.common_variables.Button
-import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.resources.common_variables.QrOperation
 import com.example.intertech_account.view_model.GetAccountViewModel
 
@@ -33,6 +30,8 @@ class AccountsInformationFragment : Fragment() {
         if (isFragmentUsedByViewPager){
             updateLabel(0)
             var spinnerList:ArrayList<String> = arrayListOf<String>()
+
+            //Bütün hesapların eklenmesi
             for(index in getAccountModel.getAccountData.getAccountList){
                 spinnerList.add(index.iban)
             }
@@ -65,6 +64,8 @@ class AccountsInformationFragment : Fragment() {
 
         return binding.root
     }
+
+    //Hesap sayfasının bilgi güncellemesi
 
     fun updateLabel(position:Int){
         binding.accountType.text = getAccountModel.getAccountData.getAccountList[position].accountName

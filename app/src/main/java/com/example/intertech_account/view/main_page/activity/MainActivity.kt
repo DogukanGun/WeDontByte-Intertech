@@ -1,11 +1,7 @@
 package com.example.intertech_account.view.main_page.activity
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Process
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -17,8 +13,6 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.ActivityMainBinding
 import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
-import com.example.intertech_account.view.login_page.activity.UserLoginActivity
-import org.intellij.lang.annotations.Language
 import java.util.*
 
 
@@ -27,6 +21,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navHostFragment:NavHostFragment
     private var readToExit:Int=1
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // Initialization
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -34,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         Constant.navHostFragment=navHostFragment
         NavigationUI.setupWithNavController(binding.bottomNavigationView,navHostFragment.navController)
+
+        //TODO doldurulacak
 
         val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.mainPageFragment,
@@ -47,9 +46,15 @@ class MainActivity : AppCompatActivity() {
             }
         })
         binding.toolbar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
+
+
+        //Topbar button yönlendirmesi.
+
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             var id = menuItem.itemId
             when (menuItem.itemId) {
+                // Topbar Kullanıcı bilgileri buttonu
+
                 R.id.userInformationTopBarButton -> {
 //                     findNavController().navigate(R.id.action_allAccountsFragment_to_simpleAccountFragment)
 //                    if(Constant.isUserInformationTopBarButtonClick.value==0){
@@ -60,6 +65,9 @@ class MainActivity : AppCompatActivity() {
                     }
                     true
                 }
+
+                // Topbar diller buttonu
+
                 R.id.languageTopBarButton->{
                     val sharedPreferences =getSharedPreferences("SettingsActivity", MODE_PRIVATE)
                     val language = sharedPreferences.getString("language", "English")
@@ -86,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         BaseActivity.dLocale = Locale(language)
     }
 
+    // geri buttonu
     override fun onBackPressed() {
         super.onBackPressed()
         if (readToExit==0){

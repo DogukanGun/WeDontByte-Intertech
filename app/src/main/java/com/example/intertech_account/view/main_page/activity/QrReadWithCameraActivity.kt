@@ -5,10 +5,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Size
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
@@ -22,11 +22,14 @@ import com.example.intertech_account.databinding.ActivityQrReadWithCameraBinding
 import com.example.intertech_account.view.main_page.fragment.qr_operation.BarcodeResultBottomSheetFragment
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.common.util.concurrent.ListenableFuture
-import com.google.mlkit.vision.barcode.Barcode.TYPE_URL
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+
+
+//TODO Buraya hakişm değilim !!!
+
 
 class QrReadWithCameraActivity : AppCompatActivity() {
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>

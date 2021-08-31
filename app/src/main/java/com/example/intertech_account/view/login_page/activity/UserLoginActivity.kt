@@ -17,13 +17,20 @@ class UserLoginActivity : AppCompatActivity() {
     private lateinit var binding:ActivityUserLoginBinding
     private val getUserLoginViewModel:GetUserLoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //Login page Backend-Frontend bağlanması
+
         binding= ActivityUserLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.loginPagePassword.error=null
+
+
+        //Login page button aksiyonu
+        // TODO buradaki login bilgileri değiştirilecek
+
         binding.loginPageLoginButton.setOnClickListener {
             if (binding.loginPagePasswordTextField.text.toString()=="deneme"){
-
             }
             if(binding.loginPageUsernameTextField.text.toString()=="deneme") {
 
