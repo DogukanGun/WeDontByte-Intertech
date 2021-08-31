@@ -2,6 +2,7 @@ package com.example.intertech_account.view.login_page.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -26,14 +27,64 @@ class UserLoginActivity : AppCompatActivity() {
         // TODO buradaki login bilgileri değiştirilecek
 
         binding.loginPageLoginButton.setOnClickListener {
-            if (binding.loginPagePasswordTextField.text.toString()=="deneme"){
+            if (binding.loginPagePasswordTextField.text.toString()=="123"){
+                if (binding.loginPageUsernameTextField.text.toString().length!=11||binding.loginPageUsernameTextField.text.toString()[0]=='0'){
+                    Toast.makeText(this,"Kimlik numarası geçersiz",Toast.LENGTH_LONG).show()
+                }
+                else {
+                    var citizennum=binding.loginPageUsernameTextField.text.toString()
+                    var cit10: Int = citizennum[0].toInt()-48
+                    Log.d("TAG",cit10.toString())
+                    cit10+=citizennum[2].toInt()-48
+                    Log.d("TAG",cit10.toString())
+                    cit10+=citizennum[4].toInt()-48
+                    Log.d("TAG",cit10.toString())
+                    cit10+=citizennum[6].toInt()-48
+                    Log.d("TAG",cit10.toString())
+                    cit10+=citizennum[8].toInt()-48
+                    Log.d("TAG",cit10.toString())
+                    cit10 *= 7
+                    Log.d("TAG",cit10.toString())
+                    cit10 -= (citizennum[1].toInt()-48) + (citizennum[3].toInt()-48) + (citizennum[5].toInt()-48) + (citizennum[7].toInt()-48)
+                    Log.d("TAG",cit10.toString())
+                    cit10 %= 10
+                    Log.d("TAG",cit10.toString())
+                    var cit11: Int = cit10 + (citizennum[0].toInt()-48)
+                    Log.d("TAG",cit11.toString())
+                    cit11+=citizennum[1].toInt()-48
+                    Log.d("TAG",cit11.toString())
+                    cit11+=citizennum[2].toInt()-48
+                    Log.d("TAG",cit11.toString())
+                    cit11+=citizennum[3].toInt()-48
+                    Log.d("TAG",cit11.toString())
+                    cit11+=citizennum[4].toInt()-48
+                    Log.d("TAG",cit11.toString())
+                    cit11+=citizennum[5].toInt()-48
+                    Log.d("TAG",cit11.toString())
+                    cit11+=citizennum[6].toInt()-48
+                    Log.d("TAG",cit11.toString())
+                    cit11+=citizennum[7].toInt()-48
+                    Log.d("TAG",cit11.toString())
+                    cit11+=citizennum[8].toInt()-48
+                    Log.d("TAG",cit11.toString())
+                    cit11 %= 10
+                    Log.d("TAG",cit11.toString())
+                    if (cit10 == (citizennum[9].toInt()-48) && cit11 == (citizennum[10].toInt()-48)) {
+                        Toast.makeText(this,"Kimlik Numarası ve Şifre Doğru Giriş yapılıyor...",Toast.LENGTH_LONG).show()
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else{
+                        Toast.makeText(this,"Kimlik numarası geçersiz",Toast.LENGTH_LONG).show()
+                    }
+                }
             }
-            if(binding.loginPageUsernameTextField.text.toString()=="deneme") {
+            else{
+                Toast.makeText(this,"Şifre Hatalı",Toast.LENGTH_LONG).show()
+            }
 
-            }
-                Toast.makeText(this,"Doğru şifre. Giriş yapılıyor...",Toast.LENGTH_LONG).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+
+
 
         }
 
