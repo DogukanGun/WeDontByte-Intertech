@@ -34,41 +34,23 @@ class UserLoginActivity : AppCompatActivity() {
                 else {
                     var citizennum=binding.loginPageUsernameTextField.text.toString()
                     var cit10: Int = citizennum[0].toInt()-48
-                    Log.d("TAG",cit10.toString())
                     cit10+=citizennum[2].toInt()-48
-                    Log.d("TAG",cit10.toString())
                     cit10+=citizennum[4].toInt()-48
-                    Log.d("TAG",cit10.toString())
                     cit10+=citizennum[6].toInt()-48
-                    Log.d("TAG",cit10.toString())
                     cit10+=citizennum[8].toInt()-48
-                    Log.d("TAG",cit10.toString())
                     cit10 *= 7
-                    Log.d("TAG",cit10.toString())
                     cit10 -= (citizennum[1].toInt()-48) + (citizennum[3].toInt()-48) + (citizennum[5].toInt()-48) + (citizennum[7].toInt()-48)
-                    Log.d("TAG",cit10.toString())
                     cit10 %= 10
-                    Log.d("TAG",cit10.toString())
                     var cit11: Int = cit10 + (citizennum[0].toInt()-48)
-                    Log.d("TAG",cit11.toString())
                     cit11+=citizennum[1].toInt()-48
-                    Log.d("TAG",cit11.toString())
                     cit11+=citizennum[2].toInt()-48
-                    Log.d("TAG",cit11.toString())
                     cit11+=citizennum[3].toInt()-48
-                    Log.d("TAG",cit11.toString())
                     cit11+=citizennum[4].toInt()-48
-                    Log.d("TAG",cit11.toString())
                     cit11+=citizennum[5].toInt()-48
-                    Log.d("TAG",cit11.toString())
                     cit11+=citizennum[6].toInt()-48
-                    Log.d("TAG",cit11.toString())
                     cit11+=citizennum[7].toInt()-48
-                    Log.d("TAG",cit11.toString())
                     cit11+=citizennum[8].toInt()-48
-                    Log.d("TAG",cit11.toString())
                     cit11 %= 10
-                    Log.d("TAG",cit11.toString())
                     if (cit10 == (citizennum[9].toInt()-48) && cit11 == (citizennum[10].toInt()-48)) {
                         Toast.makeText(this,"Kimlik Numarası ve Şifre Doğru Giriş yapılıyor...",Toast.LENGTH_LONG).show()
                         val intent = Intent(this, MainActivity::class.java)
