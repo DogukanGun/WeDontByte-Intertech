@@ -16,6 +16,7 @@ object Constant{
         var isUserInformationTopBarButtonClick=MutableLiveData(0)
         lateinit var navHostFragment: NavHostFragment
         var currentBottomMenu=0
+        var exceptionForApp=MutableLiveData("")
 
 }
 

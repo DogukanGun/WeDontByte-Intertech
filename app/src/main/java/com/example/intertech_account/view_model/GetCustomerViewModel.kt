@@ -3,10 +3,12 @@ package com.example.intertech_Customer.view_model
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.intertech_account.R
 import com.example.intertech_account.model.api_model.get_account.*
 import com.example.intertech_account.model.api_model.get_customer.*
 import com.example.intertech_account.resources.api.ApiClient
 import com.example.intertech_account.resources.api.ApiInterface
+import com.example.intertech_account.resources.common_variables.Constant
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,18 +40,23 @@ class GetCustomerViewModel  : ViewModel(){
         val getCustomerGetCustomerBodyModel: GetCustomerBodyModel =
             GetCustomerBodyModel(getCustomerHeader,getCustomerParameterList)
 
-        job = CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
-            val response = ApiClient.getClient().getCustomerInfo(getCustomerGetCustomerBodyModel)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    getCustomerInfo.value=(response.body())
-                    print(getCustomerInfo.value!!.type)
-                    loading.value = false
-                } else {
-                    onError("Error : ${response.message()} ")
+        try {
+            job = CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
+                val response = ApiClient.getClient().getCustomerInfo(getCustomerGetCustomerBodyModel)
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        getCustomerInfo.value=(response.body())
+                        print(getCustomerInfo.value!!.type)
+                        loading.value = false
+                    } else {
+                        onError("Error : ${response.message()} ")
+                    }
                 }
             }
+        }catch (e:Exception) {
+            Constant.exceptionForApp.value = R.string.internet_exception.toString()
         }
+
 
     }
     private fun onError(message: String) {

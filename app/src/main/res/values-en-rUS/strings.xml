@@ -35,4 +35,8 @@
     <string name="birthdate">Birth Date</string>
     <string name="email">E-mail</string>
     <string name="phoneNumber">Phone Number</string>
+    <string name="qr_button_not_selected">Please choose a type</string>
+    <string name="internet_exception">System exception is occur, please try again later</string>
+
+
 </resources>

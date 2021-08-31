@@ -4,9 +4,11 @@ package com.example.intertech_account.view_model
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.intertech_account.R
 import com.example.intertech_account.model.api_model.get_account.*
 import com.example.intertech_account.resources.api.ApiClient
 import com.example.intertech_account.resources.api.ApiInterface
+import com.example.intertech_account.resources.common_variables.Constant
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 import retrofit2.Call
@@ -34,18 +36,23 @@ class GetAccountViewModel : ViewModel(){
         val getAccountGetAccountBodyModel: GetAccountBodyModel =
             GetAccountBodyModel(getAccountHeader,getAccountParameterList)
 
-        job = CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
-            val response = ApiClient.getClient().getAccounts(getAccountGetAccountBodyModel)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    getAccountList.value=(response.body())
-                    print(getAccountList.value!!.type)
-                    loading.value = false
-                } else {
-                    onError("Error : ${response.message()} ")
+        try{
+            job = CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
+                val response = ApiClient.getClient().getAccounts(getAccountGetAccountBodyModel)
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        getAccountList.value=(response.body())
+                        print(getAccountList.value!!.type)
+                        loading.value = false
+                    } else {
+                        onError("Error : ${response.message()} ")
+                    }
                 }
             }
+        }catch (e:Exception){
+            Constant.exceptionForApp.value=R.string.internet_exception.toString()
         }
+
     }
     private fun onError(message: String) {
         errorMessage.value = message

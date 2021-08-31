@@ -2,10 +2,12 @@ package com.example.intertech_account.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.intertech_account.R
 import com.example.intertech_account.model.api_model.GetCurrencyModel
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyBodyModel
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyHeader
  import com.example.intertech_account.resources.api.ApiClient
+import com.example.intertech_account.resources.common_variables.Constant
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,18 +36,23 @@ class GetCurrencyViewModel():ViewModel() {
         val getCurrencyGetAccountBodyModel: GetCurrencyBodyModel =
             GetCurrencyBodyModel(getCurrencyHeader)
 
-        job = CoroutineScope(Dispatchers.IO).launch {
-            val response = ApiClient.getClient().getCurrencyRateList(getCurrencyGetAccountBodyModel)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    getCurrencyModelResult.value=(response.body())
-                    loading.value = false
-                    searchInList()
-                } else {
-                    onError("Error : ${response.message()} ")
+        try {
+            job = CoroutineScope(Dispatchers.IO).launch {
+                val response = ApiClient.getClient().getCurrencyRateList(getCurrencyGetAccountBodyModel)
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        getCurrencyModelResult.value=(response.body())
+                        loading.value = false
+                        searchInList()
+                    } else {
+                        onError("Error : ${response.message()} ")
+                    }
                 }
             }
+        }catch (e:Exception) {
+            Constant.exceptionForApp.value = R.string.internet_exception.toString()
         }
+
 
     }
     private fun onError(message: String) {
