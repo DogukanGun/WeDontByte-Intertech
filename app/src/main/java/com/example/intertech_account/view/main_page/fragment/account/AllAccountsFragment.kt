@@ -4,17 +4,11 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.Typeface
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -43,15 +37,15 @@ class AllAccountsFragment : Fragment() {
     private val getAccountDetailWithChartsViewModel: GetAccountDetailWithChartsViewModel by viewModels()
     private lateinit var getAccountModel: GetAccountModel
     private var adapter=AllAccountsAdapter(arrayListOf())
-    private var checkBoxList: HashMap<String,CheckBox> = hashMapOf()
+    //private var checkBoxList: HashMap<String,CheckBox> = hashMapOf()
     private lateinit var adapter_:AllAccountsAdapter
-    private var currencyStates: HashMap<String,Int> =hashMapOf()
+    //private var currencyStates: HashMap<String,Int> =hashMapOf()
 
     private lateinit var pieChartEntries:ArrayList<PieEntry>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentAllAccountsBinding.inflate(layoutInflater)
 
@@ -75,7 +69,7 @@ class AllAccountsFragment : Fragment() {
     }
 
     // Hesap ayrılımları için checkboxlistin gelen para birimlerine göre oluşturulması
-
+    /*
     private fun checkboxCreator(currencyNames:List<String>,savedInstanceState: Bundle?,){
 
         super.onCreate(savedInstanceState)
@@ -97,11 +91,11 @@ class AllAccountsFragment : Fragment() {
         }
 
 
-    }
+    }*/
 
 
     //Checkboxların basılması kontrolü ve RecyclerViewin yeniden sıralanması
-
+    /*
     private fun checkBoxController(currencyString: String) {
         checkBoxList[currencyString]?.setOnCheckedChangeListener{ compoundButton ,b ->
             if(compoundButton.isChecked){
@@ -118,7 +112,7 @@ class AllAccountsFragment : Fragment() {
 
 
         }
-    }
+    }*/
 
 
     //Error check
@@ -195,7 +189,7 @@ class AllAccountsFragment : Fragment() {
     //Swipe ve içindeki butonların oluşturulması
 
     private fun createSwipe(){
-        val swipe=object: Swipe(activity as MainActivity ,binding.allAccounts,200){
+        object: Swipe(activity as MainActivity ,binding.allAccounts,200){
             override fun instantiateSwipeButton(
                 viewHolder: RecyclerView.ViewHolder,
                 buffer: MutableList<SwipeButton>

@@ -15,7 +15,7 @@ class GetAccountDetailWithChartsViewModel:ViewModel() {
             val getAccountModelListGroupBy=getAccountModelList.groupBy { it.currency }
             val entries: ArrayList<PieEntry> = ArrayList()
             for(indexOfGetAccountModelListGroupBy in getAccountModelListGroupBy ){
-                var totalAmount=0.0
+                var totalAmount=900.0
                 for(indexOfGetAccountModelListGroupByValue in indexOfGetAccountModelListGroupBy.value){
                     totalAmount+=indexOfGetAccountModelListGroupByValue.balance
                 }

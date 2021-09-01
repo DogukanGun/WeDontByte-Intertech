@@ -2,9 +2,7 @@ package com.example.intertech_account.view.main_page.fragment.account.adapter
 
 import android.graphics.Color
 import android.graphics.Paint
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -18,16 +16,14 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
-import com.github.mikephil.charting.listener.ChartTouchListener
-import com.github.mikephil.charting.listener.OnChartGestureListener
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import java.lang.ref.WeakReference
 
 class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsRecyclerViewHolder>()  {
     private val ITEM_GRAPH = 0
     private val ITEM_TITLE = 1
     private val ITEM_ACCOUNT = 2
-
+    private var graphState = 0
+    private lateinit var piechart :PieChart
     private lateinit var pieEntries:ArrayList<PieEntry>
     private var originalallAccounts:ArrayList<GetAccountList> = ArrayList()
     private var currencyStates: HashMap<String,Int> =hashMapOf()
@@ -45,11 +41,9 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     //Boş gelen RecyclerView doldurmak için fonksiyon
 
-    fun addAccount(item:Array<GetAccountList>,pieChartEntries:ArrayList<PieEntry>){
+    fun addAccount(item:Array<GetAccountList>, pieChartEntries:ArrayList<PieEntry>){
         val AllAccountsArrayList : ArrayList<GetAccountList> = rearrangeList(item.toCollection(ArrayList()))
 
-        // Bir tane parası olan USD Hesabı eklendi
-        AllAccountsArrayList.add(createDummyAccount("USD"))
 
         originalallAccounts.clear()
         allAccounts.clear()
@@ -57,11 +51,14 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         pieEntries=pieChartEntries
         originalallAccounts.addAll(AllAccountsArrayList)
         allAccounts.addAll(originalallAccounts)
-        var currencyNames =getCurrencyList()
+        val currencyNames =getCurrencyList()
         for(i in currencyNames){
             currencyStates[i] = 1
         }
         notifyDataSetChanged()
+
+
+
 
 
     }
@@ -168,8 +165,15 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 holder.getBind().textViewTitleRow.text = "${allAccounts[position+1].currency} Hesaplarım"
             }
             is AllAccountsRecyclerViewHolder.GraphViewHolder -> {
-                drawingPieChart(holder.getBind(),pieEntries)
+                piechart= drawingPieChart(holder.getBind(),pieEntries)
+
+                //SETUP PIE ANIMATION
+                if(graphState == 0) {
+                    piechart.animateXY(1000, 1000)
+                    graphState=1
+                }
             }
+
         }
 
 
@@ -197,19 +201,15 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     // TODO PirChart içini dinamik olarak seçilen şeye göre dolur veya PieChartta seçilen hesapları altta getir !!!!
 
-    private fun drawingPieChart(binding: AllAccountsRecyclerviewGraphRowBinding,pieEntries:ArrayList<PieEntry>)
+    private fun drawingPieChart(binding: AllAccountsRecyclerviewGraphRowBinding,pieEntries:ArrayList<PieEntry>):PieChart
     {
         //SET PIE ENTRIES (ENTER THE AMOUNT OF MONEY IN HERE)
 
 
         //GET PIE CHART COMPONENT FROM XML
-        var intertechPieChart : PieChart = binding.allAccountsPieChart
+        val intertechPieChart : PieChart = binding.allAccountsPieChart
 
-        //SETUP PIE ANIMATION
-        if(!intertechPieChart.isShown)
-        {
-            intertechPieChart.animateXY(1000,1000)
-        }
+
 
 
         //SETUP PIE CHART COLORS
@@ -245,7 +245,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         intertechPieChart.setOnChartValueSelectedListener(object :OnChartValueSelectedListener{
             override fun onValueSelected(e: Entry?, h: Highlight?) {
                 if(e!=null){
-                    var entry=e as PieEntry
+                    val entry=e as PieEntry
                     //TODO butonlarin tiklanmasi burada olacak
                     //TODO entry.label sana degeri verecek
                     for(item in currencyStates)
@@ -256,7 +256,6 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                             currencyStates[item.key] = 0
                         }
                     modifyAccount(currencyStates)
-
 
                 }
             }
@@ -276,17 +275,18 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
         pieData.setDrawValues(true)
         intertechPieChart.data = pieData
+        return intertechPieChart
     }
 
     private fun createDummyAccount(typeOfAccount:String):GetAccountList{
-        var x = GetAccountList(isBlocked = false,
+        val x = GetAccountList(isBlocked = false,
             "maltepe",
             "birinci",
             false,
-            typeOfAccount.toString(),
+            typeOfAccount,
             0.15,
             00.10,
-            1500.2,
+            15000.2,
             1800.5,
             1600.5,
             1850.0,
