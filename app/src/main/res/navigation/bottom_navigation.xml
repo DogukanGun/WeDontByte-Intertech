@@ -59,5 +59,14 @@
         android:id="@+id/accountDetailFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.AccountDetailFragment"
         android:label="fragment_account_detail"
-        tools:layout="@layout/fragment_account_detail" />
+        tools:layout="@layout/fragment_account_detail" >
+        <action
+            android:id="@+id/action_accountDetailFragment_to_pdfCreateAndDownloadFragment"
+            app:destination="@id/pdfCreateAndDownloadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pdfCreateAndDownloadFragment"
+        android:name="com.example.intertech_account.view.main_page.fragment.pdf.PdfCreateAndDownloadFragment"
+        android:label="fragment_pdf_create_and_download"
+        tools:layout="@layout/fragment_pdf_create_and_download" />
 </navigation>

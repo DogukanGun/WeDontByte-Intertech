@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.intertech_account.databinding.FragmentAccountDetailBinding
 import com.example.intertech_account.model.api_model.main_page.landmark.Landmark
+import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AccountDetailAdapter
 
 class AccountDetailFragment : Fragment() {
@@ -62,6 +63,10 @@ class AccountDetailFragment : Fragment() {
         binding.recyclerview.layoutManager= LinearLayoutManager(activity)
         val LandmarkAdapter = AccountDetailAdapter(landmarkList)
         binding.recyclerview.adapter = LandmarkAdapter
+        binding.button1.setOnClickListener{
+            val action=AccountDetailFragmentDirections.actionAccountDetailFragmentToPdfCreateAndDownloadFragment()
+            Constant.navHostFragment.navController.navigate(action)
+        }
 
 
         return binding.root
