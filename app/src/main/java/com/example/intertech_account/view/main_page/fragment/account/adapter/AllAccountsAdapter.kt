@@ -26,6 +26,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     private val ITEM_TITLE = 1
     private val ITEM_ACCOUNT = 2
 
+    private lateinit var pieEntries:ArrayList<PieEntry>
     private var originalallAccounts:ArrayList<GetAccountList> = ArrayList()
 
 
@@ -42,9 +43,9 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     //Boş gelen RecyclerView doldurmak için fonksiyon
 
-    fun addAccount(item:Array<GetAccountList>){
+    fun addAccount(item:Array<GetAccountList>,pieChartEntries:ArrayList<PieEntry>){
         val AllAccountsArrayList : ArrayList<GetAccountList> = rearrangeList(item.toCollection(ArrayList()))
-
+        pieEntries=pieChartEntries
         originalallAccounts.addAll(AllAccountsArrayList)
         allAccounts.addAll(originalallAccounts)
         notifyDataSetChanged()
@@ -189,7 +190,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 holder.getBind().textViewTitleRow.text = "${allAccounts[position+1].currency} Hesaplarım"
             }
             is AllAccountsRecyclerViewHolder.GraphViewHolder -> {
-                drawingPieChart(holder.getBind())
+                drawingPieChart(holder.getBind(),pieEntries)
             }
         }
 
@@ -218,14 +219,10 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     // TODO PirChart içini dinamik olarak seçilen şeye göre dolur veya PieChartta seçilen hesapları altta getir !!!!
 
-    private fun drawingPieChart(binding: AllAccountsRecyclerviewGraphRowBinding)
+    private fun drawingPieChart(binding: AllAccountsRecyclerviewGraphRowBinding,pieEntries:ArrayList<PieEntry>)
     {
         //SET PIE ENTRIES (ENTER THE AMOUNT OF MONEY IN HERE)
-        val pieEntries = arrayListOf<PieEntry>()
-        pieEntries.add(PieEntry(1000.0F))
-        pieEntries.add(PieEntry(2000.0F))
-        pieEntries.add(PieEntry(3000.0F))
-        pieEntries.add(PieEntry(4000.0F))
+
 
         //GET PIE CHART COMPONENT FROM XML
         var intertechPieChart : PieChart = binding.allAccountsPieChart
@@ -265,7 +262,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
         intertechPieChart.setOnChartValueSelectedListener(object :OnChartValueSelectedListener{
             override fun onValueSelected(e: Entry?, h: Highlight?) {
-                TODO("Not yet implemented")
+                print(e!!.data)
             }
 
             override fun onNothingSelected() {

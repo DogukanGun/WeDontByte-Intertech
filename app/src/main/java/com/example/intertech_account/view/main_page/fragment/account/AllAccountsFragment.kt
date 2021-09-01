@@ -140,16 +140,19 @@ class AllAccountsFragment : Fragment() {
         binding.allAccounts.layoutManager=LinearLayoutManager(activity)
         getAccountViewModel.apiRequest()
         getAccountViewModel.getAccountList.observe(viewLifecycleOwner,{
-            getAccountModel=it
-            adapter_= (binding.allAccounts.adapter as? AllAccountsAdapter)!!
-            adapter_.addAccount(getAccountModel.getAccountData.getAccountList)
-            val currencyNames :List<String> = adapter_.getCurrencyList()
-            checkboxCreator(currencyNames,savedInstanceState)
-            for(i in currencyStates){
-                checkBoxController(i.key)
+            if(it.getAccountData.getAccountList!=null){
+                getAccountModel=it
+                getAccountDetailWithChartsViewModel.getAccountModel=it
+                pieChartEntries=getAccountDetailWithChartsViewModel.createPieChartEntries()
+                adapter_= (binding.allAccounts.adapter as? AllAccountsAdapter)!!
+                adapter_.addAccount(getAccountModel.getAccountData.getAccountList,pieChartEntries)
+                val currencyNames :List<String> = adapter_.getCurrencyList()
+                checkboxCreator(currencyNames,savedInstanceState)
+                for(i in currencyStates){
+                    checkBoxController(i.key)
+                }
+
             }
-            getAccountDetailWithChartsViewModel.getAccountModel=it
-            pieChartEntries=getAccountDetailWithChartsViewModel.createPieChartEntries()
 
         })
     }

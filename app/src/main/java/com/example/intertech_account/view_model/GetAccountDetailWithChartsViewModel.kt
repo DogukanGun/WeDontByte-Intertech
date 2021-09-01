@@ -19,7 +19,7 @@ class GetAccountDetailWithChartsViewModel:ViewModel() {
                 for(indexOfGetAccountModelListGroupByValue in indexOfGetAccountModelListGroupBy.value){
                     totalAmount+=indexOfGetAccountModelListGroupByValue.balance
                 }
-                val entry=PieEntry(indexOfGetAccountModelListGroupBy.key.length.toFloat(),indexOfGetAccountModelListGroupBy.key,totalAmount)
+                val entry=PieEntry(totalAmount.toFloat(),indexOfGetAccountModelListGroupBy.key)
                 entries.add(entry)
             }
             return entries
