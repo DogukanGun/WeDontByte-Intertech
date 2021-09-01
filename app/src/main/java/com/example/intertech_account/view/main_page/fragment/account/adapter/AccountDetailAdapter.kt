@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.AccountDetailRecyclerRowBinding
-import com.example.intertech_account.view.main_page.fragment.account.Landmark
+import com.example.intertech_account.model.api_model.main_page.landmark.Landmark
 
 class AccountDetailAdapter(val landmarkList: ArrayList<Landmark>) : RecyclerView.Adapter<AccountDetailAdapter.AccountDetailHolder>() {
 

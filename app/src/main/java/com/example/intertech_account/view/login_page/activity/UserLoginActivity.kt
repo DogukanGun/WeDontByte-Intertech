@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.intertech_account.databinding.ActivityUserLoginBinding
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view_model.GetUserLoginViewModel
+import com.example.intertech_account.view_model.repo.CitizenshipControl
 
 class UserLoginActivity : AppCompatActivity() {
     private lateinit var binding:ActivityUserLoginBinding
@@ -43,26 +44,10 @@ class UserLoginActivity : AppCompatActivity() {
                     Toast.makeText(this,"Kimlik numarası geçersiz",Toast.LENGTH_LONG).show()
                 }
                 else {
-                    var citizennum=binding.loginPageUsernameTextField.text.toString()
-                    var cit10: Int = citizennum[0].toInt()-48
-                    cit10+=citizennum[2].toInt()-48
-                    cit10+=citizennum[4].toInt()-48
-                    cit10+=citizennum[6].toInt()-48
-                    cit10+=citizennum[8].toInt()-48
-                    cit10 *= 7
-                    cit10 -= (citizennum[1].toInt()-48) + (citizennum[3].toInt()-48) + (citizennum[5].toInt()-48) + (citizennum[7].toInt()-48)
-                    cit10 %= 10
-                    var cit11: Int = cit10 + (citizennum[0].toInt()-48)
-                    cit11+=citizennum[1].toInt()-48
-                    cit11+=citizennum[2].toInt()-48
-                    cit11+=citizennum[3].toInt()-48
-                    cit11+=citizennum[4].toInt()-48
-                    cit11+=citizennum[5].toInt()-48
-                    cit11+=citizennum[6].toInt()-48
-                    cit11+=citizennum[7].toInt()-48
-                    cit11+=citizennum[8].toInt()-48
-                    cit11 %= 10
-                    if (cit10 == (citizennum[9].toInt()-48) && cit11 == (citizennum[10].toInt()-48)) {
+                    val citizennum=binding.loginPageUsernameTextField.text.toString()
+                    val citizenshipControl=CitizenshipControl()
+
+                    if (citizenshipControl.controlCitizenship(citizennum)) {
                         Toast.makeText(this,"Kimlik Numarası ve Şifre Doğru Giriş yapılıyor...",Toast.LENGTH_LONG).show()
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
