@@ -34,5 +34,6 @@ data class GetAccountList(
     @SerializedName("HasSchoolPayment")
     var isSchoolPaymentComing: Boolean,
     @SerializedName("AvailableCreditDeposit")
-    var creditDeposit: Double
+    var creditDeposit: Double,
+    var balanceAsTRY:Double?
 )

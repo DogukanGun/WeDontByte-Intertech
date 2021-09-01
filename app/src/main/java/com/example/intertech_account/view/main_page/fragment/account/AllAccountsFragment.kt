@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ApplicationProvider
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAllAccountsBinding
+import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.activity.MainActivity
@@ -134,9 +135,10 @@ class AllAccountsFragment : Fragment() {
         binding.allAccounts.layoutManager=LinearLayoutManager(activity)
         getAccountViewModel.apiRequest()
         getAccountViewModel.getAccountList.observe(viewLifecycleOwner,{
-            if(it.getAccountData.getAccountList!=null){
+            if(it.getAccountData.getAccountList.isNotEmpty()){
                 getAccountModel=it
                 getAccountDetailWithChartsViewModel.getAccountModel=it
+                getAccountModel.getAccountData.getAccountList=balanceExchange(it.getAccountData.getAccountList)
                 pieChartEntries=getAccountDetailWithChartsViewModel.createPieChartEntries()
                 adapter_= (binding.allAccounts.adapter as? AllAccountsAdapter)!!
                 adapter_.addAccount(getAccountModel.getAccountData.getAccountList,pieChartEntries)
@@ -149,6 +151,15 @@ class AllAccountsFragment : Fragment() {
             }
 
         })
+    }
+    private fun balanceExchange(getAccountList:Array<GetAccountList>):Array<GetAccountList>{
+        for(index in getAccountList){
+            index.balanceAsTRY=index.balance* (Constant.currencyList.find {
+                it.currencyCode==index.currency
+            }?.changeRate ?: 1.0)
+        }
+        return getAccountList
+
     }
 
 

@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IntertechAccount">
         <activity
+            android:name=".view.login_page.activity.CreateNewAccountActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.login_page.activity.HelpScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"

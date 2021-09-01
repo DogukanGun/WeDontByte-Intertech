@@ -23,6 +23,10 @@ class UserLoginActivity : AppCompatActivity() {
         binding.loginPagePassword.error=null
 
 
+        binding.addNewAccount.setOnClickListener {
+            val intent = Intent(this,CreateNewAccountActivity::class.java)
+            startActivity(intent)
+        }
         //Login page button aksiyonu
 
         binding.loginPageLoginButton.setOnClickListener {

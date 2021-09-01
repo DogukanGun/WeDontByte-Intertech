@@ -3,6 +3,8 @@ package com.example.intertech_account.view_model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.intertech_account.R
+import com.example.intertech_account.model.api_model.GetCurrency
+import com.example.intertech_account.model.api_model.GetCurrencyData
 import com.example.intertech_account.model.api_model.GetCurrencyModel
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyBodyModel
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyHeader
@@ -15,8 +17,13 @@ class GetCurrencyViewModel():ViewModel() {
     val errorMessage = MutableLiveData<String>()
     var job: Job? = null
     val loading = MutableLiveData<Boolean>()
-    private lateinit var getCurrencyModelResult: MutableLiveData<GetCurrencyModel>
+    lateinit var getCurrencyModelResult: MutableLiveData<GetCurrencyModel>
 
+    init {
+        getCurrencyModelResult= MutableLiveData(GetCurrencyModel("", GetCurrencyData("",
+            arrayOf<GetCurrency>(GetCurrency("",0.0,0.0,0.0,0.0,0.0))
+        )))
+    }
     private fun searchInList():Double{
         var array = getCurrencyModelResult.value!!.dataGet.getCurrencyList
         var rate=array.filter { it.currencyCode==currency}

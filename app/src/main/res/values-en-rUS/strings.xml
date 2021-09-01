@@ -37,6 +37,9 @@
     <string name="phoneNumber">Phone Number</string>
     <string name="qr_button_not_selected">Please choose a type</string>
     <string name="internet_exception">System exception is occur, please try again later</string>
+    <string name="title_activity_help_screen">HelpScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 
 </resources>

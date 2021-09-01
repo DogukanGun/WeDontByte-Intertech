@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,26 +13,36 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.intertech_account.BaseActivity
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.ActivityMainBinding
+import com.example.intertech_account.model.api_model.GetCurrency
 import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
+import com.example.intertech_account.view_model.GetCurrencyViewModel
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     private lateinit var navHostFragment:NavHostFragment
+    private val getCurrencyViewModel:GetCurrencyViewModel by viewModels()
     private var readToExit:Int=1
     override fun onCreate(savedInstanceState: Bundle?) {
 
         // Initialization
-
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        getCurrencyViewModel.apiRequest()
+        getCurrencyViewModel.getCurrencyModelResult.observe(this,{
+            if (it.dataGet.getCurrencyList.isNotEmpty()){
+                Constant.currencyList= it.dataGet.getCurrencyList.toCollection(ArrayList())
+            }
+        })
 
         navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         Constant.navHostFragment=navHostFragment

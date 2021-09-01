@@ -292,7 +292,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             1850.0,
             "benimHesabım",
             "TR1159465168416516841634623",
-            false,88.50)
+            false,88.50,null)
         return x
 
     }

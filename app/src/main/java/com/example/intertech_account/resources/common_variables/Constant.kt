@@ -2,6 +2,7 @@ package com.example.intertech_account.resources.common_variables
 
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.NavHostFragment
+import com.example.intertech_account.model.api_model.GetCurrency
 import com.example.intertech_account.model.api_model.get_account.GetAccountHeaders
 
 // Diğer classların ortak kullandığı constantlar
@@ -15,6 +16,7 @@ object Constant{
         lateinit var navHostFragment: NavHostFragment
         var currentBottomMenu=0
         var exceptionForApp=MutableLiveData("")
+        lateinit var currencyList:ArrayList<GetCurrency>
 
 }
 
