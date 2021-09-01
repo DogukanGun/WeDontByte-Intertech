@@ -200,7 +200,7 @@ class AllAccountsFragment : Fragment() {
                     //TODO Buraya istenidiği kadar buton eklenebilir
                     buffer.add(
                         SwipeButton(activity as MainActivity,
-                            "",
+                            "Hesap Kirilimlari",
                             30,
                             0,
                             Color.parseColor("#2b075b"),
@@ -210,6 +210,23 @@ class AllAccountsFragment : Fragment() {
 
                                     var action =
                                         AllAccountsFragmentDirections.actionAllAccountsFragmentToSimpleAccountFragment()
+                                    Constant.navHostFragment.findNavController().navigate(action)
+                                }
+
+                            })
+                    )
+                    buffer.add(
+                        SwipeButton(activity as MainActivity,
+                            "Hesap Detaylari",
+                            30,
+                            0,
+                            Color.parseColor("#2b075b"),
+                            object : SwipeButtonClickListener {
+                                override fun onClick(pos: Int) {
+
+
+                                    var action =
+                                        AllAccountsFragmentDirections.actionAllAccountsFragmentToAccountDetailFragment()
                                     Constant.navHostFragment.findNavController().navigate(action)
                                 }
 

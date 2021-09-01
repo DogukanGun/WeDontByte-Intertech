@@ -101,6 +101,10 @@ dependencies {
     //Library to get URL Meta Data
     implementation 'org.jsoup:jsoup:1.13.1'
 
+    //Pdf
+    implementation 'com.itextpdf:itextg:5.5.10'
+
+
 }
 // Allow references to generated code
 kapt {

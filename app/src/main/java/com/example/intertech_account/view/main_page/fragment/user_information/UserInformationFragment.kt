@@ -1,11 +1,14 @@
 package com.example.intertech_account.view.main_page.fragment.user_information
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.pdf.PdfDocument
 import android.os.Bundle
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +25,11 @@ import com.example.intertech_account.model.api_model.get_customer.GetCustomerMod
 import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.user_information.adapter.UserInformationAdapter
+import com.google.android.material.internal.ViewUtils.getContentView
 import com.google.android.material.snackbar.Snackbar
+import com.itextpdf.text.Document
+import com.itextpdf.text.pdf.PdfWriter
+import java.io.FileOutputStream
 
 
 class UserInformationFragment : Fragment() {
@@ -49,7 +56,7 @@ class UserInformationFragment : Fragment() {
         recyclerView.addItemDecoration(dividerItemDecoration)
         getCustomerViewModel.apiRequest()
         showApiErrorMessage()
-
+//        pdf()
         getCustomerViewModel.getCustomerInfo.observe(viewLifecycleOwner,{
             getCustomerModel=it
             val adapter_=binding.recyclerView.adapter as? UserInformationAdapter
@@ -92,6 +99,35 @@ class UserInformationFragment : Fragment() {
         })
 
     }
+//    @SuppressLint("RestrictedApi")
+//    private fun pdf(){
+//        // create a new document
+//        val document = PdfDocument()
+//
+//        // create a page description
+//        val pageInfo = android.graphics.pdf.PdfDocument.PageInfo.Builder(100, 100, 1).create()
+//
+//        // start a page
+//        val page = document.startPage(pageInfo)
+//
+//        // draw something on the page
+//        val content = getContentView(binding.userImageView)
+//        if(content != null) {
+//            content.draw(page.getCanvas())
+//        }
+//        // finish the page
+//        document.finishPage(page)
+//        //val out = OutputStream.
+//        PdfWriter.getInstance(document, FileOutputStream(Environment.getStorageDirectory()))
+//
+//        // write the document content
+//        //document.writeTo()
+//
+//        // close the document
+//        document.close();
+//
+//
+//    }
     private fun relodePage(){
         val intent = Intent(
             ApplicationProvider.getApplicationContext<Context>(),
