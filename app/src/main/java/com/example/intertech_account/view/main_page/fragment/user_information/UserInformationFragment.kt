@@ -66,8 +66,8 @@ class UserInformationFragment : Fragment() {
                 getString(R.string.citizenshipID), getString(R.string.birthdate)
                 , getString(R.string.email), getString(R.string.phoneNumber))
 
-            val Info = listOf(getCustomerModel.getCustomerData.shortName ,
-                getCustomerModel.getCustomerData.shortName,
+            val Info = listOf(getCustomerModel.getCustomerData.name ,
+                getCustomerModel.getCustomerData.surname,
                 getCustomerModel.getCustomerData.citizenshipNumber,
                 getCustomerModel.getCustomerData.birthDate,
                 getCustomerModel.getCustomerData.email,

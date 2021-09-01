@@ -22,7 +22,7 @@ class GetCustomerViewModel  : ViewModel(){
     init {
         loading= MutableLiveData(true)
         errorMessage=MutableLiveData("")
-        getCustomerInfo = MutableLiveData(GetCustomerModel("", GetCustomerData("", "", "","","", GetMobilePhoneNumber("","",""))))
+        getCustomerInfo = MutableLiveData(GetCustomerModel("", GetCustomerData("", "", "","","", "",GetMobilePhoneNumber("","",""))))
     }
 
     fun apiRequest(){

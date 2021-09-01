@@ -7,8 +7,10 @@ import com.google.gson.annotations.SerializedName
 data class GetCustomerData(
     @SerializedName("\$type")
     var type: String,
-    @SerializedName("ShortName")
-    var shortName: String,
+    @SerializedName("Name")
+    var name: String,
+    @SerializedName("Surname")
+    var surname: String,
     @SerializedName("CitizenshipNumber")
     var citizenshipNumber: String,
     @SerializedName("BirthDate")
