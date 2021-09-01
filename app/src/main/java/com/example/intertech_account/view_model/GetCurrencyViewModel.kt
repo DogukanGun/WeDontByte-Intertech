@@ -6,6 +6,7 @@ import com.example.intertech_account.R
 import com.example.intertech_account.model.api_model.GetCurrency
 import com.example.intertech_account.model.api_model.GetCurrencyData
 import com.example.intertech_account.model.api_model.GetCurrencyModel
+import com.example.intertech_account.model.api_model.get_currency.GetCurrencyParameters
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyBodyModel
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyHeader
 import com.example.intertech_account.resources.api.ApiClient
@@ -13,7 +14,6 @@ import com.example.intertech_account.resources.common_variables.Constant
 import kotlinx.coroutines.*
 
 class GetCurrencyViewModel():ViewModel() {
-    lateinit var currency:String
     val errorMessage = MutableLiveData<String>()
     var job: Job? = null
     val loading = MutableLiveData<Boolean>()
@@ -23,22 +23,15 @@ class GetCurrencyViewModel():ViewModel() {
         getCurrencyModelResult= MutableLiveData(GetCurrencyModel("", GetCurrencyData("",
             arrayOf<GetCurrency>(GetCurrency("",0.0,0.0,0.0,0.0,0.0))
         )))
-    }
-    private fun searchInList():Double{
-        var array = getCurrencyModelResult.value!!.dataGet.getCurrencyList
-        var rate=array.filter { it.currencyCode==currency}
-        if (rate.size!=0){
-            return rate[0].changeRate
-        }else{
-            return -1.0
-        }
+
+
     }
     fun apiRequest(){
          val getCurrencyHeader: GetCurrencyHeader = GetCurrencyHeader("c1c2a508fdf64c14a7b44edc9241c9cd",
             "API","331eb5f529c74df2b800926b5f34b874","5252012362481156055",
         "string","string")
         val getCurrencyGetAccountBodyModel: GetCurrencyBodyModel =
-            GetCurrencyBodyModel(getCurrencyHeader)
+            GetCurrencyBodyModel(getCurrencyHeader, arrayOf(GetCurrencyParameters()))
 
         try {
             job = CoroutineScope(Dispatchers.IO).launch {
@@ -47,7 +40,6 @@ class GetCurrencyViewModel():ViewModel() {
                     if (response.isSuccessful) {
                         getCurrencyModelResult.value=(response.body())
                         loading.value = false
-                        searchInList()
                     } else {
                         onError("Error : ${response.message()} ")
                     }

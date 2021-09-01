@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,7 @@ import com.example.intertech_account.view.main_page.fragment.account.adapter.Swi
 import com.example.intertech_account.view.main_page.fragment.account.adapter.SwipeButtonClickListener
 import com.example.intertech_account.view_model.GetAccountDetailWithChartsViewModel
 import com.example.intertech_account.view_model.GetAccountViewModel
+import com.example.intertech_account.view_model.GetCurrencyViewModel
 import com.github.mikephil.charting.data.PieEntry
 import com.google.android.material.snackbar.Snackbar
 
@@ -36,6 +38,7 @@ class AllAccountsFragment : Fragment() {
     private lateinit var binding:FragmentAllAccountsBinding
     private val getAccountViewModel: GetAccountViewModel by viewModels()
     private val getAccountDetailWithChartsViewModel: GetAccountDetailWithChartsViewModel by viewModels()
+    private val getCurrencyViewModel:GetCurrencyViewModel by viewModels()
     private lateinit var getAccountModel: GetAccountModel
     private var adapter=AllAccountsAdapter(arrayListOf())
     //private var checkBoxList: HashMap<String,CheckBox> = hashMapOf()
@@ -139,9 +142,23 @@ class AllAccountsFragment : Fragment() {
                 getAccountModel=it
                 getAccountDetailWithChartsViewModel.getAccountModel=it
                 getAccountModel.getAccountData.getAccountList=balanceExchange(it.getAccountData.getAccountList)
+
+
+                var arrList = ArrayList<GetAccountList>()
+                arrList.addAll(getAccountModel.getAccountData.getAccountList.toCollection(ArrayList()))
+               // adapter_.addAccount(getAccountModel.getAccountData.getAccountList,pieChartEntries)
+
+
+
+                arrList.add(createDummyAccount("USD",1500.0))
+                var asd: Array<GetAccountList> = arrList.toTypedArray()
+                asd = balanceExchange(asd)
+                for(i in asd){
+                    Log.d("Info",i.accountName+" : "+i.balanceAsTRY.toString())
+                }
                 pieChartEntries=getAccountDetailWithChartsViewModel.createPieChartEntries()
                 adapter_= (binding.allAccounts.adapter as? AllAccountsAdapter)!!
-                adapter_.addAccount(getAccountModel.getAccountData.getAccountList,pieChartEntries)
+                adapter_.addAccount(asd,pieChartEntries)
                 /*val currencyNames :List<String> = adapter_.getCurrencyList()
                 checkboxCreator(currencyNames,savedInstanceState)
                 for(i in currencyStates){
@@ -152,11 +169,40 @@ class AllAccountsFragment : Fragment() {
 
         })
     }
+
+    private fun createDummyAccount(typeOfAccount:String,balance:Double):GetAccountList{
+        val x = GetAccountList(isBlocked = false,
+            "maltepe",
+            "birinci",
+            false,
+            typeOfAccount,
+            0.15,
+            00.10,
+            balance,
+            1800.5,
+            1600.5,
+            1850.0,
+            "benimHesabım",
+            "TR1159465168416516841634623",
+            false,88.50,null)
+        return x
+
+    }
+
+    private fun findCurrency(destinationCurrency:String):Double{
+        for(index in Constant.currencyList){
+            if(index.currencyCode.equals(destinationCurrency)){
+                return index.exchangeRate
+            }
+
+        }
+
+        return 1.0
+    }
+
     private fun balanceExchange(getAccountList:Array<GetAccountList>):Array<GetAccountList>{
         for(index in getAccountList){
-            index.balanceAsTRY=index.balance* (Constant.currencyList.find {
-                it.currencyCode==index.currency
-            }?.changeRate ?: 1.0)
+            index.balanceAsTRY=index.balance*findCurrency(index.currency)
         }
         return getAccountList
 
