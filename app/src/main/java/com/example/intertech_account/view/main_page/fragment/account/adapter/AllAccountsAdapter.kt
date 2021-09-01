@@ -2,6 +2,7 @@ package com.example.intertech_account.view.main_page.fragment.account.adapter
 
 import android.graphics.Color
 import android.graphics.Paint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
@@ -262,7 +263,13 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
         intertechPieChart.setOnChartValueSelectedListener(object :OnChartValueSelectedListener{
             override fun onValueSelected(e: Entry?, h: Highlight?) {
-                print(e!!.data)
+                if(e!=null){
+                    var entry=e as PieEntry
+                    //TODO butonlarin tiklanmasi burada olacak
+                    //TODO entry.label sana degeri verecek
+                    Log.d("Tag", entry.label as String)
+
+                }
             }
 
             override fun onNothingSelected() {
