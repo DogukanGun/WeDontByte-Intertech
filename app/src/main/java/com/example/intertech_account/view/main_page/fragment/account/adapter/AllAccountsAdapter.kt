@@ -40,7 +40,6 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
 
     //Boş gelen RecyclerView doldurmak için fonksiyon
-
     fun addAccount(item:Array<GetAccountList>, pieChartEntries:ArrayList<PieEntry>){
         val AllAccountsArrayList : ArrayList<GetAccountList> = rearrangeList(item.toCollection(ArrayList()))
 
@@ -57,10 +56,6 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         }
         notifyDataSetChanged()
 
-
-
-
-
     }
 
     // Kullanıcının sahip olduğu hesap türler(TL, Dolar, Euro,vs.)
@@ -73,6 +68,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         names.remove("Title")
         names.remove("Graph")
         return names
+
     }
 
 

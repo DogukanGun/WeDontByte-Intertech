@@ -4,6 +4,125 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/recyclerview_settings"
     tools:context=".view.login_page.activity.CreateNewAccountActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="50dp"
+        android:gravity="center">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createAccountUsernameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/fullname"
+        style="@style/Widget.AppCompat.EditText"
+        android:inputType="text"
+        android:shadowColor="#2b075b"
+        android:textColor="#2b075b"
+        android:textColorHint="#2b075b"
+        android:textStyle="bold"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/createAccountUsernameTextField"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:background="@android:color/transparent"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createAccountCitizenshipIDLayout"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/login_screen_username_field"
+        android:inputType="text"
+        android:shadowColor="#2b075b"
+        android:textColor="#2b075b"
+        android:textColorHint="#2b075b"
+        android:textStyle="bold"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/createAccountCitizenshipIDTextField"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createAccountPasswordLayout"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/enterPassword"
+        android:inputType="text"
+        android:shadowColor="#2b075b"
+        android:textColor="#2b075b"
+        android:textColorHint="#2b075b"
+        android:textStyle="bold"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/createAccountPasswordTextField"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textStyle="bold"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createAccountRepeatPasswordLayout"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/repeatPassword"
+        android:inputType="text"
+        android:shadowColor="#2b075b"
+        android:textColor="#2b075b"
+        android:textColorHint="#2b075b"
+        android:textStyle="bold"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/createAccountRepeatPasswordTextField"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/createAccountSaveButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:textStyle="bold"
+        android:background="@drawable/button_settings"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

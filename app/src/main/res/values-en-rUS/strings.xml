@@ -6,8 +6,13 @@
     <string name="bottom_navigation_money_transfer_button">Account Activity</string>
     <string name="bottom_navigation_user_information">User Information</string>
     <string name="bottom_navigation_atm">ATM</string>
+    <string name="fullname">Name Surname</string>
     <string name="login_screen_username_field">Citizenship Number</string>
     <string name="login_screen_password_field">Password</string>
+    <string name="enterPassword">Enter a password</string>
+    <string name="repeatPassword">Repeat the password</string>
+    <string name="save">Save</string>
+    <string name="sube">Branch</string>
     <string name="title_activity_splash_screen">Hi </string>
     <string name="app_title">Mobile Wallet</string>
     <string name="userInformation">User</string>
@@ -18,7 +23,7 @@
     <string name="relode_page_button">Try Again</string>
     <string name="payment_button">Payment</string>
     <string name="qr_button">QR</string>
-    <string name="money_transfer">Money Transfer</string>
+    <string name="money_transfer">Money\nTransfer</string>
     <string name="transactions">Transactions</string>
     <string name="accountBalance">Total Balance</string>
     <string name="drawMoney">Draw Money</string>

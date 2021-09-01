@@ -5,8 +5,13 @@
     <string name="bottom_navigation_money_transfer_button">Hesap İşlemleri</string>
     <string name="bottom_navigation_user_information">Kullanıcı Bilgileri</string>
     <string name="bottom_navigation_atm">ATM</string>
+    <string name="fullname">Ad Soyad</string>
     <string name="login_screen_username_field">TC Kimlik Numarası</string>
     <string name="login_screen_password_field">Şifre</string>
+    <string name="enterPassword">Şifre giriniz</string>
+    <string name="repeatPassword">Şifreyi tekrar giriniz</string>
+    <string name="save">Kaydet</string>
+    <string name="sube">Şube</string>
     <string name="title_activity_splash_screen">Selam</string>
     <string name="app_title">Mobil Cüzdan</string>
     <string name="userInformation">Kullanıcı</string>
@@ -17,7 +22,7 @@
     <string name="relode_page_button">Tekrar Dene</string>
     <string name="payment_button">Ödemeler</string>
     <string name="qr_button">Qr Kod</string>
-    <string name="money_transfer">Para Gönder</string>
+    <string name="money_transfer">Para\nGönder</string>
     <string name="transactions">İşlemler</string>
     <string name="accountBalance">Kullanılabilir Bakiye</string>
     <string name="drawMoney">Para Çek</string>

@@ -10,17 +10,16 @@
     android:layout_height="wrap_content"
     tools:context=".view.main_page.fragment.account.AccountsInformationFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/mainConstraintLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035">
+        app:layout_constraintEnd_toStartOf="@+id/mainConstraintLayout">
 
         <TextView
             android:id="@+id/accountType"
@@ -43,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:backgroundTint="#F8F2F2"
-            android:text="Şube"
+            android:text="@string/sube"
             android:textColor="#2b075b"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -105,10 +104,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/shortcutButtons"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -118,8 +120,8 @@
 
         <Button
             android:id="@+id/qrButton"
-            android:layout_width="80dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:background="@drawable/qr"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -131,8 +133,8 @@
 
         <Button
             android:id="@+id/billsButton"
-            android:layout_width="80dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginEnd="18dp"
             android:background="@drawable/bill"
             android:textColor="@color/white"
@@ -145,8 +147,8 @@
 
         <Button
             android:id="@+id/sendMoneyButton"
-            android:layout_width="80dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginStart="18dp"
             android:background="@drawable/money_transfer"
             android:textColor="@color/white"
@@ -165,6 +167,7 @@
             android:text="@string/money_transfer"
             android:textColor="#2b075b"
             android:textSize="18dp"
+            android:gravity="center"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/sendMoneyButton"
@@ -179,6 +182,7 @@
             android:text="QR"
             android:textColor="#2b075b"
             android:textSize="18dp"
+            android:gravity="center"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/qrButton"
@@ -193,6 +197,7 @@
             android:layout_height="wrap_content"
             android:text="@string/payment_button"
             android:textColor="#2b075b"
+            android:gravity="center"
             android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -206,17 +211,13 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
+        android:layout_marginBottom="10dp"
         android:text="@string/transactions"
         android:textColor="#2b075b"
         android:textSize="22dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shortcutButtons"
-        app:layout_constraintVertical_bias="0.428" />
+        android:textStyle="bold" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
