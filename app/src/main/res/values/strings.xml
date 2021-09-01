@@ -44,4 +44,30 @@
     <string name="title_activity_help_screen">HelpScreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="login">GİRİŞ</string>
+    <string name="qr_code_reader">QR Kod Okuyucu</string>
+    <string name="help">Yardım</string>
+    <string name="account_name">Hesap İsmi</string>
+    <string name="Default">VARSAYILAN</string>
+    <string name="account_activity">Hesap\nHareketleri</string>
+    <string name="close_account">Hesap\nKapatma</string>
+    <string name="passbook">Hesap\nCüzdanı</string>
+    <string name="account_type">Hesap Türü</string>
+    <string name="account_balance">Hesap Bakiyesi</string>
+    <string name="qr">QR</string>
+    <string name="visit_link">Bağlantıyı Ziyaret Et</string>
+    <string name="ibantext">Iban Metni</string>
+    <string name="date">Tarih</string>
+    <string name="amount">Miktar</string>
+    <string name="destination_name">Alıcı İsmi</string>
+    <string name="son_1_hafta">Son 1 Hafta</string>
+    <string name="son_1_ay">Son 1 Ay</string>
+    <string name="son_3_ay">Son 3 Ay</string>
+    <string name="son_6_ay">Son 6 Ay</string>
+    <string name="son_1_y_l">Son 1 Yıl</string>
+    <string name="detayl_filtreleme">Detaylı Filtreleme</string>
+    <string name="value">Değer</string>
+    <string name="userinfotype">Kullanıcı Bilgi Türü</string>
+
+
 </resources>

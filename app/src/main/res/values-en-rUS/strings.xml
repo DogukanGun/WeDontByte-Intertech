@@ -45,6 +45,28 @@
     <string name="title_activity_help_screen">HelpScreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-
-
+    <string name="login">LOGIN</string>
+    <string name="qr_code_reader">QR Code Reader</string>
+    <string name="help">Help</string>
+    <string name="account_name">Account Name</string>
+    <string name="Default">DEFAULT</string>
+    <string name="account_activity">Account\nActivities</string>
+    <string name="close_account">Close\nAccount</string>
+    <string name="passbook">Account\nBook</string>
+    <string name="account_type">Account Type</string>
+    <string name="account_balance">Account Balance</string>
+    <string name="qr">QR</string>
+    <string name="visit_link">Visit Link</string>
+    <string name="ibantext">IbanText</string>
+    <string name="date">Date</string>
+    <string name="amount">Amount</string>
+    <string name="destination_name">Destination Name</string>
+    <string name="son_1_hafta">Last 1 Week</string>
+    <string name="son_1_ay">Last 1 Month</string>
+    <string name="son_3_ay">Last 3 Month</string>
+    <string name="son_6_ay">Last 6 Month</string>
+    <string name="son_1_y_l">Last 1 Year</string>
+    <string name="detayl_filtreleme">Detailed Filtering</string>
+    <string name="value">Value</string>
+    <string name="userinfotype">User Info Type</string>
 </resources>

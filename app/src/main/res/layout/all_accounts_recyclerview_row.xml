@@ -21,7 +21,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="50dp"
             android:fontFamily="sans-serif-black"
-            android:text="Hesap ismi"
+            android:text="@string/account_name"
             android:textColor="#2b075b"
             android:textSize="18dp"
             android:textStyle="bold"

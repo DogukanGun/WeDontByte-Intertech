@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="140dp"
-                android:text="QR Code Reader Android\nusing ML Kit"
+                android:text="@string/qr_code_reader"
                 android:textAlignment="center"
                 android:textColor="#FAFAFA"
                 android:textSize="24sp" />

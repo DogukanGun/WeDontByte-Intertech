@@ -12,7 +12,7 @@
             android:id="@+id/textView_title_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DEFAULT"
+            android:text="@string/Default"
             android:textColor="@color/white"
             android:textSize="18dp"
             android:textStyle="bold"

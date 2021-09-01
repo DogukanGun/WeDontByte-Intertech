@@ -17,7 +17,7 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"/>
+            android:layout_weight="3"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hesap\nHareketleri"
+                    android:text="@string/account_activity"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textColor="#2b075b"
@@ -66,7 +66,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hesap\nKapatma"
+                    android:text="@string/close_account"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textColor="#2b075b"
@@ -88,7 +88,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hesap\nCüzdanı"
+                    android:text="@string/passbook"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textColor="#2b075b"

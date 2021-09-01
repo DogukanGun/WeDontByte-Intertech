@@ -21,8 +21,8 @@ class UserInformationAdapter(private var userInfoTypes: List<String>, private va
         userValues=userValue
         notifyDataSetChanged()
 
-    }
 
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserInformationHolder {
         val binding = UserInformationRecyclerviewRowBinding.inflate(
             LayoutInflater.from(parent.context),
