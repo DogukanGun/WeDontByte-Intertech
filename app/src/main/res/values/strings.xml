@@ -36,4 +36,7 @@
     <string name="phoneNumber">Telefon Numarası</string>
     <string name="qr_button_not_selected">Lütfen bir tür seçiniz.</string>
     <string name="internet_exception">Sistem hatası bulunmakta, lütfen sonra tekra deneyin</string>
- </resources>
+    <string name="title_activity_help_screen">HelpScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
