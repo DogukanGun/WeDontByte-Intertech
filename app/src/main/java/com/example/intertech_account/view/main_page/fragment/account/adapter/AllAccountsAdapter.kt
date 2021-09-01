@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewGraphRowBinding
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBinding
@@ -205,7 +206,11 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         var intertechPieChart : PieChart = binding.allAccountsPieChart
 
         //SETUP PIE ANIMATION
-        //intertechPieChart.animateXY(1000,1000)
+        if(!intertechPieChart.isShown)
+        {
+            intertechPieChart.animateXY(1000,1000)
+        }
+
 
         //SETUP PIE CHART COLORS
         val pieDataSet = PieDataSet(pieEntries, "BURAYA RENKLERİN ANLAMLARINI YAZ <3")

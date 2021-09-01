@@ -5,7 +5,7 @@
     <string name="bottom_navigation_money_transfer_button">Hesap İşlemleri</string>
     <string name="bottom_navigation_user_information">Kullanıcı Bilgileri</string>
     <string name="bottom_navigation_atm">ATM</string>
-    <string name="login_screen_username_field">Kullanıcı İsmi</string>
+    <string name="login_screen_username_field">TC Kimlik Numarası</string>
     <string name="login_screen_password_field">Şifre</string>
     <string name="title_activity_splash_screen">Selam</string>
     <string name="app_title">Mobil Cüzdan</string>

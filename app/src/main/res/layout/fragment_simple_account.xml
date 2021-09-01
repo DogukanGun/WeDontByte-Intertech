@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/recyclerview_settings"
     tools:context=".view.main_page.fragment.account.SimpleAccountFragment">
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/allAccountsPieChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </FrameLayout>
