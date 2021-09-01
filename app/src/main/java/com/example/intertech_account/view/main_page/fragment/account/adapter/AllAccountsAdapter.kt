@@ -29,7 +29,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     private lateinit var pieEntries:ArrayList<PieEntry>
     private var originalallAccounts:ArrayList<GetAccountList> = ArrayList()
-
+    private var currencyStates: HashMap<String,Int> =hashMapOf()
 
 
     //TL Hesaplarının başa gelmesi için Hashmap
@@ -46,10 +46,22 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     fun addAccount(item:Array<GetAccountList>,pieChartEntries:ArrayList<PieEntry>){
         val AllAccountsArrayList : ArrayList<GetAccountList> = rearrangeList(item.toCollection(ArrayList()))
+
+        // Bir tane parası olan USD Hesabı eklendi
+        AllAccountsArrayList.add(createDummyAccount("USD"))
+
+        originalallAccounts.clear()
+        allAccounts.clear()
+        pieChartEntries.add(PieEntry(1000f,"USD"))
         pieEntries=pieChartEntries
         originalallAccounts.addAll(AllAccountsArrayList)
         allAccounts.addAll(originalallAccounts)
+        var currencyNames =getCurrencyList()
+        for(i in currencyNames){
+            currencyStates[i] = 1
+        }
         notifyDataSetChanged()
+
 
     }
 
@@ -72,6 +84,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         val comparator = Comparator { o1: GetAccountList, o2: GetAccountList ->
             return@Comparator roles[o1.currency]!! - roles[o2.currency]!!
         }
+
         item.sortWith(comparator)
         //item.sortBy { account -> account.currency }
         val AllAccountsArrayList : ArrayList<GetAccountList> = arrayListOf()
@@ -79,55 +92,18 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         for (i in 0 until item.size)
         {
             //Add first Label
-            if(i == 0){AllAccountsArrayList.add(GetAccountList(isBlocked = false,
-                "maltepe",
-                "birinci",
-                false,
-                "Graph",
-                0.15,
-                00.10,
-                1500.2,
-                1800.5,
-                1600.5,
-                1850.0,
-                "benimHesabım",
-                "TR1159465168416516841634623",
-                false,88.50))
-                AllAccountsArrayList.add(GetAccountList(isBlocked = false,
-                    "maltepe",
-                    "birinci",
-                    false,
-                    "Title",
-                    0.15,
-                    00.10,
-                    1500.2,
-                    1800.5,
-                    1600.5,
-                    1850.0,
-                    "benimHesabım",
-                    "TR1159465168416516841634623",
-                    false,88.50))}
+
+            if(i == 0){
+                AllAccountsArrayList.add(createDummyAccount("Graph"))
+                AllAccountsArrayList.add(createDummyAccount("Title"))
+            }
 
             AllAccountsArrayList.add(item[i])
 
             //Add labels
             if(i < item.size-1 && item[i+1].currency != item[i].currency ){
-
-                AllAccountsArrayList.add(GetAccountList(isBlocked = false,
-                    "maltepe",
-                    "birinci",
-                    false,
-                    "Title",
-                    0.15,
-                    00.10,
-                    1500.2,
-                    1800.5,
-                    1600.5,
-                    1850.0,
-                    "benimHesabım",
-                    "TR1159465168416516841634623",
-                    false,88.50))
-            }
+                AllAccountsArrayList.add(createDummyAccount("Title"))
+                }
         }
         return AllAccountsArrayList
     }
@@ -229,7 +205,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         var intertechPieChart : PieChart = binding.allAccountsPieChart
 
         //SETUP PIE ANIMATION
-        intertechPieChart.animateXY(1000,1000)
+        //intertechPieChart.animateXY(1000,1000)
 
         //SETUP PIE CHART COLORS
         val pieDataSet = PieDataSet(pieEntries, "BURAYA RENKLERİN ANLAMLARINI YAZ <3")
@@ -267,13 +243,25 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                     var entry=e as PieEntry
                     //TODO butonlarin tiklanmasi burada olacak
                     //TODO entry.label sana degeri verecek
-                    Log.d("Tag", entry.label as String)
+                    for(item in currencyStates)
+                        if (item.key.equals(entry.label)){
+                            currencyStates[entry.label] = 1
+                        }
+                        else{
+                            currencyStates[item.key] = 0
+                        }
+                    modifyAccount(currencyStates)
+
 
                 }
             }
 
             override fun onNothingSelected() {
-                TODO("Not yet implemented")
+                //TODO("Not yet implemented")
+                for(item in currencyStates){
+                    currencyStates[item.key] = 1
+                }
+                modifyAccount(currencyStates)
             }
 
         })
@@ -283,5 +271,24 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
         pieData.setDrawValues(true)
         intertechPieChart.data = pieData
+    }
+
+    private fun createDummyAccount(typeOfAccount:String):GetAccountList{
+        var x = GetAccountList(isBlocked = false,
+            "maltepe",
+            "birinci",
+            false,
+            typeOfAccount.toString(),
+            0.15,
+            00.10,
+            1500.2,
+            1800.5,
+            1600.5,
+            1850.0,
+            "benimHesabım",
+            "TR1159465168416516841634623",
+            false,88.50)
+        return x
+
     }
 }

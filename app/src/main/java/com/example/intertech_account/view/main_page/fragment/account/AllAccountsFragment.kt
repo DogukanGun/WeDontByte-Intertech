@@ -146,11 +146,11 @@ class AllAccountsFragment : Fragment() {
                 pieChartEntries=getAccountDetailWithChartsViewModel.createPieChartEntries()
                 adapter_= (binding.allAccounts.adapter as? AllAccountsAdapter)!!
                 adapter_.addAccount(getAccountModel.getAccountData.getAccountList,pieChartEntries)
-                val currencyNames :List<String> = adapter_.getCurrencyList()
+                /*val currencyNames :List<String> = adapter_.getCurrencyList()
                 checkboxCreator(currencyNames,savedInstanceState)
                 for(i in currencyStates){
                     checkBoxController(i.key)
-                }
+                }*/
 
             }
 
