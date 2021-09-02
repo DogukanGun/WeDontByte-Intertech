@@ -11,6 +11,9 @@ import com.example.intertech_account.model.api_model.get_account_transaction_lis
 import com.example.intertech_account.model.api_model.get_currency_body.GetCurrencyBodyModel
 import com.example.intertech_account.model.api_model.get_customer.GetCustomerBodyModel
 import com.example.intertech_account.model.api_model.get_customer.GetCustomerModel
+import com.example.intertech_account.model.api_model.get_receipt.GetReceiptBodyModel
+import com.example.intertech_account.model.api_model.get_receipt.GetReceiptData
+import com.example.intertech_account.model.api_model.get_receipt.GetReceiptModel
 import retrofit2.Response
 
 // API ile bağlantı kurulmasını sağlayan interface
@@ -48,4 +51,11 @@ interface ApiInterface {
         "Ocp-Apim-Subscription-Key:75164f09243444ff913254565353c68d",
     )
     suspend fun getCustomerInfo(@Body getCustomerInfo: GetCustomerBodyModel): Response<GetCustomerModel>
+
+    // GetReceiptData requesti
+    @POST("GetReceipt")
+    @Headers(
+        "Content-Type:application/json",
+        "Ocp-Apim-Subscription-Key:e9cf2abaf9264596b62dc962b1c6a0d7",)
+    suspend fun getReceipt(@Body getReceipt: GetReceiptBodyModel): Response<GetReceiptModel>
 }
