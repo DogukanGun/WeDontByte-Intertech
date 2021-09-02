@@ -24,6 +24,7 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAllAccountsBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
+import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
@@ -67,9 +68,9 @@ class AllAccountsFragment : Fragment() {
         getData(savedInstanceState)
         createSwipe()
 
-        Constant.isUserInformationTopBarButtonClick.observe(viewLifecycleOwner) {
+        Button.isUserInformationTopBarButtonClickFromAllAccounts.observe(viewLifecycleOwner) {
             if (it == 1 && Constant.currentBottomMenu == 1) {
-                Constant.isUserInformationTopBarButtonClick.value = 2
+                Button.isUserInformationTopBarButtonClickFromAllAccounts.value = 2
                 val action =
                     AllAccountsFragmentDirections.actionAllAccountsFragmentToUserInformationFragment()
                 Constant.navHostFragment.findNavController().navigate(action)

@@ -76,9 +76,16 @@ class MainActivity : AppCompatActivity() {
 //                    if(Constant.isUserInformationTopBarButtonClick.value==0){
 //                        Constant.isUserInformationTopBarButtonClick.value=1
 //                    }
-                    if (Button.isUserInformationTopBarButtonClick.value==0) {
-                        Button.isUserInformationTopBarButtonClick.value = 1
+                    if(Constant.currentBottomMenu==0){
+                        if (Button.isUserInformationTopBarButtonClickFromMainPageFragment.value==0) {
+                            Button.isUserInformationTopBarButtonClickFromMainPageFragment.value = 1
+                        }
+                    }else{
+                        if (Button.isUserInformationTopBarButtonClickFromAllAccounts.value==0) {
+                            Button.isUserInformationTopBarButtonClickFromAllAccounts.value = 1
+                        }
                     }
+
                     true
                 }
 

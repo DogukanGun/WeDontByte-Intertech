@@ -44,13 +44,13 @@ class SimpleAccountFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
         DrawingPieChart()
-
-        ExecutePopupMenu(inflater)
+        createRecyclerView()
+        executePopupMenu(inflater)
 
         return binding.root
     }
 
-    private fun ExecutePopupMenu(inflater: LayoutInflater)
+    private fun executePopupMenu(inflater: LayoutInflater)
     {
         binding.myButton.setOnClickListener {
 
@@ -198,7 +198,7 @@ class SimpleAccountFragment : Fragment() {
     private fun createRecyclerView(){
         val recyclerView = binding.simpleAccountTransactions
         recyclerView.layoutManager =  LinearLayoutManager(activity)
-        recyclerView.adapter = MainPageAdapter()
+        recyclerView.adapter = SimpleAccountAdapter()
         /*getAccountTransactionViewModel.apiRequest()
         getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner,{
             getAccountTransactionListModel=it
@@ -221,7 +221,6 @@ class SimpleAccountFragment : Fragment() {
         var x2 = createDummyTransactionList(45.5)
         var x3 = createDummyTransactionList(67.7)
         var x4 = createDummyTransactionList(22.3)
-
         arrayList.add(x1)
         arrayList.add(x2)
         arrayList.add(x3)

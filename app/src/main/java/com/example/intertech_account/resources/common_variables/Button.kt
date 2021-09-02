@@ -7,7 +7,9 @@ object Button {
     var qrButtonPressed= MutableLiveData<QrOperation>(QrOperation(false,"",false))
 
     //toolbar buttons
-    var isUserInformationTopBarButtonClick=MutableLiveData(0)
+    var isUserInformationTopBarButtonClickFromMainPageFragment=MutableLiveData(0)
+    var isUserInformationTopBarButtonClickFromAllAccounts=MutableLiveData(0)
+
 
 }
 

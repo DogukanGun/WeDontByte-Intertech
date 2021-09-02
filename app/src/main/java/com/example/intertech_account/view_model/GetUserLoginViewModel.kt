@@ -1,12 +1,39 @@
 package com.example.intertech_account.view_model
 
- import androidx.lifecycle.ViewModel
+ import android.content.Context
+ import androidx.lifecycle.*
  import com.example.intertech_account.model.api_model.login_page.user.User
  import com.example.intertech_account.model.api_model.login_page.user.UserOperationState
+ import com.example.intertech_account.resources.database.AppDatabase
+ import com.example.intertech_account.resources.database.Database
+ import com.example.intertech_account.resources.database.UserDao
+ import com.example.intertech_account.resources.database.repository.UserRepository
  import com.example.intertech_account.view_model.repo.CitizenshipControl
+ import kotlinx.coroutines.Dispatchers
+ import kotlinx.coroutines.flow.Flow
+ import kotlinx.coroutines.launch
 
-class GetUserLoginViewModel:ViewModel() {
+class GetUserLoginViewModel():ViewModel() {
+    lateinit var context: Context
     private val citizenshipControl=CitizenshipControl()
+    private lateinit var userDao:UserDao
+    private lateinit var userRepository:UserRepository
+    private val _response = MutableLiveData<Boolean>()
+    fun start(){
+        userDao=Database(context).getDao()
+        userRepository= UserRepository(userDao)
+
+    }
+
+    var user = MutableLiveData<User>()
+    val loading=MutableLiveData<Boolean>(false)
+    suspend fun insertUser(user: User){
+         userRepository.insert(user)
+     }
+    fun getUsers(): LiveData<List<User>> {
+        return userDao.getAll()
+    }
+
     fun check(user:User):UserOperationState{
         if (!citizenshipControl.controlCitizenship(user.citizenshipID)){
             return UserOperationState.WRONG_CITIZENSHIP_ID

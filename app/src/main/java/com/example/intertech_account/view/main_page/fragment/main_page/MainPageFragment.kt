@@ -53,9 +53,9 @@ class MainPageFragment : Fragment() {
         createRecyclerView()
         listenAccountsInformationFragmentButtons()
         setHasOptionsMenu(true)
-        Button.isUserInformationTopBarButtonClick.observe(viewLifecycleOwner,{
+        Button.isUserInformationTopBarButtonClickFromMainPageFragment.observe(viewLifecycleOwner,{
             if (it==1 && Constant.currentBottomMenu==0){
-                Button.isUserInformationTopBarButtonClick.value=2
+                Button.isUserInformationTopBarButtonClickFromMainPageFragment.value=2
                 val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
                 Constant.navHostFragment.findNavController().navigate(action)
             }

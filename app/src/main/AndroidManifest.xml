@@ -6,9 +6,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -17,7 +16,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-         android:theme="@style/Theme.IntertechAccount">
+        android:theme="@style/Theme.IntertechAccount">
+        <activity
+            android:name=".view.login_page.activity.ForgetPasswordActivity"
+            android:exported="true" />
         <activity
             android:name=".view.login_page.activity.CreateNewAccountActivity"
             android:exported="true" />

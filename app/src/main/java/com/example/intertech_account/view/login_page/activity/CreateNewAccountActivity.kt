@@ -5,23 +5,35 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.room.Database
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.ActivityCreateNewAccountBinding
 import com.example.intertech_account.model.api_model.login_page.user.User
 import com.example.intertech_account.model.api_model.login_page.user.UserOperationState
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view_model.GetUserLoginViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.*
 
 class CreateNewAccountActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateNewAccountBinding
     private val getUserLoginViewModel:GetUserLoginViewModel by viewModels()
+    private lateinit var user:User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getUserLoginViewModel.context=this
+        getUserLoginViewModel.start()
         binding= ActivityCreateNewAccountBinding.inflate(layoutInflater)
         binding.createAccountSaveButton.setOnClickListener{
             val checkLabels=checkLabels()
             if (checkLabels == UserOperationState.NO_ERROR){
                 Toast.makeText(this,getString(R.string.succesfully_registered),Toast.LENGTH_LONG).show()
+                CoroutineScope(Dispatchers.IO).launch {
+                    getUserLoginViewModel.insertUser(user)
+                }
+                Toast.makeText(this,"Basarili kayit oldunuz",Toast.LENGTH_LONG).show()
                 val action=Intent(this,MainActivity::class.java)
                 startActivity(action)
             }else{
@@ -31,7 +43,8 @@ class CreateNewAccountActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.createAccountBackButton.setOnClickListener{
-                    this?.onBackPressed()
+            val intent=Intent(this,UserLoginActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -43,7 +56,9 @@ class CreateNewAccountActivity : AppCompatActivity() {
             binding.createAccountRepeatPasswordTextField.text.isNullOrBlank()){
             return UserOperationState.MISSING_OR_EMPTY_LABEL
         }
-        val user = User(binding.createAccountUsernameTextField.text.toString(),
+        user = User(
+                        UUID.randomUUID().toString(),
+                        binding.createAccountUsernameTextField.text.toString(),
                         binding.createAccountCitizenshipIDTextField.text.toString(),
                         binding.createAccountPasswordTextField.text.toString(),
                         binding.createAccountRepeatPasswordTextField.text.toString())

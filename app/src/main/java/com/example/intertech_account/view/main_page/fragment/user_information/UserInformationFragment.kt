@@ -8,7 +8,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.pdf.PdfDocument
 import android.os.Bundle
-import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,8 +26,7 @@ import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.user_information.adapter.UserInformationAdapter
 import com.google.android.material.internal.ViewUtils.getContentView
 import com.google.android.material.snackbar.Snackbar
-import java.io.FileOutputStream
-
+import kotlin.system.exitProcess
 
 
 class UserInformationFragment : Fragment() {
@@ -118,7 +116,7 @@ class UserInformationFragment : Fragment() {
             if (it.equals("ApiError")){
                 Snackbar.make(this.requireView(), R.string.relode_page, Snackbar.LENGTH_INDEFINITE)
                     .setAction(R.string.relode_page_button){
-                        relodePage()
+                        reloadedPage()
                     }
                     .setActionTextColor(Color.RED)
                     .setTextColor(Color.GRAY)
@@ -158,7 +156,7 @@ class UserInformationFragment : Fragment() {
 //
 //
 //    }
-    private fun relodePage(){
+    private fun reloadedPage(){
         val intent = Intent(
             ApplicationProvider.getApplicationContext<Context>(),
             MainActivity::class.java
@@ -173,12 +171,14 @@ class UserInformationFragment : Fragment() {
         var mgr: AlarmManager = ApplicationProvider.getApplicationContext<Context>()
             .getSystemService(Context.ALARM_SERVICE) as AlarmManager
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent)
-        System.exit(0)
+        exitProcess(0)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Button.isUserInformationTopBarButtonClick.value=0
+        Button.isUserInformationTopBarButtonClickFromMainPageFragment.value=0
+        Button.isUserInformationTopBarButtonClickFromAllAccounts.value=0
+
     }
 
 }

@@ -12,7 +12,6 @@ object Constant{
         var GET_ACCOUNTS_HEADER= GetAccountHeaders("c1c2a508fdf64c14a7b44edc9241c9cd",
                 "API","773f2d49-cad6-45a4-a568-439e417a61f9",
                 "773f2d49-cad6-45a4-a568-439e417a61f9")
-        var isUserInformationTopBarButtonClick=MutableLiveData(0)
         lateinit var navHostFragment: NavHostFragment
         var currentBottomMenu=0
         var exceptionForApp=MutableLiveData("")

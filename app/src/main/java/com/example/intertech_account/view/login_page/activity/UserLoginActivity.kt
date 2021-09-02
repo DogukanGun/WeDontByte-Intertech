@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Database
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.ActivityUserLoginBinding
 import com.example.intertech_account.view.main_page.activity.MainActivity
@@ -18,13 +19,12 @@ class UserLoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         //Login page Backend-Frontend bağlanması
-
+        getUserLoginViewModel.context=this
+        getUserLoginViewModel.start()
         binding= ActivityUserLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.loginPagePassword.error=null
-
-
         binding.addNewAccount.setOnClickListener {
             val intent = Intent(this,CreateNewAccountActivity::class.java)
             startActivity(intent)
@@ -32,38 +32,14 @@ class UserLoginActivity : AppCompatActivity() {
         //Login page button aksiyonu
 
         binding.loginPageLoginButton.setOnClickListener {
-        /*
-            if(true){
-                Toast.makeText(this,"Kimlik Numarası ve Şifre Doğru Giriş yapılıyor...",Toast.LENGTH_LONG).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
 
+
+            controlUserLogin()
+
+            binding.textView.setOnClickListener {
+                val action = Intent(this,ForgetPasswordActivity::class.java)
+                startActivity(action)
             }
-*/
-
-
-            if (binding.loginPagePasswordTextField.text.toString()=="123"){
-                if (binding.loginPageUsernameTextField.text.toString().length!=11||binding.loginPageUsernameTextField.text.toString()[0]=='0'){
-                    Toast.makeText(this,getString(R.string.id_number_invalid),Toast.LENGTH_LONG).show()
-                }
-                else {
-                    val citizennum=binding.loginPageUsernameTextField.text.toString()
-                    val citizenshipControl=CitizenshipControl()
-
-                    if (citizenshipControl.controlCitizenship(citizennum)) {
-                        Toast.makeText(this,getString(R.string.id_password_correct),Toast.LENGTH_LONG).show()
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    }
-                    else{
-                        Toast.makeText(this,getString(R.string.id_number_invalid),Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
-            else{
-                Toast.makeText(this,getString(R.string.wrong_password),Toast.LENGTH_LONG).show()
-            }
-
 
 
 
@@ -75,4 +51,45 @@ class UserLoginActivity : AppCompatActivity() {
         }
 
     }
+
+
+
+
+    fun controlUserLogin() {
+        if (binding.loginPagePasswordTextField.text.toString() == "123") {
+            if (binding.loginPageUsernameTextField.text.toString().length != 11 || binding.loginPageUsernameTextField.text.toString()[0] == '0') {
+                Toast.makeText(this, "Kimlik numarası geçersiz", Toast.LENGTH_LONG).show()
+            } else {
+                val citizennum = binding.loginPageUsernameTextField.text.toString()
+                val citizenshipControl = CitizenshipControl()
+
+                if (citizenshipControl.controlCitizenship(citizennum)) {
+                    Toast.makeText(
+                        this,
+                        "Kimlik Numarası ve Şifre Doğru Giriş yapılıyor...",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Kimlik numarası geçersiz", Toast.LENGTH_LONG).show()
+                }
+            }
+        } else {
+            getUserLoginViewModel.getUsers().observe(this,{
+                if (it.isNotEmpty()){
+                    for (index in it){
+                        if (index.citizenshipID==binding.loginPageUsernameTextField.text.toString()&&index.password==binding.loginPagePasswordTextField.text.toString()){
+                            val action= Intent(this, MainActivity::class.java)
+                            startActivity(action)
+                        }
+                    }
+
+                }
+            })
+
+
+        }
+    }
+
 }
