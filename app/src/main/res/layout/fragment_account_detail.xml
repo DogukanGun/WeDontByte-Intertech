@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center"
-            android:background="@drawable/recyclerview_settings"
+            android:background="@color/intertech_recyclerview_backcolor"
             android:layout_weight="8">
 
             <LinearLayout

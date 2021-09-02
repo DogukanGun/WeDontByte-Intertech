@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/recyclerview_settings">
+        android:background="@color/intertech_recyclerview_backcolor">
 
 
         <TextView

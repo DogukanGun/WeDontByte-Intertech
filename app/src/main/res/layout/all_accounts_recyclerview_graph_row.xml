@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/white">
+    android:background="@color/intertech_screen_color">
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/allAccountsPieChart"

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/recyclerview_settings">
+        android:background="@color/intertech_recyclerview_backcolor">
 
 
         <TextView
@@ -75,11 +75,11 @@
             android:id="@+id/allAccountsArrowText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="#ec4e66"
+            android:background="@color/intertech_recyclerview_arrow_backcolor"
             android:text=">"
             android:gravity="center"
             android:textSize="20dp"
-            android:textColor="@color/intertech_textview_text_color"
+            android:textColor="@color/intertech_recyclerview_arrow_textcolor"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

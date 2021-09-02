@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
 
         android:text="@string/accountBalance"
+        android:backgroundTint="@color/intertech_button_back_color"
         android:background="@drawable/button_settings"
+        android:textColor="@color/intertech_button_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

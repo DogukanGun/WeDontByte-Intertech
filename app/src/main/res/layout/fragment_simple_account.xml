@@ -4,7 +4,7 @@
     android:id="@+id/myScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/recyclerview_settings"
+    android:background="@color/intertech_screen_color"
     tools:context=".view.main_page.fragment.account.SimpleAccountFragment">
 
     <com.github.mikephil.charting.charts.PieChart

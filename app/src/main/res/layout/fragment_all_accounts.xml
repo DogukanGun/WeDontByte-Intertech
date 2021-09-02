@@ -19,8 +19,8 @@
             android:id="@+id/linearLayout_account_selection"
             android:layout_width="match_parent"
             android:layout_height="105dp"
-            android:background="#2b075b"
-            android:foregroundTint="@color/white"
+            android:background="@color/intertech_component_back_color"
+            android:foregroundTint="@color/intertech_component_text_color"
             android:gravity="center"
             android:orientation="horizontal" >
 

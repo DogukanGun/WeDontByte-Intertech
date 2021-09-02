@@ -5,8 +5,8 @@
     <corners
         android:radius="5dp" />
     <solid
-        android:color="#FF005E" />
+        android:color="@color/intertech_button_back_color" />
     <stroke
         android:width="3dp"
-        android:color="#2b075b"/>
+        android:color="@color/intertech_button_text_color"/>
 </shape>

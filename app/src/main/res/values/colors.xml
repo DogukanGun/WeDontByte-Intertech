@@ -13,17 +13,32 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
 
+    <!--*********************INTERTECH RENKLERI BURADAN ITIBAREN BAŞLIYOR*********************-->
+
+    <!--TEXT RENKLERINI DEGISTIRIR-->
     <color name="intertech_textview_text_color">#2b075b</color>
 
+    <!--BUTTON RENKLERIYLE ILGILI RENK DEGISIKLIKLERI ICIN-->
     <color name="intertech_button_text_color">#fff4de</color>
     <color name="intertech_button_back_color">#2b075b</color>
 
+    <!--BUTTON VE TEXT HARICINDEKI DIGER COMPONENTLERIN RENK DEGISIMLERI ICIN-->
     <color name="intertech_component_text_color">#fff4de</color>
     <color name="intertech_component_back_color">#2b075b</color>
 
+    <!--ACTIONBAR VE BOTTOMNAV ICIN RENK DEGISIMLERI-->
     <color name="intertech_actionbar_bottomnav_back_color">#000000</color>
     <color name="intertech_bottomnav_item_color">#fff4de</color>
 
+    <!--ANA EKRANLAR BU RENKTE OLACAKTIR-->
     <color name="intertech_screen_color">#000000</color>
+
+    <!--RECYCLERVIEW RENK DEGISIMLERI ICIN (ARKA PLAN RENGİ VE ARALARINDAKİ BOŞLUK RENGİ)-->
+    <color name="intertech_recyclerview_backcolor">#00FFFF</color>
+    <color name="intertech_recyclerview_linecolor">#000000</color>
+
+    <!--RECYCLERVIEW YANINDA ARROW VARSA ONUN RENGİ VE ARKAPLAN RENGİ-->
+    <color name="intertech_recyclerview_arrow_textcolor">#000000</color>
+    <color name="intertech_recyclerview_arrow_backcolor">#00FFFF</color>
 
 </resources>
