@@ -43,6 +43,13 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         "GBP" to 3
 
     )
+    private val currencySigns:HashMap<String,String> = hashMapOf(
+        "TRY" to "₺",
+        "USD" to "$",
+        "EUR" to "€",
+        "GBP" to "£"
+
+    )
 
 
     //Boş gelen RecyclerView doldurmak için fonksiyon
@@ -197,7 +204,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     override fun onBindViewHolder(holder: AllAccountsRecyclerViewHolder, position: Int) {
         when (holder) {
             is AllAccountsRecyclerViewHolder.AccountViewHolder -> {
-                    holder.getBind().bakiyeNoTv.text = allAccounts[position].balance.toString() + allAccounts[position].currency
+                    holder.getBind().bakiyeNoTv.text = allAccounts[position].balance.toString() +" "+ currencySigns[allAccounts[position].currency]
                     holder.getBind().ibanTv.text = allAccounts[position].iban
                     holder.getBind().subeIsmiTv.text = allAccounts[position].branch
                     holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
