@@ -18,7 +18,7 @@
         android:textSize="18dp"
         android:padding="10dp"
         android:textStyle="bold"
-        android:textColor="#2b075b" />
+        android:textColor="@color/intertech_textview_text_color" />
     <TextView
         android:id="@+id/recyclerviewtextview1"
         android:layout_width="match_parent"
@@ -29,5 +29,5 @@
         android:textStyle="bold"
         android:padding="10dp"
         android:gravity="center|left"
-        android:textColor="#2b075b" />
+        android:textColor="@color/intertech_textview_text_color" />
 </LinearLayout>

@@ -18,7 +18,7 @@
             android:layout_marginBottom="8dp"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="#2B2B2B"
+            android:textColor="@color/intertech_textview_text_color"
             tools:text="Simplified Coding - QR Code Reader" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_marginBottom="8dp"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#6C6C6C"
+            android:textColor="@color/intertech_textview_text_color"
             android:textSize="10sp"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed fermentum odio. Donec laoreet nisi nisl. Praesent at mauris enim. Suspendisse metus quam, congue eu nunc a, lacinia placerat orci" />
 
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="#002865"
+            android:textColor="@color/intertech_textview_text_color"
             tools:text="https://www.youtube.com/SimplifiedCoding?sub_confirmation=1" />
 
         <TextView
@@ -48,13 +48,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="12dp"
-            android:background="#00A5E6"
+            android:background="@drawable/button_settings"
             android:paddingLeft="12dp"
             android:paddingTop="4dp"
             android:paddingRight="12dp"
             android:paddingBottom="4dp"
             android:text="@string/visit_link"
-            android:textColor="#ffffff" />
+            android:textColor="@color/intertech_button_text_color" />
 
 </LinearLayout>
 

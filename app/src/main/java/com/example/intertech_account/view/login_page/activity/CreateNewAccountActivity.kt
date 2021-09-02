@@ -28,7 +28,13 @@ class CreateNewAccountActivity : AppCompatActivity() {
             }
         }
         setContentView(binding.root)
+
+        binding.createAccountBackButton.setOnClickListener{
+                    this?.onBackPressed()
+        }
+
     }
+
     private fun checkLabels():UserOperationState{
         if (binding.createAccountUsernameTextField.text.isNullOrBlank()||
             binding.createAccountCitizenshipIDTextField.text.isNullOrBlank()||

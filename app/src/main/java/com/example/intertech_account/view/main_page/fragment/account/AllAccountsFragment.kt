@@ -129,6 +129,7 @@ class AllAccountsFragment : Fragment() {
     }*/
 
 
+    //0 default 1: azalan 2:artan (positioning)
    private fun checkBoxController(positioningCheckNox:CheckBox,positioning:Int) {
        positioningCheckNox.setOnCheckedChangeListener{ compoundButton ,b ->
            if(compoundButton.isChecked){

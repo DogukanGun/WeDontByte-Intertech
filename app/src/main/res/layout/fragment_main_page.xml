@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
+        android:background="@color/intertech_screen_color"
         tools:context=".view.main_page.fragment.main_page.MainPageFragment">
 
         <androidx.viewpager2.widget.ViewPager2

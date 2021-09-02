@@ -19,8 +19,8 @@
             android:layout_width="170dp"
             android:layout_height="40dp"
             android:text="@string/son_1_hafta"
-            android:textColor="@color/white"
             android:textStyle="bold"
+            android:textColor="@color/intertech_button_text_color"
             android:background="@drawable/button_settings"
             android:layout_margin="5dp"/>
         <Button
@@ -28,8 +28,8 @@
             android:layout_width="170dp"
             android:layout_height="40dp"
             android:text="@string/son_1_ay"
-            android:textColor="@color/white"
             android:textStyle="bold"
+            android:textColor="@color/intertech_button_text_color"
             android:background="@drawable/button_settings"
             android:layout_margin="5dp"/>
         <Button
@@ -37,8 +37,8 @@
             android:layout_width="170dp"
             android:layout_height="40dp"
             android:text="@string/son_3_ay"
-            android:textColor="@color/white"
             android:textStyle="bold"
+            android:textColor="@color/intertech_button_text_color"
             android:background="@drawable/button_settings"
             android:layout_margin="5dp"/>
         <Button
@@ -46,8 +46,8 @@
             android:layout_width="170dp"
             android:layout_height="40dp"
             android:text="@string/son_6_ay"
-            android:textColor="@color/white"
             android:textStyle="bold"
+            android:textColor="@color/intertech_button_text_color"
             android:background="@drawable/button_settings"
             android:layout_margin="5dp"/>
         <Button
@@ -55,8 +55,8 @@
             android:layout_width="170dp"
             android:layout_height="40dp"
             android:text="@string/son_1_y_l"
-            android:textColor="@color/white"
             android:textStyle="bold"
+            android:textColor="@color/intertech_button_text_color"
             android:background="@drawable/button_settings"
             android:layout_margin="5dp"/>
         <Button
@@ -64,8 +64,8 @@
             android:layout_width="170dp"
             android:layout_height="40dp"
             android:text="@string/detayl_filtreleme"
-            android:textColor="@color/white"
             android:textStyle="bold"
+            android:textColor="@color/intertech_button_text_color"
             android:background="@drawable/button_settings"
             android:layout_margin="5dp"/>
     </LinearLayout>

@@ -9,7 +9,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000">
+        android:background="@color/intertech_screen_color">
 
         <androidx.camera.view.PreviewView
             android:id="@+id/previewView"
@@ -28,7 +28,7 @@
                 android:layout_marginTop="140dp"
                 android:text="@string/qr_code_reader"
                 android:textAlignment="center"
-                android:textColor="#FAFAFA"
+                android:textColor="@color/intertech_textview_text_color"
                 android:textSize="24sp" />
 
             <ImageView
