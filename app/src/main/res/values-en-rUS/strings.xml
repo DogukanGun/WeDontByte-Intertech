@@ -49,7 +49,9 @@
     <string name="qr_code_reader">QR Code Reader</string>
     <string name="help">Help</string>
     <string name="account_name">Account Name</string>
-    <string name="Default">DEFAULT</string>
+    <string name="Default">Default</string>
+    <string name="Ascending">Ascending</string>
+    <string name="Descending">Descending</string>
     <string name="account_activity">Account\nActivities</string>
     <string name="close_account">Close\nAccount</string>
     <string name="passbook">Account\nBook</string>

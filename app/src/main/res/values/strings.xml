@@ -48,7 +48,9 @@
     <string name="qr_code_reader">QR Kod Okuyucu</string>
     <string name="help">Yardım</string>
     <string name="account_name">Hesap İsmi</string>
-    <string name="Default">VARSAYILAN</string>
+    <string name="Default">Varsayılan</string>
+    <string name="Ascending">Artan</string>
+    <string name="Descending">Azalan</string>
     <string name="account_activity">Hesap\nHareketleri</string>
     <string name="close_account">Hesap\nKapatma</string>
     <string name="passbook">Hesap\nCüzdanı</string>

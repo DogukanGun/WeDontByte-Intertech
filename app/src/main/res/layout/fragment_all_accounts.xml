@@ -15,33 +15,80 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/linearLayout_account_selection"
+        <RadioGroup
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/allAccountsRadioGroup"
             android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:background="@color/intertech_component_back_color"
-            android:foregroundTint="@color/intertech_component_text_color"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:gravity="center"
-            android:orientation="horizontal" >
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.125">
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/ascending"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Artan" />
+                android:layout_marginEnd="20dp"
+                android:background="@null"
+                android:button="@drawable/qr_radio_button"
+                android:checked="true"
+                android:padding="10dp"
+                android:text="@string/Ascending"
+                android:textColor="@color/intertech_button_back_color"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.696"
+                app:layout_constraintStart_toEndOf="@+id/depositMoney"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.127" />
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/descending"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Azalan" />
-            <TextView
+                android:checked="false"
+                android:text="@string/Descending"
+                android:background="@null"
+                android:layout_marginEnd="20dp"
+                android:padding="10dp"
+                android:button="@drawable/qr_radio_button"
+                android:textColor="@color/intertech_button_back_color"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.256"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/drawMoney"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <RadioButton
+                android:id="@+id/defaultSort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Merhaba Hürkan"/>
-        </LinearLayout>
+                android:checked="false"
+                android:text="@string/Default"
+                android:padding="10dp"
+                android:button="@drawable/qr_radio_button"
+                android:background="@drawable/qr_radio_button_selected"
+                android:textColor="@color/intertech_button_back_color"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.256"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/drawMoney"
+                app:layout_constraintVertical_bias="0.0" />
+        </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"

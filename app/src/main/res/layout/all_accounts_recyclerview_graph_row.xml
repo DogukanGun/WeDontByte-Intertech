@@ -5,6 +5,5 @@
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/allAccountsPieChart"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        />
+        android:layout_height="300dp" />
 </layout>

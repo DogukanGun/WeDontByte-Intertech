@@ -27,11 +27,11 @@
     <color name="intertech_component_back_color">#2b075b</color>
 
     <!--ACTIONBAR VE BOTTOMNAV ICIN RENK DEGISIMLERI-->
-    <color name="intertech_actionbar_bottomnav_back_color">#000000</color>
+    <color name="intertech_actionbar_bottomnav_back_color">#2b075b</color>
     <color name="intertech_bottomnav_item_color">#fff4de</color>
 
     <!--ANA EKRANLAR BU RENKTE OLACAKTIR-->
-    <color name="intertech_screen_color">#000000</color>
+    <color name="intertech_screen_color">#fff4de</color>
 
     <!--RECYCLERVIEW RENK DEGISIMLERI ICIN (ARKA PLAN RENGİ VE ARALARINDAKİ BOŞLUK RENGİ)-->
     <color name="intertech_recyclerview_backcolor">#00FFFF</color>

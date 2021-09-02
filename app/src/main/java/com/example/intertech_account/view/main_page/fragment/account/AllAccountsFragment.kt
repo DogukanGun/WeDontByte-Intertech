@@ -11,7 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.RadioButton
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -64,8 +66,6 @@ class AllAccountsFragment : Fragment() {
         controlError()
         getData(savedInstanceState)
         createSwipe()
-        checkBoxController(binding.ascending,2)
-        checkBoxController(binding.descending,1)
 
         Constant.isUserInformationTopBarButtonClick.observe(viewLifecycleOwner) {
             if (it == 1 && Constant.currentBottomMenu == 1) {
@@ -73,6 +73,41 @@ class AllAccountsFragment : Fragment() {
                 val action =
                     AllAccountsFragmentDirections.actionAllAccountsFragmentToUserInformationFragment()
                 Constant.navHostFragment.findNavController().navigate(action)
+            }
+        }
+
+
+        binding.allAccountsRadioGroup.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.ascending)
+            {
+                binding.ascending.background = ContextCompat.getDrawable(activity as MainActivity, R.drawable.qr_radio_button_selected)
+                binding.descending.background = ContextCompat.getDrawable(activity as MainActivity, R.drawable.qr_radio_button_not_selected)
+                binding.defaultSort.background = ContextCompat.getDrawable(activity as MainActivity, R.drawable.qr_radio_button_not_selected)
+
+                adapter_.setPositioningCriteria(2)
+                adapter_.modifyAccount(currencyStates)
+
+                Toast.makeText(context, "Ascending sorting!", Toast.LENGTH_SHORT).show()
+            }
+            else if (checkedId == R.id.descending) {
+                binding.descending.background = ContextCompat.getDrawable(activity as MainActivity, R.drawable.qr_radio_button_selected)
+                binding.ascending.background = ContextCompat.getDrawable(activity as MainActivity, R.drawable.qr_radio_button_not_selected)
+                binding.defaultSort.background = ContextCompat.getDrawable(activity as MainActivity, R.drawable.qr_radio_button_not_selected)
+
+                adapter_.setPositioningCriteria(1)
+                adapter_.modifyAccount(currencyStates)
+
+                Toast.makeText(context, "Descending sorting!", Toast.LENGTH_SHORT).show()
+            }
+            else if (checkedId == R.id.defaultSort) {
+                binding.defaultSort.background = ContextCompat.getDrawable(activity as MainActivity, R.drawable.qr_radio_button_selected)
+                binding.ascending.background = ContextCompat.getDrawable(activity as MainActivity, R.drawable.qr_radio_button_not_selected)
+                binding.descending.background = ContextCompat.getDrawable(activity as MainActivity, R.drawable.qr_radio_button_not_selected)
+
+                adapter_.setPositioningCriteria(0)
+                adapter_.modifyAccount(currencyStates)
+
+                Toast.makeText(context, "Default sorting!", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -127,26 +162,6 @@ class AllAccountsFragment : Fragment() {
 
         }
     }*/
-
-
-    //0 default 1: azalan 2:artan (positioning)
-   private fun checkBoxController(positioningCheckNox:CheckBox,positioning:Int) {
-       positioningCheckNox.setOnCheckedChangeListener{ compoundButton ,b ->
-           if(compoundButton.isChecked){
-               adapter_.setPositioningCriteria(positioning)
-               adapter_.modifyAccount(currencyStates)
-               Toast.makeText(activity as MainActivity, "CB Basıldı", Toast.LENGTH_LONG).show()
-
-           }
-           if(!compoundButton.isChecked){
-               adapter_.setPositioningCriteria(0)
-               adapter_.modifyAccount(currencyStates)
-               Toast.makeText(activity as MainActivity, "CB Kaldırıldı", Toast.LENGTH_LONG).show()
-           }
-
-
-       }
-   }
 
 
     //Error check
