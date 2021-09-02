@@ -52,13 +52,20 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
         originalallAccounts.clear()
         allAccounts.clear()
-        pieChartEntries.add(PieEntry(1000f,"USD"))
+        //pieChartEntries.add(PieEntry(1000f,"USD"))
+
         pieEntries=pieChartEntries
         originalallAccounts.addAll(AllAccountsArrayList)
         allAccounts.addAll(originalallAccounts)
         val currencyNames =getCurrencyList()
         for(i in currencyNames){
             currencyStates[i] = 1
+        }
+        for (pieChartSlice in pieChartEntries){
+            for(account in allAccounts)
+                if(account.currency.equals(pieChartSlice.label)){
+                    pieChartSlice.y += account.balanceAsTRY!!.toFloat()
+                }
         }
         notifyDataSetChanged()
 
