@@ -11,6 +11,9 @@ import com.example.intertech_account.model.api_model.login_page.user.UserOperati
 import com.example.intertech_account.resources.database.Database
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view_model.GetUserLoginViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
 class ForgetPasswordActivity : AppCompatActivity() {
@@ -28,7 +31,11 @@ class ForgetPasswordActivity : AppCompatActivity() {
                  getUserLoginViewModel.getUsers().observe(this,{
                     if (it.isNotEmpty()){
                         for (index in it){
-                            if (index.citizenshipID==binding.createAccountCitizenshipIDTextField.text.toString()&&index.password==binding.createAccountPasswordTextField.text.toString()){
+                            if (index.citizenshipID==binding.createAccountCitizenshipIDTextField.text.toString()){
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    getUserLoginViewModel.updateUser(binding.createAccountPasswordTextField.text.toString(),binding.createAccountCitizenshipIDTextField.text.toString())
+                                }
+
                                 val action= Intent(this, MainActivity::class.java)
                                 startActivity(action)
                             }

@@ -13,5 +13,8 @@ class UserRepository(private val userDao: UserDao) {
     suspend fun insert(user: User) {
         userDao.registerUser(user)
     }
+    suspend fun update(password:String,citizenship_ID:String){
+        userDao.updateUser(password,citizenship_ID)
+    }
 
 }

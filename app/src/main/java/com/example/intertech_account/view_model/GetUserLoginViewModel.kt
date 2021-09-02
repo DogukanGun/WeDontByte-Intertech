@@ -26,10 +26,12 @@ class GetUserLoginViewModel():ViewModel() {
     }
 
     var user = MutableLiveData<User>()
-    val loading=MutableLiveData<Boolean>(false)
     suspend fun insertUser(user: User){
          userRepository.insert(user)
-     }
+    }
+    suspend fun updateUser(password: String,citizenship_ID:String){
+        userRepository.update(password,citizenship_ID)
+    }
     fun getUsers(): LiveData<List<User>> {
         return userDao.getAll()
     }
