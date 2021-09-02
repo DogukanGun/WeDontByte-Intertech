@@ -21,19 +21,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:fontFamily="sans-serif-black"
                 android:id="@+id/explanation"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/cardview_compat_inset_shadow"
                 android:layout_weight="3"
-                android:paddingLeft="5dp"
+                android:fontFamily="sans-serif-black"
                 android:gravity="center_vertical"
+                android:paddingLeft="5dp"
                 android:text="@string/destination_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/showDekont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/receipt" />
         </LinearLayout>
 
 

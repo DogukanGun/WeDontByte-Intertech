@@ -80,7 +80,11 @@
     <string name="language">Language</string>
     <string name="english">English</string>
     <string name="turkish">Turkish</string>
+    <string name="receipt">Receipt</string>
+
     <string name="settings_activity">Settings Activity</string>
+    <string name="download">Download</string>
+
 
 
 </resources>

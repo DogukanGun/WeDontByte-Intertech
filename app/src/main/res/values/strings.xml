@@ -78,8 +78,9 @@
     <string name="english">İngilizce</string>
     <string name="turkish">Türkçe</string>
     <string name="settings_activity">Ayarlar Aktivitesi</string>
-
+    <string name="receipt">Dekont</string>
     <string name="forget_password">Şifremi unuttum</string>
+    <string name="download">Indir</string>
 
 
 </resources>

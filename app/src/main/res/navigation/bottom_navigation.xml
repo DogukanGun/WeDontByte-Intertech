@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_mainPageFragment_to_QRCodeOptionSelectFragment"
             app:destination="@id/QRCodeOptionSelectFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_showReceiptFragment"
+            app:destination="@id/showReceiptFragment" />
     </fragment>
     <fragment
         android:id="@+id/simpleAccountFragment"
@@ -65,8 +68,8 @@
             app:destination="@id/pdfCreateAndDownloadFragment" />
     </fragment>
     <fragment
-        android:id="@+id/pdfCreateAndDownloadFragment"
-        android:name="com.example.intertech_account.view.main_page.fragment.pdf.PdfCreateAndDownloadFragment"
-        android:label="fragment_pdf_create_and_download"
-        tools:layout="@layout/fragment_pdf_create_and_download" />
+        android:id="@+id/showReceiptFragment"
+        android:name="com.example.intertech_account.view.main_page.fragment.account.ShowReceiptFragment"
+        android:label="fragment_show_receipt"
+        tools:layout="@layout/fragment_show_receipt" />
 </navigation>
