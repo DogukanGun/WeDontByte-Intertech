@@ -14,9 +14,14 @@ import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAllAccountsBinding
 import com.example.intertech_account.databinding.FragmentSimpleAccountBinding
+import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
+import com.example.intertech_account.view.main_page.fragment.account.adapter.SimpleAccountAdapter
+import com.example.intertech_account.view.main_page.fragment.main_page.adapter.MainPageAdapter
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -24,6 +29,11 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.listener.OnChartGestureListener
 
 class SimpleAccountFragment : Fragment() {
+    private var destinationAccountTitles = mutableListOf<String>()
+    private var transactionNames = mutableListOf<String>()
+    private var amounts = mutableListOf<String>()
+    private var times = mutableListOf<String>()
+    private var dates = mutableListOf<String>()
 
     private lateinit var binding: FragmentSimpleAccountBinding
 
@@ -184,6 +194,61 @@ class SimpleAccountFragment : Fragment() {
 
         pieData.setDrawValues(true)
         intertechPieChart.data = pieData
+    }
+    private fun createRecyclerView(){
+        val recyclerView = binding.simpleAccountTransactions
+        recyclerView.layoutManager =  LinearLayoutManager(activity)
+        recyclerView.adapter = MainPageAdapter()
+        /*getAccountTransactionViewModel.apiRequest()
+        getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner,{
+            getAccountTransactionListModel=it
+            if (getAccountTransactionListModel.data.activityCollection.isNotEmpty()){
+                val recyclerView = binding.transactions
+                recyclerView.layoutManager =  LinearLayoutManager(activity)
+                var adapter = recyclerView.adapter as MainPageAdapter
+//                adapter.addList(getCorporateAccountTransactionListModel.getCorporateAccountTransactionListData.getCorporateAccountTransactionList[0].transactions)
+                val dividerItemDecoration = DividerItemDecoration(
+                    recyclerView.context,1
+                )
+
+                recyclerView.addItemDecoration(dividerItemDecoration)
+            }
+        })
+         */
+        var adapter = recyclerView.adapter as SimpleAccountAdapter
+        var arrayList = arrayListOf<GetAccountTransactionList>()
+        var x1 = createDummyTransactionList(12.3)
+        var x2 = createDummyTransactionList(45.5)
+        var x3 = createDummyTransactionList(67.7)
+        var x4 = createDummyTransactionList(22.3)
+
+        arrayList.add(x1)
+        arrayList.add(x2)
+        arrayList.add(x3)
+        arrayList.add(x4)
+        val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
+        //var myarray = arrayOf(GetAccountTransactionList())
+        adapter.addList(myarray2)
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView.context,1
+        )
+        recyclerView.addItemDecoration(dividerItemDecoration)
+
+    }
+    private fun createDummyTransactionList(x: Double): GetAccountTransactionList {
+        var x = GetAccountTransactionList("test","test","test","test",x,122.2,
+            "t","t","t","t","t","t","t",
+            233.3,"t"
+        )
+        return x
+    }
+    private fun addToRecyclerView(destinationAccountTitle: String, transactionName: String, amount: String, time: String, date: String)
+    {
+        destinationAccountTitles.add(destinationAccountTitle)
+        transactionNames.add(transactionName)
+        amounts.add(amount)
+        times.add(time)
+        dates.add(date)
     }
 
 

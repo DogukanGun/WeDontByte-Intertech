@@ -16,7 +16,7 @@ import com.example.intertech_account.databinding.FragmentMainPageBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
- import com.example.intertech_account.resources.common_variables.Button
+import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AccountsInformationFragmentAdapter
 import com.example.intertech_account.view.main_page.fragment.main_page.adapter.MainPageAdapter
@@ -92,7 +92,7 @@ class MainPageFragment : Fragment() {
         val recyclerView = binding.transactions
         recyclerView.layoutManager =  LinearLayoutManager(activity)
         recyclerView.adapter = MainPageAdapter()
-        getAccountTransactionViewModel.apiRequest()
+        /*getAccountTransactionViewModel.apiRequest()
         getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner,{
             getAccountTransactionListModel=it
             if (getAccountTransactionListModel.data.activityCollection.isNotEmpty()){
@@ -103,11 +103,42 @@ class MainPageFragment : Fragment() {
                 val dividerItemDecoration = DividerItemDecoration(
                     recyclerView.context,1
                 )
+
                 recyclerView.addItemDecoration(dividerItemDecoration)
             }
 
 
         })
+
+
+         */
+        var adapter = recyclerView.adapter as MainPageAdapter
+        var arrayList = arrayListOf<GetAccountTransactionList>()
+        var x1 = createDummyTransactionList(12.3)
+        var x2 = createDummyTransactionList(45.5)
+        var x3 = createDummyTransactionList(67.7)
+        var x4 = createDummyTransactionList(22.3)
+
+
+        arrayList.add(x1)
+        arrayList.add(x2)
+        arrayList.add(x3)
+        arrayList.add(x4)
+        val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
+        //var myarray = arrayOf(GetAccountTransactionList())
+        adapter.addList(myarray2)
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView.context,1
+        )
+        recyclerView.addItemDecoration(dividerItemDecoration)
+
+    }
+    private fun createDummyTransactionList(x: Double):GetAccountTransactionList{
+        var x = GetAccountTransactionList("test","test","test","test",x,122.2,
+            "t","t","t","t","t","t","t",
+        233.3,"t"
+        )
+        return x
     }
     private fun addToRecyclerView(destinationAccountTitle: String, transactionName: String, amount: String, time: String, date: String)
     {
@@ -117,4 +148,28 @@ class MainPageFragment : Fragment() {
         times.add(time)
         dates.add(date)
     }
+    private fun updateRecyclerView(_wannaWipeData: Boolean = true)
+    {
+        if(_wannaWipeData)
+        {
+            destinationAccountTitles.clear()
+            transactionNames.clear()
+            amounts.clear()
+            times.clear()
+            dates.clear()
+        }
+
+
+        for(i in 1..25)
+        {
+            addToRecyclerView("Dest. Account $i", "Transaction $i", "\$$i", "$i:$i", "$i/$i/$i")
+        }
+
+    }
+    private fun listenTopBarButton(){
+        val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
+        Constant.navHostFragment.findNavController().navigate(action)
+    }
+
+
 }

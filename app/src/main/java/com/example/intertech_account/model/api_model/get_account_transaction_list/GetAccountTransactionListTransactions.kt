@@ -3,7 +3,7 @@ package com.example.intertech_account.model.api_model.get_account_transaction_li
 import com.google.gson.annotations.SerializedName
 
 // Respondun data kısmındaki activity collectionın detayları
-data class GetAccountTransactionListTransactions(
+/*data class GetAccountTransactionListTransactions(
     @SerializedName("\$type")
     var type: String,
     @SerializedName("Date")
@@ -34,4 +34,10 @@ data class GetAccountTransactionListTransactions(
     var availableBalance: Double,
     @SerializedName("ReferenceNumber")
     var referenceNumber: String
+
+
 )
+
+
+
+ */

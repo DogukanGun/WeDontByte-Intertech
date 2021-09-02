@@ -27,9 +27,8 @@ import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.user_information.adapter.UserInformationAdapter
 import com.google.android.material.internal.ViewUtils.getContentView
 import com.google.android.material.snackbar.Snackbar
-import com.itextpdf.text.Document
-import com.itextpdf.text.pdf.PdfWriter
 import java.io.FileOutputStream
+
 
 
 class UserInformationFragment : Fragment() {
@@ -76,8 +75,39 @@ class UserInformationFragment : Fragment() {
             adapter_!!.addInfo(x,Info)
 
         })
+
         return binding.root
     }
+    @SuppressLint("RestrictedApi")
+    private fun pdf(){
+        // create a new document
+        val document = PdfDocument()
+
+        // create a page description
+         val pageInfo = android.graphics.pdf.PdfDocument.PageInfo.Builder(100, 100, 1).create()
+
+        // start a page
+        val page = document.startPage(pageInfo)
+
+        // draw something on the page
+        val content = getContentView(binding.userImageView)
+        if(content != null) {
+            content.draw(page.getCanvas())
+        }
+        // finish the page
+        document.finishPage(page)
+        //val out = OutputStream.
+
+        // write the document content
+        //document.writeTo()
+
+        // close the document
+        document.close();
+
+
+    }
+
+
     private fun addToRecyclerView(processName: String, balance: String)
     {
         processNamesList.add(processName)
@@ -150,4 +180,5 @@ class UserInformationFragment : Fragment() {
         super.onDestroy()
         Button.isUserInformationTopBarButtonClick.value=0
     }
+
 }

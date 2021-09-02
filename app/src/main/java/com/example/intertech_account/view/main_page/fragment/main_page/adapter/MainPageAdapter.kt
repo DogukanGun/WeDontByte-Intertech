@@ -33,11 +33,12 @@ class MainPageAdapter ()
     //Transactionların doldurulması
 
     override fun onBindViewHolder(holder: MainPageHolder, position: Int) {
+
         if (transactions.isNotEmpty()){
 
-            holder.binding.explanation.text =transactions[0].transactions[position].explanation
-            holder.binding.dateValue.text = transactions[0].transactions[position].date + transactions[0].transactions[position].time
-            holder.binding.amountValue.text = transactions[0].transactions[position].amount.toString()
+            holder.binding.explanation.text =transactions[position].explanation
+            holder.binding.dateValue.text = transactions[position].date
+            holder.binding.amountValue.text = transactions[position].amount.toString()
         }
 
 
