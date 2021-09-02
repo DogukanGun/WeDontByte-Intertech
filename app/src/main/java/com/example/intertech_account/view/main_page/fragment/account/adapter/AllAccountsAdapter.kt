@@ -20,6 +20,7 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import javax.crypto.spec.DESedeKeySpec
 
+
 class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsRecyclerViewHolder>()  {
     private val ITEM_GRAPH = 0
     private val ITEM_TITLE = 1
@@ -263,10 +264,10 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         //SETUP PIE CHART COLORS
         val pieDataSet = PieDataSet(pieEntries, "BURAYA RENKLERİN ANLAMLARINI YAZ <3")
         pieDataSet.setColors(
-            Color.CYAN,
-            Color.YELLOW,
-            Color.RED,
-            Color.GREEN
+            Color.rgb(9, 83, 153),
+            Color.rgb(200, 29, 71),
+            Color.rgb(124, 124, 124),
+            Color.rgb(229, 153, 173)
         )
         intertechPieChart.setEntryLabelTextSize(18f)
 

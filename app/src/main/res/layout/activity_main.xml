@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/recyclerview_settings"
+        android:background="#f8f9f9"
         tools:context=".view.main_page.activity.MainActivity">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -40,7 +40,7 @@
             android:id="@+id/toolbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/intertech_actionbar_bottomnav_back_color"
+            android:background="#c81d47"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
                 style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/intertech_actionbar_bottomnav_back_color"
+                android:background="#c81d47"
                 app:menu="@menu/top_bar_menu"
                 app:title="@string/app_title" />
         </androidx.appcompat.widget.Toolbar>
