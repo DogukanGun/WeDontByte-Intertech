@@ -2,6 +2,7 @@ package com.example.intertech_account.view_model
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.intertech_account.R
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.github.mikephil.charting.data.PieEntry
 

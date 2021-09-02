@@ -68,6 +68,15 @@
     <string name="detayl_filtreleme">Detaylı Filtreleme</string>
     <string name="value">Değer</string>
     <string name="userinfotype">Kullanıcı Bilgi Türü</string>
+    <string name="id_number_invalid">Kimlik numarası geçersiz</string>
+    <string name="id_password_correct">Kimlik numarası ve şifre doğru...</string>
+    <string name="wrong_password">Şifre Hatalı</string>
+    <string name="succesfully_registered">Başarılı kayıt oldunuz</string>
+    <string name="language">Dil</string>
+    <string name="english">İngilizce</string>
+    <string name="turkish">Türkçe</string>
+    <string name="settings_activity">Ayarlar Aktivitesi</string>
+
 
 
 </resources>

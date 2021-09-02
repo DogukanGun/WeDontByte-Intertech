@@ -46,7 +46,7 @@ class QrReadWithCameraActivity : AppCompatActivity() {
             bindPreview(cameraProvider)
         }, ContextCompat.getMainExecutor(this))
     }
-    @SuppressLint("UnsafeExperimentalUsageError")
+    @SuppressLint ("Unsafe Experimental Usage Error")
     private fun bindPreview(cameraProvider: ProcessCameraProvider) {
         val preview: Preview = Preview.Builder()
             .build()

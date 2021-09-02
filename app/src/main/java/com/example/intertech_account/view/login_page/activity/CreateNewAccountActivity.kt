@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.example.intertech_account.R
 import com.example.intertech_account.databinding.ActivityCreateNewAccountBinding
 import com.example.intertech_account.model.api_model.login_page.user.User
 import com.example.intertech_account.model.api_model.login_page.user.UserOperationState
@@ -20,7 +21,7 @@ class CreateNewAccountActivity : AppCompatActivity() {
         binding.createAccountSaveButton.setOnClickListener{
             val checkLabels=checkLabels()
             if (checkLabels == UserOperationState.NO_ERROR){
-                Toast.makeText(this,"Basarili kayit oldunuz",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,getString(R.string.succesfully_registered),Toast.LENGTH_LONG).show()
                 val action=Intent(this,MainActivity::class.java)
                 startActivity(action)
             }else{
