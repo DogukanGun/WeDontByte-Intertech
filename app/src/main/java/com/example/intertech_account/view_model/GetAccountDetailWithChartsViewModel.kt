@@ -17,7 +17,7 @@ class GetAccountDetailWithChartsViewModel:ViewModel() {
             for(indexOfGetAccountModelListGroupBy in getAccountModelListGroupBy ){
                 var totalAmount=900.0
                 for(indexOfGetAccountModelListGroupByValue in indexOfGetAccountModelListGroupBy.value){
-                    totalAmount+=indexOfGetAccountModelListGroupByValue.balance
+                    totalAmount+=indexOfGetAccountModelListGroupByValue.balanceAsTRY as Double
                 }
                 val entry=PieEntry(totalAmount.toFloat(),indexOfGetAccountModelListGroupBy.key)
                 entries.add(entry)

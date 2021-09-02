@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -43,7 +45,12 @@ class AllAccountsFragment : Fragment() {
     private var adapter=AllAccountsAdapter(arrayListOf())
     //private var checkBoxList: HashMap<String,CheckBox> = hashMapOf()
     private lateinit var adapter_:AllAccountsAdapter
-    //private var currencyStates: HashMap<String,Int> =hashMapOf()
+    private var currencyStates: HashMap<String,Int> =hashMapOf(
+        "TRY" to 1,
+        "USD" to 1,
+        "EUR" to 1,
+        "GBP" to 1
+    )
 
     private lateinit var pieChartEntries:ArrayList<PieEntry>
     override fun onCreateView(
@@ -57,6 +64,8 @@ class AllAccountsFragment : Fragment() {
         controlError()
         getData(savedInstanceState)
         createSwipe()
+        checkBoxController(binding.ascending,2)
+        checkBoxController(binding.descending,1)
 
         Constant.isUserInformationTopBarButtonClick.observe(viewLifecycleOwner) {
             if (it == 1 && Constant.currentBottomMenu == 1) {
@@ -73,6 +82,7 @@ class AllAccountsFragment : Fragment() {
     }
 
     // Hesap ayrılımları için checkboxlistin gelen para birimlerine göre oluşturulması
+    //TODO buraya her currency için hashmapi default olarak 1 yapan fonksiyon yazılacak
     /*
     private fun checkboxCreator(currencyNames:List<String>,savedInstanceState: Bundle?,){
 
@@ -117,6 +127,25 @@ class AllAccountsFragment : Fragment() {
 
         }
     }*/
+
+
+   private fun checkBoxController(positioningCheckNox:CheckBox,positioning:Int) {
+       positioningCheckNox.setOnCheckedChangeListener{ compoundButton ,b ->
+           if(compoundButton.isChecked){
+               adapter_.setPositioningCriteria(positioning)
+               adapter_.modifyAccount(currencyStates)
+               Toast.makeText(activity as MainActivity, "CB Basıldı", Toast.LENGTH_LONG).show()
+
+           }
+           if(!compoundButton.isChecked){
+               adapter_.setPositioningCriteria(0)
+               adapter_.modifyAccount(currencyStates)
+               Toast.makeText(activity as MainActivity, "CB Kaldırıldı", Toast.LENGTH_LONG).show()
+           }
+
+
+       }
+   }
 
 
     //Error check
