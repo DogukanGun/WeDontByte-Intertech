@@ -68,7 +68,7 @@
     <string name="son_3_ay">Last 3 Month</string>
     <string name="son_6_ay">Last 6 Month</string>
     <string name="son_1_y_l">Last 1 Year</string>
-    <string name="detayl_filtreleme">Detailed Filtering</string>
+    <string name="detayl_filtreleme">No Filtering</string>
     <string name="value">Value</string>
     <string name="userinfotype">User Info Type</string>
     <string name="forget_password">Forget Password</string>

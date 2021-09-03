@@ -48,18 +48,19 @@
                 app:layout_constraintHorizontal_bias="0.696"
                 app:layout_constraintStart_toEndOf="@+id/depositMoney"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.127" />
+                app:layout_constraintVertical_bias="0.127"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/descending"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="@string/Descending"
-                android:background="@null"
                 android:layout_marginEnd="20dp"
-                android:padding="10dp"
+                android:background="@null"
                 android:button="@drawable/qr_radio_button"
+                android:checked="false"
+                android:padding="10dp"
+                android:text="@string/Descending"
                 android:textColor="@color/intertech_button_back_color"
                 android:textSize="16dp"
                 android:textStyle="bold"
@@ -68,17 +69,18 @@
                 app:layout_constraintHorizontal_bias="0.256"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/drawMoney"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/defaultSort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="@string/Default"
-                android:padding="10dp"
-                android:button="@drawable/qr_radio_button"
                 android:background="@drawable/qr_radio_button_selected"
+                android:button="@drawable/qr_radio_button"
+                android:checked="false"
+                android:padding="10dp"
+                android:text="@string/Default"
                 android:textColor="@color/intertech_button_back_color"
                 android:textSize="16dp"
                 android:textStyle="bold"
@@ -87,7 +89,8 @@
                 app:layout_constraintHorizontal_bias="0.256"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/drawMoney"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="TouchTargetSizeCheck" />
         </RadioGroup>
 
         <LinearLayout

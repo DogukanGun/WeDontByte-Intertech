@@ -1,11 +1,6 @@
 package com.example.intertech_account.view.main_page.fragment.account
 
-import android.content.Context
-import android.content.Context.LAYOUT_INFLATER_SERVICE
-import android.content.DialogInterface
 import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
 import android.transition.Slide
@@ -13,25 +8,15 @@ import android.transition.TransitionManager
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.intertech_account.R
-import com.example.intertech_account.databinding.FragmentAllAccountsBinding
 import com.example.intertech_account.databinding.FragmentSimpleAccountBinding
-import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
-import com.example.intertech_account.view.main_page.activity.MainActivity
-import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
+import com.example.intertech_account.model.api_model.status.SimpleAccountListState
 import com.example.intertech_account.view.main_page.fragment.account.adapter.SimpleAccountAdapter
-import com.example.intertech_account.view.main_page.fragment.main_page.adapter.MainPageAdapter
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.listener.OnChartGestureListener
-import com.github.mikephil.charting.data.BarEntry
-
-
 
 
 class SimpleAccountFragment : Fragment() {
@@ -93,6 +78,7 @@ class SimpleAccountFragment : Fragment() {
             }
 
             // Get the widgets reference from custom view
+            //TODO turkce den ingilizceye degisstirilecek
             val son1HaftaButton = view.findViewById<Button>(R.id.son1HaftaButton)
             val son1AyButton = view.findViewById<Button>(R.id.son1AyButton)
             val son3AyButton = view.findViewById<Button>(R.id.son3AyButton)
@@ -100,40 +86,48 @@ class SimpleAccountFragment : Fragment() {
             val son1YilButton = view.findViewById<Button>(R.id.son1YilButton)
             val detayliFiltrelemeButton = view.findViewById<Button>(R.id.detayliFiltrelemeButton)
 
+
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son1HaftaButton.setOnClickListener {
-                //TODO SON 1 HAFTAYA GÖRE FİLTRELEME İŞLEMİ
+                adapter.status=SimpleAccountListState.LAST_ONE_WEEK
+                adapter.changeStatusOfArray()
                 popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son1AyButton.setOnClickListener {
-                //TODO SON 1 AYA GÖRE FİLTRELEME İŞLEMİ
+                adapter.status=SimpleAccountListState.LAST_ONE_MONTH
+                adapter.changeStatusOfArray()
                 popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son3AyButton.setOnClickListener {
-                //TODO SON 3 AYA GÖRE FİLTRELEME İŞLEMİ
+                adapter.status=SimpleAccountListState.LAST_THREE_MONTHS
+                adapter.changeStatusOfArray()
                 popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son6AyButton.setOnClickListener {
-                //TODO SON 6 AYA GÖRE FİLTRELEME İŞLEMİ
+                adapter.status=SimpleAccountListState.LAST_SIX_MONTHS
+                adapter.changeStatusOfArray()
                 popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son1YilButton.setOnClickListener {
-                //TODO SON 1 YILA GÖRE FİLTRELEME İŞLEMİ
+                adapter.status=SimpleAccountListState.LAST_ONE_YEAR
+                adapter.changeStatusOfArray()
                 popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             detayliFiltrelemeButton.setOnClickListener {
-                //TODO DETAYLI FİLTELEME BUTONU YAPILMAYACAKSA BU SİLİNEBİLİR
+                adapter.status=SimpleAccountListState.DETAIL
+                adapter.changeStatusOfArray()
                 popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
 
             //WHEN THE POPUP SCREEN IS CLOSED, THIS LISTENER IS EXECUTED
             popupWindow.setOnDismissListener {
                 Toast.makeText(context, "Popup closed", Toast.LENGTH_SHORT).show()
+
             }
 
             //IF OUTSIDE OF THE IS CLICKED, MAKE THE SCENE DISAPPEAR
@@ -153,7 +147,7 @@ class SimpleAccountFragment : Fragment() {
         }
     }
 
-    private fun DrawingLineChart(entries: ArrayList<Entry>) {
+    private fun drawingLineChart(entries: ArrayList<Entry>) {
 
         //SET LINE ENTRIES (YEAR, MONEY)
         val myArray = ArrayList<Entry>()
@@ -239,7 +233,7 @@ class SimpleAccountFragment : Fragment() {
         lineChartEntries.add(Entry(2014F, 200F))
          */
 
-        DrawingLineChart(lineChartEntries)
+        drawingLineChart(lineChartEntries)
         val dividerItemDecoration = DividerItemDecoration(
             recyclerView.context,1
         )
@@ -276,7 +270,7 @@ class SimpleAccountFragment : Fragment() {
 
             defaultAmount+=transactionAmout
             x.add(GetAccountTransactionList("test",date.toString(),"test","test",transactionAmout,defaultAmount,
-                "t","t","t","t","t","t","t",
+                "t","t","t","t","21-02-2020","t","t",
                 233.3,"t"))
         }
 

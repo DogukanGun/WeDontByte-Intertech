@@ -1,4 +1,4 @@
-package com.example.intertech_account.model.api_model.login_page.user
+package com.example.intertech_account.model.api_model.status
 
 enum class UserOperationState {
     WRONG_PASSWORD,

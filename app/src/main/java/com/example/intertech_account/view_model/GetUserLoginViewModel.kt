@@ -3,15 +3,11 @@ package com.example.intertech_account.view_model
  import android.content.Context
  import androidx.lifecycle.*
  import com.example.intertech_account.model.api_model.login_page.user.User
- import com.example.intertech_account.model.api_model.login_page.user.UserOperationState
- import com.example.intertech_account.resources.database.AppDatabase
+ import com.example.intertech_account.model.api_model.status.UserOperationState
  import com.example.intertech_account.resources.database.Database
  import com.example.intertech_account.resources.database.UserDao
  import com.example.intertech_account.resources.database.repository.UserRepository
  import com.example.intertech_account.view_model.repo.CitizenshipControl
- import kotlinx.coroutines.Dispatchers
- import kotlinx.coroutines.flow.Flow
- import kotlinx.coroutines.launch
 
 class GetUserLoginViewModel():ViewModel() {
     lateinit var context: Context
@@ -36,7 +32,7 @@ class GetUserLoginViewModel():ViewModel() {
         return userDao.getAll()
     }
 
-    fun check(user:User):UserOperationState{
+    fun check(user:User): UserOperationState {
         if (!citizenshipControl.controlCitizenship(user.citizenshipID)){
             return UserOperationState.WRONG_CITIZENSHIP_ID
         }
@@ -51,7 +47,7 @@ class GetUserLoginViewModel():ViewModel() {
         }
         return UserOperationState.NO_ERROR
     }
-    fun printUserOperationError(state:UserOperationState):String{
+    fun printUserOperationError(state: UserOperationState):String{
         when(state){
             UserOperationState.NO_ERROR->{
 

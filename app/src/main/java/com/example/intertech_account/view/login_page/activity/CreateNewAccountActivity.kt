@@ -5,11 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.room.Database
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.ActivityCreateNewAccountBinding
 import com.example.intertech_account.model.api_model.login_page.user.User
-import com.example.intertech_account.model.api_model.login_page.user.UserOperationState
+import com.example.intertech_account.model.api_model.status.UserOperationState
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view_model.GetUserLoginViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -49,7 +48,7 @@ class CreateNewAccountActivity : AppCompatActivity() {
 
     }
 
-    private fun checkLabels():UserOperationState{
+    private fun checkLabels(): UserOperationState {
         if (binding.createAccountUsernameTextField.text.isNullOrBlank()||
             binding.createAccountCitizenshipIDTextField.text.isNullOrBlank()||
             binding.createAccountPasswordTextField.text.isNullOrBlank()||

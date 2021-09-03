@@ -65,7 +65,6 @@ class AccountDetailFragment : Fragment() {
         binding.recyclerview.adapter = LandmarkAdapter
         binding.button1.setOnClickListener{
 
-
         }
 
 

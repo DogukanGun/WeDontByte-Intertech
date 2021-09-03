@@ -7,8 +7,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.intertech_account.databinding.ActivityForgetPasswordBinding
 import com.example.intertech_account.model.api_model.login_page.user.User
-import com.example.intertech_account.model.api_model.login_page.user.UserOperationState
-import com.example.intertech_account.resources.database.Database
+import com.example.intertech_account.model.api_model.status.UserOperationState
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view_model.GetUserLoginViewModel
 import kotlinx.coroutines.CoroutineScope
