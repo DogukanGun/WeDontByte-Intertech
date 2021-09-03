@@ -23,14 +23,14 @@
             android:text="@string/userinfotype"
             android:textSize="16dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/intertech_textview_text_color"
-            android:textStyle="bold"
+            android:textColor="@color/black"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:fontFamily="sans-serif-black"
+
             android:id="@+id/cardViewBalance"
             android:layout_width="100dp"
             android:layout_height="match_parent"
@@ -39,9 +39,9 @@
             android:gravity="center_vertical"
             android:text="@string/value"
             android:textSize="16dp"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/intertech_textview_text_color"
-            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/cardViewProcessName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
