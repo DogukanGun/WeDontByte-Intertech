@@ -114,8 +114,8 @@ class UserInformationFragment : Fragment() {
     private fun showApiErrorMessage(){
         getCustomerViewModel.errorMessage.observe(viewLifecycleOwner,{
             if (it.equals("ApiError")){
-                Snackbar.make(this.requireView(), R.string.relode_page, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.relode_page_button){
+                Snackbar.make(this.requireView(), R.string.page_reloading, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.page_reloading_button){
                         reloadedPage()
                     }
                     .setActionTextColor(Color.RED)

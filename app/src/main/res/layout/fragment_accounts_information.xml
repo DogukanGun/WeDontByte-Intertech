@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@string/sube"
+                android:text="@string/branch"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="16dp"
                 android:textStyle="bold"

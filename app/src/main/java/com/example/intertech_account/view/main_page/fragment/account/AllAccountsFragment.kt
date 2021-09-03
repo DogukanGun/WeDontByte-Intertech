@@ -10,8 +10,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.RadioButton
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -247,8 +245,8 @@ class AllAccountsFragment : Fragment() {
     //Error check
 
     private fun showApiErrorMessage(){
-        Snackbar.make(binding.root, R.string.relode_page,Snackbar.LENGTH_INDEFINITE)
-            .setAction(R.string.relode_page_button){
+        Snackbar.make(binding.root, R.string.page_reloading,Snackbar.LENGTH_INDEFINITE)
+            .setAction(R.string.page_reloading_button){
                 relodePage()
             }
             .setActionTextColor(Color.RED)

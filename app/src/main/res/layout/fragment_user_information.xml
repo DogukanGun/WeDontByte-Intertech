@@ -37,7 +37,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:text="@string/fullname"
+                android:text="@string/full_name"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="20dp"
                 android:textStyle="bold"

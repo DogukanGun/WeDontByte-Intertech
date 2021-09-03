@@ -28,7 +28,7 @@ class CreateNewAccountActivity : AppCompatActivity() {
         binding.createAccountSaveButton.setOnClickListener{
             val checkLabels=checkLabels()
             if (checkLabels == UserOperationState.NO_ERROR){
-                Toast.makeText(this,getString(R.string.succesfully_registered),Toast.LENGTH_LONG).show()
+                Toast.makeText(this,getString(R.string.successfully_registered),Toast.LENGTH_LONG).show()
                 CoroutineScope(Dispatchers.IO).launch {
                     getUserLoginViewModel.insertUser(user)
                 }
