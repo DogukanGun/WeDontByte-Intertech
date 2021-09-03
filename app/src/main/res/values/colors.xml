@@ -14,31 +14,30 @@
     <color name="black_overlay">#66000000</color>
 
     <!--*********************INTERTECH RENKLERI BURADAN ITIBAREN BAŞLIYOR*********************-->
-
     <!--TEXT RENKLERINI DEGISTIRIR-->
-    <color name="intertech_textview_text_color">#FF000000</color>
+    <color name="intertech_textview_text_color">#053564</color>
 
     <!--BUTTON RENKLERIYLE ILGILI RENK DEGISIKLIKLERI ICIN-->
-    <color name="intertech_button_text_color">#f8f9f9</color>
-    <color name="intertech_button_back_color">#0f93e2</color>
+    <color name="intertech_button_text_color">#fff4de</color>
+    <color name="intertech_button_back_color">#FF7600</color>
 
     <!--BUTTON VE TEXT HARICINDEKI DIGER COMPONENTLERIN RENK DEGISIMLERI ICIN-->
-    <color name="intertech_component_text_color">#7c7c7c</color>
-    <color name="intertech_component_back_color">#f8f9f9</color>
+    <color name="intertech_component_text_color">#EFEDE8</color>
+    <color name="intertech_component_back_color">#021324</color>
 
     <!--ACTIONBAR VE BOTTOMNAV ICIN RENK DEGISIMLERI-->
-    <color name="intertech_actionbar_bottomnav_back_color">#0f93e2</color>
-    <color name="intertech_bottomnav_item_color">#FFFFFFFF</color>
+    <color name="intertech_actionbar_bottomnav_back_color">#095aa9</color>
+    <color name="intertech_bottomnav_item_color">#fff4de</color>
 
     <!--ANA EKRANLAR BU RENKTE OLACAKTIR-->
-    <color name="intertech_screen_color">#F0F0F0</color>
+    <color name="intertech_screen_color">#ffffff</color>
 
     <!--RECYCLERVIEW RENK DEGISIMLERI ICIN (ARKA PLAN RENGİ VE ARALARINDAKİ BOŞLUK RENGİ)-->
-    <color name="intertech_recyclerview_backcolor">#E6E1E1</color>
-    <color name="intertech_recyclerview_linecolor">#FF000000</color>
+    <color name="intertech_recyclerview_backcolor">#F1ECEC</color>
+    <color name="intertech_recyclerview_linecolor">#ffffff</color>
 
     <!--RECYCLERVIEW YANINDA ARROW VARSA ONUN RENGİ VE ARKAPLAN RENGİ-->
-    <color name="intertech_recyclerview_arrow_textcolor">#dee7ec</color>
-    <color name="intertech_recyclerview_arrow_backcolor">#FFFFFFFF</color>
+    <color name="intertech_recyclerview_arrow_textcolor">#000000</color>
+    <color name="intertech_recyclerview_arrow_backcolor">#FF7600</color>
 
 </resources>

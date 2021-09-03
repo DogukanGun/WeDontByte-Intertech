@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:background="@color/intertech_screen_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -36,13 +35,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/qr_radio_button_not_selected"
+                android:background="@null"
                 android:button="@drawable/qr_radio_button"
                 android:checked="true"
                 android:padding="10dp"
                 android:text="@string/Ascending"
                 android:textColor="@color/intertech_button_back_color"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,12 +56,12 @@
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="@string/Descending"
-                android:background="@drawable/qr_radio_button_not_selected"
+                android:background="@null"
                 android:layout_marginEnd="20dp"
                 android:padding="10dp"
                 android:button="@drawable/qr_radio_button"
                 android:textColor="@color/intertech_button_back_color"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +80,7 @@
                 android:button="@drawable/qr_radio_button"
                 android:background="@drawable/qr_radio_button_selected"
                 android:textColor="@color/intertech_button_back_color"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -91,18 +90,18 @@
                 app:layout_constraintVertical_bias="0.0" />
         </RadioGroup>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/allAccounts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_account_selection">
-    </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/allAccounts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout_account_selection">
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -35,6 +35,7 @@
     <string name="settings">Ayarlar</string>
     <string name="userName">Ad</string>
     <string name="userSurname">Soyad</string>
+    <string name="welcome">Hoş Geldiniz</string>
     <string name="citizenshipID">TC</string>
     <string name="birthdate">Doğum Tarihi</string>
     <string name="email">E-posta</string>
@@ -44,7 +45,7 @@
     <string name="title_activity_help_screen">HelpScreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="login">GİRİŞ</string>
+    <string name="login">Giriş</string>
     <string name="qr_code_reader">QR Kod Okuyucu</string>
     <string name="help">Yardım</string>
     <string name="account_name">Hesap İsmi</string>

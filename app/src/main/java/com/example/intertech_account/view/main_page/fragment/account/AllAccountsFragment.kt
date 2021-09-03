@@ -24,7 +24,6 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAllAccountsBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
-import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
@@ -67,16 +66,6 @@ class AllAccountsFragment : Fragment() {
         controlError()
         getData(savedInstanceState)
         createSwipe()
-
-        Button.isUserInformationTopBarButtonClickFromAllAccounts.observe(viewLifecycleOwner) {
-            if (it == 1 && Constant.currentBottomMenu == 1) {
-                Button.isUserInformationTopBarButtonClickFromAllAccounts.value = 2
-                val action =
-                    AllAccountsFragmentDirections.actionAllAccountsFragmentToUserInformationFragment()
-                Constant.navHostFragment.findNavController().navigate(action)
-            }
-        }
-
 
         binding.allAccountsRadioGroup.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId == R.id.ascending)
@@ -303,10 +292,10 @@ class AllAccountsFragment : Fragment() {
                     //TODO Buraya istenidiği kadar buton eklenebilir
                     buffer.add(
                         SwipeButton(activity as MainActivity,
-                            "Kırılım",
+                            "Hesap Kirilimlari",
                             30,
                             0,
-                            Color.parseColor("#c71a45"),
+                            resources.getColor(R.color.intertech_button_back_color),
                             object : SwipeButtonClickListener {
                                 override fun onClick(pos: Int) {
 
@@ -320,10 +309,10 @@ class AllAccountsFragment : Fragment() {
                     )
                     buffer.add(
                         SwipeButton(activity as MainActivity,
-                            "Detaylar",
+                            "Hesap Detaylari",
                             30,
                             0,
-                            Color.parseColor("#c71a45"),
+                            resources.getColor(R.color.intertech_button_back_color),
                             object : SwipeButtonClickListener {
                                 override fun onClick(pos: Int) {
 
