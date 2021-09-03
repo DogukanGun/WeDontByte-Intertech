@@ -20,13 +20,17 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAllAccountsBinding
 import com.example.intertech_account.databinding.FragmentSimpleAccountBinding
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
+import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.adapter.SimpleAccountAdapter
 import com.example.intertech_account.view.main_page.fragment.main_page.adapter.MainPageAdapter
+import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.listener.OnChartGestureListener
+import com.github.mikephil.charting.data.BarEntry
+
+
+
 
 class SimpleAccountFragment : Fragment() {
     private var destinationAccountTitles = mutableListOf<String>()
@@ -39,11 +43,10 @@ class SimpleAccountFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
-        DrawingPieChart()
         createRecyclerView()
         executePopupMenu(inflater)
 
@@ -143,57 +146,48 @@ class SimpleAccountFragment : Fragment() {
         }
     }
 
-    private fun DrawingPieChart()
-    {
-        //SET PIE ENTRIES (ENTER THE AMOUNT OF MONEY IN HERE)
-        val pieEntries = arrayListOf<PieEntry>()
-        pieEntries.add(PieEntry(1000.0F))
-        pieEntries.add(PieEntry(2000.0F))
-        pieEntries.add(PieEntry(3000.0F))
-        pieEntries.add(PieEntry(4000.0F))
+    private fun DrawingLineChart(entries: ArrayList<Entry>) {
 
-        //GET PIE CHART COMPONENT FROM XML
-        var intertechPieChart : PieChart = binding.allAccountsPieChart
+        //SET LINE ENTRIES (YEAR, MONEY)
+        val myArray = ArrayList<Entry>()
+        myArray.add(Entry(2010F, 100F))
+        myArray.add(Entry(2011F, 500F))
+        myArray.add(Entry(2013F, 800F))
+        myArray.add(Entry(2014F, 200F))
 
-        //SETUP PIE ANIMATION
-        intertechPieChart.animateXY(1000,1000)
+        //GET LINE CHART COMPONENT FROM XML
+        var intertechLineChart: LineChart = binding.simpleAccountLineChart
 
-        //SETUP PIE CHART COLORS
-        val pieDataSet = PieDataSet(pieEntries, "BURAYA RENKLERİN ANLAMLARINI YAZ <3")
-        pieDataSet.setColors(
-            Color.CYAN,
-            Color.YELLOW,
-            Color.RED,
-            Color.GREEN
-        )
-        intertechPieChart.setEntryLabelTextSize(18f)
+        //SETUP LINE ANIMATION
+        intertechLineChart.animateXY(3000, 3000)
 
 
-        //SETTING UP PIE DATA INTO PieData
-        val pieData = PieData(pieDataSet)
+        //SETUP LINE CHART COLORS
+        //var lineDataSet = LineDataSet(myArray, "MONEY/YEAR GRAPH")
+        var lineDataSet = LineDataSet(entries, "MONEY/YEAR GRAPH")
+         var colors =ArrayList<Int>()
+        //SETUP BAR CHART COLORS
+        /*lineDataSet.setColors(
+            Color.GREEN,
+            Color.RED
+        )*/
+        for(pos in 0..entries.size-2){
+            colors.add(
+                if (entries.get(pos+1).y - entries.get(pos).y > 0) Color.GREEN
+                else if(entries.get(pos+1).y - entries.get(pos).y < 0) Color.RED
+                else Color.BLACK)
+        }
 
-        //SET TEXT IN THE MIDDLE OF THE PIECHART
-        intertechPieChart.centerText = "CENTER TEXT <3"
-        intertechPieChart.setCenterTextColor(Color.BLACK)
-        intertechPieChart.setCenterTextSize(18f)
+        lineDataSet.setColors(colors.toIntArray(),255)
 
-        //IF YOU WANT TO HIDE THE ENTRIES, MAKE SET THIS AS ENABLE
-        //intertechPieChart.legend.isEnabled = false
-
-        //SET/HIDE DESCRIPTION
-        intertechPieChart.description.isEnabled = true
-        intertechPieChart.description.text = "THIS IS MY DESCRIPTION!"
-        intertechPieChart.description.textAlign = Paint.Align.CENTER
-        intertechPieChart.description.textSize = 18f
-        intertechPieChart.description.textColor = Color.WHITE
+        lineDataSet.valueTextColor = Color.CYAN
+        lineDataSet.valueTextSize = 18F
 
 
-        //CENTER SPACE INCREMENT/DECREMENT OF THE PIECHART
-        intertechPieChart.holeRadius = 20f
+        var lineData = LineData(lineDataSet)
 
-
-        pieData.setDrawValues(true)
-        intertechPieChart.data = pieData
+        lineData.setDrawValues(true)
+        intertechLineChart.data = lineData
     }
     private fun createRecyclerView(){
         val recyclerView = binding.simpleAccountTransactions
@@ -225,9 +219,23 @@ class SimpleAccountFragment : Fragment() {
         arrayList.add(x2)
         arrayList.add(x3)
         arrayList.add(x4)
-        val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
+        //val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
+        val myarray2: Array<GetAccountTransactionList> = createDummyTransactionList(15)
         //var myarray = arrayOf(GetAccountTransactionList())
         adapter.addList(myarray2)
+        var lineChartEntries =ArrayList<Entry>()
+        for(i in myarray2){
+            lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
+        }
+
+        /*
+        lineChartEntries.add(Entry(2010F, 100F))
+        lineChartEntries.add(Entry(2011F, 500F))
+        lineChartEntries.add(Entry(2013F, 800F))
+        lineChartEntries.add(Entry(2014F, 200F))
+         */
+
+        DrawingLineChart(lineChartEntries)
         val dividerItemDecoration = DividerItemDecoration(
             recyclerView.context,1
         )
@@ -248,6 +256,26 @@ class SimpleAccountFragment : Fragment() {
         amounts.add(amount)
         times.add(time)
         dates.add(date)
+    }
+    private fun createDummyTransactionList(size:Int): Array<GetAccountTransactionList> {
+        var x = ArrayList<GetAccountTransactionList>()
+        var date = 0
+        var defaultAmount = 1000.0
+
+        for (i in 0..size){
+            date += 1
+            var transactionAmout = (-150..150).random().toDouble()
+            if(i == 0)transactionAmout = 0.0
+            else transactionAmout = (-150..150).random().toDouble()
+
+            defaultAmount+=transactionAmout
+            x.add(GetAccountTransactionList("test",date.toString(),"test","test",transactionAmout,defaultAmount,
+                "t","t","t","t","t","t","t",
+                233.3,"t"))
+        }
+
+
+        return x.toTypedArray()
     }
 
 
