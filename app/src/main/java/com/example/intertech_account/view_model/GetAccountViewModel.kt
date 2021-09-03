@@ -26,7 +26,7 @@ class GetAccountViewModel : ViewModel(){
     fun apiRequest(){
         val getAccountHeader: GetAccountHeaders = GetAccountHeaders("c1c2a508fdf64c14a7b44edc9241c9cd",
             "API","331eb5f529c74df2b800926b5f34b874","5252012362481156055")
-        val getAccountParameter: GetAccountParameters = GetAccountParameters("150")
+        val getAccountParameter: GetAccountParameters = GetAccountParameters("751")
         var getAccountParameterList=Array(1){getAccountParameter}
 
         val getAccountGetAccountBodyModel: GetAccountBodyModel =

@@ -29,7 +29,7 @@ class GetCustomerViewModel  : ViewModel(){
         Log.d("Info:","Hello")
         val getCustomerHeader: GetCustomerHeaders = GetCustomerHeaders("c1c2a508fdf64c14a7b44edc9241c9cd",
             "API","331eb5f529c74df2b800926b5f34b874","5252012362481156055")
-        val getCustomerParameter: GetCustomerParameters = GetCustomerParameters("13188998")
+        val getCustomerParameter: GetCustomerParameters = GetCustomerParameters("33")
         var getCustomerParameterList=Array(1){getCustomerParameter}
 
         val getCustomerGetCustomerBodyModel: GetCustomerBodyModel =

@@ -70,9 +70,16 @@ class AccountsInformationFragment : Fragment() {
     //Hesap sayfasının bilgi güncellemesi
 
     fun updateLabel(position:Int){
+        binding.subeText.text = getAccountModel.getAccountData.getAccountList[position].branch
         binding.accountType.text = getAccountModel.getAccountData.getAccountList[position].iban
-        binding.accountBalance.text = getAccountModel.getAccountData.getAccountList[position].availableBalance.toString() + " " + getAccountModel.getAccountData.getAccountList[position].currency.toString()
+        binding.accountBalance.text = (getAccountModel.getAccountData.getAccountList[position].availableBalance+1500.0).toString() + " " + getAccountModel.getAccountData.getAccountList[position].currency.toString()
         currentIban = getAccountModel.getAccountData.getAccountList[position].iban
+        if(getAccountModel.getAccountData.getAccountList[position].interestRate == 0.0) {
+            binding.vadeliText.text ="Vadesiz ${getAccountModel.getAccountData.getAccountList[position].currency.toString()} Hesabım"
+        }
+        else{
+            binding.vadeliText.text ="Vadeli ${getAccountModel.getAccountData.getAccountList[position].currency.toString()} Hesabım"
+        }
     }
     private fun createDummyTransactionList(size:Int): Array<GetAccountTransactionList> {
         var x = ArrayList<GetAccountTransactionList>()

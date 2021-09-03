@@ -275,10 +275,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         //SETTING UP PIE DATA INTO PieData
         val pieData = PieData(pieDataSet)
 
-        //SET TEXT IN THE MIDDLE OF THE PIECHART
-        intertechPieChart.centerText = "CENTER TEXT <3"
-        intertechPieChart.setCenterTextColor(Color.BLACK)
-        intertechPieChart.setCenterTextSize(18f)
+
 
         //IF YOU WANT TO HIDE THE ENTRIES, MAKE SET THIS AS ENABLE
         //intertechPieChart.legend.isEnabled = false
@@ -319,11 +316,23 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
         })
         //CENTER SPACE INCREMENT/DECREMENT OF THE PIECHART
-        intertechPieChart.holeRadius = 20f
+        intertechPieChart.holeRadius = 60f
 
 
         pieData.setDrawValues(true)
         intertechPieChart.data = pieData
+        intertechPieChart.transparentCircleRadius=0f
+
+        //SET TEXT IN THE MIDDLE OF THE PIECHART
+        var totalBalance = 0.0
+        for(pos in 0..pieEntries.size-1){
+            totalBalance += pieEntries.get(pos).y
+        }
+        val totalBalanceString =totalBalance.toString()
+        intertechPieChart.centerText ="Toplam Varlık\n%.2f ".format(totalBalance)+"₺"
+        intertechPieChart.setCenterTextColor(Color.BLACK)
+        intertechPieChart.setCenterTextSize(18f)
+
         return intertechPieChart
     }
 
