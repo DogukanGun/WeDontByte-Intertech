@@ -52,6 +52,8 @@ class SimpleAccountAdapter() :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAc
         }
         @SuppressLint("SimpleDateFormat", "NotifyDataSetChanged")
         fun changeStatusOfArray(){
+            transactionArrayList.clear()
+            transactionArrayList.addAll(transactions)
             when(status){
                 SimpleAccountListState.LAST_ONE_WEEK->{
                     transactionArrayList=filterArrayList(transactionArrayList,SimpleAccountListState.LAST_ONE_WEEK.day)
@@ -69,13 +71,14 @@ class SimpleAccountAdapter() :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAc
                     transactionArrayList=filterArrayList(transactionArrayList,SimpleAccountListState.LAST_ONE_YEAR.day)
                  }
                 SimpleAccountListState.DETAIL->{
-                    transactionArrayList=filterArrayList(transactionArrayList,SimpleAccountListState.DETAIL.day)
+//                    transactionArrayList=filterArrayList(transactionArrayList,SimpleAccountListState.DETAIL.day)
                  }
                 SimpleAccountListState.NO_FILTER->{
-                    transactionArrayList=filterArrayList(transactionArrayList,SimpleAccountListState.NO_FILTER.day)
+//                    transactionArrayList=filterArrayList(transactionArrayList,SimpleAccountListState.NO_FILTER.day)
                  }
             }
             notifyDataSetChanged()
+
 
         }
 
