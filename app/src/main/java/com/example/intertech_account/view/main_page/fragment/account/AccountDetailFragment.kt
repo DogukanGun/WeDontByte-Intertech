@@ -64,8 +64,8 @@ class AccountDetailFragment : Fragment() {
         val LandmarkAdapter = AccountDetailAdapter(landmarkList)
         binding.recyclerview.adapter = LandmarkAdapter
         binding.button1.setOnClickListener{
-            val action=AccountDetailFragmentDirections.actionAccountDetailFragmentToPdfCreateAndDownloadFragment()
-            Constant.navHostFragment.navController.navigate(action)
+
+
         }
 
 

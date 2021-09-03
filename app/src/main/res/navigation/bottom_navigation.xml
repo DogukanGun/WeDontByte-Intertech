@@ -63,9 +63,6 @@
         android:name="com.example.intertech_account.view.main_page.fragment.account.AccountDetailFragment"
         android:label="fragment_account_detail"
         tools:layout="@layout/fragment_account_detail" >
-        <action
-            android:id="@+id/action_accountDetailFragment_to_pdfCreateAndDownloadFragment"
-            app:destination="@id/pdfCreateAndDownloadFragment" />
     </fragment>
     <fragment
         android:id="@+id/showReceiptFragment"

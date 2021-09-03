@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.intertech_account.databinding.FragmentAccountsInformationBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
+import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.QrOperation
 import com.example.intertech_account.view_model.GetAccountViewModel
@@ -54,6 +55,7 @@ class AccountsInformationFragment : Fragment() {
                 ) {
                     updateLabel(position)
 
+
                 }
 
                 override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -71,6 +73,18 @@ class AccountsInformationFragment : Fragment() {
         binding.accountType.text = getAccountModel.getAccountData.getAccountList[position].iban
         binding.accountBalance.text = getAccountModel.getAccountData.getAccountList[position].availableBalance.toString() + " " + getAccountModel.getAccountData.getAccountList[position].currency.toString()
         currentIban = getAccountModel.getAccountData.getAccountList[position].iban
+    }
+    private fun createDummyTransactionList(size:Int): Array<GetAccountTransactionList> {
+        var x = ArrayList<GetAccountTransactionList>()
+        for (i in 0..size){
+
+            x.add(GetAccountTransactionList("test","test","test","test",(-150..150).random().toDouble(),122.2,
+                "t","t","t","t","t","t","t",
+                233.3,"t"))
+        }
+
+
+        return x.toTypedArray()
     }
 
 }

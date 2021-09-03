@@ -113,6 +113,8 @@ class MainPageFragment : Fragment() {
 
          */
         var adapter = recyclerView.adapter as MainPageAdapter
+        /*
+
         var arrayList = arrayListOf<GetAccountTransactionList>()
         var x1 = createDummyTransactionList(12.3)
         var x2 = createDummyTransactionList(45.5)
@@ -124,15 +126,29 @@ class MainPageFragment : Fragment() {
         arrayList.add(x2)
         arrayList.add(x3)
         arrayList.add(x4)
-        val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
+        val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()*/
         //var myarray = arrayOf(GetAccountTransactionList())
-        adapter.addList(myarray2)
+        adapter.addList(createDummyTransactionList(15))
         val dividerItemDecoration = DividerItemDecoration(
             recyclerView.context,1
         )
         recyclerView.addItemDecoration(dividerItemDecoration)
 
     }
+
+    private fun createDummyTransactionList(size:Int): Array<GetAccountTransactionList> {
+        var x = ArrayList<GetAccountTransactionList>()
+        for (i in 0..size){
+
+            x.add(GetAccountTransactionList("Kira","02.05.2020","test","test",(-150..150).random().toDouble(),122.2,
+                "t","t","t","t","t","t","t",
+                233.3,"t"))
+        }
+
+
+        return x.toTypedArray()
+    }
+
     private fun createDummyTransactionList(x: Double):GetAccountTransactionList{
         var x = GetAccountTransactionList("test","test","test","test",x,122.2,
             "t","t","t","t","t","t","t",
