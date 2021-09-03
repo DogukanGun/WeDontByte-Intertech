@@ -19,8 +19,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAllAccountsBinding
 import com.example.intertech_account.databinding.FragmentSimpleAccountBinding
+import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.view.main_page.activity.MainActivity
+import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
 import com.example.intertech_account.view.main_page.fragment.account.adapter.SimpleAccountAdapter
 import com.example.intertech_account.view.main_page.fragment.main_page.adapter.MainPageAdapter
 import com.github.mikephil.charting.charts.LineChart
@@ -38,8 +40,11 @@ class SimpleAccountFragment : Fragment() {
     private var amounts = mutableListOf<String>()
     private var times = mutableListOf<String>()
     private var dates = mutableListOf<String>()
-
+    private var transaction = arrayListOf<GetAccountTransactionList>()
     private lateinit var binding: FragmentSimpleAccountBinding
+    private lateinit var adapter: SimpleAccountAdapter
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +54,8 @@ class SimpleAccountFragment : Fragment() {
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
         createRecyclerView()
         executePopupMenu(inflater)
+
+
 
         return binding.root
     }
@@ -193,6 +200,8 @@ class SimpleAccountFragment : Fragment() {
         val recyclerView = binding.simpleAccountTransactions
         recyclerView.layoutManager =  LinearLayoutManager(activity)
         recyclerView.adapter = SimpleAccountAdapter()
+
+        /////////////GERÇEK VERİ GELDİĞİNDE KULLANILACAK//////////////////
         /*getAccountTransactionViewModel.apiRequest()
         getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner,{
             getAccountTransactionListModel=it
@@ -209,16 +218,11 @@ class SimpleAccountFragment : Fragment() {
             }
         })
          */
-        var adapter = recyclerView.adapter as SimpleAccountAdapter
+        adapter = SimpleAccountAdapter()
+        recyclerView.adapter = adapter
         var arrayList = arrayListOf<GetAccountTransactionList>()
-        var x1 = createDummyTransactionList(12.3)
-        var x2 = createDummyTransactionList(45.5)
-        var x3 = createDummyTransactionList(67.7)
-        var x4 = createDummyTransactionList(22.3)
-        arrayList.add(x1)
-        arrayList.add(x2)
-        arrayList.add(x3)
-        arrayList.add(x4)
+
+
         //val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
         val myarray2: Array<GetAccountTransactionList> = createDummyTransactionList(15)
         //var myarray = arrayOf(GetAccountTransactionList())
@@ -240,15 +244,17 @@ class SimpleAccountFragment : Fragment() {
             recyclerView.context,1
         )
         recyclerView.addItemDecoration(dividerItemDecoration)
-
+        adapter.sortTransactionsDefault()
     }
-    private fun createDummyTransactionList(x: Double): GetAccountTransactionList {
-        var x = GetAccountTransactionList("test","test","test","test",x,122.2,
+    /*private fun createDummyTransactionList(x: Double, d: String): GetAccountTransactionList {
+        var x = GetAccountTransactionList("test",d,"test","test",x,122.2,
             "t","t","t","t","t","t","t",
             233.3,"t"
         )
         return x
     }
+
+     */
     private fun addToRecyclerView(destinationAccountTitle: String, transactionName: String, amount: String, time: String, date: String)
     {
         destinationAccountTitles.add(destinationAccountTitle)
@@ -277,6 +283,5 @@ class SimpleAccountFragment : Fragment() {
 
         return x.toTypedArray()
     }
-
 
 }

@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.HomeScreenTransactionRowBinding
 import com.example.intertech_account.databinding.SimpleAccountRecyclerviewRowBinding
+import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 
-class SimpleAccountAdapter :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAccountHolder>()   {
+class SimpleAccountAdapter() :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAccountHolder>()  {
         private  var transactions:Array<GetAccountTransactionList> = emptyArray()
-
+        private var transactionArrayList:ArrayList<GetAccountTransactionList> = arrayListOf()
         class SimpleAccountHolder(val binding: SimpleAccountRecyclerviewRowBinding): RecyclerView.ViewHolder(binding.root){
 
         }
@@ -19,6 +20,7 @@ class SimpleAccountAdapter :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcco
 
         fun addList(transactions: Array<GetAccountTransactionList>){
             this.transactions=transactions
+            transactionArrayList.addAll(transactions)
             notifyDataSetChanged()
         }
 
@@ -33,11 +35,11 @@ class SimpleAccountAdapter :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcco
 
         override fun onBindViewHolder(holder: SimpleAccountHolder, position: Int) {
 
-            if (transactions.isNotEmpty()){
+            if (transactionArrayList.isNotEmpty()){
 
-                holder.binding.explanation.text =transactions[position].explanation
-                holder.binding.dateValue.text = transactions[position].date
-                holder.binding.amountValue.text = transactions[position].amount.toString()
+                holder.binding.explanation.text =transactionArrayList[position].explanation
+                holder.binding.dateValue.text = transactionArrayList[position].date
+                holder.binding.amountValue.text = transactionArrayList[position].amount.toString()
             }
 
 
@@ -45,6 +47,42 @@ class SimpleAccountAdapter :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcco
 
 
         override fun getItemCount(): Int {
-            return transactions.size
+            return transactionArrayList.size
         }
+
+    private fun createDummyTransactionList(x: Double, d: String): GetAccountTransactionList {
+        var x = GetAccountTransactionList("test",d,"test","test",x,122.2,
+            "t","t","t","t","t","t","t",
+            233.3,"t"
+        )
+        return x
+    }
+
+    private fun lastTenTransactions(item:ArrayList<GetAccountTransactionList>):ArrayList<GetAccountTransactionList>{
+        val allTransactionsArrayList: ArrayList<GetAccountTransactionList> = arrayListOf()
+        item.sortWith(compareByDescending { it.date})
+        if(item.size >= 10) {
+            for (i in 0 until 10) {
+                allTransactionsArrayList.add(item[i])
+            }
+        }
+        else{
+            for(i in 0 until item.size){
+                allTransactionsArrayList.add(item[i])
+            }
+        }
+
+        return allTransactionsArrayList
+
+    }
+
+    fun sortTransactionsDefault(){
+       transactionArrayList.clear()
+        transactionArrayList.addAll(lastTenTransactions(transactions.toCollection(ArrayList<GetAccountTransactionList>())))
+        notifyDataSetChanged()
+    }
+
+
+
 }
+
