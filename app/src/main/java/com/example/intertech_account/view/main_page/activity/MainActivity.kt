@@ -21,15 +21,21 @@ import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.zeugmasolutions.localehelper.Locales
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private lateinit var binding:ActivityMainBinding
     private lateinit var navHostFragment:NavHostFragment
     private val getCurrencyViewModel:GetCurrencyViewModel by viewModels()
     private var readToExit:Int=1
+
+    override fun updateLocale(locale: Locale) {
+        super.updateLocale(locale)
+        setTitle(R.string.app_title)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
 
         // Initialization
@@ -91,17 +97,12 @@ class MainActivity : AppCompatActivity() {
 
                 // Topbar diller buttonu
 
-                R.id.languageTopBarButton->{
-                    val sharedPreferences =getSharedPreferences("SettingsActivity", MODE_PRIVATE)
-                    val language = sharedPreferences.getString("language", "English")
-                    if (language.equals("English")){
-                        sharedPreferences.edit().putString("language","Turkish")
-                        restartApp("Turkish")
-                    }else{
-                        sharedPreferences.edit().putString("language","English")
-                        restartApp("English")
-                    }
-
+                R.id.englishLanguage->{
+                    updateLocale(Locales.English)
+                    true
+                }
+                R.id.turkishLanguage->{
+                    updateLocale(Locales.Turkish)
                     true
                 }
 
@@ -114,10 +115,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-    private fun restartApp(language: String){
-        BaseActivity.dLocale = Locale(language)
-    }
 
     // geri buttonu
     override fun onBackPressed() {

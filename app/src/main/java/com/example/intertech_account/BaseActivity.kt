@@ -2,25 +2,11 @@ package com.example.intertech_account
 
 import android.content.res.Configuration
 import android.view.ContextThemeWrapper
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
- import java.util.*
+import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity
+import java.util.*
 
-class BaseActivity:AppCompatActivity() {
-    companion object {
-        public var dLocale: Locale? = null
-    }
+open class BaseActivity: LocaleAwareCompatActivity() {
 
-    init {
-        updateConfig(this)
-    }
-
-    fun updateConfig(wrapper: ContextThemeWrapper) {
-        if(dLocale==Locale("") ) // Do nothing if dLocale is null
-            return
-
-        Locale.setDefault(dLocale)
-        val configuration = Configuration()
-        configuration.setLocale(dLocale)
-        wrapper.applyOverrideConfiguration(configuration)
-    }
 }

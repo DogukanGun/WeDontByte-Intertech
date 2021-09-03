@@ -16,6 +16,6 @@ object Constant{
         var currentBottomMenu=0
         var exceptionForApp=MutableLiveData("")
         lateinit var currencyList:ArrayList<GetCurrency>
-
+        var languageStatus=0
 }
 
