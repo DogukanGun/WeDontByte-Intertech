@@ -292,10 +292,10 @@ class AllAccountsFragment : Fragment() {
                     //TODO Buraya istenidiği kadar buton eklenebilir
                     buffer.add(
                         SwipeButton(activity as MainActivity,
-                            "Hesap Kirilimlari",
+                            resources.getString(R.string.sub_accounts),
                             30,
                             0,
-                            resources.getColor(R.color.intertech_button_back_color),
+                            resources.getColor(R.color.intertech_textview_text_color),
                             object : SwipeButtonClickListener {
                                 override fun onClick(pos: Int) {
 
@@ -309,7 +309,7 @@ class AllAccountsFragment : Fragment() {
                     )
                     buffer.add(
                         SwipeButton(activity as MainActivity,
-                            "Hesap Detaylari",
+                            resources.getString(R.string.account_details),
                             30,
                             0,
                             resources.getColor(R.color.intertech_button_back_color),
@@ -324,6 +324,7 @@ class AllAccountsFragment : Fragment() {
 
                             })
                     )
+
 
                     /*
                 buffer.add(

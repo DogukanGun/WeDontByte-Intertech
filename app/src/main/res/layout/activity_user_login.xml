@@ -134,14 +134,16 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/forgetPasswordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:shadowColor="#2b075b"
+        android:clickable="true"
         android:text="@string/forget_password"
-        android:textColor="#2b075b"
-        android:textColorHint="#2b075b"
+        android:textStyle="bold"
+        android:textColor="@color/intertech_textview_text_color"
+        android:textColorHint="@color/intertech_textview_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/loginPagePassword"
         app:layout_constraintHorizontal_bias="1.0"

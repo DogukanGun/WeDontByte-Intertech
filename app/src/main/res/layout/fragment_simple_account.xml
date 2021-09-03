@@ -13,18 +13,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
+
+        <Button
+            android:id="@+id/myButton"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5.5"
+            android:background="@drawable/filter"
+            app:backgroundTint="@color/intertech_button_back_color"/>
+
     <com.github.mikephil.charting.charts.LineChart
 
         android:id="@+id/simpleAccountLineChart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"/>
-    <Button
-        android:id="@+id/myButton"
-        android:layout_width="70dp"
-        android:layout_height="match_parent"
-        android:layout_weight="5"
-        android:background="@drawable/filter"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/simpleAccountTransactions"

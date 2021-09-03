@@ -12,21 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="60dp"
-        android:gravity="center_horizontal">
+        android:layout_margin="50dp"
+        android:gravity="center">
 
         <Button
             android:id="@+id/createAccountBackButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginBottom="20dp"
+            app:backgroundTint="@color/intertech_button_back_color"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/back"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/createAccountUsernameLayout"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:hint="@string/fullname"
             style="@style/Widget.AppCompat.EditText"
@@ -53,7 +54,7 @@
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:hint="@string/login_screen_username_field"
             android:inputType="text"
@@ -80,7 +81,7 @@
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:hint="@string/enterPassword"
             android:shadowColor="@color/intertech_textview_text_color"
@@ -105,7 +106,7 @@
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="40dp"
             android:gravity="center"
             android:hint="@string/repeatPassword"
             android:shadowColor="@color/intertech_textview_text_color"

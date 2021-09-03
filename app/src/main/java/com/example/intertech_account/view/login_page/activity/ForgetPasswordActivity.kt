@@ -31,9 +31,9 @@ class ForgetPasswordActivity : AppCompatActivity() {
                  getUserLoginViewModel.getUsers().observe(this,{
                     if (it.isNotEmpty()){
                         for (index in it){
-                            if (index.citizenshipID==binding.createAccountCitizenshipIDTextField.text.toString()){
+                            if (index.citizenshipID==binding.forgetPasswordCitizenshipIDTextField.text.toString()){
                                 CoroutineScope(Dispatchers.IO).launch {
-                                    getUserLoginViewModel.updateUser(binding.createAccountPasswordTextField.text.toString(),binding.createAccountCitizenshipIDTextField.text.toString())
+                                    getUserLoginViewModel.updateUser(binding.forgetPasswordPasswordTextField.text.toString(),binding.forgetPasswordCitizenshipIDTextField.text.toString())
                                 }
 
                                 val action= Intent(this, MainActivity::class.java)
@@ -50,19 +50,24 @@ class ForgetPasswordActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG).show()
             }
         }
+
+        binding.forgetPasswordBackButton.setOnClickListener{
+            val intent=Intent(this,UserLoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun checkLabels(): UserOperationState {
-        if (binding.createAccountCitizenshipIDTextField.text.isNullOrBlank()||
-            binding.createAccountPasswordTextField.text.isNullOrBlank()||
-            binding.createAccountRepeatPasswordTextField.text.isNullOrBlank()){
+        if (binding.forgetPasswordCitizenshipIDTextField.text.isNullOrBlank()||
+            binding.forgetPasswordPasswordTextField.text.isNullOrBlank()||
+            binding.forgetPasswordRepeatPasswordTextField.text.isNullOrBlank()){
             return UserOperationState.MISSING_OR_EMPTY_LABEL
         }
         val user = User(UUID.randomUUID().toString(),
             "",
-            binding.createAccountCitizenshipIDTextField.text.toString(),
-            binding.createAccountPasswordTextField.text.toString(),
-            binding.createAccountRepeatPasswordTextField.text.toString())
+            binding.forgetPasswordCitizenshipIDTextField.text.toString(),
+            binding.forgetPasswordPasswordTextField.text.toString(),
+            binding.forgetPasswordRepeatPasswordTextField.text.toString())
         return getUserLoginViewModel.check(user)
 
     }

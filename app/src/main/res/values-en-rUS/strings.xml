@@ -55,7 +55,6 @@
     <string name="Descending">Descending</string>
     <string name="account_activity">Account\nActivities</string>
     <string name="close_account">Close\nAccount</string>
-    <string name="passbook">Account\nBook</string>
     <string name="account_type">Account Type</string>
     <string name="account_balance">Account Balance</string>
     <string name="qr">QR</string>
@@ -85,6 +84,9 @@
 
     <string name="settings_activity">Settings Activity</string>
     <string name="download">Download</string>
+
+    <string name="account_details">Details</string>
+    <string name="sub_accounts">Activities</string>
 
 
 

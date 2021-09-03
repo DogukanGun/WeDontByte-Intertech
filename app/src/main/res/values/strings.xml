@@ -54,7 +54,6 @@
     <string name="Descending">Azalan</string>
     <string name="account_activity">Hesap\nHareketleri</string>
     <string name="close_account">Hesap\nKapatma</string>
-    <string name="passbook">Hesap\nCüzdanı</string>
     <string name="account_type">Hesap Türü</string>
     <string name="account_balance">Hesap Bakiyesi</string>
     <string name="qr">QR</string>
@@ -82,6 +81,7 @@
     <string name="receipt">Dekont</string>
     <string name="forget_password">Şifremi unuttum</string>
     <string name="download">Indir</string>
-
+    <string name="account_details">Detaylar</string>
+    <string name="sub_accounts">Aktiviteler</string>
 
 </resources>

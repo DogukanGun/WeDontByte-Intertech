@@ -318,9 +318,9 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         //CENTER SPACE INCREMENT/DECREMENT OF THE PIECHART
         intertechPieChart.holeRadius = 60f
 
-
-        pieData.setDrawValues(true)
         intertechPieChart.data = pieData
+
+        pieData.setDrawValues(false)
         intertechPieChart.transparentCircleRadius=0f
 
         //SET TEXT IN THE MIDDLE OF THE PIECHART

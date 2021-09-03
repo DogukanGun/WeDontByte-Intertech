@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@color/intertech_recyclerview_arrow_backcolor"
-            android:text=" I "
+            android:text="I"
             android:gravity="center"
             android:textSize="20dp"
             android:textColor="@color/intertech_recyclerview_arrow_textcolor"

@@ -32,17 +32,12 @@ class UserLoginActivity : AppCompatActivity() {
         //Login page button aksiyonu
 
         binding.loginPageLoginButton.setOnClickListener {
-
-
             controlUserLogin()
+        }
 
-            binding.textView.setOnClickListener {
-                val action = Intent(this,ForgetPasswordActivity::class.java)
-                startActivity(action)
-            }
-
-
-
+        binding.forgetPasswordTextView.setOnClickListener {
+            val action = Intent(this,ForgetPasswordActivity::class.java)
+            startActivity(action)
         }
 
         binding.loginPageHelpMe.setOnClickListener {
