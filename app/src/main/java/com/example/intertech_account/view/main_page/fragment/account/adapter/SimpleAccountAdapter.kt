@@ -24,7 +24,7 @@ class SimpleAccountAdapter() :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAc
         private var transactionArrayList:ArrayList<GetAccountTransactionList> = arrayListOf()
         var status:SimpleAccountListState = SimpleAccountListState.NO_FILTER
 
-        class SimpleAccountHolder(val binding: SimpleAccountRecyclerviewRowBinding): RecyclerView.ViewHolder(binding.root){
+        class SimpleAccountHolder(val binding: HomeScreenTransactionRowBinding): RecyclerView.ViewHolder(binding.root){
 
         }
 
@@ -84,7 +84,7 @@ class SimpleAccountAdapter() :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAc
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleAccountHolder {
-            val binding = SimpleAccountRecyclerviewRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+            val binding = HomeScreenTransactionRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
             return SimpleAccountHolder(binding)
         }
 
