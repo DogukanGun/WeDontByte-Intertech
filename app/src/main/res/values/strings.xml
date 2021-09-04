@@ -83,6 +83,8 @@
     <string name="download">Indir</string>
     <string name="account_details">Detaylar</string>
     <string name="sub_accounts">Aktiviteler</string>
+    <string name="explanation">Açıklama</string>
+    <string name="total_balance">Toplam Varlık</string>
 
 
 </resources>

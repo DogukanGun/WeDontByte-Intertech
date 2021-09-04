@@ -87,7 +87,7 @@
 
     <string name="account_details">Details</string>
     <string name="sub_accounts">Activities</string>
-
-
+    <string name="explanation">Explanation</string>
+    <string name="total_balance">Total Balance</string>
 
 </resources>

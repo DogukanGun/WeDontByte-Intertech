@@ -10,7 +10,6 @@ sealed class AllAccountsRecyclerViewHolder (binding: ViewBinding) : RecyclerView
 
 
     // TODO başlıklar için değişecek
-
     class TitleViewHolder(private val binding: AllAccountsRecyclerviewTitleRowBinding) :
         AllAccountsRecyclerViewHolder(binding) {
 

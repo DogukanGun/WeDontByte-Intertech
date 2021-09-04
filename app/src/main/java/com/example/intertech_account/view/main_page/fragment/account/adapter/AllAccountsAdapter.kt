@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.example.intertech_account.R
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewGraphRowBinding
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBinding
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewTitleRowBinding
@@ -258,7 +259,8 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         //GET PIE CHART COMPONENT FROM XML
         val intertechPieChart : PieChart = binding.allAccountsPieChart
 
-
+        intertechPieChart.description.isEnabled = false
+        intertechPieChart.legend.isEnabled = false
 
 
         //SETUP PIE CHART COLORS
@@ -329,7 +331,8 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             totalBalance += pieEntries.get(pos).y
         }
         val totalBalanceString =totalBalance.toString()
-        intertechPieChart.centerText ="Toplam Varlık\n%.2f ".format(totalBalance)+"₺"
+
+        intertechPieChart.apply { intertechPieChart.centerText = context.getString(R.string.total_balance) + "\n%.2f ".format(totalBalance)+"₺" }
         intertechPieChart.setCenterTextColor(Color.BLACK)
         intertechPieChart.setCenterTextSize(18f)
 

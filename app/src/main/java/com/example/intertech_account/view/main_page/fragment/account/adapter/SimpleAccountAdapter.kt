@@ -5,7 +5,8 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
  import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.HomeScreenTransactionRowBinding
- import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
+import com.example.intertech_account.databinding.SimpleAccountRecyclerviewRowBinding
+import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.model.api_model.status.SimpleAccountListState
 import java.text.SimpleDateFormat
  import java.util.*
@@ -16,7 +17,7 @@ class SimpleAccountAdapter :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcco
         private var transactionArrayList:ArrayList<GetAccountTransactionList> = arrayListOf()
         var status:SimpleAccountListState = SimpleAccountListState.NO_FILTER
 
-        class SimpleAccountHolder(val binding: HomeScreenTransactionRowBinding): RecyclerView.ViewHolder(binding.root)
+        class SimpleAccountHolder(val binding: SimpleAccountRecyclerviewRowBinding): RecyclerView.ViewHolder(binding.root)
 
 
         // Ana sayfadaki transactionların response geldikten sonra eklenmesi
@@ -67,19 +68,16 @@ class SimpleAccountAdapter :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcco
                  }
             }
             notifyDataSetChanged()
-
-
         }
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleAccountHolder {
-            val binding = HomeScreenTransactionRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+            val binding = SimpleAccountRecyclerviewRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
             return SimpleAccountHolder(binding)
         }
 
 
         //Transactionların doldurulması
-
         override fun onBindViewHolder(holder: SimpleAccountHolder, position: Int) {
 
             if (transactionArrayList.isNotEmpty()){
@@ -88,10 +86,7 @@ class SimpleAccountAdapter :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcco
                 holder.binding.dateValue.text = transactionArrayList[position].date
                 holder.binding.amountValue.text = transactionArrayList[position].amount.toString()
             }
-
-
         }
-
 
         override fun getItemCount(): Int {
             return transactionArrayList.size

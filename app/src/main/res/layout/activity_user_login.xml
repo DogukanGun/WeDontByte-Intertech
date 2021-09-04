@@ -11,42 +11,52 @@
     tools:context=".view.login_page.activity.UserLoginActivity">
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/loginPageUsername"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="50dp"
-        android:width="0dp"
-        android:height="50dp"
-        android:gravity="center"
-        android:hint="@string/login_screen_username_field"
-        android:inputType="text"
-        android:shadowColor="@color/intertech_textview_text_color"
+    <ImageView
+        android:layout_width="300sp"
+        android:layout_height="300sp"
+        android:background="@drawable/intertech_app_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.167" />
+
+    <Button
+        android:id="@+id/loginPageHelpMe"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:alpha="0.5"
+        android:background="@drawable/button_settings"
+        android:backgroundTint="@color/intertech_button_back_color"
+        android:text="@string/help"
+        android:textColor="@color/intertech_button_text_color"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.295"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPagePassword"
+        app:layout_constraintVertical_bias="0.156" />
+
+    <TextView
+        android:id="@+id/forgetPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:shadowColor="#2b075b"
+        android:text="@string/forget_password"
         android:textColor="@color/intertech_textview_text_color"
         android:textColorHint="@color/intertech_textview_text_color"
         android:textStyle="bold"
-        app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/loginPagePassword"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/loginPageUsernameTextField"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:inputType="number"
-            android:maxLength="11"
-            android:maxLines="1"
-            android:textStyle="bold" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/loginPagePassword"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginPagePassword"
@@ -78,26 +88,50 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:inputType="textPassword"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="422dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/loginPageHelpMe"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/button_settings"
-        android:backgroundTint="@color/intertech_button_back_color"
-        android:text="@string/help"
-        android:textColor="@color/intertech_button_text_color"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginPageUsername"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="50dp"
+        android:width="0dp"
+        android:height="50dp"
+        android:gravity="center"
+        android:hint="@string/login_screen_username_field"
+        android:inputType="text"
+        android:shadowColor="@color/intertech_textview_text_color"
+        android:textColor="@color/intertech_textview_text_color"
+        android:textColorHint="@color/intertech_textview_text_color"
         android:textStyle="bold"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.295"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPagePassword"
-        app:layout_constraintVertical_bias="0.129" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPageUsernameTextField"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:inputType="number"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="324dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/loginPageLoginButton"
@@ -132,24 +166,6 @@
         app:layout_constraintVertical_bias="0.023"
 
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/forgetPasswordTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:shadowColor="#2b075b"
-        android:clickable="true"
-        android:text="@string/forget_password"
-        android:textStyle="bold"
-        android:textColor="@color/intertech_textview_text_color"
-        android:textColorHint="@color/intertech_textview_text_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/loginPagePassword"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPagePassword"
-        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,7 +30,6 @@ class SimpleAccountFragment : Fragment() {
     private lateinit var adapter: SimpleAccountAdapter
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -162,6 +161,8 @@ class SimpleAccountFragment : Fragment() {
         //SETUP LINE ANIMATION
         intertechLineChart.animateXY(3000, 3000)
 
+        intertechLineChart.description.isEnabled = false
+        intertechLineChart.legend.isEnabled = false
 
         //SETUP LINE CHART COLORS
         //var lineDataSet = LineDataSet(myArray, "MONEY/YEAR GRAPH")
