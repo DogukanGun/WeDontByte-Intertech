@@ -75,7 +75,6 @@
 
     <string name="id_number_invalid">ID number is invalid</string>
     <string name="id_password_correct">ID number and password are correct...</string>
-    <string name="wrong_password">Wrong Password</string>
     <string name="successfully_registered">You have successfully registered</string>
     <string name="language">Language</string>
     <string name="english">English</string>
@@ -89,5 +88,13 @@
     <string name="sub_accounts">Activities</string>
     <string name="explanation">Explanation</string>
     <string name="total_balance">Total Balance</string>
+
+    <string name="no_error">The process is done successfully</string>
+    <string name="missing_namesurname">The name or surname is missing</string>
+    <string name="empty_label">Missing or empty label</string>
+    <string name="password_not_match">The password does not match</string>
+    <string name="password_short_length">The length of the password must be larger than 8 characters</string>
+    <string name="wrong_id_number">The given Citizenship Number is not valid</string>
+    <string name="wrong_password">The given password is wrong</string>
 
 </resources>

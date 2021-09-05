@@ -153,9 +153,10 @@
 
             <Button
                 android:id="@+id/qrButton"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:background="@drawable/qr"
+                app:backgroundTint="@color/intertech_button_back_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/billsButton"
                 app:layout_constraintHorizontal_bias="0.49"
@@ -165,10 +166,11 @@
 
             <Button
                 android:id="@+id/billsButton"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginEnd="18dp"
                 android:background="@drawable/bill"
+                app:backgroundTint="@color/intertech_button_back_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -178,11 +180,12 @@
 
             <Button
                 android:id="@+id/sendMoneyButton"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="18dp"
                 android:background="@drawable/money_transfer"
                 android:textSize="16sp"
+                app:backgroundTint="@color/intertech_button_back_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/qrButton"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -219,7 +222,7 @@
                 app:layout_constraintHorizontal_bias="0.479"
                 app:layout_constraintStart_toStartOf="@+id/qrButton"
                 app:layout_constraintTop_toBottomOf="@+id/qrButton"
-                app:layout_constraintVertical_bias="0.692" />
+                app:layout_constraintVertical_bias="0.6" />
 
             <TextView
                 android:id="@+id/billsTextView"
@@ -232,10 +235,9 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/billsButton"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/billsButton"
                 app:layout_constraintTop_toBottomOf="@+id/billsButton"
-                app:layout_constraintVertical_bias="0.7" />
+                app:layout_constraintVertical_bias="0.6" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

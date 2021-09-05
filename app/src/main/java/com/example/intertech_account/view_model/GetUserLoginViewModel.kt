@@ -2,6 +2,7 @@ package com.example.intertech_account.view_model
 
  import android.content.Context
  import androidx.lifecycle.*
+ import com.example.intertech_account.R
  import com.example.intertech_account.model.api_model.login_page.user.User
  import com.example.intertech_account.model.api_model.status.UserOperationState
  import com.example.intertech_account.resources.database.Database
@@ -50,25 +51,25 @@ class GetUserLoginViewModel():ViewModel() {
     fun printUserOperationError(state: UserOperationState):String{
         when(state){
             UserOperationState.NO_ERROR->{
-
+                return R.string.no_error.toString()
             }
             UserOperationState.MISSING_NAME_OR_SURNAME->{
-
+                return R.string.missing_namesurname.toString()
             }
             UserOperationState.MISSING_OR_EMPTY_LABEL->{
-
+                return R.string.empty_label.toString()
             }
             UserOperationState.PASSWORD_DOES_NOT_MATCH->{
-
+                return R.string.password_not_match.toString()
             }
             UserOperationState.PASSWORD_LENGTH_MUST_BE_BIGGER_THAN_8_CHARACTERS->{
-
+                return R.string.password_short_length.toString()
             }
             UserOperationState.WRONG_CITIZENSHIP_ID->{
-
+                return R.string.wrong_id_number.toString()
             }
             UserOperationState.WRONG_PASSWORD->{
-
+                return R.string.wrong_password.toString()
             }
             else -> {
 

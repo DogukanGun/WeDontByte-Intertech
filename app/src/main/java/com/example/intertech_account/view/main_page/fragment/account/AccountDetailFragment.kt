@@ -63,9 +63,10 @@ class AccountDetailFragment : Fragment() {
         binding.recyclerview.layoutManager= LinearLayoutManager(activity)
         val LandmarkAdapter = AccountDetailAdapter(landmarkList)
         binding.recyclerview.adapter = LandmarkAdapter
-        binding.button1.setOnClickListener{
 
-        }
+        /*binding.button1.setOnClickListener{
+
+        }*/
 
 
         return binding.root

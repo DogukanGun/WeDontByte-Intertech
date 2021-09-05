@@ -32,7 +32,7 @@ class CreateNewAccountActivity : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch {
                     getUserLoginViewModel.insertUser(user)
                 }
-                Toast.makeText(this,"Basarili kayit oldunuz",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,getString(R.string.successfully_registered),Toast.LENGTH_LONG).show()
                 val action=Intent(this,MainActivity::class.java)
                 startActivity(action)
             }else{

@@ -30,6 +30,8 @@
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/drawable/button_settings.xml" value="0.2703125" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/drawable/intertech_background_settings.xml" value="0.2703125" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/drawable/intertech_background_settings_for_toolbar_and_bottom_navigation.xml" value="0.2703125" />
+        <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/account_detail_recycler_row.xml" value="0.21784420289855072" />
+        <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/activity_create_new_account.xml" value="0.19067028985507245" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/activity_forget_password.xml" value="0.19610507246376813" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/activity_help_screen.xml" value="0.19610507246376813" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
@@ -70,7 +72,6 @@
         <entry key="..\:/Users/Dogukan Ali Gundogan/AndroidStudioProjects/IntertechAccount/app/src/main/res/layout/home_screen_transaction_row.xml" value="0.5" />
         <entry key="..\:/Users/Dogukan Ali Gundogan/AndroidStudioProjects/IntertechAccount/app/src/main/res/layout/popup_screen.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Dogukan Ali Gundogan/AndroidStudioProjects/IntertechAccount/app/src/main/res/layout/simple_account_recyclerview_row.xml" value="0.335" />
-        <entry key="..\:/Users/Dogukan Ali Gundogan/AndroidStudioProjects/IntertechAccount/app/src/main/res/menu/top_bar_menu.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Muhammed/AndroidStudioProjects/WeDontByte-Intertech/app/src/main/res/layout/all_accounts_recyclerview_row.xml" value="0.14907407407407408" />
         <entry key="..\:/Users/Muhammed/AndroidStudioProjects/WeDontByte-Intertech/app/src/main/res/layout/fragment_accounts_information.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Muhammed/AndroidStudioProjects/WeDontByte-Intertech/app/src/main/res/layout/fragment_all_accounts.xml" value="0.1" />
