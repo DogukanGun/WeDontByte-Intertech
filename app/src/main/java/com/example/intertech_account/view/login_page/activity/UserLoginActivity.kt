@@ -25,6 +25,13 @@ class UserLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.loginPagePassword.error=null
+        buttonListen()
+
+    }
+
+
+
+    private fun buttonListen(){
         binding.addNewAccount.setOnClickListener {
             val intent = Intent(this,CreateNewAccountActivity::class.java)
             startActivity(intent)
@@ -44,13 +51,9 @@ class UserLoginActivity : AppCompatActivity() {
             val intent = Intent(this,HelpScreenActivity::class.java)
             startActivity(intent)
         }
-
     }
 
-
-
-
-    fun controlUserLogin() {
+    private fun controlUserLogin() {
         if (binding.loginPagePasswordTextField.text.toString() == "123") {
             if (binding.loginPageUsernameTextField.text.toString().length != 11 || binding.loginPageUsernameTextField.text.toString()[0] == '0') {
                 Toast.makeText(this, "Kimlik numarası geçersiz", Toast.LENGTH_LONG).show()
