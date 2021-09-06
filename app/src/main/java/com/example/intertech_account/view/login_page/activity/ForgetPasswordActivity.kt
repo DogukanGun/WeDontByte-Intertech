@@ -27,7 +27,10 @@ class ForgetPasswordActivity : AppCompatActivity() {
             val checkLabels=checkLabels()
             if (checkLabels == UserOperationState.NO_ERROR){
                 Toast.makeText(this,"Basarili sifreniz yenilendi", Toast.LENGTH_LONG).show()
-                 getUserLoginViewModel.getUsers().observe(this,{
+                getUserLoginViewModel.context=this
+                getUserLoginViewModel.start()
+
+                getUserLoginViewModel.getUsers().observe(this,{
                     if (it.isNotEmpty()){
                         for (index in it){
                             if (index.citizenshipID==binding.forgetPasswordCitizenshipIDTextField.text.toString()){
@@ -35,8 +38,9 @@ class ForgetPasswordActivity : AppCompatActivity() {
                                     getUserLoginViewModel.updateUser(binding.forgetPasswordPasswordTextField.text.toString(),binding.forgetPasswordCitizenshipIDTextField.text.toString())
                                 }
 
-                                val action= Intent(this, MainActivity::class.java)
+                                val action= Intent(this, UserLoginActivity::class.java)
                                 startActivity(action)
+                                onPause()
                             }
                         }
 
@@ -63,7 +67,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
             return UserOperationState.MISSING_OR_EMPTY_LABEL
         }
         val user = User(UUID.randomUUID().toString(),
-            "",
+            "Deneme deneme",
             binding.forgetPasswordCitizenshipIDTextField.text.toString(),
             binding.forgetPasswordPasswordTextField.text.toString(),
             binding.forgetPasswordRepeatPasswordTextField.text.toString())

@@ -22,12 +22,14 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAllAccountsBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
+import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
 import com.example.intertech_account.view.main_page.fragment.account.adapter.Swipe
 import com.example.intertech_account.view.main_page.fragment.account.adapter.SwipeButton
 import com.example.intertech_account.view.main_page.fragment.account.adapter.SwipeButtonClickListener
+import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragmentDirections
 import com.example.intertech_account.view_model.GetAccountDetailWithChartsViewModel
 import com.example.intertech_account.view_model.GetAccountViewModel
 import com.example.intertech_account.view_model.GetCurrencyViewModel
@@ -65,6 +67,20 @@ class AllAccountsFragment : Fragment() {
         getData(savedInstanceState)
         createSwipe()
 
+        Button.isUserInformationTopBarButtonClickFromAllAccounts.observe(viewLifecycleOwner,{
+            if (it==1 && Constant.currentBottomMenu==1){
+                Button.isUserInformationTopBarButtonClickFromAllAccounts.value=2
+                val action = AllAccountsFragmentDirections.actionAllAccountsFragmentToUserInformationFragment()
+                Constant.navHostFragment.findNavController().navigate(action)
+            }
+        })
+        Button.isSettingTopBarButtonClickFromAllAccountsFragment.observe(viewLifecycleOwner,{
+            if (it==1 && Constant.currentBottomMenu==1){
+                Button.isSettingTopBarButtonClickFromAllAccountsFragment.value=2
+                val action =  AllAccountsFragmentDirections.actionAllAccountsFragmentToSettingFragment()
+                Constant.navHostFragment.findNavController().navigate(action)
+            }
+        })
         binding.allAccountsRadioGroup.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId == R.id.ascending)
             {

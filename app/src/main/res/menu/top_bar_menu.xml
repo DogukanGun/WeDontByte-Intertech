@@ -8,26 +8,13 @@
         android:title="@string/userInformation"
         android:contentDescription="@string/userInformation"
         app:showAsAction="ifRoom" />
-    <group
-        android:id="@+id/languageTopBarButton"
-        android:icon="@drawable/ic_languages_ico"
-        android:title="@string/userInformation"
-        android:contentDescription="@string/userInformation"
-        app:showAsAction="ifRoom" >
 
-        <item
-            android:id="@+id/turkishLanguage"
-            android:title="@string/turkish"
-
-            />
-        <item
-            android:id="@+id/englishLanguage"
-            android:title="@string/english"
-
-            />
-
-    </group>
-
-
+    <item
+        android:id="@+id/settingTopBarButton"
+        android:icon="@drawable/ic_settings_ico"
+        android:title="@string/setting_button"
+        android:contentDescription="@string/setting_button"
+        app:showAsAction="ifRoom"
+        />
 
 </menu>

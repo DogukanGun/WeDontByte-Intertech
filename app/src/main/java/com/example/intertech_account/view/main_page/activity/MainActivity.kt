@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -70,8 +71,33 @@ class MainActivity : BaseActivity() {
         binding.toolbar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
 
 
-        //Topbar button yönlendirmesi.
 
+        Button.isEnglishLanguageButtonClick.observe(this,{
+            if (it==1){
+                updateLocale(Locales.English)
+                Button.isEnglishLanguageButtonClick.value=0
+            }
+        })
+        Button.isTurkishLanguageButtonClick.observe(this,{
+            if (it==1){
+                updateLocale(Locales.Turkish)
+                Button.isTurkishLanguageButtonClick.value=0
+            }
+        })
+        Button.isLightModeButtonClick.observe(this,{
+            if (it==1){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                delegate.applyDayNight()
+            }
+        })
+        Button.isDarkModeButtonClick.observe(this,{
+            if (it==1){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                delegate.applyDayNight()
+            }
+        })
+
+        //Topbar button yönlendirmesi.
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             var id = menuItem.itemId
             when (menuItem.itemId) {
@@ -94,17 +120,21 @@ class MainActivity : BaseActivity() {
 
                     true
                 }
-
-                // Topbar diller buttonu
-
-                R.id.englishLanguage->{
-                    updateLocale(Locales.English)
+                R.id.settingTopBarButton->{
+                    if(Constant.currentBottomMenu==0){
+                        if (Button.isSettingTopBarButtonClickFromMainPageFragment.value==0) {
+                            Button.isSettingTopBarButtonClickFromMainPageFragment.value = 1
+                        }
+                    }else{
+                        if (Button.isSettingTopBarButtonClickFromAllAccountsFragment.value==0) {
+                            Button.isSettingTopBarButtonClickFromAllAccountsFragment.value = 1
+                        }
+                    }
                     true
+
                 }
-                R.id.turkishLanguage->{
-                    updateLocale(Locales.Turkish)
-                    true
-                }
+
+
 
                 else -> {
                    false

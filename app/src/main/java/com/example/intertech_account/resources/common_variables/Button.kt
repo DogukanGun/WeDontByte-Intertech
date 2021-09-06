@@ -10,6 +10,17 @@ object Button {
     var isUserInformationTopBarButtonClickFromMainPageFragment=MutableLiveData(0)
     var isUserInformationTopBarButtonClickFromAllAccounts=MutableLiveData(0)
 
+    var isSettingTopBarButtonClickFromMainPageFragment=MutableLiveData(0)
+    var isSettingTopBarButtonClickFromAllAccountsFragment=MutableLiveData(0)
+
+    var isEnglishLanguageButtonClick= MutableLiveData(0)
+    var isTurkishLanguageButtonClick= MutableLiveData(0)
+
+    var isDarkModeButtonClick= MutableLiveData(0)
+    var isLightModeButtonClick=MutableLiveData(0)
+
+
+
 
 }
 

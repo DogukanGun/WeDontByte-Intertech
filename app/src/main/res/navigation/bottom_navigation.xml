@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_allAccountsFragment_to_accountDetailFragment"
             app:destination="@id/accountDetailFragment" />
+        <action
+            android:id="@+id/action_allAccountsFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainPageFragment"
@@ -39,6 +42,9 @@
         <action
             android:id="@+id/action_mainPageFragment_to_showReceiptFragment"
             app:destination="@id/showReceiptFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/simpleAccountFragment"
@@ -69,4 +75,9 @@
         android:name="com.example.intertech_account.view.main_page.fragment.account.ShowReceiptFragment"
         android:label="fragment_show_receipt"
         tools:layout="@layout/fragment_show_receipt" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.intertech_account.view.main_page.fragment.setting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

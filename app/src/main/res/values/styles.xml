@@ -3,6 +3,9 @@
     <style name="Widget.Theme.IntertechAccount.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
+
+    </style>
 
     <style name="Widget.Theme.IntertechAccount.ButtonBar.Fullscreen" parent="">
         <item name="android:background">@color/black_overlay</item>

@@ -45,8 +45,9 @@ class GetAccountViewModel : ViewModel(){
                     }
                 }
             }
+
         }catch (e:Exception){
-            Constant.exceptionForApp.value=R.string.internet_exception.toString()
+             Constant.exceptionForApp.value=R.string.internet_exception.toString()
         }
 
     }

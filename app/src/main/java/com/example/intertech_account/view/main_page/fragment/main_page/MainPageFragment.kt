@@ -60,6 +60,13 @@ class MainPageFragment : Fragment() {
                 Constant.navHostFragment.findNavController().navigate(action)
             }
         })
+        Button.isSettingTopBarButtonClickFromMainPageFragment.observe(viewLifecycleOwner,{
+            if (it==1 && Constant.currentBottomMenu==0){
+                Button.isSettingTopBarButtonClickFromMainPageFragment.value=2
+                val action =  MainPageFragmentDirections.actionMainPageFragmentToSettingFragment()
+                Constant.navHostFragment.findNavController().navigate(action)
+            }
+        })
 
         return binding.root
     }

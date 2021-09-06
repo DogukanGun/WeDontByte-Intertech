@@ -84,6 +84,10 @@
     <string name="sub_accounts">Aktiviteler</string>
     <string name="explanation">Açıklama</string>
     <string name="total_balance">Toplam Varlık</string>
+    <string name="setting_button">Setting</string>
+    <string name="dark_theme">Karanlık Tema</string>
+    <string name="light_theme">Aydınlık Tema</string>
+
 
     <string name="no_error">İşlem başarıyla gerçekleşti</string>
     <string name="missing_namesurname">Ad veya soyad eksik</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Intertech-Account</string>
-    <string name="hello_blank_fragment">debeme]</string>
+    <string name="hello_blank_fragment">debeme</string>
     <string name="bottom_navigation_home_button">Home</string>
     <string name="bottom_navigation_money_transfer_button">Account Activity</string>
     <string name="bottom_navigation_user_information">User Information</string>
@@ -72,6 +72,9 @@
     <string name="value">Value</string>
     <string name="user_info_type">User Info Type</string>
     <string name="forget_password">Forget Password</string>
+    <string name="setting_button">Ayarlar</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="light_theme">Light Theme</string>
 
     <string name="id_number_invalid">ID number is invalid</string>
     <string name="id_password_correct">ID number and password are correct...</string>
@@ -96,5 +99,7 @@
     <string name="password_short_length">The length of the password must be larger than 8 characters</string>
     <string name="wrong_id_number">The given Citizenship Number is not valid</string>
     <string name="wrong_password">The given password is wrong</string>
+
+
 
 </resources>

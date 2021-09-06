@@ -127,6 +127,9 @@ dependencies {
     //multidex
     implementation("androidx.multidex:multidex:2.0.1")
 
+    //dark mode
+    implementation "androidx.preference:preference-ktx:1.1.1"
+
 
 
 
