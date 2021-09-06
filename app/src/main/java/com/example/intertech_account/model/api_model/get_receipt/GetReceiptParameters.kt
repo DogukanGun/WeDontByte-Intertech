@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 // Requestin parametre detayları
 data class GetReceiptParameters (
     @SerializedName("BranchCode")
-    var branchCode: String,
+    var branchCode: Int,
     @SerializedName("TransactionDate")
     var transactionDate: String,
     @SerializedName("ReferenceNo")
-    var referenceNo: String,
+    var referenceNo: Int,
     @SerializedName("CustomerNo")
-    var customerNo: String,
+    var customerNo: Int,
     @SerializedName("IsPdf")
     var isPdf: String // Bu boolean da olabilir gibi ama postmande string gönderince de 200 OK döndü
                         //- Ece K 02.09.2021 18.57

@@ -8,6 +8,8 @@ import com.example.intertech_account.databinding.HomeScreenTransactionRowBinding
 import com.example.intertech_account.databinding.SimpleAccountRecyclerviewRowBinding
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.model.api_model.status.SimpleAccountListState
+import com.example.intertech_account.resources.common_variables.Receipt
+import com.example.intertech_account.view_model.GetReceiptViewModel
 import java.text.SimpleDateFormat
  import java.util.*
 import kotlin.collections.ArrayList
@@ -68,6 +70,8 @@ class SimpleAccountAdapter :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcco
                  }
             }
             notifyDataSetChanged()
+
+
         }
 
 
@@ -78,10 +82,18 @@ class SimpleAccountAdapter :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcco
 
 
         //Transactionların doldurulması
+
         override fun onBindViewHolder(holder: SimpleAccountHolder, position: Int) {
 
             if (transactionArrayList.isNotEmpty()){
-
+//                holder.binding.showDekont.setOnClickListener {
+////                    Receipt.referenceNo=transactions[position].referenceNumber.toInt()
+//                    Receipt.isReceiptButtonClicked.value=true
+////                    Receipt.branchCode=transactions[position].branchCode.toInt()
+////                    Receipt.customerNo=transactions[position].customerNo.toInt()
+////                    Receipt.transactionDate=transactions[position].time
+//
+//                }
                 holder.binding.explanation.text =transactionArrayList[position].explanation
                 holder.binding.dateValue.text = transactionArrayList[position].date
                 holder.binding.amountValue.text = transactionArrayList[position].amount.toString()

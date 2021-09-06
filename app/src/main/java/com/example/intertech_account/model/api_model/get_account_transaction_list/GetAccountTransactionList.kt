@@ -8,6 +8,10 @@ data class GetAccountTransactionList(
     var type: String,
     @SerializedName("Date")
     var date: String,
+    @SerializedName("CustomerNo")
+    var customerNo: String,
+    @SerializedName("BranchCode")
+    var branchCode: String,
     @SerializedName("DueDate")
     var dueDate: String,
     @SerializedName("Explanation")

@@ -85,7 +85,7 @@ class AccountsInformationFragment : Fragment() {
         var x = ArrayList<GetAccountTransactionList>()
         for (i in 0..size){
 
-            x.add(GetAccountTransactionList("test","test","test","test",(-150..150).random().toDouble(),122.2,
+            x.add(GetAccountTransactionList("test","test","24314","234234","test","test",(-150..150).random().toDouble(),122.2,
                 "t","t","t","t","t","t","t",
                 233.3,"t"))
         }

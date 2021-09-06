@@ -1,5 +1,8 @@
 package com.example.intertech_account.view.main_page.fragment.account
 
+import android.R.attr
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -8,15 +11,39 @@ import android.transition.TransitionManager
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentSimpleAccountBinding
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.model.api_model.status.SimpleAccountListState
+import com.example.intertech_account.resources.common_variables.Receipt
 import com.example.intertech_account.view.main_page.fragment.account.adapter.SimpleAccountAdapter
+import com.example.intertech_account.view_model.GetReceiptViewModel
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.*
+import android.graphics.BitmapFactory
+
+import android.graphics.Bitmap
+import android.icu.text.SimpleDateFormat
+import android.util.Base64
+import android.os.Environment
+import android.util.Log
+import androidx.test.core.app.ApplicationProvider
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
+import java.util.*
+import kotlin.collections.ArrayList
+import android.R.attr.bitmap
+import android.net.Uri
+
+import android.provider.MediaStore.Images
+import androidx.annotation.RequiresApi
 
 
 class SimpleAccountFragment : Fragment() {
@@ -28,8 +55,10 @@ class SimpleAccountFragment : Fragment() {
     private var transaction = arrayListOf<GetAccountTransactionList>()
     private lateinit var binding: FragmentSimpleAccountBinding
     private lateinit var adapter: SimpleAccountAdapter
+    private val getReceiptViewModel:GetReceiptViewModel by viewModels()
 
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -39,9 +68,73 @@ class SimpleAccountFragment : Fragment() {
         createRecyclerView()
         executePopupMenu(inflater)
 
+        Receipt.isReceiptButtonClicked.observe(viewLifecycleOwner,{
+            if (it==true){
+                getReceiptViewModel.apiRequest()
+                Receipt.isReceiptButtonClicked.value=false
+            }
+        })
+
+        getReceiptViewModel.getContentOfReceipt.observe(viewLifecycleOwner,{
+            if (!it.value.isEmpty()){
+                val intent=Intent(Intent.ACTION_SEND)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                val decodedString: ByteArray = Base64.decode(it.value, Base64.DEFAULT)
+                val decodedByte =
+                    BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+                val pictureFile = getOutputMediaFile()
+                if (pictureFile == null) {
+                    Log.d(
+                        "TAG",
+                        "Error creating media file, check storage permissions: "
+                    ) // e.getMessage());
+
+                }
+                try {
+                    val fos = FileOutputStream(pictureFile)
+                    decodedByte.compress(Bitmap.CompressFormat.PNG, 90, fos)
+                    fos.close()
+                    val pathofBmp: String =
+                        Images.Media.insertImage(requireActivity().contentResolver, decodedByte, "title", null)
+                    val bmpUri: Uri = Uri.parse(pathofBmp)
+                    intent.putExtra(Intent.EXTRA_STREAM, bmpUri)
+                    intent.type = "image/png"
+                    startActivity(intent)
+                } catch (e: FileNotFoundException) {
+                    Log.d("TAG", "File not found: " + e.message)
+                } catch (e: IOException) {
+                    Log.d("TAG", "Error accessing file: " + e.message)
+                }
+            }
+        })
+
 
 
         return binding.root
+    }
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun getOutputMediaFile(): File? {
+        // To be safe, you should check that the SDCard is mounted
+        // using Environment.getExternalStorageState() before doing this.
+        val mediaStorageDir = File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath
+        )
+
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                return null
+            }
+        }
+        // Create a media file name
+        val timeStamp: String = SimpleDateFormat("ddMMyyyy_HHmm").format(Date())
+        val mediaFile: File
+        val mImageName = "MI_$timeStamp.jpg"
+        mediaFile = File(mediaStorageDir.path + File.separator + mImageName)
+        return mediaFile
     }
 
     private fun executePopupMenu(inflater: LayoutInflater)
@@ -196,6 +289,7 @@ class SimpleAccountFragment : Fragment() {
         recyclerView.layoutManager =  LinearLayoutManager(activity)
         recyclerView.adapter = SimpleAccountAdapter()
 
+
         /////////////GERÇEK VERİ GELDİĞİNDE KULLANILACAK//////////////////
         /*getAccountTransactionViewModel.apiRequest()
         getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner,{
@@ -213,7 +307,8 @@ class SimpleAccountFragment : Fragment() {
             }
         })
          */
-        adapter = SimpleAccountAdapter()
+            adapter = SimpleAccountAdapter()
+
         recyclerView.adapter = adapter
         var arrayList = arrayListOf<GetAccountTransactionList>()
 
@@ -270,7 +365,7 @@ class SimpleAccountFragment : Fragment() {
             else transactionAmout = (-150..150).random().toDouble()
 
             defaultAmount+=transactionAmout
-            x.add(GetAccountTransactionList("test",date.toString(),"test","test",transactionAmout,defaultAmount,
+            x.add(GetAccountTransactionList("test",date.toString(),"213","1312","test","test",transactionAmout,defaultAmount,
                 "t","t","t","t","21-02-2020","t","t",
                 233.3,"t"))
         }

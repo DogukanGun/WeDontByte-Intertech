@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 // Request yapısı
 data class GetReceiptBodyModel (
     @SerializedName("Header")
-    var header: GetReceiptHeaders,
+    var header: GetReceiptHeader,
     @SerializedName("Parameters")
     var GetReceiptParameters: Array<GetReceiptParameters>
 )

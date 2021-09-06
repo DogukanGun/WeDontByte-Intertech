@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 // Requestin header kısmı
 
-data class GetReceiptHeaders(
+data class GetReceiptHeader(
     @SerializedName("AppKey")
     var AppKey: String,
     @SerializedName("Channel")

@@ -210,6 +210,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                     holder.getBind().ibanTv.text = allAccounts[position].iban
                     holder.getBind().subeIsmiTv.text = allAccounts[position].branch
                     holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
+
             }
             is AllAccountsRecyclerViewHolder.TitleViewHolder -> {
                 holder.getBind().textViewTitleRow.text = "${allAccounts[position+1].currency} Hesaplarım"
@@ -357,7 +358,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         return x
 
     }
-    public fun setPositioningCriteria(criteria: Int){
+    fun setPositioningCriteria(criteria: Int){
         positioningCriteria = criteria
     }
 }

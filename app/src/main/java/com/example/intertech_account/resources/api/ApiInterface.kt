@@ -53,9 +53,8 @@ interface ApiInterface {
     suspend fun getCustomerInfo(@Body getCustomerInfo: GetCustomerBodyModel): Response<GetCustomerModel>
 
     // GetReceiptData requesti
-    @POST("GetReceipt")
+    @POST("customers/GetReceiptData")
     @Headers(
-        "Content-Type:application/json",
-        "Ocp-Apim-Subscription-Key:e9cf2abaf9264596b62dc962b1c6a0d7",)
+         "Ocp-Apim-Subscription-Key:75164f09243444ff913254565353c68d7")
     suspend fun getReceipt(@Body getReceipt: GetReceiptBodyModel): Response<GetReceiptModel>
 }

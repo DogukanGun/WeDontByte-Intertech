@@ -9,6 +9,7 @@ data class GetAccountList(
     var isBlocked: Boolean,
     @SerializedName("BranchName")
     var branch: String,
+
     @SerializedName("ShortName")
     var name: String,
     @SerializedName("IsClosed")
