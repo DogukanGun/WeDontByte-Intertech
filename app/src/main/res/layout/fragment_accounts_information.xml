@@ -73,7 +73,7 @@
 
             <Spinner
                 android:id="@+id/accountName"
-                android:layout_width="250sp"
+                android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_settings"
                 android:backgroundTint="@color/intertech_button_back_color"
@@ -81,6 +81,10 @@
                 android:popupBackground="@color/intertech_button_back_color"
                 android:textAlignment="center"
                 android:textSize="16dp"
+                android:maxLines="1"
+                android:autoSizeMaxTextSize="16dp"
+                android:autoSizeMinTextSize="1dp"
+                android:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.496"

@@ -34,7 +34,7 @@ class AccountsInformationFragment : Fragment() {
 
             //Bütün hesapların eklenmesi
             for(index in getAccountModel.getAccountData.getAccountList){
-                spinnerList.add(index.accountName)
+                spinnerList.add(index.accountName + " / " + index.balance + " " + index.currency)
             }
             val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
                 requireContext(),

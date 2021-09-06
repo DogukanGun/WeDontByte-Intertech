@@ -1,90 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
-    android:background="@color/intertech_recyclerview_backcolor">
+    android:layout_height="58dp"
+    android:layout_marginBottom="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        android:background="@color/intertech_recyclerview_backcolor"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1.5">
 
             <TextView
-                android:id="@+id/explanation"
-                android:layout_width="wrap_content"
+                android:id="@+id/dateName"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/cardview_compat_inset_shadow"
-                android:layout_weight="3"
-                android:fontFamily="sans-serif-black"
-                android:gravity="center_vertical"
+                android:layout_weight="1.95"
+                android:text="30.05.2020"
+                android:maxLines="1"
                 android:textSize="16dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:background="@color/intertech_button_back_color"
+                android:textColor="@color/intertech_textview_text_color"/>
+
+            <TextView
+                android:id="@+id/dateValue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="10:30"
+                android:textSize="16dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:autoSizeMaxTextSize="16dp"
+                android:autoSizeMinTextSize="1dp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textStyle="bold"
+                android:background="@color/intertech_textview_text_color"
+                android:textColor="@color/intertech_button_back_color"/>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/aliciIsmi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/cardview_compat_inset_shadow"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:autoSizeMaxTextSize="16dp"
+                android:autoSizeMinTextSize="1dp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
                 android:text="@string/destination_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/showDekont"
-                android:layout_marginTop="5dp"
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_weight="2"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/button_settings"
-                android:backgroundTint="@color/intertech_button_back_color"
-                android:textColor="@color/intertech_button_text_color"
-                android:text="@string/receipt" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="5dp">
             <TextView
-                android:id="@+id/dateValue"
+                android:id="@+id/explanation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:layout_margin="@dimen/cardview_compat_inset_shadow"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:textSize="16dp"
-                android:paddingLeft="5dp"
-                android:text="@string/date"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/intertech_textview_text_color"
-                android:textStyle="bold" />
-            <TextView
                 android:fontFamily="sans-serif-black"
-                android:id="@+id/amountValue"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/cardview_compat_inset_shadow"
                 android:textSize="16dp"
-                android:layout_weight="3"
-                android:gravity="right"
-                android:paddingRight="20dp"
-                android:text="@string/amount"
+                android:text="@string/explanation"
+                android:autoSizeMaxTextSize="16dp"
+                android:autoSizeMinTextSize="1dp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
+                android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textStyle="bold" />
+
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/amountValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/cardview_compat_inset_shadow"
+            android:layout_weight="1.8"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:paddingLeft="5dp"
+            android:text="@string/amount"
+            android:autoSizeMaxTextSize="16dp"
+            android:autoSizeMinTextSize="1dp"
+            android:autoSizeTextType="uniform"
+            android:maxLines="1"
+            android:textColor="@color/intertech_textview_text_color"
+            android:textStyle="bold" />
+
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

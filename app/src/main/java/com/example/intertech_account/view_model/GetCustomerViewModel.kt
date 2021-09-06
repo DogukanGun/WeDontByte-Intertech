@@ -40,6 +40,13 @@ class GetCustomerViewModel  : ViewModel(){
                 val response = ApiClient.getClient().getCustomerInfo(getCustomerGetCustomerBodyModel)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
+
+                        //BIRTH DATE STRING MANIPULATION
+                        var year = response.body()!!.getCustomerData.birthDate.substring(0,4)
+                        var month = response.body()!!.getCustomerData.birthDate.substring(5,7)
+                        var day = response.body()!!.getCustomerData.birthDate.substring(8,10)
+                        response.body()!!.getCustomerData.birthDate = "$day.$month.$year"
+
                         getCustomerInfo.value=(response.body())
                         print(getCustomerInfo.value!!.type)
                         loading.value = false
