@@ -27,6 +27,7 @@
                 android:gravity="center"
                 android:text="@string/account_type"
                 android:textAlignment="center"
+                android:clickable="true"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="16dp"
                 android:textStyle="bold"

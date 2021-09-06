@@ -1,5 +1,6 @@
 package com.example.intertech_account.view.main_page.fragment.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,13 @@ class AccountsInformationFragment : Fragment() {
             binding.accountName.adapter=adapter
             binding.qrButton.setOnClickListener {
                 Button.qrButtonPressed.value=QrOperation(true,currentIban,false)
+            }
+            binding.accountType.setOnClickListener {
+                val intent= Intent(Intent.ACTION_SEND)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.putExtra(Intent.EXTRA_TEXT, binding.accountType.text)
+                intent.type = "text/plain"
+                startActivity(intent)
             }
             isFragmentUsedByViewPager=false
             binding.accountName.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

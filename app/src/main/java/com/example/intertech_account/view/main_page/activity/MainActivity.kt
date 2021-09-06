@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock.sleep
+import android.view.KeyEvent
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
@@ -182,15 +184,8 @@ class MainActivity : BaseActivity() {
         editor.putString("Language",language)
         editor.apply()
     }
-    // geri buttonu
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if (readToExit==0){
 
-        }
-        readToExit-=1
-        Toast.makeText(this,R.string.exit_message,Toast.LENGTH_LONG).show()
-    }
+
 
 
 }

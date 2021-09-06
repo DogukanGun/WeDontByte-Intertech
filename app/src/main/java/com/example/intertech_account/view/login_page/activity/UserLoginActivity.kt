@@ -69,6 +69,7 @@ class UserLoginActivity : AppCompatActivity() {
                     ).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this, "Kimlik numarası geçersiz", Toast.LENGTH_LONG).show()
                 }
