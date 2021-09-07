@@ -25,12 +25,12 @@ class GetOpenAccountViewModel: ViewModel() {
             GetNewAccountResponse("","")
         )))
     }
-    fun apiRequest(){
+    fun apiRequest(getNewAccountRequest: GetNewAccountRequest){
         val getOpenAccountHeader: GetOpenAccountHeaders = GetOpenAccountHeaders("c1c2a508fdf64c14a7b44edc9241c9cd",
             "API","331eb5f529c74df2b800926b5f34b874","5252012362481156055")
-        val getOpenAccountParameter: GetOpenAccountParameters = GetOpenAccountParameters(GetNewAccountRequest("",
-            "","","","")
-            ,"")
+        val getOpenAccountParameter: GetOpenAccountParameters = GetOpenAccountParameters(GetNewAccountRequest(getNewAccountRequest.accountName,
+            getNewAccountRequest.accountSuffix,getNewAccountRequest.branchCode,getNewAccountRequest.currencyCode,getNewAccountRequest.customerNo)
+            ,getNewAccountRequest.customerNo)
         var getOpenAccountParameterList=Array(1){getOpenAccountParameter}
 
         val getOpenAccountGetAccountBodyModel: GetOpenAccountBodyModel =

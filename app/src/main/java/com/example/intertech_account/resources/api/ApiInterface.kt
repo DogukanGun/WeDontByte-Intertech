@@ -61,7 +61,7 @@ interface ApiInterface {
     suspend fun getReceipt(@Body getReceipt: GetReceiptBodyModel): Response<GetReceiptModel>
 
     //OpenAccount requesti
-    @POST("OpenNewAccount")
+    @POST("Accounts/NewDemandAccount")
     @Headers(
         "Ocp-Apim-Subscription-Key:e9cf2abaf9264596b62dc962b1c6a0d7")
     suspend fun openNewAccount(@Body openNewAccount: GetOpenAccountBodyModel): Response<GetOpenAccountModel>
