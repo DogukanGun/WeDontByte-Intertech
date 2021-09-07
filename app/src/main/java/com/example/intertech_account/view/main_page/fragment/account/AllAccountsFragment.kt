@@ -200,15 +200,15 @@ class AllAccountsFragment : Fragment() {
 
 
 
-                arrList.add(createDummyAccount("USD",1500.0))
-                var asd: Array<GetAccountList> = arrList.toTypedArray()
-                asd = balanceExchange(asd)
-                for(i in asd){
-                    Log.d("Info",i.accountName+" : "+i.balanceAsTRY.toString())
-                }
+//                arrList.add(createDummyAccount("USD",1500.0))
+//                var asd: Array<GetAccountList> = arrList.toTypedArray()
+//                asd = balanceExchange(asd)
+//                for(i in asd){
+//                    Log.d("Info",i.accountName+" : "+i.balanceAsTRY.toString())
+//                }
                 pieChartEntries=getAccountDetailWithChartsViewModel.createPieChartEntries()
                 adapter_= (binding.allAccounts.adapter as? AllAccountsAdapter)!!
-                adapter_.addAccount(asd,pieChartEntries)
+                adapter_.addAccount(getAccountModel.getAccountData.getAccountList,pieChartEntries)
                 /*val currencyNames :List<String> = adapter_.getCurrencyList()
                 checkboxCreator(currencyNames,savedInstanceState)
                 for(i in currencyStates){

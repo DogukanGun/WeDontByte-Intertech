@@ -13,9 +13,5 @@ data class GetAccountTransactionListHeader(
     var ChannelSessionId: String,
     @SerializedName("ChannelRequestId")
     var ChannelRequestId: String,
-    @SerializedName("TellerName")
-    var tellerName: String,
-    @SerializedName("CallerId")
-    var callerId: String
 ) {
 }

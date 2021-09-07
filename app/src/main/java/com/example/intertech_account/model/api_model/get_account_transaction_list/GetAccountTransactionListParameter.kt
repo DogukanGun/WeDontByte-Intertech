@@ -12,6 +12,12 @@ data class GetAccountTransactionListParameter(
     @SerializedName("AccountSuffix")
     var accountSuffix:Int,
      */
+    @SerializedName("QueryMinimumAmount")
+    var queryMinimumAmount:String,
+    @SerializedName("QueryMaximumAmount")
+    var queryMaximumAmount:String,
+    @SerializedName("ActivityCount")
+    var activityCount:String,
     @SerializedName("SourceAccount")
     var getSourceAccount: GetSourceAccount,
     @SerializedName("AssociationCode")

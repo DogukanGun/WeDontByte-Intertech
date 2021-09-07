@@ -21,10 +21,10 @@ class GetAccountTransactionViewModel:ViewModel() {
     }
     fun apiRequest(){
         val getAccountTransactionHeader: GetAccountTransactionListHeader = GetAccountTransactionListHeader("c1c2a508fdf64c14a7b44edc9241c9cd",
-            "API","773f2d49-cad6-45a4-a568-439e417a61f9","773f2d49-cad6-45a4-a568-439e417a61f9",
-            "string","string")
-        val getSourceAccount = GetSourceAccount("0","13191945","0")
-        val getAccountTransactionParameter=GetAccountTransactionListParameter(getSourceAccount,"126955084","","")
+            "API","331eb5f529c74df2b800926b5f34b874","5252787826139680498",
+            )
+        val getSourceAccount = GetSourceAccount("9142","18","351")
+        val getAccountTransactionParameter=GetAccountTransactionListParameter("0","9999999","0",getSourceAccount,"126955084","2021-08-01T00:00:00","2021-09-01T00:00:00")
         val getAccountTransactionListBodyModel  = GetAccountTransactionListBodyModel(getAccountTransactionHeader,
                 arrayOf(getAccountTransactionParameter))
 

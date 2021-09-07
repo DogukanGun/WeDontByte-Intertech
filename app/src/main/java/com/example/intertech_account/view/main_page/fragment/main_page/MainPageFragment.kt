@@ -99,14 +99,14 @@ class MainPageFragment : Fragment() {
         val recyclerView = binding.transactions
         recyclerView.layoutManager =  LinearLayoutManager(activity)
         recyclerView.adapter = MainPageAdapter()
-        /*getAccountTransactionViewModel.apiRequest()
+        getAccountTransactionViewModel.apiRequest()
         getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner,{
             getAccountTransactionListModel=it
             if (getAccountTransactionListModel.data.activityCollection.isNotEmpty()){
                 val recyclerView = binding.transactions
                 recyclerView.layoutManager =  LinearLayoutManager(activity)
                 var adapter = recyclerView.adapter as MainPageAdapter
-//                adapter.addList(getCorporateAccountTransactionListModel.getCorporateAccountTransactionListData.getCorporateAccountTransactionList[0].transactions)
+                adapter.addList(getAccountTransactionListModel.data.activityCollection)
                 val dividerItemDecoration = DividerItemDecoration(
                     recyclerView.context,1
                 )
@@ -118,8 +118,8 @@ class MainPageFragment : Fragment() {
         })
 
 
-         */
-        var adapter = recyclerView.adapter as MainPageAdapter
+
+//        var adapter = recyclerView.adapter as MainPageAdapter
         /*
 
         var arrayList = arrayListOf<GetAccountTransactionList>()
@@ -135,11 +135,11 @@ class MainPageFragment : Fragment() {
         arrayList.add(x4)
         val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()*/
         //var myarray = arrayOf(GetAccountTransactionList())
-        adapter.addList(createDummyTransactionList(15))
-        val dividerItemDecoration = DividerItemDecoration(
-            recyclerView.context,1
-        )
-        recyclerView.addItemDecoration(dividerItemDecoration)
+//        adapter.addList(createDummyTransactionList(15))
+//        val dividerItemDecoration = DividerItemDecoration(
+//            recyclerView.context,1
+//        )
+//        recyclerView.addItemDecoration(dividerItemDecoration)
 
     }
 

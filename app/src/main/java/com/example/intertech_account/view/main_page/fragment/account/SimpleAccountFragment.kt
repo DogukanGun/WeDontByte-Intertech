@@ -45,6 +45,8 @@ import android.net.Uri
 
 import android.provider.MediaStore.Images
 import androidx.annotation.RequiresApi
+import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
+import com.example.intertech_account.view_model.GetAccountTransactionViewModel
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.formatter.ValueFormatter
 import javax.xml.datatype.DatatypeConstants.HOURS
@@ -60,6 +62,8 @@ class SimpleAccountFragment : Fragment() {
     private lateinit var binding: FragmentSimpleAccountBinding
     private lateinit var adapter: SimpleAccountAdapter
     private val getReceiptViewModel:GetReceiptViewModel by viewModels()
+    private val getAccountTransactionViewModel: GetAccountTransactionViewModel by viewModels()
+    private lateinit var getAccountTransactionListModel: GetAccountTransactionListModel
 
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -294,15 +298,14 @@ class SimpleAccountFragment : Fragment() {
         recyclerView.adapter = SimpleAccountAdapter()
 
 
-        /////////////GERÇEK VERİ GELDİĞİNDE KULLANILACAK//////////////////
-        /*getAccountTransactionViewModel.apiRequest()
+         getAccountTransactionViewModel.apiRequest()
         getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner,{
             getAccountTransactionListModel=it
             if (getAccountTransactionListModel.data.activityCollection.isNotEmpty()){
-                val recyclerView = binding.transactions
+                val recyclerView = binding.simpleAccountTransactions
                 recyclerView.layoutManager =  LinearLayoutManager(activity)
-                var adapter = recyclerView.adapter as MainPageAdapter
-//                adapter.addList(getCorporateAccountTransactionListModel.getCorporateAccountTransactionListData.getCorporateAccountTransactionList[0].transactions)
+                var adapter = recyclerView.adapter as SimpleAccountAdapter
+                adapter.addList(getAccountTransactionListModel.data.activityCollection)
                 val dividerItemDecoration = DividerItemDecoration(
                     recyclerView.context,1
                 )
@@ -310,22 +313,22 @@ class SimpleAccountFragment : Fragment() {
                 recyclerView.addItemDecoration(dividerItemDecoration)
             }
         })
-         */
-            adapter = SimpleAccountAdapter()
-
-        recyclerView.adapter = adapter
-        var arrayList = arrayListOf<GetAccountTransactionList>()
-
-
-        //val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
-        val myarray2: Array<GetAccountTransactionList> = createDummyList(15)
-        //var myarray = arrayOf(GetAccountTransactionList())
-        adapter.addList(myarray2)
-        var lineChartEntries =ArrayList<Entry>()
-        for(i in myarray2){
-            lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
-
-        }
+//
+//            adapter = SimpleAccountAdapter()
+//
+//        recyclerView.adapter = adapter
+//        var arrayList = arrayListOf<GetAccountTransactionList>()
+//
+//
+//        //val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
+//        val myarray2: Array<GetAccountTransactionList> = createDummyList(15)
+//        //var myarray = arrayOf(GetAccountTransactionList())
+//        adapter.addList(myarray2)
+//        var lineChartEntries =ArrayList<Entry>()
+//        for(i in myarray2){
+//            lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
+//
+//        }
 
         /*
         lineChartEntries.add(Entry(2010F, 100F))
@@ -334,12 +337,12 @@ class SimpleAccountFragment : Fragment() {
         lineChartEntries.add(Entry(2014F, 200F))
          */
 
-        drawingLineChart(lineChartEntries)
-        val dividerItemDecoration = DividerItemDecoration(
-            recyclerView.context,1
-        )
-        recyclerView.addItemDecoration(dividerItemDecoration)
-        adapter.sortTransactionsDefault()
+//        drawingLineChart(lineChartEntries)
+//        val dividerItemDecoration = DividerItemDecoration(
+//            recyclerView.context,1
+//        )
+//        recyclerView.addItemDecoration(dividerItemDecoration)
+//        adapter.sortTransactionsDefault()
     }
     /*private fun createDummyTransactionList(x: Double, d: String): GetAccountTransactionList {
         var x = GetAccountTransactionList("test",d,"test","test",x,122.2,
