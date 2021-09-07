@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_mainPageFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_openAccountFragment"
+            app:destination="@id/openAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/simpleAccountFragment"
@@ -80,4 +83,9 @@
         android:name="com.example.intertech_account.view.main_page.fragment.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/openAccountFragment"
+        android:name="com.example.intertech_account.view.main_page.fragment.account.OpenAccountFragment"
+        android:label="fragment_open_account"
+        tools:layout="@layout/fragment_open_account" />
 </navigation>

@@ -22,17 +22,15 @@ class GetOpenAccountViewModel: ViewModel() {
         loading= MutableLiveData(true)
         errorMessage= MutableLiveData("")
         getOpenAccountList= MutableLiveData(GetOpenAccountModel("", GetOpenAccountData("",
-            GetNewAccountResponse(false,"","",false,"",0.0,0.0,0.0,
-            0.0,0.0,0.0,"","",false,0.0,0.0)
+            GetNewAccountResponse("","")
         )))
     }
     fun apiRequest(){
         val getOpenAccountHeader: GetOpenAccountHeaders = GetOpenAccountHeaders("c1c2a508fdf64c14a7b44edc9241c9cd",
             "API","331eb5f529c74df2b800926b5f34b874","5252012362481156055")
-        val getOpenAccountParameter: GetOpenAccountParameters = GetOpenAccountParameters(GetNewAccountResponse(false,"",
-            "",false,"",0.0,0.0,0.0,
-            0.0,0.0,0.0,"","",false,0.0,
-            0.0),0.0, GetSourceAccount("","","") ,"")
+        val getOpenAccountParameter: GetOpenAccountParameters = GetOpenAccountParameters(GetNewAccountRequest("",
+            "","","","")
+            ,"")
         var getOpenAccountParameterList=Array(1){getOpenAccountParameter}
 
         val getOpenAccountGetAccountBodyModel: GetOpenAccountBodyModel =

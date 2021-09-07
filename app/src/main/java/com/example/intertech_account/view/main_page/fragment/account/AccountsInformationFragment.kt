@@ -15,26 +15,31 @@ import com.example.intertech_account.model.api_model.get_account_transaction_lis
 import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.QrOperation
 import com.example.intertech_account.view_model.GetAccountViewModel
+import android.R
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.fragment.findNavController
+import com.example.intertech_account.resources.common_variables.Constant
+import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragmentDirections
 
 
 class AccountsInformationFragment : Fragment() {
     private val getAccountViewModel: GetAccountViewModel by viewModels()
     lateinit var getAccountModel: GetAccountModel
-    private lateinit var currentIban:String
-    var isFragmentUsedByViewPager=false
-    lateinit var binding:FragmentAccountsInformationBinding
+    private lateinit var currentIban: String
+    var isFragmentUsedByViewPager = false
+    lateinit var binding: FragmentAccountsInformationBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAccountsInformationBinding.inflate(layoutInflater)
-        if (isFragmentUsedByViewPager){
+        if (isFragmentUsedByViewPager) {
             updateLabel(0)
-            val spinnerList:ArrayList<String> = arrayListOf<String>()
+            val spinnerList: ArrayList<String> = arrayListOf<String>()
 
             //Bütün hesapların eklenmesi
-            for(index in getAccountModel.getAccountData.getAccountList){
+            for (index in getAccountModel.getAccountData.getAccountList) {
                 spinnerList.add(index.accountName + " / " + index.balance + " " + index.currency)
             }
             val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
@@ -42,34 +47,41 @@ class AccountsInformationFragment : Fragment() {
                 android.R.layout.simple_spinner_item,
                 spinnerList
             )
-            binding.accountName.adapter=adapter
+            binding.accountName.adapter = adapter
             binding.qrButton.setOnClickListener {
-                Button.qrButtonPressed.value=QrOperation(true,currentIban,false)
+                Button.qrButtonPressed.value = QrOperation(true, currentIban, false)
+            }
+
+            binding.billsButton.setOnClickListener {
+                var action =
+                    MainPageFragmentDirections.actionMainPageFragmentToOpenAccountFragment()
+                Constant.navHostFragment.findNavController().navigate(action)
             }
             binding.accountType.setOnClickListener {
-                val intent= Intent(Intent.ACTION_SEND)
+                val intent = Intent(Intent.ACTION_SEND)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 intent.putExtra(Intent.EXTRA_TEXT, binding.accountType.text)
                 intent.type = "text/plain"
                 startActivity(intent)
             }
-            isFragmentUsedByViewPager=false
-            binding.accountName.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parentView: AdapterView<*>?,
-                    selectedItemView: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    updateLabel(position)
+            isFragmentUsedByViewPager = false
+            binding.accountName.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parentView: AdapterView<*>?,
+                        selectedItemView: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        updateLabel(position)
 
 
+                    }
+
+                    override fun onNothingSelected(parentView: AdapterView<*>?) {
+                        // your code here
+                    }
                 }
-
-                override fun onNothingSelected(parentView: AdapterView<*>?) {
-                    // your code here
-                }
-            }
         }
 
         return binding.root
@@ -77,25 +89,46 @@ class AccountsInformationFragment : Fragment() {
 
     //Hesap sayfasının bilgi güncellemesi
 
-    fun updateLabel(position:Int){
+    fun updateLabel(position: Int) {
         binding.subeText.text = getAccountModel.getAccountData.getAccountList[position].branch
         binding.accountType.text = getAccountModel.getAccountData.getAccountList[position].iban
-        binding.accountBalance.text = (getAccountModel.getAccountData.getAccountList[position].availableBalance+1500.0).toString() + " " + getAccountModel.getAccountData.getAccountList[position].currency.toString()
+        binding.accountBalance.text =
+            (getAccountModel.getAccountData.getAccountList[position].availableBalance + 1500.0).toString() + " " + getAccountModel.getAccountData.getAccountList[position].currency.toString()
         currentIban = getAccountModel.getAccountData.getAccountList[position].iban
-        if(getAccountModel.getAccountData.getAccountList[position].interestRate == 0.0) {
-            binding.vadeliText.text ="Vadesiz ${getAccountModel.getAccountData.getAccountList[position].currency.toString()} Hesabım"
-        }
-        else{
-            binding.vadeliText.text ="Vadeli ${getAccountModel.getAccountData.getAccountList[position].currency.toString()} Hesabım"
+        if (getAccountModel.getAccountData.getAccountList[position].interestRate == 0.0) {
+            binding.vadeliText.text =
+                "Vadesiz ${getAccountModel.getAccountData.getAccountList[position].currency.toString()} Hesabım"
+        } else {
+            binding.vadeliText.text =
+                "Vadeli ${getAccountModel.getAccountData.getAccountList[position].currency.toString()} Hesabım"
         }
     }
-    private fun createDummyTransactionList(size:Int): Array<GetAccountTransactionList> {
-        var x = ArrayList<GetAccountTransactionList>()
-        for (i in 0..size){
 
-            x.add(GetAccountTransactionList("test","test","24314","234234","test","test",(-150..150).random().toDouble(),122.2,
-                "t","t","t","t","t","t","t",
-                233.3,"t"))
+    private fun createDummyTransactionList(size: Int): Array<GetAccountTransactionList> {
+        var x = ArrayList<GetAccountTransactionList>()
+        for (i in 0..size) {
+
+            x.add(
+                GetAccountTransactionList(
+                    "test",
+                    "test",
+                    "24314",
+                    "234234",
+                    "test",
+                    "test",
+                    (-150..150).random().toDouble(),
+                    122.2,
+                    "t",
+                    "t",
+                    "t",
+                    "t",
+                    "t",
+                    "t",
+                    "t",
+                    233.3,
+                    "t"
+                )
+            )
         }
 
 

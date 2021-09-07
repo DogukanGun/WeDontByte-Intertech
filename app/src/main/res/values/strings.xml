@@ -96,5 +96,7 @@
     <string name="password_short_length">Parola uzunluğu 8 karakterden daha uzun olmalı</string>
     <string name="wrong_id_number">Yanlış TC Kimlik Numarası girildi</string>
     <string name="wrong_password">Hatalı parola girişi</string>
+    <string name="open_account_enter_account_name">Yeni hesap adı</string>
+    <string name="open_account_currency_type">Para birimi</string>
 
 </resources>

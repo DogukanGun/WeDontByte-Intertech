@@ -99,7 +99,8 @@
     <string name="password_short_length">The length of the password must be larger than 8 characters</string>
     <string name="wrong_id_number">The given Citizenship Number is not valid</string>
     <string name="wrong_password">The given password is wrong</string>
-
+    <string name="open_account_enter_account_name">New Account Name</string>
+    <string name="open_account_currency_type">Currency Type</string>
 
 
 </resources>
