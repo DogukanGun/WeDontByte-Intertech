@@ -295,8 +295,8 @@ class SimpleAccountFragment : Fragment() {
     private fun createRecyclerView(){
         val recyclerView = binding.simpleAccountTransactions
         recyclerView.layoutManager =  LinearLayoutManager(activity)
-        recyclerView.adapter = SimpleAccountAdapter()
-
+        adapter = SimpleAccountAdapter()
+        recyclerView.adapter = adapter
 
          getAccountTransactionViewModel.apiRequest()
         getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner,{
@@ -304,8 +304,7 @@ class SimpleAccountFragment : Fragment() {
             if (getAccountTransactionListModel.data.activityCollection.isNotEmpty()){
                 val recyclerView = binding.simpleAccountTransactions
                 recyclerView.layoutManager =  LinearLayoutManager(activity)
-                var adapter = recyclerView.adapter as SimpleAccountAdapter
-                adapter.addList(getAccountTransactionListModel.data.activityCollection)
+                (recyclerView.adapter as SimpleAccountAdapter).addList(getAccountTransactionListModel.data.activityCollection)
                 val dividerItemDecoration = DividerItemDecoration(
                     recyclerView.context,1
                 )

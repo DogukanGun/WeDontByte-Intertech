@@ -1,13 +1,13 @@
 package com.example.intertech_account.view.main_page.fragment.account.adapter
 
-import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
+import com.example.intertech_account.view.main_page.activity.MainActivity
 
-class SwipeButton(private val context:Context,
+class SwipeButton(private val context: MainActivity,
                   private val text:String,
                   private val textSize:Int,
                   private val imageResId:Int,

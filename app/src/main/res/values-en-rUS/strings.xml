@@ -102,5 +102,6 @@
     <string name="open_account_enter_account_name">New Account Name</string>
     <string name="open_account_currency_type">Currency Type</string>
 
+    <string name="copy">Copy</string>
 
 </resources>

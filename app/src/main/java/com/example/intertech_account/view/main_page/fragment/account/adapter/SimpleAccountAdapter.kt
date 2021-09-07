@@ -36,8 +36,9 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
     @SuppressLint("SimpleDateFormat")
     private fun filterArrayList(dayAmounts: Int): ArrayList<GetAccountTransactionList> {
         return transactionArrayList.filter {
-
-            val date = SimpleDateFormat("dd-MM-yyyy").parse(it.time)!!
+            var transactionArrayListIndexDate = it.date
+            transactionArrayListIndexDate = transactionArrayListIndexDate.substring(0,10)
+            val date = SimpleDateFormat("dd-MM-yyyy").parse(transactionArrayListIndexDate)!!
             val calendar = Calendar.getInstance()
             calendar.add(Calendar.DAY_OF_YEAR, dayAmounts)
 //                        val currentDate = SimpleDateFormat("dd-MM-yyyy").parse((Calendar.DAY_OF_MONTH.toString()+"-"+Calendar.MONTH.toString()+"-"+Calendar.YEAR.toString()))

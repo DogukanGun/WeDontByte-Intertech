@@ -12,6 +12,7 @@ import android.view.View
 import androidx.core.view.get
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.intertech_account.view.main_page.activity.MainActivity
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -19,9 +20,10 @@ import kotlin.collections.HashMap
 
 //All accounts sayfası için swwipe özelliği sınıfı
 
-abstract class Swipe (context:Context,
-                      private val recyclerView: RecyclerView,
-                      internal val buttonWidth:Int):ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT){
+abstract class Swipe(
+    context: MainActivity,
+    private val recyclerView: RecyclerView,
+    internal val buttonWidth:Int):ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT){
     // Gerekli değişkenler
     private var buttonList:MutableList<SwipeButton>?=null
     lateinit var gestureDetector: GestureDetector

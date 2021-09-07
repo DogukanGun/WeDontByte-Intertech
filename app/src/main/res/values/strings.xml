@@ -98,5 +98,6 @@
     <string name="wrong_password">Hatalı parola girişi</string>
     <string name="open_account_enter_account_name">Yeni hesap adı</string>
     <string name="open_account_currency_type">Para birimi</string>
+    <string name="copy">Kopyala</string>
 
 </resources>

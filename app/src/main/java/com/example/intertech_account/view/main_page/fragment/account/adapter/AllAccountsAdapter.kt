@@ -5,6 +5,8 @@ import android.graphics.Paint
 import android.location.Criteria
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.R
@@ -12,6 +14,7 @@ import com.example.intertech_account.databinding.AllAccountsRecyclerviewGraphRow
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBinding
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewTitleRowBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
+import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
@@ -42,15 +45,16 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         "TRY" to 0,
         "USD" to 1,
         "EUR" to 2,
-        "GBP" to 3
+        "GBP" to 3,
+        "CAD" to 4
 
     )
     private val currencySigns:HashMap<String,String> = hashMapOf(
         "TRY" to "₺",
         "USD" to "$",
         "EUR" to "€",
-        "GBP" to "£"
-
+        "GBP" to "£",
+        "CAD" to "$"
     )
 
 
@@ -211,6 +215,18 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                     holder.getBind().subeIsmiTv.text = allAccounts[position].branch
                     holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
 
+                    if(positioningCriteria != DEFAULT_POSITIONING)
+                    {
+                        if(!allAccounts[position].currency.equals("TRY"))
+                            holder.getBind().bakiyeCevirTl.text = "(" + String.format("%.1f", allAccounts[position].balanceAsTRY) + " ₺)"
+                        else
+                            holder.getBind().bakiyeCevirTl.text = ""
+                    }
+                    else
+                    {
+                        holder.getBind().bakiyeCevirTl.text = ""
+                    }
+
             }
             is AllAccountsRecyclerViewHolder.TitleViewHolder -> {
                 holder.getBind().textViewTitleRow.text = "${allAccounts[position+1].currency} Hesaplarım"
@@ -222,6 +238,33 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 if(graphState == 0) {
                     piechart.animateXY(1000, 1000)
                     graphState=1
+                }
+                holder.getBind().allAccountsRadioGroup.setOnCheckedChangeListener { group, checkedId ->
+                    if (checkedId == R.id.ascending)
+                    {
+                        holder.getBind().ascending.background = ContextCompat.getDrawable(holder.getBind().ascending.context, R.drawable.qr_radio_button_selected)
+                        holder.getBind().descending.background = ContextCompat.getDrawable(holder.getBind().descending.context, R.drawable.qr_radio_button_not_selected)
+                        holder.getBind().defaultSort.background = ContextCompat.getDrawable(holder.getBind().defaultSort.context, R.drawable.qr_radio_button_not_selected)
+
+                        setPositioningCriteria(2)
+                        modifyAccount(currencyStates)
+                    }
+                    else if (checkedId == R.id.descending) {
+                        holder.getBind().descending.background = ContextCompat.getDrawable(holder.getBind().descending.context, R.drawable.qr_radio_button_selected)
+                        holder.getBind().ascending.background = ContextCompat.getDrawable(holder.getBind().ascending.context, R.drawable.qr_radio_button_not_selected)
+                        holder.getBind().defaultSort.background = ContextCompat.getDrawable(holder.getBind().defaultSort.context, R.drawable.qr_radio_button_not_selected)
+
+                        setPositioningCriteria(1)
+                        modifyAccount(currencyStates)
+                    }
+                    else if (checkedId == R.id.defaultSort) {
+                        holder.getBind().defaultSort.background = ContextCompat.getDrawable(holder.getBind().defaultSort.context, R.drawable.qr_radio_button_selected)
+                        holder.getBind().ascending.background = ContextCompat.getDrawable(holder.getBind().ascending.context, R.drawable.qr_radio_button_not_selected)
+                        holder.getBind().descending.background = ContextCompat.getDrawable(holder.getBind().descending.context, R.drawable.qr_radio_button_not_selected)
+
+                        setPositioningCriteria(0)
+                        modifyAccount(currencyStates)
+                    }
                 }
             }
 

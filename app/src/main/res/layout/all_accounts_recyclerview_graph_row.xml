@@ -2,8 +2,87 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/intertech_screen_color">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/allAccountsPieChart"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/createAccount"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:background="@drawable/create_account"
+            android:backgroundTint="@color/intertech_button_back_color"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/allAccountsPieChart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+        <RadioGroup
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/allAccountsRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/ascending"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/qr_radio_button_not_selected"
+                android:button="@drawable/qr_radio_button"
+                android:foreground="@drawable/ascending"
+                android:checked="false"
+                android:padding="10dp"
+                android:textColor="@color/intertech_button_back_color"
+                android:textSize="16dp"
+                android:textStyle="bold"/>
+
+            <RadioButton
+                android:id="@+id/descending"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/qr_radio_button_not_selected"
+                android:button="@drawable/qr_radio_button"
+                android:foreground="@drawable/descending"
+                android:checked="false"
+                android:padding="10dp"
+                android:textColor="@color/intertech_button_back_color"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/defaultSort"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/qr_radio_button_selected"
+                android:button="@drawable/qr_radio_button"
+                android:foreground="@drawable/moneysections"
+                android:checked="true"
+                android:padding="10dp"
+                android:textColor="@color/intertech_button_back_color"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+    </LinearLayout>
+
 </layout>
