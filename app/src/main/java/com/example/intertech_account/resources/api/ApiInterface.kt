@@ -14,6 +14,8 @@ import com.example.intertech_account.model.api_model.get_customer.GetCustomerMod
 import com.example.intertech_account.model.api_model.get_receipt.GetReceiptBodyModel
 import com.example.intertech_account.model.api_model.get_receipt.GetReceiptData
 import com.example.intertech_account.model.api_model.get_receipt.GetReceiptModel
+import com.example.intertech_account.model.api_model.open_account.GetOpenAccountBodyModel
+import com.example.intertech_account.model.api_model.open_account.GetOpenAccountModel
 import retrofit2.Response
 
 // API ile bağlantı kurulmasını sağlayan interface
@@ -57,4 +59,11 @@ interface ApiInterface {
     @Headers(
          "Ocp-Apim-Subscription-Key:75164f09243444ff913254565353c68d7")
     suspend fun getReceipt(@Body getReceipt: GetReceiptBodyModel): Response<GetReceiptModel>
+
+    //OpenAccount requesti
+    @POST("OpenNewAccount")
+    @Headers(
+        "Ocp-Apim-Subscription-Key:e9cf2abaf9264596b62dc962b1c6a0d7")
+    suspend fun openNewAccount(@Body openNewAccount: GetOpenAccountBodyModel): Response<GetOpenAccountModel>
+
 }

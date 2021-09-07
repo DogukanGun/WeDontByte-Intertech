@@ -40,10 +40,14 @@ import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import java.util.*
 import kotlin.collections.ArrayList
 import android.R.attr.bitmap
+import android.icu.util.TimeUnit
 import android.net.Uri
 
 import android.provider.MediaStore.Images
 import androidx.annotation.RequiresApi
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.formatter.ValueFormatter
+import javax.xml.datatype.DatatypeConstants.HOURS
 
 
 class SimpleAccountFragment : Fragment() {
@@ -257,6 +261,7 @@ class SimpleAccountFragment : Fragment() {
         intertechLineChart.description.isEnabled = false
         intertechLineChart.legend.isEnabled = false
 
+
         //SETUP LINE CHART COLORS
         //var lineDataSet = LineDataSet(myArray, "MONEY/YEAR GRAPH")
         var lineDataSet = LineDataSet(entries, "MONEY/YEAR GRAPH")
@@ -274,9 +279,8 @@ class SimpleAccountFragment : Fragment() {
         }
 
         lineDataSet.setColors(colors.toIntArray(),255)
-
-        lineDataSet.valueTextColor = Color.CYAN
-        lineDataSet.valueTextSize = 18F
+        lineDataSet.valueTextColor = R.color.intertech_actionbar_bottomnav_back_color
+        lineDataSet.valueTextSize = 15F
 
 
         var lineData = LineData(lineDataSet)
@@ -314,12 +318,13 @@ class SimpleAccountFragment : Fragment() {
 
 
         //val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
-        val myarray2: Array<GetAccountTransactionList> = createDummyTransactionList(15)
+        val myarray2: Array<GetAccountTransactionList> = createDummyList(15)
         //var myarray = arrayOf(GetAccountTransactionList())
         adapter.addList(myarray2)
         var lineChartEntries =ArrayList<Entry>()
         for(i in myarray2){
             lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
+
         }
 
         /*
@@ -353,24 +358,48 @@ class SimpleAccountFragment : Fragment() {
         times.add(time)
         dates.add(date)
     }
-    private fun createDummyTransactionList(size:Int): Array<GetAccountTransactionList> {
-        var x = ArrayList<GetAccountTransactionList>()
+
+    private fun createDummyList(size:Int):Array<GetAccountTransactionList>{
+        var dummyOutgoing = arrayListOf("Amazon","Hepsiburada","Spotify","Gittigidiyor","GooglePlay")
+        var dummyIncoming = arrayListOf("ALEYNA USTA",
+            "HALİLİBRAHİM KAPAR",
+            "ITIR KURTULUŞ",
+            "FERHAT ATAÇ",
+            "MERJEN SULUOVA",
+            "BARTU GÜNGÜNEŞ",
+            "BERK EGEHAN",
+            "CAHİT MEMİŞ",
+            "BAŞAR SAĞÇOLAK",
+            "YAPRAK KAL"
+        )
+        var dummyIncomingDetail = arrayListOf("Sipariş","Üyelik","Hizmet")
+        var dummyOutgoingDetail = arrayListOf("Kira","Borç","Gelen Havale")
+        var x = java.util.ArrayList<GetAccountTransactionList>()
         var date = 0
         var defaultAmount = 1000.0
-
+        var dateStr = ""
         for (i in 0..size){
             date += 1
-            var transactionAmout = (-150..150).random().toDouble()
+            var transactionAmout:Double
             if(i == 0)transactionAmout = 0.0
             else transactionAmout = (-150..150).random().toDouble()
+            var name :String=""
+            var detail:String=""
+            if(transactionAmout>0){
+                name = dummyOutgoing[(0..dummyOutgoing.size-1).random()]
+                detail = dummyOutgoingDetail[(0..dummyOutgoingDetail.size-1).random()]
+            }
+            else{
+                name = dummyIncoming[(0..dummyIncoming.size-1).random()]
+                detail = dummyIncomingDetail[(0..dummyIncomingDetail.size-1).random()]
+            }
 
             defaultAmount+=transactionAmout
-            x.add(GetAccountTransactionList("test",date.toString(),"213","1312","test","test",transactionAmout,defaultAmount,
-                "t","t","t","t","21-02-2020","t","t",
+            x.add(GetAccountTransactionList(name,date.toString(),"213","1312","test",detail,transactionAmout,defaultAmount,
+                "t","t","t","t","9:00","t","t",
                 233.3,"t"))
+
         }
-
-
         return x.toTypedArray()
     }
 
