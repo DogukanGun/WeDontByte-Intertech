@@ -149,7 +149,7 @@ class MainPageFragment : Fragment() {
 
             x.add(GetAccountTransactionList("Kira","02.05.2020","432423","234324","test","test",(-150..150).random().toDouble(),122.2,
                 "t","t","t","t","t","t","t",
-                233.3,"t"))
+                233.3,"t","TRY"))
         }
 
 
@@ -159,7 +159,7 @@ class MainPageFragment : Fragment() {
     private fun createDummyTransactionList(x: Double):GetAccountTransactionList{
         var x = GetAccountTransactionList("test","test","32423","234234","test","test",x,122.2,
             "t","t","t","t","t","t","t",
-        233.3,"t"
+        233.3,"t","TRY"
         )
         return x
     }

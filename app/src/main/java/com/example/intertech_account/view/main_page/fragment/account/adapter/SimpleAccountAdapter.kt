@@ -1,16 +1,17 @@
 package com.example.intertech_account.view.main_page.fragment.account.adapter
 
 import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.intertech_account.databinding.HomeScreenTransactionRowBinding
+import com.example.intertech_account.R
 import com.example.intertech_account.databinding.SimpleAccountRecyclerviewRowBinding
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.model.api_model.status.SimpleAccountListState
-import com.example.intertech_account.resources.common_variables.Receipt
-import com.example.intertech_account.view_model.GetReceiptViewModel
+import com.example.intertech_account.view.main_page.activity.MainActivity
+import com.itextpdf.text.factories.RomanAlphabetFactory.getString
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -19,7 +20,21 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
     private var transactions: Array<GetAccountTransactionList> = emptyArray()
     private var transactionArrayList: ArrayList<GetAccountTransactionList> = arrayListOf()
     var status: SimpleAccountListState = SimpleAccountListState.NO_FILTER
-
+    //TODO Strings.xml'den çekilecek
+    private var monthMap= hashMapOf<String,String>(
+        "01" to "Ocak",
+        "02" to "Şubat",
+        "03" to "Mart",
+        "04" to "Nisan",
+        "05" to "Mayıs",
+        "06" to "Haziran",
+        "07" to "Temmuz",
+        "08" to "Ağustos",
+        "09" to "Eylül",
+        "10" to "Ekim",
+        "11" to "Kasım",
+        "12" to "Aralık"
+    )
     class SimpleAccountHolder(val binding: SimpleAccountRecyclerviewRowBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -102,12 +117,15 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
 ////                    Receipt.transactionDate=transactions[position].time
 //
 //                }
+            var year = transactions[position].date.substringBefore("T").substring(0,4)
+            var month = transactions[position].date.substringBefore("T").substring(5,7)
+            var day = transactions[position].date.substringBefore("T").substring(8,10)
+
             holder.binding.explanation.text = transactionArrayList[position].explanation
-            holder.binding.dateValue.text = transactionArrayList[position].date
+            holder.binding.dateDay.text = day
+            holder.binding.dateMonth.text =monthMap[month]
             holder.binding.dateTime.text = transactionArrayList[position].time
-            // TODO currency kodların dinamik olarak gelmesi
-            holder.binding.amountValue.text = transactionArrayList[position].amount.toString()
-            // TODO alici ismi yerine user code gelmeli
+            holder.binding.amountValue.text = transactionArrayList[position].amount.toString()+" "+transactionArrayList[position].currencyCode
             holder.binding.aliciIsmi.text = transactionArrayList[position].userCode
 
             if (transactionArrayList[position].amount > 0) {
@@ -115,7 +133,6 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
             } else {
                 holder.binding.amountValue.setTextColor(Color.RED)
             }
-            holder.binding.aliciIsmi.text = transactionArrayList[position].type
         }
     }
 

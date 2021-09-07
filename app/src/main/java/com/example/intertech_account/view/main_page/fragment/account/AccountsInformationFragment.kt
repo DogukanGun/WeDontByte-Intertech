@@ -134,7 +134,8 @@ class AccountsInformationFragment : Fragment() {
                     "t",
                     "t",
                     233.3,
-                    "t"
+                    "t",
+                    "TRY"
                 )
             )
         }

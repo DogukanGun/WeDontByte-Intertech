@@ -37,5 +37,7 @@ data class GetAccountTransactionList(
     @SerializedName("AvailableBalance")
     var availableBalance: Double,
     @SerializedName("ReferenceNumber")
-    var referenceNumber: String
+    var referenceNumber: String,
+    @SerializedName("CurrencyCode")
+    var currencyCode: String
 )

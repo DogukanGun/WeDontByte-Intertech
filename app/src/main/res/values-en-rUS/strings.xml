@@ -102,6 +102,17 @@
     <string name="open_account_enter_account_name">New Account Name</string>
     <string name="open_account_currency_type">Currency Type</string>
 
-    <string name="copy">Copy</string>
+    <string name="Jan">January</string>
+    <string name="Feb">February</string>
+    <string name="Mar">March</string>
+    <string name="Apr">April</string>
+    <string name="May">May</string>
+    <string name="Jun">June</string>
+    <string name="Jul">July</string>
+    <string name="Aug">August</string>
+    <string name="Sep">September</string>
+    <string name="Oct">October</string>
+    <string name="Nov">November</string>
+    <string name="Dec">December</string>
 
 </resources>

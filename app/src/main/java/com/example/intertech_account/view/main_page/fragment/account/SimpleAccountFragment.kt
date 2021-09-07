@@ -399,7 +399,7 @@ class SimpleAccountFragment : Fragment() {
             defaultAmount+=transactionAmout
             x.add(GetAccountTransactionList(name,date.toString(),"213","1312","test",detail,transactionAmout,defaultAmount,
                 "t","t","t","t","9:00","t","t",
-                233.3,"t"))
+                233.3,"t","TRY"))
 
         }
         return x.toTypedArray()

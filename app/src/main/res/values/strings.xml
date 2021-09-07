@@ -98,6 +98,17 @@
     <string name="wrong_password">Hatalı parola girişi</string>
     <string name="open_account_enter_account_name">Yeni hesap adı</string>
     <string name="open_account_currency_type">Para birimi</string>
-    <string name="copy">Kopyala</string>
+    <string name="Jan">Ocak</string>
+    <string name="Feb">Şubat</string>
+    <string name="Mar">Mart</string>
+    <string name="Apr">Nisan</string>
+    <string name="May">Mayıs</string>
+    <string name="Jun">Haziran</string>
+    <string name="Jul">Temmuz</string>
+    <string name="Aug">Ağustos</string>
+    <string name="Sep">Eylül</string>
+    <string name="Oct">Ekim</string>
+    <string name="Nov">Kasım</string>
+    <string name="Dec">Aralık</string>
 
 </resources>

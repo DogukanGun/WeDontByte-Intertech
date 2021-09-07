@@ -1,5 +1,7 @@
 package com.example.intertech_Customer.view_model
 
+
+import android.content.res.Resources
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +10,7 @@ import com.example.intertech_account.model.api_model.get_customer.*
 import com.example.intertech_account.resources.api.ApiClient
 import com.example.intertech_account.resources.api.ApiInterface
 import com.example.intertech_account.resources.common_variables.Constant
+import com.itextpdf.text.factories.RomanAlphabetFactory.getString
 import kotlinx.coroutines.*
 
 class GetCustomerViewModel  : ViewModel(){
@@ -17,6 +20,24 @@ class GetCustomerViewModel  : ViewModel(){
     lateinit var getCustomerInfo:MutableLiveData<GetCustomerModel>
     var job: Job? = null
     var loading = MutableLiveData<Boolean>()
+    //TODO hasmap eklenecek
+    /*
+    private var monthMap= hashMapOf<String,String>(
+        "01" to getString(R.string.Jan),
+        "02" to getString(R.string.Feb),
+        "03" to getString(R.string.Mar),
+        "04" to getString(R.string.Apr),
+        "05" to getString(R.string.May),
+        "06" to getString(R.string.Jun),
+        "07" to getString(R.string.Jul),
+        "08" to getString(R.string.Aug),
+        "09" to getString(R.string.Sep),
+        "10" to getString(R.string.Oct),
+        "11" to getString(R.string.Nov),
+        "12" to getString(R.string.Dec)
+    )
+
+     */
 
 
     init {
@@ -45,7 +66,12 @@ class GetCustomerViewModel  : ViewModel(){
                         var year = response.body()!!.getCustomerData.birthDate.substring(0,4)
                         var month = response.body()!!.getCustomerData.birthDate.substring(5,7)
                         var day = response.body()!!.getCustomerData.birthDate.substring(8,10)
-                        response.body()!!.getCustomerData.birthDate = "$day.$month.$year"
+                        response.body()!!.getCustomerData.birthDate = "$day $month $year"
+
+                        var countryCode = response.body()!!.getCustomerData.getMobilePhoneList.countryCode
+                        var cityCode = response.body()!!.getCustomerData.getMobilePhoneList.cityCode
+                        var number = response.body()!!.getCustomerData.getMobilePhoneList.number
+                        response.body()!!.getCustomerData.getMobilePhoneList.number = "(+${countryCode}) ${cityCode} ${number}"
 
                         getCustomerInfo.value=(response.body())
                         print(getCustomerInfo.value!!.type)

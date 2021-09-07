@@ -1,5 +1,6 @@
 package com.example.intertech_account.view.main_page.fragment.main_page.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -35,10 +36,20 @@ class MainPageAdapter ()
     override fun onBindViewHolder(holder: MainPageHolder, position: Int) {
 
         if (transactions.isNotEmpty()){
-
+            var year = transactions[position].date.substringBefore("T").substring(0,4)
+            var month = transactions[position].date.substringBefore("T").substring(5,7)
+            var day = transactions[position].date.substringBefore("T").substring(8,10)
+            holder.binding.aliciIsmi.text = transactions[position].userCode
             holder.binding.explanation.text =transactions[position].explanation
-            holder.binding.dateValue.text = transactions[position].date
-            holder.binding.amountValue.text = transactions[position].amount.toString()
+            holder.binding.dateValue.text = "$day.$month.$year"
+            holder.binding.dateName.text = transactions[position].date.substringAfter("T")
+            //TODO transaction modeli içine
+            holder.binding.amountValue.text = transactions[position].amount.toString()+" "+transactions[position].currencyCode
+            if(transactions[position].amount < 0){
+                holder.binding.amountValue.setTextColor(Color.RED)
+            }else{
+                holder.binding.amountValue.setTextColor(Color.BLACK)
+            }
         }
 
 
