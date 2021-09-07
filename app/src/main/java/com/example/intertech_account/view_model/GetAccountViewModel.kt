@@ -1,6 +1,8 @@
 package com.example.intertech_account.view_model
 
 
+import android.os.CountDownTimer
+import android.os.Handler
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +12,9 @@ import com.example.intertech_account.resources.api.ApiClient
 import com.example.intertech_account.resources.api.ApiInterface
 import com.example.intertech_account.resources.common_variables.Constant
 import kotlinx.coroutines.*
+import okhttp3.Dispatcher
+import java.util.*
+import kotlin.concurrent.schedule
 
 class GetAccountViewModel : ViewModel(){
     private lateinit var apiService: ApiInterface
@@ -33,7 +38,9 @@ class GetAccountViewModel : ViewModel(){
             GetAccountBodyModel(getAccountHeader,getAccountParameterList)
 
         try{
+
             job = CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
+
                 val response = ApiClient.getClient().getAccounts(getAccountGetAccountBodyModel)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
@@ -46,11 +53,14 @@ class GetAccountViewModel : ViewModel(){
                 }
             }
 
+
+
         }catch (e:Exception){
              Constant.exceptionForApp.value=R.string.internet_exception.toString()
         }
 
     }
+
     private fun onError(message: String) {
         errorMessage.value = message
         loading.value = false
