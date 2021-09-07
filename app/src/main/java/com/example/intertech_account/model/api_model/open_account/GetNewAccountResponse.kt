@@ -1,10 +1,9 @@
-package com.example.intertech_account.model.api_model.get_account
-
-// Respond datanın bilgileri
+package com.example.intertech_account.model.api_model.open_account
 
 import com.google.gson.annotations.SerializedName
 
-data class GetAccountList(
+data class GetNewAccountResponse(
+
     @SerializedName("IsBlockedAccount")
     var isBlocked: Boolean,
     @SerializedName("BranchName")
@@ -36,4 +35,5 @@ data class GetAccountList(
     @SerializedName("AvailableCreditDeposit")
     var creditDeposit: Double,
     var balanceAsTRY:Double?
-)
+
+    )

@@ -1,7 +1,8 @@
 package com.example.intertech_account.view.main_page.fragment.account.adapter
 
 import android.annotation.SuppressLint
- import android.view.LayoutInflater
+import android.graphics.Color
+import android.view.LayoutInflater
 import android.view.ViewGroup
  import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.HomeScreenTransactionRowBinding
@@ -96,7 +97,18 @@ class SimpleAccountAdapter :RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcco
 //                }
                 holder.binding.explanation.text =transactionArrayList[position].explanation
                 holder.binding.dateValue.text = transactionArrayList[position].date
-                holder.binding.amountValue.text = transactionArrayList[position].amount.toString()
+                holder.binding.dateTime.text = transactionArrayList[position].time
+                holder.binding.amountValue.text = transactionArrayList[position].amount.toString() + "TL"
+
+
+
+                if(transactionArrayList[position].amount>0){
+                    holder.binding.amountValue.setTextColor(Color.BLACK)
+                }
+                else{
+                    holder.binding.amountValue.setTextColor(Color.RED)
+                }
+                holder.binding.aliciIsmi.text = transactionArrayList[position].type
             }
         }
 
