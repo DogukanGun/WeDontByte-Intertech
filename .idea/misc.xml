@@ -28,6 +28,7 @@
         <entry key="..\:/Android Graduation Project/31.08.21/app/src/main/res/layout/fragment_all_accounts.xml" value="0.22056159420289856" />
         <entry key="..\:/Android Graduation Project/31.08.21/app/src/main/res/layout/fragment_simple_account.xml" value="0.13020833333333334" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/drawable/button_settings.xml" value="0.2703125" />
+        <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/drawable/creditcard_settings.xml" value="0.2703125" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/drawable/intertech_background_settings.xml" value="0.2703125" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/drawable/intertech_background_settings_for_toolbar_and_bottom_navigation.xml" value="0.2703125" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
@@ -42,6 +43,7 @@
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/fragment_q_r_code_option_select.xml" value="0.2" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/fragment_user_information.xml" value="0.1" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/home_screen_transaction_row.xml" value="0.264" />
+        <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/simple_account_recyclerview_row.xml" value="0.264" />
         <entry key="..\:/Android Graduation Project/WeDontByte-Intertech/app/src/main/res/layout/user_information_recyclerview_row.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dogukan Ali Gundogan/AndroidStudioProjects/IntertechAccount/app/src/main/res/layout/activity_create_new_account.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Dogukan Ali Gundogan/AndroidStudioProjects/IntertechAccount/app/src/main/res/layout/activity_forget_password.xml" value="0.22135416666666666" />

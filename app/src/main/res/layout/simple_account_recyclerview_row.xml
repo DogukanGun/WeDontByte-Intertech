@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.8"
+            android:layout_weight="1.5"
             android:background="#C5C5C5"
             android:orientation="vertical">
 
@@ -79,7 +79,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.1"
+            android:layout_weight="1.2"
             android:orientation="vertical">
 
             <TextView
@@ -123,23 +123,38 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/amountValue"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/cardview_compat_inset_shadow"
-            android:layout_weight="1.8"
+            android:orientation="vertical"
             android:gravity="center"
-            android:textSize="16dp"
-            android:paddingLeft="5dp"
-            android:text="@string/amount"
-            android:autoSizeMaxTextSize="16dp"
-            android:autoSizeMinTextSize="1dp"
-            android:autoSizeTextType="uniform"
-            android:fontFamily="sans-serif-black"
-            android:maxLines="1"
-            android:textColor="@color/intertech_textview_text_color"
-            android:textStyle="bold" />
+            android:layout_weight="1.5">
+            <TextView
+                android:id="@+id/amountValue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:paddingLeft="5dp"
+                android:text="@string/amount"
+                android:autoSizeMaxTextSize="16dp"
+                android:autoSizeMinTextSize="1dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="sans-serif-black"
+                android:maxLines="1"
+                android:textColor="@color/intertech_textview_text_color"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/receiptButton"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/receipt"
+                android:backgroundTint="@color/intertech_textview_text_color" />
+        </LinearLayout>
 
     </LinearLayout>
 
