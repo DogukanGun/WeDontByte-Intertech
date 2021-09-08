@@ -1,7 +1,5 @@
 package com.example.intertech_account.view.main_page.fragment.account
 
-import android.R.attr
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -12,7 +10,6 @@ import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.intertech_account.R
@@ -28,28 +25,23 @@ import android.graphics.BitmapFactory
 
 import android.graphics.Bitmap
 import android.icu.text.SimpleDateFormat
+import android.net.ParseException
 import android.util.Base64
 import android.os.Environment
 import android.util.Log
-import androidx.test.core.app.ApplicationProvider
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import java.util.*
 import kotlin.collections.ArrayList
-import android.R.attr.bitmap
-import android.icu.util.TimeUnit
 import android.net.Uri
 
 import android.provider.MediaStore.Images
 import androidx.annotation.RequiresApi
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
 import com.example.intertech_account.view_model.GetAccountTransactionViewModel
-import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.formatter.ValueFormatter
-import javax.xml.datatype.DatatypeConstants.HOURS
 
 
 class SimpleAccountFragment : Fragment() {
@@ -75,7 +67,6 @@ class SimpleAccountFragment : Fragment() {
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
         createRecyclerView()
         executePopupMenu(inflater)
-
         Receipt.isReceiptButtonClicked.observe(viewLifecycleOwner,{
             if (it==true){
                 getReceiptViewModel.apiRequest()
@@ -247,6 +238,18 @@ class SimpleAccountFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun getDateInMilliSeconds(givenDateString: String?, format: String): Long {
+        val sdf = SimpleDateFormat(format, Locale.US)
+        var timeInMilliseconds: Long = 1
+        try {
+            val mDate = sdf.parse(givenDateString)
+            timeInMilliseconds = mDate.time
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return timeInMilliseconds
+    }
     private fun drawingLineChart(entries: ArrayList<Entry>) {
 
         //SET LINE ENTRIES (YEAR, MONEY)
@@ -265,6 +268,15 @@ class SimpleAccountFragment : Fragment() {
         intertechLineChart.description.isEnabled = false
         intertechLineChart.legend.isEnabled = false
 
+        intertechLineChart.xAxis.setValueFormatter(object : ValueFormatter() {
+            @RequiresApi(Build.VERSION_CODES.N)
+            private val mFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+            @RequiresApi(Build.VERSION_CODES.N)
+            override fun getFormattedValue(value: Float): String {
+                val millis: Long = getDateInMilliSeconds("2021-09-08", "yyyy-MM-dd")
+                return mFormat.format(Date(millis))
+            }
+        })
 
         //SETUP LINE CHART COLORS
         //var lineDataSet = LineDataSet(myArray, "MONEY/YEAR GRAPH")
@@ -304,7 +316,7 @@ class SimpleAccountFragment : Fragment() {
             if (getAccountTransactionListModel.data.activityCollection.isNotEmpty()){
                 val recyclerView = binding.simpleAccountTransactions
                 recyclerView.layoutManager =  LinearLayoutManager(activity)
-                (recyclerView.adapter as SimpleAccountAdapter).addList(getAccountTransactionListModel.data.activityCollection)
+                (recyclerView.adapter as SimpleAccountAdapter).addList(getAccountTransactionListModel.data.activityCollection, this)
                 val dividerItemDecoration = DividerItemDecoration(
                     recyclerView.context,1
                 )
@@ -313,35 +325,34 @@ class SimpleAccountFragment : Fragment() {
             }
         })
 //
-//            adapter = SimpleAccountAdapter()
+            adapter = SimpleAccountAdapter()
 //
-//        recyclerView.adapter = adapter
+        recyclerView.adapter = adapter
 //        var arrayList = arrayListOf<GetAccountTransactionList>()
 //
 //
-//        //val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
-//        val myarray2: Array<GetAccountTransactionList> = createDummyList(15)
-//        //var myarray = arrayOf(GetAccountTransactionList())
+        //val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
+        //val myarray2: Array<GetAccountTransactionList> = createDummyList(15)
+        //var myarray = arrayOf(GetAccountTransactionList())
 //        adapter.addList(myarray2)
-//        var lineChartEntries =ArrayList<Entry>()
-//        for(i in myarray2){
-//            lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
-//
-//        }
+        var lineChartEntries =ArrayList<Entry>()
+  /*      for(i in myarray2){
+            lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
 
-        /*
+        }*/
+
+
         lineChartEntries.add(Entry(2010F, 100F))
         lineChartEntries.add(Entry(2011F, 500F))
         lineChartEntries.add(Entry(2013F, 800F))
         lineChartEntries.add(Entry(2014F, 200F))
-         */
 
-//        drawingLineChart(lineChartEntries)
-//        val dividerItemDecoration = DividerItemDecoration(
-//            recyclerView.context,1
-//        )
-//        recyclerView.addItemDecoration(dividerItemDecoration)
-//        adapter.sortTransactionsDefault()
+
+       drawingLineChart(lineChartEntries)
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView.context,1
+        )
+        recyclerView.addItemDecoration(dividerItemDecoration)
     }
     /*private fun createDummyTransactionList(x: Double, d: String): GetAccountTransactionList {
         var x = GetAccountTransactionList("test",d,"test","test",x,122.2,
@@ -404,5 +415,155 @@ class SimpleAccountFragment : Fragment() {
         }
         return x.toTypedArray()
     }
+    public fun executeSharePopupMenu(inflater: LayoutInflater, holder: SimpleAccountAdapter.SimpleAccountHolder) {
+        holder.binding.showDekont.setOnClickListener {
+            Receipt.referenceNo = 3411
+            Receipt.isReceiptButtonClicked.value = true
+            Receipt.branchCode = 9142
+            Receipt.customerNo = 123
+            Receipt.transactionDate = "2021-01-28"
 
+            // Inflate a custom view using layout inflater
+            val view = inflater.inflate(R.layout.receipt_popup_screen, null)
+
+            // Initialize a new instance of popup window
+            val popupWindow = PopupWindow(
+                view, // Custom view to show in popup window
+                LinearLayout.LayoutParams.MATCH_PARENT, // Width of popup window
+                LinearLayout.LayoutParams.MATCH_PARENT // Window height
+            )
+
+            // Set an elevation for the popup window
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                popupWindow.elevation = 10.0F
+            }
+
+            // If API level 23 or higher then execute the code
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                //WINDOW OPEN ANIMATION
+                val slideIn = Slide()
+                slideIn.slideEdge = Gravity.BOTTOM
+                popupWindow.enterTransition = slideIn
+
+                //WINDOW EXIT ANIMATION
+                val slideOut = Slide()
+                slideOut.slideEdge = Gravity.BOTTOM
+                popupWindow.exitTransition = slideOut
+            }
+
+            // Get the widgets reference from custom view
+            val downloadButton =
+                view.findViewById<android.widget.Button>(R.id.ReceiptDownloadButton)
+            val whatsappButton =
+                view.findViewById<android.widget.Button>(R.id.ReceiptWhatsappButton)
+            val wechatButton = view.findViewById<android.widget.Button>(R.id.ReceiptWechatButton)
+            val gmailButton = view.findViewById<android.widget.Button>(R.id.ReceiptGmailButton)
+            val instagramButton =
+                view.findViewById<android.widget.Button>(R.id.ReceiptInstagramButton)
+            val twitterButton = view.findViewById<android.widget.Button>(R.id.ReceiptTwitterButton)
+            val facebookButton =
+                view.findViewById<android.widget.Button>(R.id.ReceiptFacebookButton)
+            val smsButton = view.findViewById<android.widget.Button>(R.id.ReceiptSmsButton)
+
+
+            //CORRESPONDING BUTTON ONCLICKED EVENT
+            downloadButton.setOnClickListener {
+
+
+                popupWindow.dismiss()
+            }
+            //CORRESPONDING BUTTON ONCLICKED EVENT
+            whatsappButton.setOnClickListener {
+                activity?.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://www.whatsapp.com/")
+                    )
+                )
+                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+            }
+            //CORRESPONDING BUTTON ONCLICKED EVENT
+            wechatButton.setOnClickListener {
+                activity?.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://www.wechat.com/")
+                    )
+                )
+                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+            }
+            //CORRESPONDING BUTTON ONCLICKED EVENT
+            gmailButton.setOnClickListener {
+                activity?.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://www.google.com/intl/tr/gmail/about/#")
+                    )
+                )
+                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+            }
+            //CORRESPONDING BUTTON ONCLICKED EVENT
+            instagramButton.setOnClickListener {
+                activity?.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://www.instagram.com/")
+                    )
+                )
+                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+            }
+            //CORRESPONDING BUTTON ONCLICKED EVENT
+            twitterButton.setOnClickListener {
+                activity?.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://twitter.com/")
+                    )
+                )
+                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+            }
+            //CORRESPONDING BUTTON ONCLICKED EVENT
+            facebookButton.setOnClickListener {
+                activity?.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://www.facebook.com/")
+                    )
+                )
+                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+            }
+            //CORRESPONDING BUTTON ONCLICKED EVENT
+            smsButton.setOnClickListener {
+                activity?.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.apps.messaging&hl=en&gl=US")
+                    )
+                )
+                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+            }
+
+            //WHEN THE POPUP SCREEN IS CLOSED, THIS LISTENER IS EXECUTED
+            popupWindow.setOnDismissListener {
+
+                //DO ANYTHING YOU WANT WHEN THE POPUP MENU IS CLOSED
+
+            }
+
+            //IF OUTSIDE OF THE IS CLICKED, MAKE THE SCENE DISAPPEAR
+            view?.findViewById<LinearLayout>(R.id.sharePopupScreenName)?.setOnClickListener()
+            {
+                popupWindow.dismiss()
+            }
+
+            //SHOW THE POPUP WINDOW ON THE APP
+            TransitionManager.beginDelayedTransition(binding.root)
+            popupWindow.showAtLocation(
+                binding.root,
+                Gravity.CENTER,
+                0,
+                0
+            )
+        }
+    }
 }

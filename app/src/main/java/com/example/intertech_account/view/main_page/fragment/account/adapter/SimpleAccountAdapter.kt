@@ -1,10 +1,19 @@
 package com.example.intertech_account.view.main_page.fragment.account.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
+import android.net.Uri
+import android.os.Build
+import android.transition.Slide
+import android.transition.TransitionManager
+import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.SimpleAccountRecyclerviewRowBinding
@@ -12,6 +21,7 @@ import com.example.intertech_account.model.api_model.get_account_transaction_lis
 import com.example.intertech_account.model.api_model.status.SimpleAccountListState
 import com.example.intertech_account.resources.common_variables.Receipt
 import com.example.intertech_account.view.main_page.activity.MainActivity
+import com.example.intertech_account.view.main_page.fragment.account.SimpleAccountFragment
 import com.itextpdf.text.factories.RomanAlphabetFactory.getString
 import java.text.SimpleDateFormat
 import java.util.*
@@ -21,8 +31,11 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
     private var transactions: Array<GetAccountTransactionList> = emptyArray()
     private var transactionArrayList: ArrayList<GetAccountTransactionList> = arrayListOf()
     var status: SimpleAccountListState = SimpleAccountListState.NO_FILTER
+    private lateinit var simpleAccountFragment: SimpleAccountFragment
+
+
     //TODO Strings.xml'den çekilecek
-    private var monthMap= hashMapOf<String,String>(
+    private var monthMap = hashMapOf<String, String>(
         "01" to "Ocak",
         "02" to "Şubat",
         "03" to "Mart",
@@ -36,6 +49,7 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
         "11" to "Kasım",
         "12" to "Aralık"
     )
+
     class SimpleAccountHolder(val binding: SimpleAccountRecyclerviewRowBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -43,9 +57,15 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
     // Ana sayfadaki transactionların response geldikten sonra eklenmesi
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addList(transactions: Array<GetAccountTransactionList>) {
+    fun addList(transactions: Array<GetAccountTransactionList>, fragment: SimpleAccountFragment) {
         this.transactions = transactions
+        //this.transactions = this.transactions.toCollection(ArrayList()).sortedByDescending { it.date }.toTypedArray()
+
         transactionArrayList.addAll(transactions)
+        val tempTransactionArrayList = lastTenTransactions(transactionArrayList)
+        transactionArrayList.clear()
+        transactionArrayList.addAll(tempTransactionArrayList)
+        simpleAccountFragment = fragment
         notifyDataSetChanged()
     }
 
@@ -53,7 +73,7 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
     private fun filterArrayList(dayAmounts: Int): ArrayList<GetAccountTransactionList> {
         return transactionArrayList.filter {
             var transactionArrayListIndexDate = it.date
-            transactionArrayListIndexDate = transactionArrayListIndexDate.substring(0,10)
+            transactionArrayListIndexDate = transactionArrayListIndexDate.substring(0, 10)
             val date = SimpleDateFormat("dd-MM-yyyy").parse(transactionArrayListIndexDate)!!
             val calendar = Calendar.getInstance()
             calendar.add(Calendar.DAY_OF_YEAR, dayAmounts)
@@ -111,23 +131,25 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
 
         if (transactionArrayList.isNotEmpty()) {
             //butonun ide receiptButton olmali
-                holder.binding.showDekont.setOnClickListener {
-                    Receipt.referenceNo=3411
-                    Receipt.isReceiptButtonClicked.value=true
-                    Receipt.branchCode=9142
-                    Receipt.customerNo=123
-                    Receipt.transactionDate="2021-01-28"
+            simpleAccountFragment.executeSharePopupMenu(simpleAccountFragment.layoutInflater, holder)
+            /*holder.binding.showDekont.setOnClickListener {
+                Receipt.referenceNo=3411
+                Receipt.isReceiptButtonClicked.value=true
+                Receipt.branchCode=9142
+                Receipt.customerNo=123
+                Receipt.transactionDate="2021-01-28"
 
-                }
-            var year = transactions[position].date.substringBefore("T").substring(0,4)
-            var month = transactions[position].date.substringBefore("T").substring(5,7)
-            var day = transactions[position].date.substringBefore("T").substring(8,10)
+            }*/
+            var year = transactionArrayList[position].date.substringBefore("T").substring(0, 4)
+            var month = transactionArrayList[position].date.substringBefore("T").substring(5, 7)
+            var day = transactionArrayList[position].date.substringBefore("T").substring(8, 10)
 
             holder.binding.explanation.text = transactionArrayList[position].explanation
             holder.binding.dateDay.text = day
-            holder.binding.dateMonth.text =monthMap[month]
+            holder.binding.dateMonth.text = monthMap[month]
             holder.binding.dateTime.text = transactionArrayList[position].time
-            holder.binding.amountValue.text = transactionArrayList[position].amount.toString()+" "+transactionArrayList[position].currencyCode
+            holder.binding.amountValue.text =
+                transactionArrayList[position].amount.toString() + " " + transactionArrayList[position].currencyCode
             holder.binding.aliciIsmi.text = transactionArrayList[position].userCode
 
             if (transactionArrayList[position].amount > 0) {
@@ -151,17 +173,21 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
 //    }
 
     private fun lastTenTransactions(item: ArrayList<GetAccountTransactionList>): ArrayList<GetAccountTransactionList> {
-        val allTransactionsArrayList: ArrayList<GetAccountTransactionList> = arrayListOf()
-        item.sortWith(compareByDescending { it.date })
+        //val allTransactionsArrayList: ArrayList<GetAccountTransactionList> = arrayListOf()
+
+        var allTransactionsArrayList = item.sortedByDescending { it.date }.toCollection(ArrayList())
         if (item.size >= 10) {
-            for (i in 0 until 10) {
+            allTransactionsArrayList = allTransactionsArrayList.take(10).toCollection(ArrayList())
+            /*for (i in 0 until 10) {
                 allTransactionsArrayList.add(item[i])
-            }
-        } else {
-            for (i in 0 until item.size) {
+                Log.d("info ", "added ${item[i].date}")
+            }*/
+        } /*else {
+           /* for (i in 0 until item.size) {
                 allTransactionsArrayList.add(item[i])
-            }
-        }
+                Log.d("info ", "added ${item[i].date}")
+            }*/
+        }*/
 
         return allTransactionsArrayList
 
