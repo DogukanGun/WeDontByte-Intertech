@@ -87,6 +87,7 @@
     <string name="setting_button">Setting</string>
     <string name="dark_theme">Karanlık Tema</string>
     <string name="light_theme">Aydınlık Tema</string>
+    <string name="theme">Tema</string>
 
 
     <string name="no_error">İşlem başarıyla gerçekleşti</string>

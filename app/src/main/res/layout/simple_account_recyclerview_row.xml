@@ -14,8 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
-            android:background="#C5C5C5"
+            android:layout_weight="1.8"
             android:orientation="vertical">
 
             <TextView
@@ -23,7 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="@dimen/cardview_compat_inset_shadow"
                 android:gravity="center"
                 android:textSize="18dp"
                 android:autoSizeMaxTextSize="16dp"
@@ -33,7 +31,8 @@
                 android:fontFamily="sans-serif-condensed-medium"
                 android:text="@string/date"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/intertech_textview_text_color"
+                android:textColor="@color/intertech_recyclerview_date_textcolor"
+                android:background="@color/intertech_recyclerview_date_backcolor"
                 />
 
             <TextView
@@ -41,7 +40,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="@dimen/cardview_compat_inset_shadow"
                 android:textSize="16dp"
                 android:text="Eylül"
                 android:autoSizeMaxTextSize="13dp"
@@ -51,7 +49,8 @@
                 android:maxLines="1"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/intertech_textview_text_color"
+                android:textColor="@color/intertech_recyclerview_date_textcolor"
+                android:background="@color/intertech_recyclerview_date_backcolor"
                 />
 
             <TextView
@@ -59,7 +58,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="@dimen/cardview_compat_inset_shadow"
                 android:textSize="19dp"
                 android:text="9:0"
                 android:autoSizeMaxTextSize="16dp"
@@ -69,7 +67,8 @@
                 android:maxLines="1"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/intertech_textview_text_color"
+                android:textColor="@color/intertech_recyclerview_date_textcolor"
+                android:background="@color/intertech_recyclerview_date_backcolor"
                 />
 
 
@@ -80,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.2"
+            android:background="@color/intertech_recyclerview_backcolor"
             android:orientation="vertical">
 
             <TextView
@@ -120,14 +120,6 @@
                 android:textColor="@color/intertech_textview_text_color"
                  />
 
-            <Button
-                android:id="@+id/showDekont"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Button" />
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -135,7 +127,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_weight="1.5">
+            android:background="@color/intertech_recyclerview_backcolor"
+            android:layout_weight="1.7">
             <TextView
                 android:id="@+id/amountValue"
                 android:layout_width="match_parent"
@@ -153,7 +146,7 @@
                 android:textColor="@color/intertech_textview_text_color"
                 android:textStyle="bold" />
             <Button
-                android:id="@+id/receiptButton"
+                android:id="@+id/showDekont"
                 android:layout_width="55dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

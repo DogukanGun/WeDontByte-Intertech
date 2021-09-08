@@ -75,6 +75,7 @@
     <string name="setting_button">Ayarlar</string>
     <string name="dark_theme">Dark Theme</string>
     <string name="light_theme">Light Theme</string>
+    <string name="theme">Theme</string>
 
     <string name="id_number_invalid">ID number is invalid</string>
     <string name="id_password_correct">ID number and password are correct...</string>

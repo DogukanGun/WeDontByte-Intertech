@@ -40,4 +40,7 @@
     <color name="intertech_recyclerview_arrow_textcolor">#000000</color>
     <color name="intertech_recyclerview_arrow_backcolor">#FF7600</color>
 
+    <color name="intertech_recyclerview_date_textcolor">#053564</color>
+    <color name="intertech_recyclerview_date_backcolor">#FF7600</color>
+
 </resources>

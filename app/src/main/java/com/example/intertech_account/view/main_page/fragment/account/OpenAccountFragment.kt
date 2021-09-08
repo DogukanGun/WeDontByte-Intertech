@@ -1,5 +1,6 @@
 package com.example.intertech_account.view.main_page.fragment.account
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,8 +14,10 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentOpenAccountBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.open_account.GetNewAccountRequest
+import com.example.intertech_account.view.login_page.activity.UserLoginActivity
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
+import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragment
 import com.example.intertech_account.view_model.GetAccountViewModel
 import com.example.intertech_account.view_model.GetOpenAccountViewModel
 
@@ -75,9 +78,9 @@ class OpenAccountFragment : Fragment() {
                     if(!it.getOpenAccountData.getNewAccountResponse.iban.equals("")){
                         newAccountIban = it.getOpenAccountData.getNewAccountResponse.iban
                         accountName = it.getOpenAccountData.getNewAccountResponse.accountName
-                        binding.deneme1.text = "Yeni hesap adınız: "+accountName
-                        binding.deneme2.text = "Yeni ibanınız: "+newAccountIban
 
+                        Toast.makeText(context,"Yeni hesap adınız:\n"+accountName + "\nYeni ibanınız:\n" + newAccountIban, Toast.LENGTH_LONG).show()
+                        (activity as MainActivity).onBackPressed()
                     }
 
                 })

@@ -21,8 +21,7 @@
             android:layout_marginRight="5dp"
             android:layout_width="55dp"
             android:layout_height="50dp"
-            android:background="@drawable/create_account"
-            android:backgroundTint="@color/intertech_button_back_color"
+            android:background="@drawable/open_account"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -43,9 +42,9 @@
 
             <RadioButton
                 android:id="@+id/ascending"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="70dp"
                 android:background="@drawable/qr_radio_button_not_selected"
                 android:button="@drawable/qr_radio_button"
                 android:foreground="@drawable/ascending"
@@ -57,9 +56,9 @@
 
             <RadioButton
                 android:id="@+id/descending"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="70dp"
                 android:background="@drawable/qr_radio_button_not_selected"
                 android:button="@drawable/qr_radio_button"
                 android:foreground="@drawable/descending"
@@ -71,8 +70,8 @@
 
             <RadioButton
                 android:id="@+id/defaultSort"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/qr_radio_button_selected"
                 android:button="@drawable/qr_radio_button"
                 android:foreground="@drawable/moneysections"
