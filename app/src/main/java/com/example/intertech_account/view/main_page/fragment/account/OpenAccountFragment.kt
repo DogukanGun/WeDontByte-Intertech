@@ -10,10 +10,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentOpenAccountBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.open_account.GetNewAccountRequest
+import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.login_page.activity.UserLoginActivity
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
@@ -80,7 +82,8 @@ class OpenAccountFragment : Fragment() {
                         accountName = it.getOpenAccountData.getNewAccountResponse.accountName
 
                         Toast.makeText(context,"Yeni hesap adınız:\n"+accountName + "\nYeni ibanınız:\n" + newAccountIban, Toast.LENGTH_LONG).show()
-                        (activity as MainActivity).onBackPressed()
+                        val action = OpenAccountFragmentDirections.actionOpenAccountFragmentToAllAccountsFragment()
+                        Constant.navHostFragment.findNavController().navigate(action)
                     }
 
                 })

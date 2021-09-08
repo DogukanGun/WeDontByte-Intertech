@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewTreeLifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +20,7 @@ import com.example.intertech_account.model.api_model.get_account_transaction_lis
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
 import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
+import com.example.intertech_account.resources.common_variables.QrOperation
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AccountsInformationFragmentAdapter
 import com.example.intertech_account.view.main_page.fragment.main_page.adapter.MainPageAdapter
 import com.example.intertech_account.view_model.GetAccountTransactionViewModel
@@ -38,6 +41,8 @@ class MainPageFragment : Fragment() {
 
     private val getAccountTransactionViewModel: GetAccountTransactionViewModel by viewModels()
     private lateinit var getAccountTransactionListModel: GetAccountTransactionListModel
+    lateinit var buttonObserver:Observer<Int>
+    lateinit var buttonObserver2:Observer<QrOperation>
 
 
     override fun onCreateView(
@@ -54,33 +59,58 @@ class MainPageFragment : Fragment() {
         createAccountInformation()
         createRecyclerView()
         listenAccountsInformationFragmentButtons()
-        setHasOptionsMenu(true)
-        Button.isUserInformationTopBarButtonClickFromMainPageFragment.observe(viewLifecycleOwner,{
-            if (it==1 && Constant.currentBottomMenu==0){
-                Button.isUserInformationTopBarButtonClickFromMainPageFragment.value=2
-                val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
-                Constant.navHostFragment.findNavController().navigate(action)
-            }
-        })
-        Button.isSettingTopBarButtonClickFromMainPageFragment.observe(viewLifecycleOwner,{
-            if (it==1 && Constant.currentBottomMenu==0){
-                Button.isSettingTopBarButtonClickFromMainPageFragment.value=2
-                val action =  MainPageFragmentDirections.actionMainPageFragmentToSettingFragment()
-                Constant.navHostFragment.findNavController().navigate(action)
-            }
-        })
+//        setHasOptionsMenu(true)
+//        buttonObserver= Observer {
+//            if (it==1 && Constant.currentBottomMenu==0){
+//                Button.isUserInformationTopBarButtonClickFromMainPageFragment.value=2
+//                val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
+//                Constant.navHostFragment.findNavController().navigate(action)
+//            }
+//        }
+//        Button.isUserInformationTopBarButtonClickFromMainPageFragment.observe(viewLifecycleOwner,buttonObserver)
+//        Button.isUserInformationTopBarButtonClickFromMainPageFragment.observe(viewLifecycleOwner,object :Observer<Int>{
+//
+//            override fun onChanged(t: Int?) {
+//                if (t==1 && Constant.currentBottomMenu==0){
+//                    Button.isUserInformationTopBarButtonClickFromMainPageFragment.value=2
+//                    val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
+//                    Constant.navHostFragment.findNavController().navigate(action)
+//                }
+//            }
+//        })
+//        Button.isSettingTopBarButtonClickFromMainPageFragment.observe(viewLifecycleOwner,{
+//            if (it==1 && Constant.currentBottomMenu==0){
+//                Button.isSettingTopBarButtonClickFromMainPageFragment.value=2
+//                val action =  MainPageFragmentDirections.actionMainPageFragmentToSettingFragment()
+//                Constant.navHostFragment.findNavController().navigate(action)
+//            }
+//        })
 
         return binding.root
     }
 
+    override fun onPause() {
+//        Button.isUserInformationTopBarButtonClickFromMainPageFragment.removeObserver(buttonObserver)
+//        Button.qrButtonPressed.removeObserver(buttonObserver2)
+        super.onPause()
+
+    }
     private fun listenAccountsInformationFragmentButtons(){
-        Button.qrButtonPressed.observe(viewLifecycleOwner,{
-            if (it.qrButtonPressed){
-                Button.qrButtonPressed.value!!.qrButtonPressed=false
-                val action = MainPageFragmentDirections.actionMainPageFragmentToQRCodeOptionSelectFragment(Button.qrButtonPressed.value!!.qrAccountIban)
-                Constant.navHostFragment.findNavController().navigate(action)
-            }
-        })
+//        buttonObserver2 = Observer {
+//            if (it.qrButtonPressed){
+//                Button.qrButtonPressed.value!!.qrButtonPressed=false
+//                val action = MainPageFragmentDirections.actionMainPageFragmentToQRCodeOptionSelectFragment(Button.qrButtonPressed.value!!.qrAccountIban)
+//                Constant.navHostFragment.findNavController().navigate(action)
+//            }
+//        }
+//        Button.qrButtonPressed.observe(viewLifecycleOwner,buttonObserver2)
+//        Button.qrButtonPressed.observe(viewLifecycleOwner,{
+//            if (it.qrButtonPressed){
+//                Button.qrButtonPressed.value!!.qrButtonPressed=false
+//                val action = MainPageFragmentDirections.actionMainPageFragmentToQRCodeOptionSelectFragment(Button.qrButtonPressed.value!!.qrAccountIban)
+//                Constant.navHostFragment.findNavController().navigate(action)
+//            }
+//        })
     }
     private fun createAccountInformation(){
         binding.accountsInformation.adapter=AccountsInformationFragmentAdapter(emptyArray(),
@@ -191,10 +221,6 @@ class MainPageFragment : Fragment() {
             addToRecyclerView("Dest. Account $i", "Transaction $i", "\$$i", "$i:$i", "$i/$i/$i")
         }
 
-    }
-    private fun listenTopBarButton(){
-        val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
-        Constant.navHostFragment.findNavController().navigate(action)
     }
 
 

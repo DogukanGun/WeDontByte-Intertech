@@ -16,14 +16,11 @@
             android:id="@+id/action_allAccountsFragment_to_simpleAccountFragment"
             app:destination="@id/simpleAccountFragment" />
         <action
-            android:id="@+id/action_allAccountsFragment_to_userInformationFragment"
-            app:destination="@id/userInformationFragment" />
-        <action
             android:id="@+id/action_allAccountsFragment_to_accountDetailFragment"
             app:destination="@id/accountDetailFragment" />
         <action
-            android:id="@+id/action_allAccountsFragment_to_settingFragment"
-            app:destination="@id/settingFragment" />
+            android:id="@+id/action_allAccountsFragment_to_openAccountFragment"
+            app:destination="@id/openAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainPageFragment"
@@ -31,39 +28,20 @@
         android:label="fragment_main_page"
         tools:layout="@layout/fragment_main_page" >
         <action
-            android:id="@+id/action_mainPageFragment_to_userInformationFragment"
-            app:destination="@id/userInformationFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_enter_anim" />
-        <action
             android:id="@+id/action_mainPageFragment_to_QRCodeOptionSelectFragment"
             app:destination="@id/QRCodeOptionSelectFragment" />
         <action
             android:id="@+id/action_mainPageFragment_to_showReceiptFragment"
             app:destination="@id/showReceiptFragment" />
         <action
-            android:id="@+id/action_mainPageFragment_to_settingFragment"
-            app:destination="@id/settingFragment" />
-        <action
             android:id="@+id/action_mainPageFragment_to_accountsInformationFragment"
             app:destination="@id/accountsInformationFragment" />
-        <action
-            android:id="@+id/action_mainPageFragment_to_openAccountFragment"
-            app:destination="@id/openAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/simpleAccountFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.SimpleAccountFragment"
         android:label="fragment_simple_account"
-        tools:layout="@layout/fragment_simple_account" >
-        <action
-            android:id="@+id/action_simpleAccountFragment_to_userInformationFragment"
-            app:destination="@id/userInformationFragment" />
-        <action
-            android:id="@+id/action_simpleAccountFragment_to_settingFragment"
-            app:destination="@id/settingFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_simple_account" />
     <fragment
         android:id="@+id/QRCodeOptionSelectFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.qr_operation.QRCodeOptionSelectFragment"
@@ -76,24 +54,12 @@
             android:id="@+id/action_QRCodeOptionSelectFragment_to_mainPageFragment"
             app:destination="@id/mainPageFragment"
             app:popUpTo="@id/mainPageFragment" />
-        <action
-            android:id="@+id/action_QRCodeOptionSelectFragment_to_userInformationFragment"
-            app:destination="@id/userInformationFragment" />
-        <action
-            android:id="@+id/action_QRCodeOptionSelectFragment_to_settingFragment"
-            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountDetailFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.AccountDetailFragment"
         android:label="fragment_account_detail"
         tools:layout="@layout/fragment_account_detail" >
-        <action
-            android:id="@+id/action_accountDetailFragment_to_settingFragment"
-            app:destination="@id/settingFragment" />
-        <action
-            android:id="@+id/action_accountDetailFragment_to_userInformationFragment"
-            app:destination="@id/userInformationFragment" />
         <argument
             android:name="AccountDetailFragmentListValues"
             app:argType="string"
@@ -113,15 +79,16 @@
         android:id="@+id/openAccountFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.OpenAccountFragment"
         android:label="fragment_open_account"
-        tools:layout="@layout/fragment_open_account" />
+        tools:layout="@layout/fragment_open_account" >
+        <action
+            android:id="@+id/action_openAccountFragment_to_allAccountsFragment"
+            app:destination="@id/allAccountsFragment"
+            app:popUpTo="@id/openAccountFragment" />
+    </fragment>
     <fragment
         android:id="@+id/accountsInformationFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.AccountsInformationFragment"
         android:label="fragment_accounts_information"
-        tools:layout="@layout/fragment_accounts_information" >
-        <action
-            android:id="@+id/action_accountsInformationFragment_to_openAccountFragment"
-            app:destination="@id/openAccountFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_accounts_information" />
 
 </navigation>

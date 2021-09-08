@@ -46,7 +46,7 @@ class GetReceiptViewModel:ViewModel() {
                         getContentOfReceipt.value=(response.body()!!.getReceiptData.content)
                         loading.value = false
                     } else {
-                        onError("Error : ${response.message()} ")
+                                        onError("Error : ${response.message()} ")
                     }
                 }
             }

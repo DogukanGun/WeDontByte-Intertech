@@ -39,7 +39,11 @@ import android.net.Uri
 
 import android.provider.MediaStore.Images
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.fragment.findNavController
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
+import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view_model.GetAccountTransactionViewModel
 import com.github.mikephil.charting.formatter.ValueFormatter
 
@@ -56,6 +60,9 @@ class SimpleAccountFragment : Fragment() {
     private val getReceiptViewModel:GetReceiptViewModel by viewModels()
     private val getAccountTransactionViewModel: GetAccountTransactionViewModel by viewModels()
     private lateinit var getAccountTransactionListModel: GetAccountTransactionListModel
+    var toolbar: Toolbar? = null
+
+
 
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -106,11 +113,12 @@ class SimpleAccountFragment : Fragment() {
                 }
             }
         })
-
-
-
         return binding.root
     }
+
+
+
+
     @RequiresApi(Build.VERSION_CODES.R)
     private fun getOutputMediaFile(): File? {
         // To be safe, you should check that the SDCard is mounted

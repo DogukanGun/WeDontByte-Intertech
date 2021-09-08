@@ -59,11 +59,6 @@ class AccountsInformationFragment : Fragment() {
                 Button.qrButtonPressed.value = QrOperation(true, currentIban, false)
             }
 
-            binding.billsButton.setOnClickListener {
-                var action =
-                    MainPageFragmentDirections.actionMainPageFragmentToOpenAccountFragment()
-                Constant.navHostFragment.findNavController().navigate(action)
-            }
             binding.accountType.setOnClickListener {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK

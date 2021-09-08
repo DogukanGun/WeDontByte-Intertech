@@ -60,24 +60,27 @@ class AllAccountsFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentAllAccountsBinding.inflate(layoutInflater)
-
-        Constant.currentBottomMenu=1
-        Button.isUserInformationTopBarButtonClickFromAllAccounts.value=0
-        Button.isSettingTopBarButtonClickFromAllAccountsFragment.value=0
-        Button.isUserInformationTopBarButtonClickFromAllAccounts.observe(viewLifecycleOwner,{
-            if (it==1 && Constant.currentBottomMenu==1){
-                Button.isUserInformationTopBarButtonClickFromAllAccounts.value=2
-                val action = AllAccountsFragmentDirections.actionAllAccountsFragmentToUserInformationFragment()
-                Constant.navHostFragment.findNavController().navigate(action)
-            }
-        })
-        Button.isSettingTopBarButtonClickFromAllAccountsFragment.observe(viewLifecycleOwner,{
-            if (it==1 && Constant.currentBottomMenu==1){
-                Button.isSettingTopBarButtonClickFromAllAccountsFragment.value=2
-                val action =  AllAccountsFragmentDirections.actionAllAccountsFragmentToSettingFragment()
-                Constant.navHostFragment.findNavController().navigate(action)
-            }
-        })
+        binding.createAccount.setOnClickListener {
+            val action = AllAccountsFragmentDirections.actionAllAccountsFragmentToOpenAccountFragment()
+            Constant.navHostFragment.findNavController().navigate(action)
+        }
+//        Constant.currentBottomMenu=1
+//        Button.isUserInformationTopBarButtonClickFromAllAccounts.value=0
+//        Button.isSettingTopBarButtonClickFromAllAccountsFragment.value=0
+//        Button.isUserInformationTopBarButtonClickFromAllAccounts.observe(viewLifecycleOwner,{
+//            if (it==1 && Constant.currentBottomMenu==1){
+//                Button.isUserInformationTopBarButtonClickFromAllAccounts.value=2
+//                val action = AllAccountsFragmentDirections.actionAllAccountsFragmentToUserInformationFragment()
+//                Constant.navHostFragment.findNavController().navigate(action)
+//            }
+//        })
+//        Button.isSettingTopBarButtonClickFromAllAccountsFragment.observe(viewLifecycleOwner,{
+//            if (it==1 && Constant.currentBottomMenu==1){
+//                Button.isSettingTopBarButtonClickFromAllAccountsFragment.value=2
+//                val action =  AllAccountsFragmentDirections.actionAllAccountsFragmentToSettingFragment()
+//                Constant.navHostFragment.findNavController().navigate(action)
+//            }
+//        })
         controlError()
         getData(savedInstanceState)
         createSwipe()
@@ -280,8 +283,7 @@ class AllAccountsFragment : Fragment() {
                                 override fun onClick(pos: Int) {
 
 
-                                    var action =
-                                        AllAccountsFragmentDirections.actionAllAccountsFragmentToSimpleAccountFragment()
+                                    var action = AllAccountsFragmentDirections.actionAllAccountsFragmentToSimpleAccountFragment()
                                     Constant.navHostFragment.findNavController().navigate(action)
                                 }
 

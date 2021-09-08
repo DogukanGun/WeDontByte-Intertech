@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Intertech-Account</string>
+    <string name="app_name">Mobil Wallet</string>
     <string name="hello_blank_fragment">debeme</string>
     <string name="bottom_navigation_home_button">Home</string>
     <string name="bottom_navigation_money_transfer_button">Account Activity</string>

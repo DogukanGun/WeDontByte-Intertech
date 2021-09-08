@@ -9,6 +9,9 @@ import android.view.KeyEvent
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.NavUtils
+import androidx.navigation.NavAction
+import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -78,17 +81,18 @@ class MainActivity : BaseActivity() {
             if (it.intentToCamera){
                 val intent = Intent(this, QrReadWithCameraActivity::class.java)
                 startActivity(intent)
-             }
+                finish()
+            }
         })
-        binding.toolbar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
-
+        binding.topAppBar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
+        setSupportActionBar(binding.appToolbarMainActivity)
+        binding.topAppBar.title = getString(R.string.app_name)
     }
 
     private fun toolBarMenuButtonListen(){
         //Topbar button yönlendirmesi.
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            var id = menuItem.itemId
-            when (menuItem.itemId) {
+         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+             when (menuItem.itemId) {
                 // Topbar Kullanıcı bilgileri buttonu
 
                 R.id.userInformationTopBarButton -> {
@@ -96,28 +100,24 @@ class MainActivity : BaseActivity() {
 //                    if(Constant.isUserInformationTopBarButtonClick.value==0){
 //                        Constant.isUserInformationTopBarButtonClick.value=1
 //                    }
-                    if(Constant.currentBottomMenu==0){
-                        if (Button.isUserInformationTopBarButtonClickFromMainPageFragment.value==0) {
-                            Button.isUserInformationTopBarButtonClickFromMainPageFragment.value = 1
-                        }
-                    }else{
-                        if (Button.isUserInformationTopBarButtonClickFromAllAccounts.value==0) {
-                            Button.isUserInformationTopBarButtonClickFromAllAccounts.value = 1
-                        }
-                    }
+//                    if(Constant.currentBottomMenu==0){
+//                        if (Button.isUserInformationTopBarButtonClickFromMainPageFragment.value==0) {
+//                            Button.isUserInformationTopBarButtonClickFromMainPageFragment.value = 1
+//                        }
+//                    }else{
+//                        if (Button.isUserInformationTopBarButtonClickFromAllAccounts.value==0) {
+//                            Button.isUserInformationTopBarButtonClickFromAllAccounts.value = 1
+//                        }
+//                    }
+                    val intent = Intent(this,UserInformationActivity::class.java)
+                    startActivity(intent)
+
 
                     true
                 }
                 R.id.settingTopBarButton->{
-                    if(Constant.currentBottomMenu==0){
-                        if (Button.isSettingTopBarButtonClickFromMainPageFragment.value==0) {
-                            Button.isSettingTopBarButtonClickFromMainPageFragment.value = 1
-                        }
-                    }else{
-                        if (Button.isSettingTopBarButtonClickFromAllAccountsFragment.value==0) {
-                            Button.isSettingTopBarButtonClickFromAllAccountsFragment.value = 1
-                        }
-                    }
+                    val intent = Intent(this,SettingActivity::class.java)
+                    startActivity(intent)
                     true
 
                 }
