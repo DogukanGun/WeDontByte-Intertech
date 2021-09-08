@@ -69,7 +69,6 @@ class MainActivity : BaseActivity() {
         Constant.navHostFragment=navHostFragment
         NavigationUI.setupWithNavController(binding.bottomNavigationView,navHostFragment.navController)
 
-        //TODO doldurulacak
 
         val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.mainPageFragment,

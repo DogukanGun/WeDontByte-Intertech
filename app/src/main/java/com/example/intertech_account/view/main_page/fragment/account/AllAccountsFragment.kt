@@ -62,6 +62,20 @@ class AllAccountsFragment : Fragment() {
         binding = FragmentAllAccountsBinding.inflate(layoutInflater)
 
         Constant.currentBottomMenu=1
+        Button.isUserInformationTopBarButtonClickFromAllAccounts.observe(viewLifecycleOwner,{
+            if (it==1 && Constant.currentBottomMenu==1){
+                Button.isUserInformationTopBarButtonClickFromAllAccounts.value=2
+                val action = AllAccountsFragmentDirections.actionAllAccountsFragmentToUserInformationFragment()
+                Constant.navHostFragment.findNavController().navigate(action)
+            }
+        })
+        Button.isSettingTopBarButtonClickFromAllAccountsFragment.observe(viewLifecycleOwner,{
+            if (it==1 && Constant.currentBottomMenu==1){
+                Button.isSettingTopBarButtonClickFromAllAccountsFragment.value=2
+                val action =  AllAccountsFragmentDirections.actionAllAccountsFragmentToSettingFragment()
+                Constant.navHostFragment.findNavController().navigate(action)
+            }
+        })
         controlError()
         getData(savedInstanceState)
         createSwipe()

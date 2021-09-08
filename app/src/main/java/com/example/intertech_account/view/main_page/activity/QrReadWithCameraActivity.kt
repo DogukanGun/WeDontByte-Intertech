@@ -28,7 +28,6 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 
-//TODO Buraya hakişm değilim !!!
 
 
 class QrReadWithCameraActivity : AppCompatActivity() {
