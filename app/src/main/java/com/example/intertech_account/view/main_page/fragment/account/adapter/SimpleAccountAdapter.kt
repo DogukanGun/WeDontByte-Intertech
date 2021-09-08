@@ -10,6 +10,7 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.SimpleAccountRecyclerviewRowBinding
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.model.api_model.status.SimpleAccountListState
+import com.example.intertech_account.resources.common_variables.Receipt
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.itextpdf.text.factories.RomanAlphabetFactory.getString
 import java.text.SimpleDateFormat
@@ -109,14 +110,15 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
     override fun onBindViewHolder(holder: SimpleAccountHolder, position: Int) {
 
         if (transactionArrayList.isNotEmpty()) {
-//                holder.binding.showDekont.setOnClickListener {
-////                    Receipt.referenceNo=transactions[position].referenceNumber.toInt()
-//                    Receipt.isReceiptButtonClicked.value=true
-////                    Receipt.branchCode=transactions[position].branchCode.toInt()
-////                    Receipt.customerNo=transactions[position].customerNo.toInt()
-////                    Receipt.transactionDate=transactions[position].time
-//
-//                }
+            //butonun ide receiptButton olmali
+                holder.binding.showDekont.setOnClickListener {
+                    Receipt.referenceNo=3411
+                    Receipt.isReceiptButtonClicked.value=true
+                    Receipt.branchCode=9142
+                    Receipt.customerNo=123
+                    Receipt.transactionDate="2021-01-28"
+
+                }
             var year = transactions[position].date.substringBefore("T").substring(0,4)
             var month = transactions[position].date.substringBefore("T").substring(5,7)
             var day = transactions[position].date.substringBefore("T").substring(8,10)

@@ -56,7 +56,14 @@
         android:id="@+id/simpleAccountFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.SimpleAccountFragment"
         android:label="fragment_simple_account"
-        tools:layout="@layout/fragment_simple_account" />
+        tools:layout="@layout/fragment_simple_account" >
+        <action
+            android:id="@+id/action_simpleAccountFragment_to_userInformationFragment"
+            app:destination="@id/userInformationFragment" />
+        <action
+            android:id="@+id/action_simpleAccountFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/QRCodeOptionSelectFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.qr_operation.QRCodeOptionSelectFragment"
@@ -69,12 +76,24 @@
             android:id="@+id/action_QRCodeOptionSelectFragment_to_mainPageFragment"
             app:destination="@id/mainPageFragment"
             app:popUpTo="@id/mainPageFragment" />
+        <action
+            android:id="@+id/action_QRCodeOptionSelectFragment_to_userInformationFragment"
+            app:destination="@id/userInformationFragment" />
+        <action
+            android:id="@+id/action_QRCodeOptionSelectFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountDetailFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.AccountDetailFragment"
         android:label="fragment_account_detail"
         tools:layout="@layout/fragment_account_detail" >
+        <action
+            android:id="@+id/action_accountDetailFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_accountDetailFragment_to_userInformationFragment"
+            app:destination="@id/userInformationFragment" />
         <argument
             android:name="AccountDetailFragmentListValues"
             app:argType="string"
@@ -104,9 +123,5 @@
             android:id="@+id/action_accountsInformationFragment_to_openAccountFragment"
             app:destination="@id/openAccountFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/openAccountFragment"
-        android:name="com.example.intertech_account.view.main_page.fragment.account.OpenAccountFragment"
-        android:label="fragment_open_account"
-        tools:layout="@layout/fragment_open_account" />
+
 </navigation>

@@ -49,6 +49,8 @@ class MainPageFragment : Fragment() {
         binding=
             DataBindingUtil.inflate(inflater,R.layout.fragment_main_page,container,false)
         Constant.currentBottomMenu=0
+        Button.isUserInformationTopBarButtonClickFromMainPageFragment.value=0
+        Button.isSettingTopBarButtonClickFromMainPageFragment.value=0
         createAccountInformation()
         createRecyclerView()
         listenAccountsInformationFragmentButtons()

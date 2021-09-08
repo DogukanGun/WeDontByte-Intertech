@@ -57,7 +57,7 @@ interface ApiInterface {
     // GetReceiptData requesti
     @POST("customers/GetReceiptData")
     @Headers(
-         "Ocp-Apim-Subscription-Key:75164f09243444ff913254565353c68d7")
+         "Ocp-Apim-Subscription-Key:c155fd79bb9f436fb304b5d19fa0c527")
     suspend fun getReceipt(@Body getReceipt: GetReceiptBodyModel): Response<GetReceiptModel>
 
     //OpenAccount requesti

@@ -62,6 +62,8 @@ class AllAccountsFragment : Fragment() {
         binding = FragmentAllAccountsBinding.inflate(layoutInflater)
 
         Constant.currentBottomMenu=1
+        Button.isUserInformationTopBarButtonClickFromAllAccounts.value=0
+        Button.isSettingTopBarButtonClickFromAllAccountsFragment.value=0
         Button.isUserInformationTopBarButtonClickFromAllAccounts.observe(viewLifecycleOwner,{
             if (it==1 && Constant.currentBottomMenu==1){
                 Button.isUserInformationTopBarButtonClickFromAllAccounts.value=2

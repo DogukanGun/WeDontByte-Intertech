@@ -120,6 +120,13 @@
                 android:textColor="@color/intertech_textview_text_color"
                  />
 
+            <Button
+                android:id="@+id/showDekont"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Button" />
+
 
         </LinearLayout>
 
