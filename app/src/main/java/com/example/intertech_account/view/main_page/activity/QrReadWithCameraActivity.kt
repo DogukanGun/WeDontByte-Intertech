@@ -38,6 +38,7 @@ class QrReadWithCameraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityQrReadWithCameraBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_qr_read_with_camera)
+        checkCameraPermission()
         cameraExecutor = Executors.newSingleThreadExecutor()
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener(Runnable {

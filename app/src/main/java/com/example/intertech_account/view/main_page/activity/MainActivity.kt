@@ -78,8 +78,7 @@ class MainActivity : BaseActivity() {
             if (it.intentToCamera){
                 val intent = Intent(this, QrReadWithCameraActivity::class.java)
                 startActivity(intent)
-                finish()
-            }
+             }
         })
         binding.toolbar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
 
@@ -148,14 +147,12 @@ class MainActivity : BaseActivity() {
         })
         Button.isLightModeButtonClick.observe(this,{
             if (it==1){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                delegate.applyDayNight()
+                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         })
         Button.isDarkModeButtonClick.observe(this,{
             if (it==1){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                delegate.applyDayNight()
             }
         })
     }

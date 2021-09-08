@@ -106,6 +106,7 @@ class MainPageFragment : Fragment() {
                 val recyclerView = binding.transactions
                 recyclerView.layoutManager =  LinearLayoutManager(activity)
                 var adapter = recyclerView.adapter as MainPageAdapter
+                getAccountTransactionListModel.data.activityCollection=getAccountTransactionListModel.data.activityCollection.toCollection(ArrayList()).sortedByDescending { it.date }.toTypedArray()
                 adapter.addList(getAccountTransactionListModel.data.activityCollection)
                 val dividerItemDecoration = DividerItemDecoration(
                     recyclerView.context,1
