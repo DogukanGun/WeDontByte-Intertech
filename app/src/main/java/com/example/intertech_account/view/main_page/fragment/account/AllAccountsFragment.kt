@@ -294,9 +294,10 @@ class AllAccountsFragment : Fragment() {
                             object : SwipeButtonClickListener {
                                 override fun onClick(pos: Int) {
 
+                                    var toSend = adapter_.getPositionData(2)
 
                                     var action =
-                                        AllAccountsFragmentDirections.actionAllAccountsFragmentToAccountDetailFragment()
+                                        AllAccountsFragmentDirections.actionAllAccountsFragmentToAccountDetailFragment(toSend.toString())
                                     Constant.navHostFragment.findNavController().navigate(action)
                                 }
 

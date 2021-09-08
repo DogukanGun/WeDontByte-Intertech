@@ -22,7 +22,11 @@ class GetOpenAccountViewModel: ViewModel() {
         loading= MutableLiveData(true)
         errorMessage= MutableLiveData("")
         getOpenAccountList= MutableLiveData(GetOpenAccountModel("", GetOpenAccountData("",
-            GetNewAccountResponse("","")
+            GetNewAccountResponse(false,"","",false,
+                "",0.0,0.0,
+            0.0,0.0,0.0,0.0,
+                "","",false,0.0,
+            0.0)
         )))
     }
     fun apiRequest(getNewAccountRequest: GetNewAccountRequest){

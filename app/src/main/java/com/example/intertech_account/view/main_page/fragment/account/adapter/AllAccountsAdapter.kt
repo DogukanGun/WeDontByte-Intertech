@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewGraphRowBinding
@@ -15,6 +16,7 @@ import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBindi
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewTitleRowBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.view.main_page.activity.MainActivity
+import com.example.intertech_account.view.main_page.fragment.account.AllAccountsFragmentDirections
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
@@ -291,7 +293,20 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         return allAccounts.size
     }
 
+    fun getPositionData(position: Int): String{
+        return  allAccounts[position].accountName  + "?" +
+                allAccounts[position].availableBalance + "?" +
+                allAccounts[position].balance + "?" +
+                allAccounts[position].balanceAsTRY + "?" +
+                allAccounts[position].branch + "?" +
+                allAccounts[position].currency + "?" +
+                allAccounts[position].iban + "?" +
+                allAccounts[position].interestRate + "?" +
+                allAccounts[position].isBlocked + "?" +
+                allAccounts[position].isClosed + "?" +
+                allAccounts[position].name
 
+    }
 
     // TODO PirChart içini dinamik olarak seçilen şeye göre dolur veya PieChartta seçilen hesapları altta getir !!!!
 
