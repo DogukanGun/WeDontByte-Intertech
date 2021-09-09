@@ -63,11 +63,10 @@ class SimpleAccountFragment : Fragment() {
     var toolbar: Toolbar? = null
     lateinit var popupWindowShare:PopupWindow
     lateinit var popupWindowFilter:PopupWindow
+    lateinit var bmpUri:Uri
 
 
-
-    @RequiresApi(Build.VERSION_CODES.R)
-    override fun onCreateView(
+     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
@@ -75,6 +74,13 @@ class SimpleAccountFragment : Fragment() {
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
         createRecyclerView()
         executePopupMenu(inflater)
+
+        return binding.root
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    fun getReceipt(){
         Receipt.isReceiptButtonClicked.observe(viewLifecycleOwner,{
             if (it==true){
                 getReceiptViewModel.apiRequest()
@@ -84,9 +90,7 @@ class SimpleAccountFragment : Fragment() {
 
         getReceiptViewModel.getContentOfReceipt.observe(viewLifecycleOwner,{
             if (!it.value.isEmpty()){
-                val intent=Intent(Intent.ACTION_SEND)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                val decodedString: ByteArray = Base64.decode(it.value, Base64.DEFAULT)
+                 val decodedString: ByteArray = Base64.decode(it.value, Base64.DEFAULT)
                 val decodedByte =
                     BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
                 val pictureFile = getOutputMediaFile()
@@ -101,12 +105,7 @@ class SimpleAccountFragment : Fragment() {
                     val fos = FileOutputStream(pictureFile)
                     decodedByte.compress(Bitmap.CompressFormat.PNG, 90, fos)
                     fos.close()
-                    val pathofBmp: String =
-                        Images.Media.insertImage(requireActivity().contentResolver, decodedByte, "title", null)
-                    val bmpUri: Uri = Uri.parse(pathofBmp)
-                    intent.putExtra(Intent.EXTRA_STREAM, bmpUri)
-                    intent.type = "image/png"
-                    startActivity(intent)
+
                 } catch (e: FileNotFoundException) {
                     Log.d("TAG", "File not found: " + e.message)
                 } catch (e: IOException) {
@@ -114,11 +113,7 @@ class SimpleAccountFragment : Fragment() {
                 }
             }
         })
-        return binding.root
     }
-
-
-
 
     @RequiresApi(Build.VERSION_CODES.R)
     private fun getOutputMediaFile(): File? {
@@ -477,7 +472,7 @@ class SimpleAccountFragment : Fragment() {
 
             //CORRESPONDING BUTTON ONCLICKED EVENT
             downloadButton.setOnClickListener {
-
+                getReceipt()
 
                 popupWindowShare.dismiss()
             }

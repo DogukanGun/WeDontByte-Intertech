@@ -7,7 +7,7 @@ object Receipt {
     var transactionDate:String="2021-01-28"
     var referenceNo:Int=3411
     var customerNo:Int =123
-    val isPdf= true
+    val isPdf= false
 
     val isReceiptButtonClicked=MutableLiveData(false)
 }
