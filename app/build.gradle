@@ -134,6 +134,7 @@ dependencies {
     implementation "androidx.preference:preference-ktx:1.1.1"
     implementation 'com.google.android.gms:play-services-vision:11.8.0'
 
+
     // Iterate through components in dataset
     implementation "org.jetbrains.kotlin:kotlin-reflect"
 

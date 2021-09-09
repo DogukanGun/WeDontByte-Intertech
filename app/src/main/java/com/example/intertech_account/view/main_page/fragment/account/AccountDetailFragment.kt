@@ -34,6 +34,7 @@ class AccountDetailFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         binding= FragmentAccountDetailBinding.inflate(layoutInflater)
         var rawComing = arrayListOf<String>()
         var titles = arrayListOf<String>()

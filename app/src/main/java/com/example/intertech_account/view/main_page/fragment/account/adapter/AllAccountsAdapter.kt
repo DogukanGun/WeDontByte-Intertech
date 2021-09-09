@@ -312,8 +312,6 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     private fun drawingPieChart(binding: AllAccountsRecyclerviewGraphRowBinding,pieEntries:ArrayList<PieEntry>):PieChart
     {
-        //SET PIE ENTRIES (ENTER THE AMOUNT OF MONEY IN HERE)
-
 
         //GET PIE CHART COMPONENT FROM XML
         val intertechPieChart : PieChart = binding.allAccountsPieChart
