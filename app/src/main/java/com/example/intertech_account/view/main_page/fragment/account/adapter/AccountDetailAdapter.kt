@@ -9,7 +9,6 @@ import com.example.intertech_account.model.api_model.main_page.landmark.Landmark
 import com.github.mikephil.charting.data.PieEntry
 
 class AccountDetailAdapter() : RecyclerView.Adapter<AccountDetailAdapter.AccountDetailHolder>() {
-    private lateinit var account:GetAccountList
     private var titles: ArrayList<String> = arrayListOf()
     private var values: ArrayList<String> = arrayListOf()
     class AccountDetailHolder(val binding: AccountDetailRecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {

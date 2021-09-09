@@ -299,10 +299,12 @@ class AllAccountsFragment : Fragment() {
                                 override fun onClick(pos: Int) {
 
                                     var toSend = adapter_.getPositionData(2)
-
-                                    var action =
-                                        AllAccountsFragmentDirections.actionAllAccountsFragmentToAccountDetailFragment(toSend.toString())
+                                    Log.d("Info",toSend.toString())
+                                    var action = AllAccountsFragmentDirections.actionAllAccountsFragmentToAccountDetailFragment("asd")
+                                    action.setAccountDetailFragmentListValues(toSend)
+                                    Log.d("Info","Burası da sonrası")
                                     Constant.navHostFragment.findNavController().navigate(action)
+                                    Log.d("Info","OV yeaaa")
                                 }
 
                             })

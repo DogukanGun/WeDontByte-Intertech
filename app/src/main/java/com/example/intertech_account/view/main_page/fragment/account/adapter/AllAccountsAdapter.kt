@@ -296,17 +296,18 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     }
 
     fun getPositionData(position: Int): String{
-        return  allAccounts[position].accountName  + "?" +
-                allAccounts[position].availableBalance + "?" +
+
+        return  allAccounts[position].name.substringBefore(" ")+ "?" +
+                allAccounts[position].name.substringAfter(" ")+ "?" +
+                allAccounts[position].branch + "?" +
+                allAccounts[position].accountName  + "?" +
                 allAccounts[position].balance + "?" +
                 allAccounts[position].balanceAsTRY + "?" +
-                allAccounts[position].branch + "?" +
-                allAccounts[position].currency + "?" +
                 allAccounts[position].iban + "?" +
                 allAccounts[position].interestRate + "?" +
                 allAccounts[position].isBlocked + "?" +
-                allAccounts[position].isClosed + "?" +
-                allAccounts[position].name
+                allAccounts[position].isClosed
+
 
     }
 
