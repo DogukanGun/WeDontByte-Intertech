@@ -46,6 +46,7 @@ import com.example.intertech_account.model.api_model.get_account_transaction_lis
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view_model.GetAccountTransactionViewModel
 import com.github.mikephil.charting.formatter.ValueFormatter
+import kotlin.concurrent.schedule
 
 
 class SimpleAccountFragment : Fragment() {
@@ -116,7 +117,6 @@ class SimpleAccountFragment : Fragment() {
         })
         return binding.root
     }
-
 
 
 
@@ -263,10 +263,10 @@ class SimpleAccountFragment : Fragment() {
 
         //SET LINE ENTRIES (YEAR, MONEY)
         val myArray = ArrayList<Entry>()
-        myArray.add(Entry(2010F, 100F))
+        /*myArray.add(Entry(2010F, 100F))
         myArray.add(Entry(2011F, 500F))
         myArray.add(Entry(2013F, 800F))
-        myArray.add(Entry(2014F, 200F))
+        myArray.add(Entry(2014F, 200F))*/
 
         //GET LINE CHART COMPONENT FROM XML
         var intertechLineChart: LineChart = binding.simpleAccountLineChart
@@ -313,6 +313,7 @@ class SimpleAccountFragment : Fragment() {
         lineData.setDrawValues(true)
         intertechLineChart.data = lineData
     }
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun createRecyclerView(){
         val recyclerView = binding.simpleAccountTransactions
         recyclerView.layoutManager =  LinearLayoutManager(activity)
@@ -331,7 +332,20 @@ class SimpleAccountFragment : Fragment() {
                 )
 
                 recyclerView.addItemDecoration(dividerItemDecoration)
+
+                var lineChartEntries = ArrayList<Entry>()
+                var lineChartArray = ArrayList<GetAccountTransactionList>()
+                lineChartArray.addAll((recyclerView.adapter as SimpleAccountAdapter).getSorted())
+                for(i in 0..(lineChartArray.size - 1)){
+                    Log.d("info: ", "${lineChartArray[i].remainingBalance}")
+                    lineChartEntries.add(Entry(i.toFloat(),
+                        lineChartArray[i].remainingBalance.toFloat()))
+                }
+                drawingLineChart(lineChartEntries)
+                //updateLineChart(lineChartEntries)
+                //getDateInMilliSeconds(getAccountTransactionListModel.data.activityCollection[i].date, "yyyy-mm-dd").toFloat()
             }
+
         })
 //
             adapter = SimpleAccountAdapter()
@@ -345,19 +359,21 @@ class SimpleAccountFragment : Fragment() {
         //var myarray = arrayOf(GetAccountTransactionList())
 //        adapter.addList(myarray2)
         var lineChartEntries =ArrayList<Entry>()
+        lineChartEntries.add(Entry(1000F, 200F))
+        lineChartEntries.add(Entry(1001F, 201F))
   /*      for(i in myarray2){
             lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
 
         }*/
 
-
+/*
         lineChartEntries.add(Entry(2010F, 100F))
         lineChartEntries.add(Entry(2011F, 500F))
         lineChartEntries.add(Entry(2013F, 800F))
-        lineChartEntries.add(Entry(2014F, 200F))
+        lineChartEntries.add(Entry(2014F, 200F))*/
 
 
-       drawingLineChart(lineChartEntries)
+       //drawingLineChart(lineChartEntries)
         val dividerItemDecoration = DividerItemDecoration(
             recyclerView.context,1
         )
@@ -585,5 +601,29 @@ class SimpleAccountFragment : Fragment() {
             popupWindowShare.dismiss()
         }
         super.onDestroy()
+    }
+    public fun updateLineChart(lineChartEntries: ArrayList<Entry>) {
+
+
+        Timer("SettingUp", false).schedule(2000) {
+            var lineDataSet = LineDataSet(lineChartEntries, "MONEY/YEAR GRAPH")
+            var colors =ArrayList<Int>()
+            for(pos in 0..lineChartEntries.size-2){
+                colors.add(
+                    if (lineChartEntries.get(pos+1).y - lineChartEntries.get(pos).y > 0) Color.GREEN
+                    else if(lineChartEntries.get(pos+1).y - lineChartEntries.get(pos).y < 0) Color.RED
+                    else Color.BLACK)
+            }
+
+            lineDataSet.setColors(colors.toIntArray(),255)
+            lineDataSet.valueTextColor = R.color.intertech_actionbar_bottomnav_back_color
+            lineDataSet.valueTextSize = 15F
+
+
+            var lineData = LineData(lineDataSet)
+
+            lineData.setDrawValues(true)
+            binding.simpleAccountLineChart.data = lineData
+        }
     }
 }
