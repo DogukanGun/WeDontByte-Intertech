@@ -61,7 +61,8 @@ class SimpleAccountFragment : Fragment() {
     private val getAccountTransactionViewModel: GetAccountTransactionViewModel by viewModels()
     private lateinit var getAccountTransactionListModel: GetAccountTransactionListModel
     var toolbar: Toolbar? = null
-
+    lateinit var popupWindowShare:PopupWindow
+    lateinit var popupWindowFilter:PopupWindow
 
 
 
@@ -152,7 +153,7 @@ class SimpleAccountFragment : Fragment() {
             val view = inflater.inflate(R.layout.popup_screen, null)
 
             // Initialize a new instance of popup window
-            val popupWindow = PopupWindow(
+            popupWindowFilter = PopupWindow(
                 view, // Custom view to show in popup window
                 LinearLayout.LayoutParams.MATCH_PARENT, // Width of popup window
                 LinearLayout.LayoutParams.MATCH_PARENT // Window height
@@ -160,7 +161,7 @@ class SimpleAccountFragment : Fragment() {
 
             // Set an elevation for the popup window
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                popupWindow.elevation = 10.0F
+                popupWindowFilter.elevation = 10.0F
             }
 
             // If API level 23 or higher then execute the code
@@ -168,12 +169,12 @@ class SimpleAccountFragment : Fragment() {
                 //WINDOW OPEN ANIMATION
                 val slideIn = Slide()
                 slideIn.slideEdge = Gravity.LEFT
-                popupWindow.enterTransition = slideIn
+                popupWindowFilter.enterTransition = slideIn
 
                 //WINDOW EXIT ANIMATION
                 val slideOut = Slide()
                 slideOut.slideEdge = Gravity.RIGHT
-                popupWindow.exitTransition = slideOut
+                popupWindowFilter.exitTransition = slideOut
             }
 
             // Get the widgets reference from custom view
@@ -190,41 +191,41 @@ class SimpleAccountFragment : Fragment() {
             son1HaftaButton.setOnClickListener {
                 adapter.status=SimpleAccountListState.LAST_ONE_WEEK
                 adapter.changeStatusOfArray()
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son1AyButton.setOnClickListener {
                 adapter.status=SimpleAccountListState.LAST_ONE_MONTH
                 adapter.changeStatusOfArray()
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son3AyButton.setOnClickListener {
                 adapter.status=SimpleAccountListState.LAST_THREE_MONTHS
                 adapter.changeStatusOfArray()
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son6AyButton.setOnClickListener {
                 adapter.status=SimpleAccountListState.LAST_SIX_MONTHS
                 adapter.changeStatusOfArray()
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son1YilButton.setOnClickListener {
                 adapter.status=SimpleAccountListState.LAST_ONE_YEAR
                 adapter.changeStatusOfArray()
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             detayliFiltrelemeButton.setOnClickListener {
                 adapter.status=SimpleAccountListState.DETAIL
                 adapter.changeStatusOfArray()
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
 
             //WHEN THE POPUP SCREEN IS CLOSED, THIS LISTENER IS EXECUTED
-            popupWindow.setOnDismissListener {
+            popupWindowFilter.setOnDismissListener {
                 Toast.makeText(context, "Popup closed", Toast.LENGTH_SHORT).show()
 
             }
@@ -232,12 +233,12 @@ class SimpleAccountFragment : Fragment() {
             //IF OUTSIDE OF THE IS CLICKED, MAKE THE SCENE DISAPPEAR
             view?.findViewById<LinearLayout>(R.id.popupScreenName)?.setOnClickListener()
             {
-                popupWindow.dismiss()
+                popupWindowFilter.dismiss()
             }
 
             //SHOW THE POPUP WINDOW ON THE APP
             TransitionManager.beginDelayedTransition(binding.myScreen)
-            popupWindow.showAtLocation(
+            popupWindowFilter.showAtLocation(
                 binding.myScreen,
                 Gravity.CENTER,
                 0,
@@ -423,7 +424,7 @@ class SimpleAccountFragment : Fragment() {
         }
         return x.toTypedArray()
     }
-    public fun executeSharePopupMenu(inflater: LayoutInflater, holder: SimpleAccountAdapter.SimpleAccountHolder) {
+    fun executeSharePopupMenu(inflater: LayoutInflater, holder: SimpleAccountAdapter.SimpleAccountHolder) {
         holder.binding.showDekont.setOnClickListener {
             Receipt.referenceNo = 3411
             Receipt.isReceiptButtonClicked.value = true
@@ -435,7 +436,7 @@ class SimpleAccountFragment : Fragment() {
             val view = inflater.inflate(R.layout.receipt_popup_screen, null)
 
             // Initialize a new instance of popup window
-            val popupWindow = PopupWindow(
+            popupWindowShare = PopupWindow(
                 view, // Custom view to show in popup window
                 LinearLayout.LayoutParams.MATCH_PARENT, // Width of popup window
                 LinearLayout.LayoutParams.MATCH_PARENT // Window height
@@ -443,7 +444,7 @@ class SimpleAccountFragment : Fragment() {
 
             // Set an elevation for the popup window
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                popupWindow.elevation = 10.0F
+                popupWindowShare.elevation = 10.0F
             }
 
             // If API level 23 or higher then execute the code
@@ -451,12 +452,12 @@ class SimpleAccountFragment : Fragment() {
                 //WINDOW OPEN ANIMATION
                 val slideIn = Slide()
                 slideIn.slideEdge = Gravity.BOTTOM
-                popupWindow.enterTransition = slideIn
+                popupWindowShare.enterTransition = slideIn
 
                 //WINDOW EXIT ANIMATION
                 val slideOut = Slide()
                 slideOut.slideEdge = Gravity.BOTTOM
-                popupWindow.exitTransition = slideOut
+                popupWindowShare.exitTransition = slideOut
             }
 
             // Get the widgets reference from custom view
@@ -478,7 +479,7 @@ class SimpleAccountFragment : Fragment() {
             downloadButton.setOnClickListener {
 
 
-                popupWindow.dismiss()
+                popupWindowShare.dismiss()
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             whatsappButton.setOnClickListener {
@@ -488,7 +489,7 @@ class SimpleAccountFragment : Fragment() {
                         Uri.parse("https://www.whatsapp.com/")
                     )
                 )
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowShare.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             wechatButton.setOnClickListener {
@@ -498,7 +499,7 @@ class SimpleAccountFragment : Fragment() {
                         Uri.parse("https://www.wechat.com/")
                     )
                 )
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowShare.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             gmailButton.setOnClickListener {
@@ -508,7 +509,7 @@ class SimpleAccountFragment : Fragment() {
                         Uri.parse("https://www.google.com/intl/tr/gmail/about/#")
                     )
                 )
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowShare.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             instagramButton.setOnClickListener {
@@ -518,7 +519,7 @@ class SimpleAccountFragment : Fragment() {
                         Uri.parse("https://www.instagram.com/")
                     )
                 )
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowShare.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             twitterButton.setOnClickListener {
@@ -528,7 +529,7 @@ class SimpleAccountFragment : Fragment() {
                         Uri.parse("https://twitter.com/")
                     )
                 )
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowShare.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             facebookButton.setOnClickListener {
@@ -538,7 +539,7 @@ class SimpleAccountFragment : Fragment() {
                         Uri.parse("https://www.facebook.com/")
                     )
                 )
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowShare.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             smsButton.setOnClickListener {
@@ -548,30 +549,41 @@ class SimpleAccountFragment : Fragment() {
                         Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.apps.messaging&hl=en&gl=US")
                     )
                 )
-                popupWindow.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+                popupWindowShare.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
 
             //WHEN THE POPUP SCREEN IS CLOSED, THIS LISTENER IS EXECUTED
-            popupWindow.setOnDismissListener {
-
+            popupWindowShare.setOnDismissListener {
+                popupWindowShare.dismiss()
                 //DO ANYTHING YOU WANT WHEN THE POPUP MENU IS CLOSED
 
             }
 
+
             //IF OUTSIDE OF THE IS CLICKED, MAKE THE SCENE DISAPPEAR
             view?.findViewById<LinearLayout>(R.id.sharePopupScreenName)?.setOnClickListener()
             {
-                popupWindow.dismiss()
+                popupWindowShare.dismiss()
             }
 
             //SHOW THE POPUP WINDOW ON THE APP
             TransitionManager.beginDelayedTransition(binding.root)
-            popupWindow.showAtLocation(
+            popupWindowShare.showAtLocation(
                 binding.root,
                 Gravity.CENTER,
                 0,
                 0
             )
         }
+    }
+
+    override fun onDestroy() {
+        if(this::popupWindowFilter.isInitialized){
+            popupWindowFilter.dismiss()
+        }
+        if (this::popupWindowShare.isInitialized){
+            popupWindowShare.dismiss()
+        }
+        super.onDestroy()
     }
 }

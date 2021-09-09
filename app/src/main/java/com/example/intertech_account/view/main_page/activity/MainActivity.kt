@@ -85,8 +85,7 @@ class MainActivity : BaseActivity() {
             }
         })
         binding.topAppBar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
-        setSupportActionBar(binding.appToolbarMainActivity)
-        binding.topAppBar.title = getString(R.string.app_name)
+        binding.appToolbarMainActivity.title = getString(R.string.app_name)
     }
 
     private fun toolBarMenuButtonListen(){
