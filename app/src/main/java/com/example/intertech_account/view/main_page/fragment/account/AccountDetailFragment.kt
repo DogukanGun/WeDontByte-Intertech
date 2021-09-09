@@ -35,29 +35,21 @@ class AccountDetailFragment() : Fragment() {
     ): View? {
 
         binding= FragmentAccountDetailBinding.inflate(layoutInflater)
-
+        var rawComing = arrayListOf<String>()
         var titles = arrayListOf<String>()
         var values = arrayListOf<String>()
 
         adapter = AccountDetailAdapter()
         binding.recyclerview.adapter=adapter
         binding.recyclerview.layoutManager=LinearLayoutManager(activity)
-        titles.add("Ad")
-        titles.add("Soyad")
-        titles.add("Şube adı")
-        titles.add("Hesap Adı")
-        titles.add("Bakiye")
-        titles.add("TL cinsinden Bakiye")
-        titles.add("IBAN")
-        titles.add("Faiz oranı")
-        titles.add("Hesap Bloke mi?")
-        titles.add("Hesap Kapalı mı!")
-
 
         if(!args.accountDetailFragmentListValues.isNullOrEmpty()){
             Log.d("Info",args.accountDetailFragmentListValues.toString())
-            values.addAll(args.accountDetailFragmentListValues!!.split("?"))
-
+            rawComing.addAll(args.accountDetailFragmentListValues!!.split("?"))
+            for(i in rawComing){
+                values.add(i.substringAfter("!"))
+                titles.add(i.substringBefore("!"))
+            }
 
 
         adapter_= (binding.recyclerview.adapter as? AccountDetailAdapter)!!

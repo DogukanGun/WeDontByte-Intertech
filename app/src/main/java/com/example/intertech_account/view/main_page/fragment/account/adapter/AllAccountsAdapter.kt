@@ -3,6 +3,7 @@ package com.example.intertech_account.view.main_page.fragment.account.adapter
 import android.graphics.Color
 import android.graphics.Paint
 import android.location.Criteria
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -27,6 +28,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import javax.crypto.spec.DESedeKeySpec
+import kotlin.reflect.full.memberProperties
 
 
 class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsRecyclerViewHolder>()  {
@@ -296,17 +298,12 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     }
 
     fun getPositionData(position: Int): String{
+        var retString = ""
+        for (prop in GetAccountList::class.memberProperties) {
+            retString+="${prop.name}!${prop.get(allAccounts[position])}?"
+        }
 
-        return  allAccounts[position].name.substringBefore(" ")+ "?" +
-                allAccounts[position].name.substringAfter(" ")+ "?" +
-                allAccounts[position].branch + "?" +
-                allAccounts[position].accountName  + "?" +
-                allAccounts[position].balance + "?" +
-                allAccounts[position].balanceAsTRY + "?" +
-                allAccounts[position].iban + "?" +
-                allAccounts[position].interestRate + "?" +
-                allAccounts[position].isBlocked + "?" +
-                allAccounts[position].isClosed
+        return  retString
 
 
     }

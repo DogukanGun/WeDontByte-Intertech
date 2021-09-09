@@ -130,6 +130,8 @@ dependencies {
     //dark mode
     implementation "androidx.preference:preference-ktx:1.1.1"
 
+    // Iterate through components in dataset
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
 
 
 
