@@ -254,7 +254,7 @@ class SimpleAccountFragment : Fragment() {
         }
         return timeInMilliseconds
     }
-    private fun drawingLineChart(entries: ArrayList<Entry>) {
+    private fun drawingLineChart(entries: ArrayList<Entry>, xLabels: ArrayList<String>) {
 
         //SET LINE ENTRIES (YEAR, MONEY)
         val myArray = ArrayList<Entry>()
@@ -274,13 +274,14 @@ class SimpleAccountFragment : Fragment() {
 
         intertechLineChart.xAxis.setValueFormatter(object : ValueFormatter() {
             @RequiresApi(Build.VERSION_CODES.N)
-            private val mFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+            private val mFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
             @RequiresApi(Build.VERSION_CODES.N)
             override fun getFormattedValue(value: Float): String {
-                val millis: Long = getDateInMilliSeconds("2021-09-08", "yyyy-MM-dd")
+                val millis: Long = getDateInMilliSeconds(xLabels[value.toInt()], "yyyy-MM-dd")
                 return mFormat.format(Date(millis))
             }
         })
+
 
         //SETUP LINE CHART COLORS
         //var lineDataSet = LineDataSet(myArray, "MONEY/YEAR GRAPH")
@@ -327,18 +328,17 @@ class SimpleAccountFragment : Fragment() {
                 )
 
                 recyclerView.addItemDecoration(dividerItemDecoration)
-
+                var xLabels = ArrayList<String>()
                 var lineChartEntries = ArrayList<Entry>()
                 var lineChartArray = ArrayList<GetAccountTransactionList>()
                 lineChartArray.addAll((recyclerView.adapter as SimpleAccountAdapter).getSorted())
                 for(i in 0..(lineChartArray.size - 1)){
-                    Log.d("info: ", "${lineChartArray[i].remainingBalance}")
                     lineChartEntries.add(Entry(i.toFloat(),
                         lineChartArray[i].remainingBalance.toFloat()))
+                    xLabels.add(lineChartArray[i].date)
                 }
-                drawingLineChart(lineChartEntries)
-                //updateLineChart(lineChartEntries)
-                //getDateInMilliSeconds(getAccountTransactionListModel.data.activityCollection[i].date, "yyyy-mm-dd").toFloat()
+                drawingLineChart(lineChartEntries, xLabels)
+
             }
 
         })
