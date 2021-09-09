@@ -13,11 +13,11 @@ object Button {
     var isSettingTopBarButtonClickFromMainPageFragment=MutableLiveData(0)
     var isSettingTopBarButtonClickFromAllAccountsFragment=MutableLiveData(0)
 
-    var isEnglishLanguageButtonClick= MutableLiveData(0)
-    var isTurkishLanguageButtonClick= MutableLiveData(0)
+    var isEnglishLanguageButtonClick= 0
+    var isTurkishLanguageButtonClick= 0
 
-    var isDarkModeButtonClick= MutableLiveData(0)
-    var isLightModeButtonClick=MutableLiveData(0)
+    var isDarkModeButtonClick= 0
+    var isLightModeButtonClick=0
 
 
 

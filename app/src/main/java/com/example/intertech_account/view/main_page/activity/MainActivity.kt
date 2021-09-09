@@ -117,7 +117,9 @@ class MainActivity : BaseActivity() {
                 }
                 R.id.settingTopBarButton->{
                     val intent = Intent(this,SettingActivity::class.java)
+                    Button.isTurkishLanguageButtonClick=-1
                     startActivity(intent)
+
                     true
 
                 }
@@ -131,30 +133,30 @@ class MainActivity : BaseActivity() {
         }
     }
     private fun toolBarListen(){
-        Button.isEnglishLanguageButtonClick.observe(this,{
-            if (it==1){
-                updateLocale(Locales.English)
-                saveLanguage("English")
-                Button.isEnglishLanguageButtonClick.value=0
-            }
-        })
-        Button.isTurkishLanguageButtonClick.observe(this,{
-            if (it==1){
-                updateLocale(Locales.Turkish)
-                saveLanguage("Turkish")
-                Button.isTurkishLanguageButtonClick.value=0
-            }
-        })
-        Button.isLightModeButtonClick.observe(this,{
-            if (it==1){
-                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        })
-        Button.isDarkModeButtonClick.observe(this,{
-            if (it==1){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }
-        })
+//        Button.isEnglishLanguageButtonClick.observe(this,{
+//            if (it==1){
+//                updateLocale(Locales.English)
+//                saveLanguage("English")
+//                Button.isEnglishLanguageButtonClick.value=0
+//            }
+//        })
+//        Button.isTurkishLanguageButtonClick.observe(this,{
+//            if (it==1){
+//                updateLocale(Locales.Turkish)
+//                saveLanguage("Turkish")
+//                Button.isTurkishLanguageButtonClick.value=0
+//            }
+//        })
+//        Button.isLightModeButtonClick.observe(this,{
+//            if (it==1){
+//                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//            }
+//        })
+//        Button.isDarkModeButtonClick.observe(this,{
+//            if (it==1){
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//            }
+//        })
     }
 
 
