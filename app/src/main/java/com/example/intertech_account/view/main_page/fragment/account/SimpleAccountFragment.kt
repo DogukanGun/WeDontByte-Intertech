@@ -46,6 +46,7 @@ import com.example.intertech_account.model.api_model.get_account_transaction_lis
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view_model.GetAccountTransactionViewModel
 import com.github.mikephil.charting.formatter.ValueFormatter
+import kotlin.concurrent.schedule
 
 
 class SimpleAccountFragment : Fragment() {
@@ -63,10 +64,11 @@ class SimpleAccountFragment : Fragment() {
     var toolbar: Toolbar? = null
     lateinit var popupWindowShare:PopupWindow
     lateinit var popupWindowFilter:PopupWindow
-    lateinit var bmpUri:Uri
 
 
-     override fun onCreateView(
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
@@ -74,13 +76,6 @@ class SimpleAccountFragment : Fragment() {
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
         createRecyclerView()
         executePopupMenu(inflater)
-
-        return binding.root
-    }
-
-
-    @RequiresApi(Build.VERSION_CODES.R)
-    fun getReceipt(){
         Receipt.isReceiptButtonClicked.observe(viewLifecycleOwner,{
             if (it==true){
                 getReceiptViewModel.apiRequest()
@@ -90,7 +85,9 @@ class SimpleAccountFragment : Fragment() {
 
         getReceiptViewModel.getContentOfReceipt.observe(viewLifecycleOwner,{
             if (!it.value.isEmpty()){
-                 val decodedString: ByteArray = Base64.decode(it.value, Base64.DEFAULT)
+                val intent=Intent(Intent.ACTION_SEND)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                val decodedString: ByteArray = Base64.decode(it.value, Base64.DEFAULT)
                 val decodedByte =
                     BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
                 val pictureFile = getOutputMediaFile()
@@ -105,7 +102,12 @@ class SimpleAccountFragment : Fragment() {
                     val fos = FileOutputStream(pictureFile)
                     decodedByte.compress(Bitmap.CompressFormat.PNG, 90, fos)
                     fos.close()
-
+                    val pathofBmp: String =
+                        Images.Media.insertImage(requireActivity().contentResolver, decodedByte, "title", null)
+                    val bmpUri: Uri = Uri.parse(pathofBmp)
+                    intent.putExtra(Intent.EXTRA_STREAM, bmpUri)
+                    intent.type = "image/png"
+                    startActivity(intent)
                 } catch (e: FileNotFoundException) {
                     Log.d("TAG", "File not found: " + e.message)
                 } catch (e: IOException) {
@@ -113,7 +115,10 @@ class SimpleAccountFragment : Fragment() {
                 }
             }
         })
+        return binding.root
     }
+
+
 
     @RequiresApi(Build.VERSION_CODES.R)
     private fun getOutputMediaFile(): File? {
@@ -258,10 +263,10 @@ class SimpleAccountFragment : Fragment() {
 
         //SET LINE ENTRIES (YEAR, MONEY)
         val myArray = ArrayList<Entry>()
-        myArray.add(Entry(2010F, 100F))
+        /*myArray.add(Entry(2010F, 100F))
         myArray.add(Entry(2011F, 500F))
         myArray.add(Entry(2013F, 800F))
-        myArray.add(Entry(2014F, 200F))
+        myArray.add(Entry(2014F, 200F))*/
 
         //GET LINE CHART COMPONENT FROM XML
         var intertechLineChart: LineChart = binding.simpleAccountLineChart
@@ -308,6 +313,7 @@ class SimpleAccountFragment : Fragment() {
         lineData.setDrawValues(true)
         intertechLineChart.data = lineData
     }
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun createRecyclerView(){
         val recyclerView = binding.simpleAccountTransactions
         recyclerView.layoutManager =  LinearLayoutManager(activity)
@@ -326,7 +332,20 @@ class SimpleAccountFragment : Fragment() {
                 )
 
                 recyclerView.addItemDecoration(dividerItemDecoration)
+
+                var lineChartEntries = ArrayList<Entry>()
+                var lineChartArray = ArrayList<GetAccountTransactionList>()
+                lineChartArray.addAll((recyclerView.adapter as SimpleAccountAdapter).getSorted())
+                for(i in 0..(lineChartArray.size - 1)){
+                    Log.d("info: ", "${lineChartArray[i].remainingBalance}")
+                    lineChartEntries.add(Entry(i.toFloat(),
+                        lineChartArray[i].remainingBalance.toFloat()))
+                }
+                drawingLineChart(lineChartEntries)
+                //updateLineChart(lineChartEntries)
+                //getDateInMilliSeconds(getAccountTransactionListModel.data.activityCollection[i].date, "yyyy-mm-dd").toFloat()
             }
+
         })
 //
             adapter = SimpleAccountAdapter()
@@ -340,19 +359,21 @@ class SimpleAccountFragment : Fragment() {
         //var myarray = arrayOf(GetAccountTransactionList())
 //        adapter.addList(myarray2)
         var lineChartEntries =ArrayList<Entry>()
+        lineChartEntries.add(Entry(1000F, 200F))
+        lineChartEntries.add(Entry(1001F, 201F))
   /*      for(i in myarray2){
             lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
 
         }*/
 
-
+/*
         lineChartEntries.add(Entry(2010F, 100F))
         lineChartEntries.add(Entry(2011F, 500F))
         lineChartEntries.add(Entry(2013F, 800F))
-        lineChartEntries.add(Entry(2014F, 200F))
+        lineChartEntries.add(Entry(2014F, 200F))*/
 
 
-       drawingLineChart(lineChartEntries)
+       //drawingLineChart(lineChartEntries)
         val dividerItemDecoration = DividerItemDecoration(
             recyclerView.context,1
         )
@@ -472,7 +493,7 @@ class SimpleAccountFragment : Fragment() {
 
             //CORRESPONDING BUTTON ONCLICKED EVENT
             downloadButton.setOnClickListener {
-                getReceipt()
+
 
                 popupWindowShare.dismiss()
             }
@@ -580,5 +601,29 @@ class SimpleAccountFragment : Fragment() {
             popupWindowShare.dismiss()
         }
         super.onDestroy()
+    }
+    public fun updateLineChart(lineChartEntries: ArrayList<Entry>) {
+
+
+        Timer("SettingUp", false).schedule(2000) {
+            var lineDataSet = LineDataSet(lineChartEntries, "MONEY/YEAR GRAPH")
+            var colors =ArrayList<Int>()
+            for(pos in 0..lineChartEntries.size-2){
+                colors.add(
+                    if (lineChartEntries.get(pos+1).y - lineChartEntries.get(pos).y > 0) Color.GREEN
+                    else if(lineChartEntries.get(pos+1).y - lineChartEntries.get(pos).y < 0) Color.RED
+                    else Color.BLACK)
+            }
+
+            lineDataSet.setColors(colors.toIntArray(),255)
+            lineDataSet.valueTextColor = R.color.intertech_actionbar_bottomnav_back_color
+            lineDataSet.valueTextSize = 15F
+
+
+            var lineData = LineData(lineDataSet)
+
+            lineData.setDrawValues(true)
+            binding.simpleAccountLineChart.data = lineData
+        }
     }
 }

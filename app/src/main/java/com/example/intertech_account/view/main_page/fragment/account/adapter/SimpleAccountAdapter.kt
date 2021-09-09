@@ -22,7 +22,9 @@ import com.example.intertech_account.model.api_model.status.SimpleAccountListSta
 import com.example.intertech_account.resources.common_variables.Receipt
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.SimpleAccountFragment
+import com.github.mikephil.charting.data.Entry
 import com.itextpdf.text.factories.RomanAlphabetFactory.getString
+import java.security.KeyStore
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -67,6 +69,15 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
         transactionArrayList.addAll(tempTransactionArrayList)
         simpleAccountFragment = fragment
         notifyDataSetChanged()
+/*        var lineChartEntries = ArrayList<Entry>()
+        lineChartEntries.add(Entry(2020F, 1000F))
+        lineChartEntries.add(Entry(2021F, 1500F))
+        lineChartEntries.add(Entry(2023F, 1800F))
+        lineChartEntries.add(Entry(2024F, 1200F))
+        simpleAccountFragment.updateLineChart(lineChartEntries)*/
+    }
+    fun getSorted() : ArrayList<GetAccountTransactionList>{
+        return transactionArrayList
     }
 
     @SuppressLint("SimpleDateFormat")
