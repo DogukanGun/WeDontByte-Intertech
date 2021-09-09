@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_weight="5.3"
             android:background="@drawable/filter"
-            app:backgroundTint="@color/intertech_button_back_color"/>
+            app:backgroundTint="@color/intertech_icon_color"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/simpleAccountTransactions"

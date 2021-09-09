@@ -278,7 +278,7 @@ class AllAccountsFragment : Fragment() {
                             resources.getString(R.string.sub_accounts),
                             30,
                             0,
-                            resources.getColor(R.color.intertech_textview_text_color),
+                            resources.getColor(R.color.intertech_swipebutton_backcolor2),
                             object : SwipeButtonClickListener {
                                 override fun onClick(pos: Int) {
 
@@ -294,7 +294,7 @@ class AllAccountsFragment : Fragment() {
                             resources.getString(R.string.account_details),
                             30,
                             0,
-                            resources.getColor(R.color.intertech_button_back_color),
+                            resources.getColor(R.color.intertech_swipebutton_backcolor1),
                             object : SwipeButtonClickListener {
                                 override fun onClick(pos: Int) {
 

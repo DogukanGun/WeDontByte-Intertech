@@ -5,10 +5,10 @@
         />
     <gradient
         android:angle="180"
-        android:centerX="21%"
-        android:centerColor="#ffff7600"
-        android:startColor="#ffe44a16"
-        android:endColor="#fffdf429"
+        android:centerX="60%"
+        android:centerColor="@color/gradient_center_color"
+        android:startColor="@color/gradient_starting_color"
+        android:endColor="@color/gradient_ending_color"
         android:type="linear"
         />
     <stroke
