@@ -45,6 +45,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view_model.GetAccountTransactionViewModel
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlin.concurrent.schedule
 
@@ -300,9 +301,13 @@ class SimpleAccountFragment : Fragment() {
         }
 
         lineDataSet.setColors(colors.toIntArray(),255)
-        lineDataSet.valueTextColor = R.color.intertech_actionbar_bottomnav_back_color
-        lineDataSet.valueTextSize = 15F
-
+        lineDataSet.valueTextColor = resources.getColor(R.color.intertech_linechart_value_color)
+        lineDataSet.valueTextSize = 12F
+        intertechLineChart.setBackgroundColor(resources.getColor(R.color.intertech_linechart_background_color))
+        intertechLineChart.xAxis.textColor = resources.getColor(R.color.intertech_linechart_label_color)
+        intertechLineChart.axisLeft.textColor = resources.getColor(R.color.intertech_linechart_label_color)
+        intertechLineChart.axisRight.isEnabled = false
+        intertechLineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
 
         var lineData = LineData(lineDataSet)
 

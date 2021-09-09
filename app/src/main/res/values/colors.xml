@@ -51,4 +51,9 @@
 
     <color name="intertech_icon_color">#FF7600</color>
 
+    <!--LINE CHART RENKLERI-->
+    <color name="intertech_linechart_value_color">#FF7600</color>
+    <color name="intertech_linechart_background_color">#F1ECEC</color>
+    <color name="intertech_linechart_label_color">#053564</color>
+
 </resources>
