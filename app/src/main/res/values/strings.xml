@@ -56,7 +56,7 @@
     <string name="close_account">Hesap\nKapatma</string>
     <string name="account_type">Hesap Türü</string>
     <string name="account_balance">Hesap Bakiyesi</string>
-    <string name="qr">QR</string>
+    <string name="qr">QR\nİşlemleri</string>
     <string name="visit_link">Bağlantıyı Ziyaret Et</string>
     <string name="iban_text">Iban Metni</string>
     <string name="date">Tarih</string>
@@ -88,6 +88,8 @@
     <string name="dark_theme">Karanlık Tema</string>
     <string name="light_theme">Aydınlık Tema</string>
     <string name="theme">Tema</string>
+    <string name="create_account">Hesap Aç</string>
+    <string name="filter">Filtre</string>
 
 
     <string name="no_error">İşlem başarıyla gerçekleşti</string>

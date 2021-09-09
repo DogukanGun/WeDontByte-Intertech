@@ -39,8 +39,8 @@
     <color name="intertech_recyclerview_arrow_textcolor">#000000</color>
     <color name="intertech_recyclerview_arrow_backcolor">#FF7600</color>
 
-    <color name="intertech_recyclerview_date_textcolor">#E7E7E7</color>
-    <color name="intertech_recyclerview_date_backcolor">#DC6000</color>
+    <color name="intertech_recyclerview_date_textcolor">@color/white</color>
+    <color name="intertech_recyclerview_date_backcolor">#0051A0</color>
 
     <color name="intertech_swipebutton_backcolor1">#FF7600</color>
     <color name="intertech_swipebutton_backcolor2">#053564</color>

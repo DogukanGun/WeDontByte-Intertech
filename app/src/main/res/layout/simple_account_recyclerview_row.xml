@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="75dp"
-    android:layout_marginBottom="4dp">
+    android:layout_marginBottom="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,10 +87,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="@dimen/cardview_compat_inset_shadow"
                 android:gravity="center_vertical"
                 android:padding="5dp"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:autoSizeMaxTextSize="16dp"
                 android:autoSizeMinTextSize="1dp"
                 android:autoSizeTextType="uniform"
@@ -106,14 +105,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="@dimen/cardview_compat_inset_shadow"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:text="@string/explanation"
                 android:padding="5dp"
-                android:autoSizeMaxTextSize="16dp"
-                android:autoSizeMinTextSize="1dp"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:autoSizeTextType="uniform"
                 android:maxLines="1"
                 android:gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -147,7 +142,7 @@
                 android:textStyle="bold" />
             <Button
                 android:id="@+id/showDekont"
-                android:layout_width="55dp"
+                android:layout_width="45dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="58dp"
-    android:layout_marginBottom="4dp">
+    android:layout_marginBottom="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,45 +15,80 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1.5">
+            android:layout_weight="1.8">
 
-            <TextView
-                android:id="@+id/dateName"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.95"
-                android:text="30.05.2020"
-                android:maxLines="1"
-                android:textSize="16dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:background="@color/intertech_recyclerview_date_backcolor"
-                android:textColor="@color/intertech_recyclerview_date_textcolor"/>
+                android:layout_weight="1.8"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/dateValue"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="10:30"
-                android:textSize="16dp"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:autoSizeMaxTextSize="16dp"
-                android:autoSizeMinTextSize="1dp"
-                android:autoSizeTextType="uniform"
-                android:maxLines="1"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textStyle="bold"
-                android:background="@color/intertech_recyclerview_date_backcolor"
-                android:textColor="@color/intertech_recyclerview_date_textcolor"/>
+                <TextView
+                    android:id="@+id/dateDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:autoSizeMaxTextSize="16dp"
+                    android:autoSizeMinTextSize="1dp"
+                    android:autoSizeTextType="uniform"
+                    android:maxLines="1"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="@string/date"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/intertech_recyclerview_date_textcolor"
+                    android:background="@color/intertech_recyclerview_date_backcolor"
+                    />
+
+                <TextView
+                    android:id="@+id/dateMonth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="16dp"
+                    android:text="Eylül"
+                    android:autoSizeMaxTextSize="13dp"
+                    android:autoSizeMinTextSize="1dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:autoSizeTextType="uniform"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/intertech_recyclerview_date_textcolor"
+                    android:background="@color/intertech_recyclerview_date_backcolor"
+                    />
+
+                <TextView
+                    android:id="@+id/dateTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="19dp"
+                    android:text="9:0"
+                    android:autoSizeMaxTextSize="16dp"
+                    android:autoSizeMinTextSize="1dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:autoSizeTextType="uniform"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/intertech_recyclerview_date_textcolor"
+                    android:background="@color/intertech_recyclerview_date_backcolor"
+                    />
+
+
             </LinearLayout>
+
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.1"
+            android:layout_weight="1.2"
             android:orientation="vertical">
 
             <TextView
@@ -83,9 +118,6 @@
                 android:fontFamily="sans-serif-black"
                 android:textSize="16dp"
                 android:text="@string/explanation"
-                android:autoSizeMaxTextSize="16dp"
-                android:autoSizeMinTextSize="1dp"
-                android:autoSizeTextType="uniform"
                 android:maxLines="1"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"

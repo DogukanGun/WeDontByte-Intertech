@@ -57,7 +57,7 @@
     <string name="close_account">Close\nAccount</string>
     <string name="account_type">Account Type</string>
     <string name="account_balance">Account Balance</string>
-    <string name="qr">QR</string>
+    <string name="qr">QR\nTransactions</string>
     <string name="visit_link">Visit Link</string>
     <string name="iban_text">IbanText</string>
     <string name="date">Date</string>
@@ -76,6 +76,8 @@
     <string name="dark_theme">Dark Theme</string>
     <string name="light_theme">Light Theme</string>
     <string name="theme">Theme</string>
+    <string name="create_account">Create Account</string>
+    <string name="filter">Filter</string>
 
     <string name="id_number_invalid">ID number is invalid</string>
     <string name="id_password_correct">ID number and password are correct...</string>

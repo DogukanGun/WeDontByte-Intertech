@@ -41,8 +41,8 @@ class MainPageAdapter ()
             var day = transactions[position].date.substringBefore("T").substring(8,10)
             holder.binding.aliciIsmi.text = transactions[position].userCode
             holder.binding.explanation.text =transactions[position].explanation
-            holder.binding.dateValue.text = "$day.$month.$year"
-            holder.binding.dateName.text = transactions[position].date.substringAfter("T")
+            //holder.binding.dateValue.text = "$day.$month.$year"
+            //holder.binding.dateName.text = transactions[position].date.substringAfter("T")
             //TODO transaction modeli içine
             holder.binding.amountValue.text = transactions[position].amount.toString()+" "+transactions[position].currencyCode
             if(transactions[position].amount < 0){
