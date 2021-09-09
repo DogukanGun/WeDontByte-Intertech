@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
     id "androidx.navigation.safeargs"
     id "dagger.hilt.android.plugin"
 
@@ -86,7 +87,9 @@ dependencies {
 
     //qr code
     implementation 'com.google.zxing:core:3.4.0'
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //dependency injection
     implementation("com.google.dagger:hilt-android:2.38.1")
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")
@@ -129,6 +132,7 @@ dependencies {
 
     //dark mode
     implementation "androidx.preference:preference-ktx:1.1.1"
+    implementation 'com.google.android.gms:play-services-vision:11.8.0'
 
     // Iterate through components in dataset
     implementation "org.jetbrains.kotlin:kotlin-reflect"
