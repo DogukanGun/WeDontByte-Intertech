@@ -24,6 +24,7 @@ import com.example.intertech_account.model.api_model.get_account_transaction_lis
 import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.resources.common_variables.QrOperation
+import com.example.intertech_account.view.main_page.activity.QrReadWithCameraActivity
 import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragmentDirections
 import com.example.intertech_account.view_model.GetAccountViewModel
 import android.content.Context.CLIPBOARD_SERVICE as CLIPBOARD_SERVICE1
@@ -56,7 +57,8 @@ class AccountsInformationFragment : Fragment() {
             )
             binding.accountName.adapter = adapter
             binding.qrButton.setOnClickListener {
-                Button.qrButtonPressed.value = QrOperation(true, currentIban, false)
+                val intent = Intent(activity,QrReadWithCameraActivity::class.java)
+                startActivity(intent)
             }
 
             binding.accountType.setOnClickListener {
