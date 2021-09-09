@@ -102,12 +102,7 @@ class SimpleAccountFragment : Fragment() {
                     val fos = FileOutputStream(pictureFile)
                     decodedByte.compress(Bitmap.CompressFormat.PNG, 90, fos)
                     fos.close()
-                    val pathofBmp: String =
-                        Images.Media.insertImage(requireActivity().contentResolver, decodedByte, "title", null)
-                    val bmpUri: Uri = Uri.parse(pathofBmp)
-                    intent.putExtra(Intent.EXTRA_STREAM, bmpUri)
-                    intent.type = "image/png"
-                    startActivity(intent)
+
                 } catch (e: FileNotFoundException) {
                     Log.d("TAG", "File not found: " + e.message)
                 } catch (e: IOException) {
