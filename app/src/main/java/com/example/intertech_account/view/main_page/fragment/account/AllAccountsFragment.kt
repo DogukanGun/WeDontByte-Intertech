@@ -270,45 +270,48 @@ class AllAccountsFragment : Fragment() {
                 buffer: MutableList<SwipeButton>
             ) {
                 if(viewHolder.itemViewType == 2) {
+                    var detailsButton = SwipeButton(activity as MainActivity,
+                        resources.getString(R.string.sub_accounts),
+                        30,
+                        0,
+                        resources.getColor(R.color.intertech_swipebutton_backcolor2),
+                        object : SwipeButtonClickListener {
+                            override fun onClick(pos: Int) {
+
+
+                                var action = AllAccountsFragmentDirections.actionAllAccountsFragmentToSimpleAccountFragment()
+                                Constant.navHostFragment.findNavController().navigate(action)
+                            }
+
+                        })
+
+
+                    var activitiesButton = SwipeButton(activity as MainActivity,
+                        resources.getString(R.string.account_details),
+                        30,
+                        0,
+                        resources.getColor(R.color.intertech_swipebutton_backcolor1),
+                        object : SwipeButtonClickListener {
+                            override fun onClick(pos: Int) {
+
+                                var toSend = adapter_.getPositionData(2)
+                                Log.d("Info",toSend.toString())
+                                var action = AllAccountsFragmentDirections.actionAllAccountsFragmentToAccountDetailFragment("asd")
+                                action.setAccountDetailFragmentListValues(toSend)
+                                Log.d("Info","Burası da sonrası")
+                                Constant.navHostFragment.findNavController().navigate(action)
+                                Log.d("Info","OV yeaaa")
+                            }
+
+                        })
+
+                    detailsButton.textColor = Color.BLACK
+                    activitiesButton.textColor = Color.RED
 
 
                     //TODO Buraya istenidiği kadar buton eklenebilir
-                    buffer.add(
-                        SwipeButton(activity as MainActivity,
-                            resources.getString(R.string.sub_accounts),
-                            30,
-                            0,
-                            resources.getColor(R.color.intertech_swipebutton_backcolor2),
-                            object : SwipeButtonClickListener {
-                                override fun onClick(pos: Int) {
-
-
-                                    var action = AllAccountsFragmentDirections.actionAllAccountsFragmentToSimpleAccountFragment()
-                                    Constant.navHostFragment.findNavController().navigate(action)
-                                }
-
-                            })
-                    )
-                    buffer.add(
-                        SwipeButton(activity as MainActivity,
-                            resources.getString(R.string.account_details),
-                            30,
-                            0,
-                            resources.getColor(R.color.intertech_swipebutton_backcolor1),
-                            object : SwipeButtonClickListener {
-                                override fun onClick(pos: Int) {
-
-                                    var toSend = adapter_.getPositionData(2)
-                                    Log.d("Info",toSend.toString())
-                                    var action = AllAccountsFragmentDirections.actionAllAccountsFragmentToAccountDetailFragment("asd")
-                                    action.setAccountDetailFragmentListValues(toSend)
-                                    Log.d("Info","Burası da sonrası")
-                                    Constant.navHostFragment.findNavController().navigate(action)
-                                    Log.d("Info","OV yeaaa")
-                                }
-
-                            })
-                    )
+                    buffer.add(detailsButton)
+                    buffer.add(activitiesButton)
 
 
                     /*

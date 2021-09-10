@@ -14,6 +14,7 @@ class SwipeButton(private val context: MainActivity,
                   private val color:Int,
                   private val listener: SwipeButtonClickListener
 ) {
+    public var textColor = Color.WHITE
     private var pos : Int = 0
     private var clickRegion: RectF?=null
     private val resources:Resources = context.resources
@@ -37,7 +38,7 @@ class SwipeButton(private val context: MainActivity,
         c.drawRect(rectF,p)
 
         //tEXT
-        p.color = Color.WHITE
+        p.color = textColor
         p.textSize = textSize.toFloat()
 
         val r = Rect()
