@@ -272,6 +272,7 @@ class SimpleAccountFragment : Fragment() {
         intertechLineChart.xAxis.setLabelCount(5, true)
         intertechLineChart.setScaleEnabled(false)
         intertechLineChart.xAxis.setValueFormatter(object : ValueFormatter() {
+
             @RequiresApi(Build.VERSION_CODES.N)
             private val mFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
 

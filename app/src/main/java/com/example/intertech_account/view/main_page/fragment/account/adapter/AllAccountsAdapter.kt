@@ -33,6 +33,8 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         private var sortButtonClick=3
     }
     private var graphState = 0
+    private var totalBalanceForPieChart = 0.0
+    private var totalBalanceChecker = true
     private lateinit var piechart :PieChart
     private lateinit var pieEntries:ArrayList<PieEntry>
     private var originalallAccounts:ArrayList<GetAccountList> = ArrayList()
@@ -320,7 +322,8 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             Color.rgb(9, 83, 153),
             Color.rgb(200, 29, 71),
             Color.rgb(124, 124, 124),
-            Color.rgb(229, 153, 173)
+            Color.rgb(229, 153, 173),
+            Color.rgb(255,118,0)
         )
         intertechPieChart.setEntryLabelTextSize(18f)
 
@@ -377,13 +380,20 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         intertechPieChart.transparentCircleRadius=0f
 
         //SET TEXT IN THE MIDDLE OF THE PIECHART
-        var totalBalance = 0.0
-        for(pos in 0..pieEntries.size-1){
-            totalBalance += pieEntries.get(pos).y
-        }
-        val totalBalanceString =totalBalance.toString()
 
-        intertechPieChart.apply { intertechPieChart.centerText = context.getString(R.string.total_balance) + "\n%.2f ".format(totalBalance)+"₺" }
+        if(totalBalanceChecker){
+            for (pos in 0..pieEntries.size - 1) {
+                totalBalanceForPieChart += pieEntries.get(pos).y
+            }
+            totalBalanceChecker = false
+        }
+
+        for (pos in 0..pieEntries.size - 1) {
+                pieEntries.get(pos).y += (totalBalanceForPieChart / pieEntries.size).toFloat()
+        }
+        val totalBalanceString =totalBalanceForPieChart.toString()
+
+        intertechPieChart.apply { intertechPieChart.centerText = context.getString(R.string.total_balance) + "\n%.2f ".format(totalBalanceForPieChart)+"₺" }
         intertechPieChart.setCenterTextColor(Color.BLACK)
         intertechPieChart.setCenterTextSize(18f)
 
