@@ -255,22 +255,36 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
                         sortButtonClick+=1
                         if (sortButtonClick>2){
-                            sortButtonClick=0
-                        }
-                        if (sortButtonClick<2){
+                            sortButtonClick=0 //ARTAN
                             holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-//                            holder.getBind().descending.background = ContextCompat.getDrawable(holder.getBind().descending.context, R.drawable.qr_radio_button_not_selected)
-//                            holder.getBind().defaultSort.background = ContextCompat.getDrawable(holder.getBind().defaultSort.context, R.drawable.qr_radio_button_not_selected)
+                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.ascending)
+                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.ascending) }
+                        }
+                        if (sortButtonClick<2){ //AZALAN
+                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
+                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.descending)
+                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.descending) }
 
-                            if (sortButtonClick==0){
+                            if (sortButtonClick==0){ //ARTAN
+                                holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
+                                holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.ascending)
+                                holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.ascending) }
+
                                 setPositioningCriteria(2)
                                 modifyAccount(currencyStates)
-                            }else{
+                            }else{ //AZALAN
+                                holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
+                                holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.descending)
+                                holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.descending) }
+
                                 setPositioningCriteria(1)
                                 modifyAccount(currencyStates)
                             }
-                        }else{
+                        }else{ //DEFAULT
                             holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_not_selected)
+                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
+                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
+
                             setPositioningCriteria(0)
                             modifyAccount(currencyStates)
                         }
@@ -328,7 +342,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
 
         //SETUP PIE CHART COLORS
-        val pieDataSet = PieDataSet(pieEntries, "BURAYA RENKLERİN ANLAMLARINI YAZ <3")
+        val pieDataSet = PieDataSet(pieEntries, "")
         pieDataSet.setColors(
             Color.rgb(9, 83, 153),
             Color.rgb(200, 29, 71),
@@ -343,16 +357,8 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         val pieData = PieData(pieDataSet)
 
 
-
         //IF YOU WANT TO HIDE THE ENTRIES, MAKE SET THIS AS ENABLE
         //intertechPieChart.legend.isEnabled = false
-
-        //SET/HIDE DESCRIPTION
-        intertechPieChart.description.isEnabled = true
-        intertechPieChart.description.text = "THIS IS MY DESCRIPTION!"
-        intertechPieChart.description.textAlign = Paint.Align.CENTER
-        intertechPieChart.description.textSize = 18f
-        intertechPieChart.description.textColor = Color.WHITE
 
 
         intertechPieChart.setOnChartValueSelectedListener(object :OnChartValueSelectedListener{

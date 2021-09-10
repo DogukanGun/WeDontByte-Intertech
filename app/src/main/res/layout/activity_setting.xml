@@ -82,7 +82,7 @@
                         android:padding="10dp"
                         android:text="@string/turkish"
                         android:textAlignment="center"
-                        android:textColor="@color/intertech_button_back_color"
+                        android:textColor="@color/intertech_textview_text_color"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -96,7 +96,7 @@
                         android:padding="10dp"
                         android:text="@string/english"
                         android:textAlignment="center"
-                        android:textColor="@color/intertech_button_back_color"
+                        android:textColor="@color/intertech_textview_text_color"
                         android:textSize="16dp"
                         android:textStyle="bold" />
                 </RadioGroup>
@@ -144,7 +144,7 @@
                         android:padding="10dp"
                         android:text="@string/dark_theme"
                         android:textAlignment="center"
-                        android:textColor="@color/intertech_button_back_color"
+                        android:textColor="@color/intertech_textview_text_color"
                         android:textSize="16dp"
                         android:textStyle="bold"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -159,7 +159,7 @@
                         android:padding="10dp"
                         android:text="@string/light_theme"
                         android:textAlignment="center"
-                        android:textColor="@color/intertech_button_back_color"
+                        android:textColor="@color/intertech_textview_text_color"
                         android:textSize="16dp"
                         android:textStyle="bold"
                         tools:ignore="TouchTargetSizeCheck" />

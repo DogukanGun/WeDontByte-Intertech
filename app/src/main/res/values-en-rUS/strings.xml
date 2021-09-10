@@ -50,9 +50,9 @@
     <string name="qr_code_reader">QR Code Reader</string>
     <string name="help">Help</string>
     <string name="account_name">Account Name</string>
-    <string name="default_value">Default</string>
-    <string name="ascending">Ascending</string>
-    <string name="descending">Descending</string>
+    <string name="default_value">Activated sorting by currency (Default)</string>
+    <string name="ascending">Activated sorting in ascending order in TRY</string>
+    <string name="descending">Activated sorting in descending order in TRY</string>
     <string name="account_activity">Account\nActivities</string>
     <string name="close_account">Close\nAccount</string>
     <string name="account_type">Account Type</string>
@@ -77,7 +77,7 @@
     <string name="light_theme">Light Theme</string>
     <string name="theme">Theme</string>
     <string name="create_account">Create Account</string>
-    <string name="filter">Filter</string>
+    <string name="filter">Filter by Time</string>
     <string name="vadeli">Demand Deposit</string>
     <string name="vadesiz">Term Deposit</string>
 

@@ -84,15 +84,14 @@ class MainActivity : BaseActivity() {
                 finish()
             }
         })
-        binding.appToolbarMainActivity.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
-        setSupportActionBar(binding.appToolbarMainActivity)
-        supportActionBar!!.title=getString(R.string.app_name)
-     }
+        binding.topAppBar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
+        binding.topAppBar.setTitle(R.string.app_title)
+    }
 
     private fun toolBarMenuButtonListen(){
         //Topbar button yönlendirmesi.
-         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-             when (menuItem.itemId) {
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
                 // Topbar Kullanıcı bilgileri buttonu
 
                 R.id.userInformationTopBarButton -> {

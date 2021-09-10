@@ -45,6 +45,7 @@ class OpenAccountFragment : Fragment() {
         for(index in Constant.currencyList){
             spinnerListForCurrency.add(index.currencyCode)
         }
+        spinnerListForCurrency.add("TRY")
         val spinnerListForAccountType: ArrayList<String> = arrayListOf<String>()
 
         spinnerListForAccountType.addAll(arrayListOf(getString(R.string.vadeli),getString(R.string.vadesiz)))

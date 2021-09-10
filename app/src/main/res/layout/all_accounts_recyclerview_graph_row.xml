@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginBottom="5dp">
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/allAccountsPieChart"
@@ -17,13 +18,20 @@
                 android:id="@+id/sortingRadioButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/qr_radio_button_not_selected"
+                android:background="@drawable/qr_radio_button_selected"
                 android:button="@drawable/qr_radio_button"
-                android:foreground="@drawable/ascending"
-                android:checked="false"
-                android:textColor="@color/intertech_button_back_color"
+                android:foreground="@drawable/descending"
+                android:checked="true"
+                android:layout_marginBottom="2dp"
+                android:foregroundTint="@color/intertech_recyclerview_arrow_backcolor"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/sortingTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/intertech_textview_text_color"
+                android:text="@string/descending"/>
 
     </LinearLayout>
 

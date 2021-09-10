@@ -49,9 +49,9 @@
     <string name="qr_code_reader">QR Kod Okuyucu</string>
     <string name="help">Yardım</string>
     <string name="account_name">Hesap İsmi</string>
-    <string name="default_value">Varsayılan</string>
-    <string name="ascending">Artan</string>
-    <string name="descending">Azalan</string>
+    <string name="default_value">Dövize göre sıralama aktifleştirildi (Varsayılan)</string>
+    <string name="ascending">TRY cinsinden artana göre sıralama aktifleştirildi</string>
+    <string name="descending">TRY cinsinden azalana göre sıralama aktifleştirildi</string>
     <string name="account_activity">Hesap\nHareketleri</string>
     <string name="close_account">Hesap\nKapatma</string>
     <string name="account_type">Hesap Türü</string>
@@ -89,7 +89,7 @@
     <string name="light_theme">Aydınlık Tema</string>
     <string name="theme">Tema</string>
     <string name="create_account">Hesap Aç</string>
-    <string name="filter">Filtre</string>
+    <string name="filter">Zamana Göre Filtrele</string>
     <string name="vadeli">Vadeli</string>
     <string name="vadesiz">Vadesiz</string>
 

@@ -85,14 +85,13 @@
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:background="@drawable/arrow"
                     android:backgroundTint="@color/intertech_textview_text_color"
-                    android:paddingRight="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/account_type_spinner"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.97"
                     app:layout_constraintStart_toStartOf="@+id/account_type_spinner"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.533" />
@@ -136,14 +135,13 @@
                 android:textSize="16sp"/>
 
                 <TextView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:background="@drawable/arrow"
                     android:backgroundTint="@color/intertech_textview_text_color"
-                    android:paddingRight="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/currencySpinner"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.97"
                     app:layout_constraintStart_toStartOf="@+id/currencySpinner"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.533" />

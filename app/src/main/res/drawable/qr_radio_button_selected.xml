@@ -8,5 +8,5 @@
         android:color="@color/intertech_screen_color" />
     <stroke
         android:width="3dp"
-        android:color="@color/intertech_button_back_color"/>
+        android:color="@color/intertech_recyclerview_arrow_backcolor"/>
 </shape>
