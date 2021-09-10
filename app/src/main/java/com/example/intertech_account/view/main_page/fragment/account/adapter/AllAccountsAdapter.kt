@@ -236,7 +236,6 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             is AllAccountsRecyclerViewHolder.GraphViewHolder -> {
                 if(!totalBalanceChecker){
                     for (pos in 0..pieEntries.size - 1) {
-                        Log.d("Info","Girdiii")
                         pieEntries.get(pos).y += (totalBalanceForPieChart / pieEntries.size).toFloat()
                     }
                 }
@@ -248,6 +247,11 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                     graphState=1
                 }
                 holder.getBind().sortingRadioButton.setOnClickListener {
+
+                    for (pos in 0..pieEntries.size - 1) {
+                        pieEntries.get(pos).y -= (totalBalanceForPieChart / pieEntries.size).toFloat()
+                    }
+
 
                         sortButtonClick+=1
                         if (sortButtonClick>2){
