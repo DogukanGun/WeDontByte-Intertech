@@ -357,6 +357,9 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
         intertechPieChart.setOnChartValueSelectedListener(object :OnChartValueSelectedListener{
             override fun onValueSelected(e: Entry?, h: Highlight?) {
+                for (pos in 0..pieEntries.size - 1) {
+                    pieEntries.get(pos).y -= (totalBalanceForPieChart / pieEntries.size).toFloat()
+                }
                 if(e!=null){
                     val entry=e as PieEntry
                     //TODO butonlarin tiklanmasi burada olacak
@@ -374,6 +377,9 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             }
 
             override fun onNothingSelected() {
+                for (pos in 0..pieEntries.size - 1) {
+                    pieEntries.get(pos).y -= (totalBalanceForPieChart / pieEntries.size).toFloat()
+                }
                 //TODO("Not yet implemented")
                 for(item in currencyStates){
                     currencyStates[item.key] = 1
