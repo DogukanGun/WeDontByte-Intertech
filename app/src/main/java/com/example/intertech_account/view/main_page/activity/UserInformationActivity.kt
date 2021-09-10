@@ -55,7 +55,6 @@ class UserInformationActivity : AppCompatActivity() {
             val x = listOf(getString(R.string.userName),getString(R.string.userSurname),
                 getString(R.string.citizenshipID), getString(R.string.birthdate)
                 , getString(R.string.email), getString(R.string.phoneNumber))
-
             val Info = listOf(getCustomerModel.getCustomerData.name ,
                 getCustomerModel.getCustomerData.surname,
                 getCustomerModel.getCustomerData.citizenshipNumber,

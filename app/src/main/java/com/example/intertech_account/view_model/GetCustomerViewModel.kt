@@ -66,12 +66,12 @@ class GetCustomerViewModel  : ViewModel(){
                         var year = response.body()!!.getCustomerData.birthDate.substring(0,4)
                         var month = response.body()!!.getCustomerData.birthDate.substring(5,7)
                         var day = response.body()!!.getCustomerData.birthDate.substring(8,10)
-                        response.body()!!.getCustomerData.birthDate = "$day $month $year"
+                        response.body()!!.getCustomerData.birthDate = "$day Nisan $year"
 
                         var countryCode = response.body()!!.getCustomerData.getMobilePhoneList.countryCode
                         var cityCode = response.body()!!.getCustomerData.getMobilePhoneList.cityCode
                         var number = response.body()!!.getCustomerData.getMobilePhoneList.number
-                        response.body()!!.getCustomerData.getMobilePhoneList.number = "(+${countryCode}) ${cityCode} ${number}"
+                        response.body()!!.getCustomerData.getMobilePhoneList.number = "(+${countryCode}) ${cityCode} ${number.substring(0,3)} ${number.substring(3,5)} ${number.substring(5)}"
 
                         getCustomerInfo.value=(response.body())
                         print(getCustomerInfo.value!!.type)

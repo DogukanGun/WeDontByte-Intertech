@@ -32,6 +32,7 @@ class UserInformationAdapter(private var userInfoTypes: List<String>, private va
         return UserInformationHolder(binding)
     }
     override fun onBindViewHolder(holder: UserInformationHolder, position: Int) {
+
         holder.binding.cardViewProcessName.text = userInfoTypes[position]
         holder.binding.cardViewBalance.text = userValues[position]
 
