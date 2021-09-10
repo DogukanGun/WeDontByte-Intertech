@@ -59,13 +59,12 @@ class SimpleAccountFragment : Fragment() {
     private var transaction = arrayListOf<GetAccountTransactionList>()
     private lateinit var binding: FragmentSimpleAccountBinding
     private lateinit var adapter: SimpleAccountAdapter
-    private val getReceiptViewModel:GetReceiptViewModel by viewModels()
+    private val getReceiptViewModel: GetReceiptViewModel by viewModels()
     private val getAccountTransactionViewModel: GetAccountTransactionViewModel by viewModels()
     private lateinit var getAccountTransactionListModel: GetAccountTransactionListModel
     var toolbar: Toolbar? = null
-    lateinit var popupWindowShare:PopupWindow
-    lateinit var popupWindowFilter:PopupWindow
-
+    lateinit var popupWindowShare: PopupWindow
+    lateinit var popupWindowFilter: PopupWindow
 
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -77,16 +76,16 @@ class SimpleAccountFragment : Fragment() {
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
         createRecyclerView()
         executePopupMenu(inflater)
-        Receipt.isReceiptButtonClicked.observe(viewLifecycleOwner,{
-            if (it==true){
+        Receipt.isReceiptButtonClicked.observe(viewLifecycleOwner, {
+            if (it == true) {
                 getReceiptViewModel.apiRequest()
-                Receipt.isReceiptButtonClicked.value=false
+                Receipt.isReceiptButtonClicked.value = false
             }
         })
 
-        getReceiptViewModel.getContentOfReceipt.observe(viewLifecycleOwner,{
-            if (!it.value.isEmpty()){
-                val intent=Intent(Intent.ACTION_SEND)
+        getReceiptViewModel.getContentOfReceipt.observe(viewLifecycleOwner, {
+            if (!it.value.isEmpty()) {
+                val intent = Intent(Intent.ACTION_SEND)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 val decodedString: ByteArray = Base64.decode(it.value, Base64.DEFAULT)
                 val decodedByte =
@@ -115,7 +114,6 @@ class SimpleAccountFragment : Fragment() {
     }
 
 
-
     @RequiresApi(Build.VERSION_CODES.R)
     private fun getOutputMediaFile(): File? {
         // To be safe, you should check that the SDCard is mounted
@@ -141,8 +139,7 @@ class SimpleAccountFragment : Fragment() {
         return mediaFile
     }
 
-    private fun executePopupMenu(inflater: LayoutInflater)
-    {
+    private fun executePopupMenu(inflater: LayoutInflater) {
         binding.myButton.setOnClickListener {
 
             // Inflate a custom view using layout inflater
@@ -185,37 +182,37 @@ class SimpleAccountFragment : Fragment() {
 
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son1HaftaButton.setOnClickListener {
-                adapter.status=SimpleAccountListState.LAST_ONE_WEEK
+                adapter.status = SimpleAccountListState.LAST_ONE_WEEK
                 adapter.changeStatusOfArray()
                 popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son1AyButton.setOnClickListener {
-                adapter.status=SimpleAccountListState.LAST_ONE_MONTH
+                adapter.status = SimpleAccountListState.LAST_ONE_MONTH
                 adapter.changeStatusOfArray()
                 popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son3AyButton.setOnClickListener {
-                adapter.status=SimpleAccountListState.LAST_THREE_MONTHS
+                adapter.status = SimpleAccountListState.LAST_THREE_MONTHS
                 adapter.changeStatusOfArray()
                 popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son6AyButton.setOnClickListener {
-                adapter.status=SimpleAccountListState.LAST_SIX_MONTHS
+                adapter.status = SimpleAccountListState.LAST_SIX_MONTHS
                 adapter.changeStatusOfArray()
                 popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son1YilButton.setOnClickListener {
-                adapter.status=SimpleAccountListState.LAST_ONE_YEAR
+                adapter.status = SimpleAccountListState.LAST_ONE_YEAR
                 adapter.changeStatusOfArray()
                 popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             detayliFiltrelemeButton.setOnClickListener {
-                adapter.status=SimpleAccountListState.DETAIL
+                adapter.status = SimpleAccountListState.DETAIL
                 adapter.changeStatusOfArray()
                 popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
             }
@@ -255,6 +252,7 @@ class SimpleAccountFragment : Fragment() {
         }
         return timeInMilliseconds
     }
+
     private fun drawingLineChart(entries: ArrayList<Entry>, xLabels: ArrayList<String>) {
 
         //SET LINE ENTRIES (YEAR, MONEY)
@@ -263,7 +261,6 @@ class SimpleAccountFragment : Fragment() {
         myArray.add(Entry(2011F, 500F))
         myArray.add(Entry(2013F, 800F))
         myArray.add(Entry(2014F, 200F))*/
-
         //GET LINE CHART COMPONENT FROM XML
         var intertechLineChart: LineChart = binding.simpleAccountLineChart
 
@@ -272,14 +269,19 @@ class SimpleAccountFragment : Fragment() {
 
         intertechLineChart.description.isEnabled = false
         intertechLineChart.legend.isEnabled = false
-
+        intertechLineChart.xAxis.setLabelCount(5, true)
+        intertechLineChart.setScaleEnabled(false)
         intertechLineChart.xAxis.setValueFormatter(object : ValueFormatter() {
             @RequiresApi(Build.VERSION_CODES.N)
             private val mFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
+
             @RequiresApi(Build.VERSION_CODES.N)
             override fun getFormattedValue(value: Float): String {
-                val millis: Long = getDateInMilliSeconds(xLabels[value.toInt()], "yyyy-MM-dd")
-                return mFormat.format(Date(millis))
+                if(value==Math.ceil(value.toDouble()).toFloat()){
+                    val millis: Long = getDateInMilliSeconds(xLabels[value.toInt()], "yyyy-MM-dd")
+                    return mFormat.format(Date(millis))
+                }
+                return ""
             }
         })
 
@@ -287,25 +289,28 @@ class SimpleAccountFragment : Fragment() {
         //SETUP LINE CHART COLORS
         //var lineDataSet = LineDataSet(myArray, "MONEY/YEAR GRAPH")
         var lineDataSet = LineDataSet(entries, "MONEY/YEAR GRAPH")
-         var colors =ArrayList<Int>()
+        var colors = ArrayList<Int>()
         //SETUP BAR CHART COLORS
         /*lineDataSet.setColors(
             Color.GREEN,
             Color.RED
         )*/
-        for(pos in 0..entries.size-2){
+        for (pos in 0..entries.size - 2) {
             colors.add(
-                if (entries.get(pos+1).y - entries.get(pos).y > 0) Color.GREEN
-                else if(entries.get(pos+1).y - entries.get(pos).y < 0) Color.RED
-                else Color.BLACK)
+                if (entries.get(pos + 1).y - entries.get(pos).y > 0) Color.GREEN
+                else if (entries.get(pos + 1).y - entries.get(pos).y < 0) Color.RED
+                else Color.BLACK
+            )
         }
 
-        lineDataSet.setColors(colors.toIntArray(),255)
+        lineDataSet.setColors(colors.toIntArray(), 255)
         lineDataSet.valueTextColor = resources.getColor(R.color.intertech_linechart_value_color)
         lineDataSet.valueTextSize = 12F
         intertechLineChart.setBackgroundColor(resources.getColor(R.color.intertech_linechart_background_color))
-        intertechLineChart.xAxis.textColor = resources.getColor(R.color.intertech_linechart_label_color)
-        intertechLineChart.axisLeft.textColor = resources.getColor(R.color.intertech_linechart_label_color)
+        intertechLineChart.xAxis.textColor =
+            resources.getColor(R.color.intertech_linechart_label_color)
+        intertechLineChart.axisLeft.textColor =
+            resources.getColor(R.color.intertech_linechart_label_color)
         intertechLineChart.axisRight.isEnabled = false
         intertechLineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
 
@@ -314,22 +319,26 @@ class SimpleAccountFragment : Fragment() {
         lineData.setDrawValues(true)
         intertechLineChart.data = lineData
     }
+
     @RequiresApi(Build.VERSION_CODES.N)
-    private fun createRecyclerView(){
+    private fun createRecyclerView() {
         val recyclerView = binding.simpleAccountTransactions
-        recyclerView.layoutManager =  LinearLayoutManager(activity)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
         adapter = SimpleAccountAdapter()
         recyclerView.adapter = adapter
 
-         getAccountTransactionViewModel.apiRequest()
-        getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner,{
-            getAccountTransactionListModel=it
-            if (getAccountTransactionListModel.data.activityCollection.isNotEmpty()){
+        getAccountTransactionViewModel.apiRequest()
+        getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner, {
+            getAccountTransactionListModel = it
+            if (getAccountTransactionListModel.data.activityCollection.isNotEmpty()) {
                 val recyclerView = binding.simpleAccountTransactions
-                recyclerView.layoutManager =  LinearLayoutManager(activity)
-                (recyclerView.adapter as SimpleAccountAdapter).addList(getAccountTransactionListModel.data.activityCollection, this)
+                recyclerView.layoutManager = LinearLayoutManager(activity)
+                (recyclerView.adapter as SimpleAccountAdapter).addList(
+                    getAccountTransactionListModel.data.activityCollection,
+                    this
+                )
                 val dividerItemDecoration = DividerItemDecoration(
-                    recyclerView.context,1
+                    recyclerView.context, 1
                 )
 
                 recyclerView.addItemDecoration(dividerItemDecoration)
@@ -337,18 +346,25 @@ class SimpleAccountFragment : Fragment() {
                 var lineChartEntries = ArrayList<Entry>()
                 var lineChartArray = ArrayList<GetAccountTransactionList>()
                 lineChartArray.addAll((recyclerView.adapter as SimpleAccountAdapter).getSorted())
-                for(i in 0..(lineChartArray.size - 1)){
-                    lineChartEntries.add(Entry(i.toFloat(),
-                        lineChartArray[i].remainingBalance.toFloat()))
-                    xLabels.add(lineChartArray[i].date)
+                lineChartArray.reverse()
+                if (lineChartArray.size >= 5) {
+                    for (i in (lineChartArray.size - 5)..(lineChartArray.size - 1)) {
+                        lineChartEntries.add(Entry((i-5).toFloat(),
+                                lineChartArray[i].remainingBalance.toFloat()))
+                        xLabels.add(lineChartArray[i].date)
+                    }
+                } else {
+                    for (i in 0..(lineChartArray.size - 1)) {
+                        lineChartEntries.add(Entry((i).toFloat(),
+                                lineChartArray[i].remainingBalance.toFloat()))
+                        xLabels.add(lineChartArray[i].date)
+                    }
                 }
                 drawingLineChart(lineChartEntries, xLabels)
-
             }
-
         })
 //
-            adapter = SimpleAccountAdapter()
+        adapter = SimpleAccountAdapter()
 //
         recyclerView.adapter = adapter
 //        var arrayList = arrayListOf<GetAccountTransactionList>()
@@ -358,13 +374,13 @@ class SimpleAccountFragment : Fragment() {
         //val myarray2: Array<GetAccountTransactionList> = createDummyList(15)
         //var myarray = arrayOf(GetAccountTransactionList())
 //        adapter.addList(myarray2)
-        var lineChartEntries =ArrayList<Entry>()
+        var lineChartEntries = ArrayList<Entry>()
         lineChartEntries.add(Entry(1000F, 200F))
         lineChartEntries.add(Entry(1001F, 201F))
-  /*      for(i in myarray2){
-            lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
+        /*      for(i in myarray2){
+                  lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
 
-        }*/
+              }*/
 
 /*
         lineChartEntries.add(Entry(2010F, 100F))
@@ -373,12 +389,13 @@ class SimpleAccountFragment : Fragment() {
         lineChartEntries.add(Entry(2014F, 200F))*/
 
 
-       //drawingLineChart(lineChartEntries)
+        //drawingLineChart(lineChartEntries)
         val dividerItemDecoration = DividerItemDecoration(
-            recyclerView.context,1
+            recyclerView.context, 1
         )
         recyclerView.addItemDecoration(dividerItemDecoration)
     }
+
     /*private fun createDummyTransactionList(x: Double, d: String): GetAccountTransactionList {
         var x = GetAccountTransactionList("test",d,"test","test",x,122.2,
             "t","t","t","t","t","t","t",
@@ -388,8 +405,13 @@ class SimpleAccountFragment : Fragment() {
     }
 
      */
-    private fun addToRecyclerView(destinationAccountTitle: String, transactionName: String, amount: String, time: String, date: String)
-    {
+    private fun addToRecyclerView(
+        destinationAccountTitle: String,
+        transactionName: String,
+        amount: String,
+        time: String,
+        date: String
+    ) {
         destinationAccountTitles.add(destinationAccountTitle)
         transactionNames.add(transactionName)
         amounts.add(amount)
@@ -397,9 +419,11 @@ class SimpleAccountFragment : Fragment() {
         dates.add(date)
     }
 
-    private fun createDummyList(size:Int):Array<GetAccountTransactionList>{
-        var dummyOutgoing = arrayListOf("Amazon","Hepsiburada","Spotify","Gittigidiyor","GooglePlay")
-        var dummyIncoming = arrayListOf("ALEYNA USTA",
+    private fun createDummyList(size: Int): Array<GetAccountTransactionList> {
+        var dummyOutgoing =
+            arrayListOf("Amazon", "Hepsiburada", "Spotify", "Gittigidiyor", "GooglePlay")
+        var dummyIncoming = arrayListOf(
+            "ALEYNA USTA",
             "HALİLİBRAHİM KAPAR",
             "ITIR KURTULUŞ",
             "FERHAT ATAÇ",
@@ -410,37 +434,59 @@ class SimpleAccountFragment : Fragment() {
             "BAŞAR SAĞÇOLAK",
             "YAPRAK KAL"
         )
-        var dummyIncomingDetail = arrayListOf("Sipariş","Üyelik","Hizmet")
-        var dummyOutgoingDetail = arrayListOf("Kira","Borç","Gelen Havale")
+        var dummyIncomingDetail = arrayListOf("Sipariş", "Üyelik", "Hizmet")
+        var dummyOutgoingDetail = arrayListOf("Kira", "Borç", "Gelen Havale")
         var x = java.util.ArrayList<GetAccountTransactionList>()
         var date = 0
         var defaultAmount = 1000.0
         var dateStr = ""
-        for (i in 0..size){
+        for (i in 0..size) {
             date += 1
-            var transactionAmout:Double
-            if(i == 0)transactionAmout = 0.0
+            var transactionAmout: Double
+            if (i == 0) transactionAmout = 0.0
             else transactionAmout = (-150..150).random().toDouble()
-            var name :String=""
-            var detail:String=""
-            if(transactionAmout>0){
-                name = dummyOutgoing[(0..dummyOutgoing.size-1).random()]
-                detail = dummyOutgoingDetail[(0..dummyOutgoingDetail.size-1).random()]
-            }
-            else{
-                name = dummyIncoming[(0..dummyIncoming.size-1).random()]
-                detail = dummyIncomingDetail[(0..dummyIncomingDetail.size-1).random()]
+            var name: String = ""
+            var detail: String = ""
+            if (transactionAmout > 0) {
+                name = dummyOutgoing[(0..dummyOutgoing.size - 1).random()]
+                detail = dummyOutgoingDetail[(0..dummyOutgoingDetail.size - 1).random()]
+            } else {
+                name = dummyIncoming[(0..dummyIncoming.size - 1).random()]
+                detail = dummyIncomingDetail[(0..dummyIncomingDetail.size - 1).random()]
             }
 
-            defaultAmount+=transactionAmout
-            x.add(GetAccountTransactionList(name,date.toString(),"213","1312","test",detail,transactionAmout,defaultAmount,
-                "t","t","t","t","9:00","t","t",
-                233.3,"t","TRY"))
+            defaultAmount += transactionAmout
+            x.add(
+                GetAccountTransactionList(
+                    name,
+                    date.toString(),
+                    "213",
+                    "1312",
+                    "test",
+                    detail,
+                    transactionAmout,
+                    defaultAmount,
+                    "t",
+                    "t",
+                    "t",
+                    "t",
+                    "9:00",
+                    "t",
+                    "t",
+                    233.3,
+                    "t",
+                    "TRY"
+                )
+            )
 
         }
         return x.toTypedArray()
     }
-    fun executeSharePopupMenu(inflater: LayoutInflater, holder: SimpleAccountAdapter.SimpleAccountHolder) {
+
+    fun executeSharePopupMenu(
+        inflater: LayoutInflater,
+        holder: SimpleAccountAdapter.SimpleAccountHolder
+    ) {
         holder.binding.showDekont.setOnClickListener {
             Receipt.referenceNo = 3411
             Receipt.isReceiptButtonClicked.value = true
@@ -594,28 +640,30 @@ class SimpleAccountFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        if(this::popupWindowFilter.isInitialized){
+        if (this::popupWindowFilter.isInitialized) {
             popupWindowFilter.dismiss()
         }
-        if (this::popupWindowShare.isInitialized){
+        if (this::popupWindowShare.isInitialized) {
             popupWindowShare.dismiss()
         }
         super.onDestroy()
     }
+
     public fun updateLineChart(lineChartEntries: ArrayList<Entry>) {
 
 
         Timer("SettingUp", false).schedule(2000) {
             var lineDataSet = LineDataSet(lineChartEntries, "MONEY/YEAR GRAPH")
-            var colors =ArrayList<Int>()
-            for(pos in 0..lineChartEntries.size-2){
+            var colors = ArrayList<Int>()
+            for (pos in 0..lineChartEntries.size - 2) {
                 colors.add(
-                    if (lineChartEntries.get(pos+1).y - lineChartEntries.get(pos).y > 0) Color.GREEN
-                    else if(lineChartEntries.get(pos+1).y - lineChartEntries.get(pos).y < 0) Color.RED
-                    else Color.BLACK)
+                    if (lineChartEntries.get(pos + 1).y - lineChartEntries.get(pos).y > 0) Color.GREEN
+                    else if (lineChartEntries.get(pos + 1).y - lineChartEntries.get(pos).y < 0) Color.RED
+                    else Color.BLACK
+                )
             }
 
-            lineDataSet.setColors(colors.toIntArray(),255)
+            lineDataSet.setColors(colors.toIntArray(), 255)
             lineDataSet.valueTextColor = R.color.intertech_actionbar_bottomnav_back_color
             lineDataSet.valueTextSize = 15F
 
