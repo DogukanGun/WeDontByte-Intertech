@@ -19,41 +19,41 @@
 
     <!--BUTTON RENKLERIYLE ILGILI RENK DEGISIKLIKLERI ICIN-->
     <color name="intertech_button_text_color">#fff4de</color>
-    <color name="intertech_button_back_color">#FF7600</color>
+    <color name="intertech_button_back_color">#002171</color>
 
     <!--BUTTON VE TEXT HARICINDEKI DIGER COMPONENTLERIN RENK DEGISIMLERI ICIN-->
     <color name="intertech_component_text_color">#EFEDE8</color>
     <color name="intertech_component_back_color">#021324</color>
 
     <!--ACTIONBAR VE BOTTOMNAV ICIN RENK DEGISIMLERI-->
-    <color name="intertech_actionbar_bottomnav_back_color">#095aa9</color>
+    <color name="intertech_actionbar_bottomnav_back_color">#002171</color>
     <color name="intertech_bottomnav_item_color">#fff4de</color>
 
     <!--ANA EKRANLAR BU RENKTE OLACAKTIR-->
-    <color name="intertech_screen_color">#ffffff</color>
+    <color name="intertech_screen_color">#f5f5f5</color>
 
     <!--RECYCLERVIEW RENK DEGISIMLERI ICIN (ARKA PLAN RENGİ VE ARALARINDAKİ BOŞLUK RENGİ)-->
-    <color name="intertech_recyclerview_backcolor">#F1ECEC</color>
+    <color name="intertech_recyclerview_backcolor">#f5f5f5</color>
 
     <!--RECYCLERVIEW YANINDA ARROW VARSA ONUN RENGİ VE ARKAPLAN RENGİ-->
-    <color name="intertech_recyclerview_arrow_textcolor">#000000</color>
-    <color name="intertech_recyclerview_arrow_backcolor">#FF7600</color>
+    <color name="intertech_recyclerview_arrow_textcolor">#cfd8dc</color>
+    <color name="intertech_recyclerview_arrow_backcolor">#002171</color>
 
-    <color name="intertech_recyclerview_date_textcolor">#053564</color>
-    <color name="intertech_recyclerview_date_backcolor">#FF7600</color>
+    <color name="intertech_recyclerview_date_textcolor">#002171</color>
+    <color name="intertech_recyclerview_date_backcolor">#cfd8dc</color>
 
-    <color name="intertech_swipebutton_backcolor1">#FF7600</color>
-    <color name="intertech_swipebutton_backcolor2">#053564</color>
+    <color name="intertech_swipebutton_backcolor1">#002171</color>
+    <color name="intertech_swipebutton_backcolor2">#cfd8dc</color>
 
-    <color name="gradient_starting_color">#ffe44a16</color>
-    <color name="gradient_center_color">#ffff7600</color>
-    <color name="gradient_ending_color">#fffdf429</color>
+    <color name="gradient_starting_color">#e2f1f8</color>
+    <color name="gradient_center_color">#c1d5e0</color>
+    <color name="gradient_ending_color">#b0bec5</color>
 
-    <color name="intertech_icon_color">#FF7600</color>
+    <color name="intertech_icon_color">#002171</color>
 
     <!--LINE CHART RENKLERI-->
-    <color name="intertech_linechart_value_color">#FF7600</color>
+    <color name="intertech_linechart_value_color">#bf360c</color>
     <color name="intertech_linechart_background_color">#F1ECEC</color>
-    <color name="intertech_linechart_label_color">#053564</color>
+    <color name="intertech_linechart_label_color">#002171</color>
 
 </resources>

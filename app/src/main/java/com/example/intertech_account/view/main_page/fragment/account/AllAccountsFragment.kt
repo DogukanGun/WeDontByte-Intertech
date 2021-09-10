@@ -305,8 +305,8 @@ class AllAccountsFragment : Fragment() {
 
                         })
 
-                    detailsButton.textColor = Color.WHITE
-                    activitiesButton.textColor = Color.WHITE
+                    detailsButton.textColor = Color.rgb(0, 33, 113)
+                    activitiesButton.textColor = Color.rgb(207, 216, 220)
 
 
                     //TODO Buraya istenidiği kadar buton eklenebilir

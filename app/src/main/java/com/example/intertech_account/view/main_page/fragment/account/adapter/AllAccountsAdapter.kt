@@ -347,8 +347,9 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             Color.rgb(9, 83, 153),
             Color.rgb(200, 29, 71),
             Color.rgb(124, 124, 124),
-            Color.rgb(229, 153, 173),
-            Color.rgb(255,118,0)
+            Color.rgb(101,73,156),
+            Color.rgb(229, 153, 173)
+
         )
         intertechPieChart.setEntryLabelTextSize(18f)
 
