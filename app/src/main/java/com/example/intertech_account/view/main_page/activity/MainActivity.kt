@@ -84,9 +84,10 @@ class MainActivity : BaseActivity() {
                 finish()
             }
         })
-        binding.topAppBar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
-        binding.appToolbarMainActivity.title = getString(R.string.app_name)
-    }
+        binding.appToolbarMainActivity.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
+        setSupportActionBar(binding.appToolbarMainActivity)
+        supportActionBar!!.title=getString(R.string.app_name)
+     }
 
     private fun toolBarMenuButtonListen(){
         //Topbar button yönlendirmesi.
