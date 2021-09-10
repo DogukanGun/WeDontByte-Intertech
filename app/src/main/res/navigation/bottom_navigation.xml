@@ -5,10 +5,6 @@
     android:id="@+id/bottom_navigation"
     app:startDestination="@id/mainPageFragment">
     <fragment
-        android:id="@+id/userInformationFragment"
-        android:name="com.example.intertech_account.view.main_page.fragment.user_information.UserInformationFragment"
-        android:label="UserInformationFragment" />
-    <fragment
         android:id="@+id/allAccountsFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.AllAccountsFragment"
         android:label="AllAccountsFragment" >

@@ -32,9 +32,8 @@
                 android:gravity="center">
             <Button
                 android:id="@+id/createAccount"
-
-                android:layout_width="55dp"
-                android:layout_height="50dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/open_account"
                 android:textStyle="bold" />
                 <TextView
@@ -42,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/create_account"
                     android:textAlignment="center"
-                    android:textColor="@color/intertech_button_back_color"
+                    android:textColor="@color/intertech_recyclerview_arrow_backcolor"
                     android:textStyle="bold"/>
             </LinearLayout>
 

@@ -23,11 +23,11 @@
 
         <Button
             android:id="@+id/myButton"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_weight="5.3"
             android:background="@drawable/filter"
-            app:backgroundTint="@color/intertech_icon_color"/>
+            app:backgroundTint="@color/intertech_textview_text_color"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
             android:textAlignment="center"
             android:textStyle="bold"
             android:textSize="16dp"
-            android:textColor="@color/intertech_button_back_color"
+            android:textColor="@color/intertech_textview_text_color"
             android:text="@string/filter"/>
 
         <androidx.recyclerview.widget.RecyclerView

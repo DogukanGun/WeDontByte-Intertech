@@ -15,7 +15,6 @@ import androidx.test.core.app.ApplicationProvider
 import com.example.intertech_Customer.view_model.GetCustomerViewModel
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.ActivityUserInformationBinding
-import com.example.intertech_account.databinding.FragmentUserInformationBinding
 import com.example.intertech_account.model.api_model.get_customer.GetCustomerModel
 import com.example.intertech_account.view.main_page.fragment.user_information.adapter.UserInformationAdapter
 import com.google.android.material.snackbar.Snackbar

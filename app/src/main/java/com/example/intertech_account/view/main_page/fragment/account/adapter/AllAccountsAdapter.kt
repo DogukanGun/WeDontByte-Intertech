@@ -240,14 +240,14 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                     piechart.animateXY(1000, 1000)
                     graphState=1
                 }
-                holder.getBind().ascending.setOnClickListener {
+                holder.getBind().sortingRadioButton.setOnClickListener {
 
                         sortButtonClick+=1
                         if (sortButtonClick>2){
                             sortButtonClick=0
                         }
                         if (sortButtonClick<2){
-                            holder.getBind().ascending.background = ContextCompat.getDrawable(holder.getBind().ascending.context, R.drawable.qr_radio_button_selected)
+                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
 //                            holder.getBind().descending.background = ContextCompat.getDrawable(holder.getBind().descending.context, R.drawable.qr_radio_button_not_selected)
 //                            holder.getBind().defaultSort.background = ContextCompat.getDrawable(holder.getBind().defaultSort.context, R.drawable.qr_radio_button_not_selected)
 
@@ -259,7 +259,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                                 modifyAccount(currencyStates)
                             }
                         }else{
-                            holder.getBind().ascending.background = ContextCompat.getDrawable(holder.getBind().ascending.context, R.drawable.qr_radio_button_not_selected)
+                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_not_selected)
                             setPositioningCriteria(0)
                             modifyAccount(currencyStates)
                         }

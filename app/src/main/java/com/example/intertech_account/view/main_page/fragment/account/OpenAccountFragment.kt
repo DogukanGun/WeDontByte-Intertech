@@ -1,7 +1,9 @@
 package com.example.intertech_account.view.main_page.fragment.account
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
+import android.provider.Settings.Global.getString
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +24,7 @@ import com.example.intertech_account.view.main_page.fragment.account.adapter.All
 import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragment
 import com.example.intertech_account.view_model.GetAccountViewModel
 import com.example.intertech_account.view_model.GetOpenAccountViewModel
+import com.itextpdf.awt.geom.misc.Messages.getString
 
 class OpenAccountFragment : Fragment() {
 
@@ -44,14 +47,21 @@ class OpenAccountFragment : Fragment() {
         }
         val spinnerListForAccountType: ArrayList<String> = arrayListOf<String>()
 
-        //TODO buranin ingilizcesini bulamadim
-        spinnerListForAccountType.addAll(arrayListOf("Vadeli","Vadesiz"))
-
+        spinnerListForAccountType.addAll(arrayListOf(getString(R.string.vadeli),getString(R.string.vadesiz)))
+        val adapterForAccountType: ArrayAdapter<String> = ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            spinnerListForAccountType
+        )
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             requireContext(),
             android.R.layout.simple_spinner_item,
             spinnerListForCurrency
         )
+
+        binding.accountTypeSpinner.adapter = adapterForAccountType
+
+
         binding.currencySpinner.adapter = adapter
         binding.currencySpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {

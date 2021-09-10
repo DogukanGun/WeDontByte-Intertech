@@ -23,6 +23,7 @@ class SettingActivity : BaseActivity() {
         setContentView(binding.root)
         val toolbar =  binding.appToolbarSettingActivity
         setSupportActionBar(toolbar)
+        toolbar.setTitleTextColor(resources.getColor(R.color.intertech_bottomnav_item_color))
         val language=rememberLanguage()
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)

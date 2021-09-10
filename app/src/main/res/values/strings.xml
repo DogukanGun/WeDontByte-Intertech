@@ -90,6 +90,8 @@
     <string name="theme">Tema</string>
     <string name="create_account">Hesap Aç</string>
     <string name="filter">Filtre</string>
+    <string name="vadeli">Vadeli</string>
+    <string name="vadesiz">Vadesiz</string>
 
 
     <string name="no_error">İşlem başarıyla gerçekleşti</string>

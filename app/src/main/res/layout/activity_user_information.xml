@@ -68,11 +68,12 @@
                     android:textSize="20dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="30dp"
+                    android:textColor="@color/intertech_textview_text_color"
                     android:text="@string/full_name"/>
                 <Button
                     android:id="@+id/photoEditButton"
                     android:background="@drawable/edit"
-                    android:backgroundTint="@color/intertech_button_back_color"
+                    android:backgroundTint="@color/intertech_textview_text_color"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"

@@ -39,10 +39,12 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/appToolbarMainActivity"
             android:layout_width="0dp"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_height="wrap_content"
             android:background="@color/intertech_actionbar_bottomnav_back_color"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
+            app:navigationIconTint = "@color/intertech_bottomnav_item_color"
+            app:backgroundTint="@color/intertech_bottomnav_item_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +56,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/intertech_actionbar_bottomnav_back_color"
-                app:navigationIconTint = "@color/black"
+                app:backgroundTint="@color/intertech_bottomnav_item_color"
+                app:navigationIconTint = "@color/intertech_bottomnav_item_color"
                 app:menu="@menu/top_bar_menu"
                 app:title="@string/app_title" />
         </androidx.appcompat.widget.Toolbar>
