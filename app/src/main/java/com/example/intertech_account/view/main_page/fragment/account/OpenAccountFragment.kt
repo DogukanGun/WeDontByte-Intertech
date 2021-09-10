@@ -37,18 +37,20 @@ class OpenAccountFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentOpenAccountBinding.inflate(layoutInflater)
 
-        val spinnerList: ArrayList<String> = arrayListOf<String>()
+        val spinnerListForCurrency: ArrayList<String> = arrayListOf<String>()
 
-        spinnerList.add("TRY")
-        spinnerList.add("USD")
-        spinnerList.add("EUR")
-        spinnerList.add("GBP")
-        spinnerList.add("CAD")
+        for(index in Constant.currencyList){
+            spinnerListForCurrency.add(index.currencyCode)
+        }
+        val spinnerListForAccountType: ArrayList<String> = arrayListOf<String>()
+
+        //TODO buranin ingilizcesini bulamadim
+        spinnerListForAccountType.addAll(arrayListOf("Vadeli","Vadesiz"))
 
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             requireContext(),
             android.R.layout.simple_spinner_item,
-            spinnerList
+            spinnerListForCurrency
         )
         binding.currencySpinner.adapter = adapter
         binding.currencySpinner.onItemSelectedListener =
