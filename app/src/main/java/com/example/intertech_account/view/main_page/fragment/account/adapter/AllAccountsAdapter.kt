@@ -2,6 +2,7 @@ package com.example.intertech_account.view.main_page.fragment.account.adapter
 
 import android.graphics.Color
 import android.graphics.Paint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -233,6 +234,12 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 holder.getBind().textViewTitleRow.text = "${allAccounts[position+1].currency} Hesaplarım"
             }
             is AllAccountsRecyclerViewHolder.GraphViewHolder -> {
+                if(!totalBalanceChecker){
+                    for (pos in 0..pieEntries.size - 1) {
+                        Log.d("Info","Girdiii")
+                        pieEntries.get(pos).y += (totalBalanceForPieChart / pieEntries.size).toFloat()
+                    }
+                }
                 piechart= drawingPieChart(holder.getBind(),pieEntries)
 
                 //SETUP PIE ANIMATION
@@ -385,13 +392,15 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             for (pos in 0..pieEntries.size - 1) {
                 totalBalanceForPieChart += pieEntries.get(pos).y
             }
+            totalBalanceForPieChart /= 2
+            for (pos in 0..pieEntries.size - 1) {
+                Log.d("Info","Girdiii")
+                pieEntries.get(pos).y += (totalBalanceForPieChart / pieEntries.size).toFloat()
+            }
             totalBalanceChecker = false
         }
 
-        for (pos in 0..pieEntries.size - 1) {
 
-                pieEntries.get(pos).y += (totalBalanceForPieChart / pieEntries.size).toFloat()
-        }
         val totalBalanceString =totalBalanceForPieChart.toString()
 
         intertechPieChart.apply { intertechPieChart.centerText = context.getString(R.string.total_balance) + "\n%.2f ".format(totalBalanceForPieChart)+"₺" }
