@@ -2,33 +2,23 @@ package com.example.intertech_account.view.main_page.fragment.account.adapter
 
 import android.graphics.Color
 import android.graphics.Paint
-import android.location.Criteria
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewGraphRowBinding
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBinding
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewTitleRowBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
-import com.example.intertech_account.resources.common_variables.Constant
-import com.example.intertech_account.view.main_page.activity.MainActivity
-import com.example.intertech_account.view.main_page.fragment.account.AllAccountsFragmentDirections
-import com.github.mikephil.charting.charts.PieChart
+ import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import javax.crypto.spec.DESedeKeySpec
-import kotlin.reflect.full.memberProperties
+ import kotlin.reflect.full.memberProperties
 
 
 class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsRecyclerViewHolder>()  {
@@ -39,6 +29,9 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     private val DESCENDING_POSITIONING = 1
     private val ASCENDING_POSITIONING = 2
     private var positioningCriteria = 0
+    companion object{
+        private var sortButtonClick=3
+    }
     private var graphState = 0
     private lateinit var piechart :PieChart
     private lateinit var pieEntries:ArrayList<PieEntry>
@@ -245,32 +238,33 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                     piechart.animateXY(1000, 1000)
                     graphState=1
                 }
-                holder.getBind().allAccountsRadioGroup.setOnCheckedChangeListener { group, checkedId ->
-                    if (checkedId == R.id.ascending)
-                    {
-                        holder.getBind().ascending.background = ContextCompat.getDrawable(holder.getBind().ascending.context, R.drawable.qr_radio_button_selected)
-                        holder.getBind().descending.background = ContextCompat.getDrawable(holder.getBind().descending.context, R.drawable.qr_radio_button_not_selected)
-                        holder.getBind().defaultSort.background = ContextCompat.getDrawable(holder.getBind().defaultSort.context, R.drawable.qr_radio_button_not_selected)
+                holder.getBind().ascending.setOnClickListener {
 
-                        setPositioningCriteria(2)
-                        modifyAccount(currencyStates)
-                    }
-                    else if (checkedId == R.id.descending) {
-                        holder.getBind().descending.background = ContextCompat.getDrawable(holder.getBind().descending.context, R.drawable.qr_radio_button_selected)
-                        holder.getBind().ascending.background = ContextCompat.getDrawable(holder.getBind().ascending.context, R.drawable.qr_radio_button_not_selected)
-                        holder.getBind().defaultSort.background = ContextCompat.getDrawable(holder.getBind().defaultSort.context, R.drawable.qr_radio_button_not_selected)
+                        sortButtonClick+=1
+                        if (sortButtonClick>2){
+                            sortButtonClick=0
+                        }
+                        if (sortButtonClick<2){
+                            holder.getBind().ascending.background = ContextCompat.getDrawable(holder.getBind().ascending.context, R.drawable.qr_radio_button_selected)
+//                            holder.getBind().descending.background = ContextCompat.getDrawable(holder.getBind().descending.context, R.drawable.qr_radio_button_not_selected)
+//                            holder.getBind().defaultSort.background = ContextCompat.getDrawable(holder.getBind().defaultSort.context, R.drawable.qr_radio_button_not_selected)
 
-                        setPositioningCriteria(1)
-                        modifyAccount(currencyStates)
-                    }
-                    else if (checkedId == R.id.defaultSort) {
-                        holder.getBind().defaultSort.background = ContextCompat.getDrawable(holder.getBind().defaultSort.context, R.drawable.qr_radio_button_selected)
-                        holder.getBind().ascending.background = ContextCompat.getDrawable(holder.getBind().ascending.context, R.drawable.qr_radio_button_not_selected)
-                        holder.getBind().descending.background = ContextCompat.getDrawable(holder.getBind().descending.context, R.drawable.qr_radio_button_not_selected)
+                            if (sortButtonClick==0){
+                                setPositioningCriteria(2)
+                                modifyAccount(currencyStates)
+                            }else{
+                                setPositioningCriteria(1)
+                                modifyAccount(currencyStates)
+                            }
+                        }else{
+                            holder.getBind().ascending.background = ContextCompat.getDrawable(holder.getBind().ascending.context, R.drawable.qr_radio_button_not_selected)
+                            setPositioningCriteria(0)
+                            modifyAccount(currencyStates)
+                        }
 
-                        setPositioningCriteria(0)
-                        modifyAccount(currencyStates)
-                    }
+
+
+
                 }
             }
 
