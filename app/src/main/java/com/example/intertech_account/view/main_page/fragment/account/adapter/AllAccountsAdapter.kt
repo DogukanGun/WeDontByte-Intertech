@@ -389,6 +389,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         }
 
         for (pos in 0..pieEntries.size - 1) {
+
                 pieEntries.get(pos).y += (totalBalanceForPieChart / pieEntries.size).toFloat()
         }
         val totalBalanceString =totalBalanceForPieChart.toString()
@@ -414,7 +415,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             1850.0,
             "benimHesabım",
             "TR1159465168416516841634623",
-            false,88.50,null)
+            false,88.50,"","","","","",0.0)
         return x
 
     }

@@ -202,7 +202,7 @@ class AllAccountsFragment : Fragment() {
             1850.0,
             "benimHesabım",
             "TR1159465168416516841634623",
-            false,88.50,null)
+            false,88.50,"","","","","",0.0)
         return x
 
     }

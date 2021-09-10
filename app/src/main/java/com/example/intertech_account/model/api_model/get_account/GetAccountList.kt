@@ -35,5 +35,16 @@ data class GetAccountList(
     var isSchoolPaymentComing: Boolean,
     @SerializedName("AvailableCreditDeposit")
     var creditDeposit: Double,
-    var balanceAsTRY:Double?
+    @SerializedName("CustomerNo")
+    var cutomerNo: String,
+    @SerializedName("AccountClosingDate")
+    var closingDate: String,
+    @SerializedName("AccountOpenningDate")
+    var openingDate: String,
+    @SerializedName("BlockageExplanation")
+    var blockageExplanation: String,
+    @SerializedName("BlockageAmount")
+    var blockageAmount: String,
+
+var balanceAsTRY:Double?
 )
