@@ -19,6 +19,7 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.SimpleAccountRecyclerviewRowBinding
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.model.api_model.status.SimpleAccountListState
+import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.resources.common_variables.Receipt
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.SimpleAccountFragment
@@ -160,7 +161,7 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
             holder.binding.dateMonth.text = monthMap[month]
             holder.binding.dateTime.text = transactionArrayList[position].time
             holder.binding.amountValue.text =
-                transactionArrayList[position].amount.toString() + " " + transactionArrayList[position].currencyCode
+                Constant.amountFormatter.format(transactionArrayList[position].amount)+ " " + transactionArrayList[position].currencyCode
             holder.binding.aliciIsmi.text = transactionArrayList[position].userCode
 
             if (transactionArrayList[position].amount > 0) {

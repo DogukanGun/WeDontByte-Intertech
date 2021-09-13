@@ -16,6 +16,7 @@ import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.example.intertech_account.model.api_model.main_page.landmark.Landmark
 import com.example.intertech_account.resources.common_variables.Constant
+import com.example.intertech_account.resources.common_variables.Constant.amountFormatter
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AccountDetailAdapter
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
 import com.example.intertech_account.view_model.GetAccountViewModel
@@ -163,7 +164,7 @@ class AccountDetailFragment() : Fragment() {
 
     }
     private fun doubleAmount(str:String):String{
-        return str+" "+currencySigns[currency]
+        return amountFormatter.format(str.toDouble())+" "+currencySigns[currency]
     }
 
     private fun rate(str:String):String{

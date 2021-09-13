@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.NavHostFragment
 import com.example.intertech_account.model.api_model.GetCurrency
 import com.example.intertech_account.model.api_model.get_account.GetAccountHeaders
+import java.text.DecimalFormat
 
 // Diğer classların ortak kullandığı constantlar
 
@@ -17,5 +18,8 @@ object Constant{
         var exceptionForApp=MutableLiveData("")
         lateinit var currencyList:ArrayList<GetCurrency>
         var languageStatus=0
+
+        // Hesap bakiyeleri ve işlem bakiyeleri için kullanılacak format.
+        val amountFormatter = DecimalFormat("#,##0.00")
 }
 

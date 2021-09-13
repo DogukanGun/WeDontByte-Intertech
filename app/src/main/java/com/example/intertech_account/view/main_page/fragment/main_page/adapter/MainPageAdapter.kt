@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intertech_account.databinding.HomeScreenTransactionRowBinding
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
+import com.example.intertech_account.resources.common_variables.Constant
 
 class MainPageAdapter ()
     :RecyclerView.Adapter<MainPageAdapter.MainPageHolder>()   {
@@ -44,7 +45,7 @@ class MainPageAdapter ()
             //holder.binding.dateValue.text = "$day.$month.$year"
             //holder.binding.dateName.text = transactions[position].date.substringAfter("T")
             //TODO transaction modeli içine
-            holder.binding.amountValue.text = transactions[position].amount.toString()+" "+transactions[position].currencyCode
+            holder.binding.amountValue.text = Constant.amountFormatter.format(transactions[position].amount)+" "+transactions[position].currencyCode
             if(transactions[position].amount < 0){
                 holder.binding.amountValue.setTextColor(Color.RED)
             }else{

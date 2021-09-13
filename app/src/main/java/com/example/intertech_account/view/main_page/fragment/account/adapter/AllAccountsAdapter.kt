@@ -12,14 +12,16 @@ import com.example.intertech_account.databinding.AllAccountsRecyclerviewGraphRow
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBinding
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewTitleRowBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
- import com.github.mikephil.charting.charts.PieChart
+import com.example.intertech_account.resources.common_variables.Constant.amountFormatter
+import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
- import kotlin.reflect.full.memberProperties
+import java.text.DecimalFormat
+import kotlin.reflect.full.memberProperties
 
 
 class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsRecyclerViewHolder>()  {
@@ -328,7 +330,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     override fun onBindViewHolder(holder: AllAccountsRecyclerViewHolder, position: Int) {
         when (holder) {
             is AllAccountsRecyclerViewHolder.AccountViewHolder -> {
-                    holder.getBind().bakiyeNoTv.text = allAccounts[position].balance.toString() +" "+ currencySigns[allAccounts[position].currency]
+                    holder.getBind().bakiyeNoTv.text = amountFormatter.format(allAccounts[position].balance)+" "+ currencySigns[allAccounts[position].currency]
                     holder.getBind().ibanTv.text = allAccounts[position].iban
                     holder.getBind().subeIsmiTv.text = allAccounts[position].branch
                     holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
@@ -533,9 +535,11 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         }
 
 
-        val totalBalanceString =totalBalanceForPieChart.toString()
+        //val totalBalanceString =totalBalanceForPieChart.toString()
+        val totalBalanceString =amountFormatter.format(totalBalanceForPieChart)
 
-        intertechPieChart.apply { intertechPieChart.centerText = context.getString(R.string.total_balance) + "\n%.2f ".format(totalBalanceForPieChart)+"₺" }
+        //intertechPieChart.apply { intertechPieChart.centerText = context.getString(R.string.total_balance) + "\n%.2f ".format(totalBalanceForPieChart)+"₺" }
+        intertechPieChart.apply { intertechPieChart.centerText = context.getString(R.string.total_balance) + "\n" + totalBalanceString+"₺" }
         intertechPieChart.setCenterTextColor(Color.BLACK)
         intertechPieChart.setCenterTextSize(18f)
 
