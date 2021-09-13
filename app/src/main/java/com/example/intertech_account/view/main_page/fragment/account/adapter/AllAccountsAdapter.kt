@@ -374,9 +374,12 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                         sortButtonClick+=1
                         if (sortButtonClick>2){
                             sortButtonClick=0 //ARTAN
-                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.ascending)
-                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.ascending) }
+                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_not_selected)
+                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
+                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
+
+                            setPositioningCriteria(0)
+                            modifyAccount(currencyStates)
                         }
                         if (sortButtonClick<2){ //AZALAN
                             holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
