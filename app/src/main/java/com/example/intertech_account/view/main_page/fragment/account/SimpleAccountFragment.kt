@@ -172,6 +172,7 @@ class SimpleAccountFragment : Fragment() {
 
             // Get the widgets reference from custom view
             //TODO turkce den ingilizceye degisstirilecek
+            val popupMenuBackButton = view.findViewById<Button>(R.id.popupMenuBackButton)
             val son1HaftaButton = view.findViewById<Button>(R.id.son1HaftaButton)
             val son1AyButton = view.findViewById<Button>(R.id.son1AyButton)
             val son3AyButton = view.findViewById<Button>(R.id.son3AyButton)
@@ -180,6 +181,10 @@ class SimpleAccountFragment : Fragment() {
             val detayliFiltrelemeButton = view.findViewById<Button>(R.id.detayliFiltrelemeButton)
 
 
+            //CORRESPONDING BUTTON ONCLICKED EVENT
+            popupMenuBackButton.setOnClickListener {
+                popupWindowFilter.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+            }
             //CORRESPONDING BUTTON ONCLICKED EVENT
             son1HaftaButton.setOnClickListener {
                 adapter.status = SimpleAccountListState.LAST_ONE_WEEK

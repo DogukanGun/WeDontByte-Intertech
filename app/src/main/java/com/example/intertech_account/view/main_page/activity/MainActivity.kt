@@ -3,6 +3,7 @@ package com.example.intertech_account.view.main_page.activity
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.os.SystemClock.sleep
 import android.view.KeyEvent
@@ -87,6 +88,7 @@ class MainActivity : BaseActivity() {
         })
         binding.topAppBar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
         binding.topAppBar.setTitle(R.string.app_title)
+        binding.topAppBar.navigationIcon?.mutate()?.setColorFilter(resources.getColor(R.color.intertech_bottomnav_item_color), PorterDuff.Mode.SRC_IN)
     }
 
     private fun toolBarMenuButtonListen(){

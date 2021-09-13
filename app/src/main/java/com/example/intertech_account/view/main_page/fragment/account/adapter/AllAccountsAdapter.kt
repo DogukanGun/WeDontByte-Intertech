@@ -402,7 +402,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                                 modifyAccount(currencyStates)
                             }
                         }else{ //DEFAULT
-                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_not_selected)
+                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
                             holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
                             holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
 
