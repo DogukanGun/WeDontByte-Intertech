@@ -106,6 +106,7 @@
     <string name="wrong_password">The given password is wrong</string>
     <string name="open_account_enter_account_name">New Account Name</string>
     <string name="open_account_currency_type">Currency Type</string>
+    <string name="bottom_menu_add_account">Open Account</string>
 
     <string name="Jan">January</string>
     <string name="Feb">February</string>

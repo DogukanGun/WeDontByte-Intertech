@@ -60,10 +60,7 @@ class AllAccountsFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentAllAccountsBinding.inflate(layoutInflater)
-        binding.createAccount.setOnClickListener {
-            val action = AllAccountsFragmentDirections.actionAllAccountsFragmentToOpenAccountFragment()
-            Constant.navHostFragment.findNavController().navigate(action)
-        }
+
 //        Constant.currentBottomMenu=1
 //        Button.isUserInformationTopBarButtonClickFromAllAccounts.value=0
 //        Button.isSettingTopBarButtonClickFromAllAccountsFragment.value=0

@@ -95,8 +95,7 @@ class OpenAccountFragment : Fragment() {
                         accountName = it.getOpenAccountData.getNewAccountResponse.accountName
 
                         Toast.makeText(context,"Yeni hesap adınız:\n"+accountName + "\nYeni ibanınız:\n" + newAccountIban, Toast.LENGTH_LONG).show()
-                        val action = OpenAccountFragmentDirections.actionOpenAccountFragmentToAllAccountsFragment()
-                        Constant.navHostFragment.findNavController().navigate(action)
+
                     }
 
                 })

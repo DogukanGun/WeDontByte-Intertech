@@ -78,6 +78,7 @@ class MainActivity : BaseActivity() {
         val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.mainPageFragment,
             R.id.allAccountsFragment,
+            R.id.openAccountFragment,
         ).build()
         Button.qrButtonPressed.observe(this,{
             if (it.intentToCamera){
@@ -86,8 +87,11 @@ class MainActivity : BaseActivity() {
                 finish()
             }
         })
-        binding.topAppBar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
-        binding.topAppBar.setTitle(R.string.app_title)
+        binding.appToolbarMainActivity.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
+        //binding.topAppBar.setTitle(R.string.app_title)
+        setSupportActionBar(binding.appToolbarMainActivity)
+        supportActionBar!!.title=getString(R.string.app_title)
+
         binding.topAppBar.navigationIcon?.mutate()?.setColorFilter(resources.getColor(R.color.intertech_bottomnav_item_color), PorterDuff.Mode.SRC_IN)
     }
 
