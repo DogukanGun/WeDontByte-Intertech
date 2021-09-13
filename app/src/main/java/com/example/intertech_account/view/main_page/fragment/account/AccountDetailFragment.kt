@@ -24,7 +24,6 @@ import com.google.gson.annotations.SerializedName
 
 class AccountDetailFragment() : Fragment() {
 
-
     private lateinit var binding:FragmentAccountDetailBinding
     private var adapter = AccountDetailAdapter()
     private var adapter_ = AccountDetailAdapter()
@@ -71,7 +70,7 @@ class AccountDetailFragment() : Fragment() {
         "Hesap Kapalı mı?" to 14,
 
 
-    )
+     ) 
     private val currencySigns:HashMap<String,String> = hashMapOf(
         "TRY" to "₺",
         "USD" to "$",
@@ -175,7 +174,7 @@ class AccountDetailFragment() : Fragment() {
         val values: ArrayList<String> = arrayListOf()
         AllAccountsArrayList.addAll(titles)
         val comparator = Comparator { o1: String, o2: String ->
-                return@Comparator roles[o1]!! - roles[o2]!!
+                 return@Comparator roles[o1]!! - roles[o2]!!
         }
 
         AllAccountsArrayList.sortWith(comparator)
@@ -186,8 +185,16 @@ class AccountDetailFragment() : Fragment() {
         titles.clear()
         this.values.addAll(values)
         titles.addAll(AllAccountsArrayList)
+    } 
+
+        AllAccountsArrayList.sortWith(comparator)
+        for(i in AllAccountsArrayList){
+            values.add(this.values.get(titles.indexOf(i)))
+        }
+        this.values.clear()
+        titles.clear()
+        this.values.addAll(values)
+        titles.addAll(AllAccountsArrayList)
     }
-
-
 
 }
