@@ -23,11 +23,12 @@ import com.google.gson.annotations.SerializedName
 
 class AccountDetailFragment() : Fragment() {
 
-
     private lateinit var binding:FragmentAccountDetailBinding
     private var adapter = AccountDetailAdapter()
     private var adapter_ = AccountDetailAdapter()
     private lateinit var getAccountModel: GetAccountModel
+    private var titles = arrayListOf<String>()
+    private var values = arrayListOf<String>()
     val args: AccountDetailFragmentArgs by navArgs()
     private val getAccountViewModel:GetAccountViewModel by viewModels()
     private val titlesHashMap = hashMapOf<String,String>(
@@ -50,6 +51,25 @@ class AccountDetailFragment() : Fragment() {
         "openingDate" to "Hesap açılış Tarihi",
         "customerNo" to "Müşteri Numarası",
     )
+    private val roles = hashMapOf<String,Int>(
+        "Ad" to 0,
+        "Soyad" to 1,
+        "Müşteri Numarası" to 2,
+        "Hesap Adı" to 3,
+        "Şube Adı" to 4,
+        "Bakiye" to 5,
+        "TRY cinsinden bakiye" to 6,
+        "IBAN" to 7,
+        "Döviz Kodu" to 8,
+        "Hesap Türü" to 9,
+        "Faiz Oranı" to 10,
+        "Hesap açılış Tarihi" to 11,
+        "Hesap Kapanış tarihi" to 12,
+        "Hesap Bloke mi?" to 13,
+        "Hesap Kapalı mı?" to 14,
+
+
+        )
     private val currencySigns:HashMap<String,String> = hashMapOf(
         "TRY" to "₺",
         "USD" to "$",
@@ -66,8 +86,6 @@ class AccountDetailFragment() : Fragment() {
 
         binding= FragmentAccountDetailBinding.inflate(layoutInflater)
         var rawComing = arrayListOf<String>()
-        var titles = arrayListOf<String>()
-        var values = arrayListOf<String>()
 
         adapter = AccountDetailAdapter()
         binding.recyclerview.adapter=adapter
@@ -99,8 +117,8 @@ class AccountDetailFragment() : Fragment() {
                     continue
                 }
                 if(title.equals("openingDate")){
-                    titlesHashMap[title]?.let { titles.add(7,it) }
-                    values.add(7,"13 Ekim 2019")
+                    titlesHashMap[title]?.let { titles.add(it) }
+                    values.add("13 Ekim 2019")
                     continue
                 }
                 if(title.equals("closingDate")){
@@ -109,14 +127,13 @@ class AccountDetailFragment() : Fragment() {
                     continue
                 }
 
-
                 if(title.contains("alanc")){
                     titlesHashMap[title]?.let { titles.add(it) }
                     values.add(doubleAmount(value))
                 }
                 else if(title.contains("ate")){
-                    titlesHashMap[title]?.let { titles.add(1,it) }
-                    values.add(1,rate(value))
+                    titlesHashMap[title]?.let { titles.add(it) }
+                    values.add(rate(value))
                 }
                 else{
                     titlesHashMap[title]?.let { titles.add(it) }
@@ -125,15 +142,15 @@ class AccountDetailFragment() : Fragment() {
 
             }
             if(values.get(titles.indexOf("Faiz Oranı")).equals("% 0.0")){
-                titles.add(3,"Hesap Türü")
-                values.add(3,"Vadesiz")
+                titles.add("Hesap Türü")
+                values.add("Vadesiz")
             }
             else{
-                titles.add(3,"Hesap Türü")
-                values.add(3,"Vadeli")
+                titles.add("Hesap Türü")
+                values.add("Vadeli")
             }
 
-
+            rearrange()
             adapter_= (binding.recyclerview.adapter as? AccountDetailAdapter)!!
             binding.recyclerview.adapter = adapter_
             adapter_.addAccount(titles,values)
@@ -151,7 +168,22 @@ class AccountDetailFragment() : Fragment() {
     private fun rate(str:String):String{
         return "% $str"
     }
+    fun rearrange(){
+        val AllAccountsArrayList: ArrayList<String> = arrayListOf()
+        val values: ArrayList<String> = arrayListOf()
+        AllAccountsArrayList.addAll(titles)
+        val comparator = Comparator { o1: String, o2: String ->
+            return@Comparator roles[o1]!! - roles[o2]!!
+        }
 
-
+        AllAccountsArrayList.sortWith(comparator)
+        for(i in AllAccountsArrayList){
+            values.add(this.values.get(titles.indexOf(i)))
+        }
+        this.values.clear()
+        titles.clear()
+        this.values.addAll(values)
+        titles.addAll(AllAccountsArrayList)
+    }
 
 }

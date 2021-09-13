@@ -53,10 +53,114 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     )
     private val currencySigns:HashMap<String,String> = hashMapOf(
         "TRY" to "₺",
-        "USD" to "$",
+        "ALL" to "Lek",
+        "AFN" to "؋",
+        "ARS" to "$",
+        "AWG" to "ƒ",
+        "AUD" to "$",
+        "AZN" to "₼",
+        "BSD" to "$",
+        "BBD" to "$",
+        "BYN" to "Br",
+        "BZD" to "BZ$",
+        "BMD" to "$",
+        "BOB" to "\$b",
+        "BAM" to "KM",
+        "BWP" to "P",
+        "BGN" to "лв",
+        "BRL" to "R$",
+        "BND" to "$",
+        "KHR" to "៛",
+        "CAD" to "$",
+        "KYD" to "$",
+        "CLP" to "$",
+        "CNY" to "¥",
+        "COP" to "$",
+        "CRC" to "₡",
+        "HRK" to "kn",
+        "CUP" to "₱",
+        "CZK" to "Kč",
+        "DKK" to "kr",
+        "DOP" to "RD$",
+        "XCD" to "$",
+        "EGP" to "£",
+        "SVC" to "$",
         "EUR" to "€",
+        "FKP" to "£",
+        "FJD" to "$",
+        "GHS" to "¢",
+        "GIP" to "£",
+        "GTQ" to "Q",
+        "GGP" to "£",
+        "GYD" to "$",
+        "HNL" to "L",
+        "HKD" to "$",
+        "HUF" to "Ft",
+        "ISK" to "kr",
+        "INR" to "",
+        "IDR" to "Rp",
+        "IRR" to "﷼",
+        "IMP" to "£",
+        "ILS" to "₪",
+        "JMD" to "J$",
+        "JPY" to "¥",
+        "JEP" to "£",
+        "KZT" to "лв",
+        "KPW" to "₩",
+        "KRW" to "₩",
+        "KGS" to "лв",
+        "LAK" to "₭",
+        "LBP" to "£",
+        "LRD" to "$",
+        "MKD" to "ден",
+        "MYR" to "RM",
+        "MUR" to "₨",
+        "MXN" to "$",
+        "MNT" to "₮",
+        "MZN" to "MT",
+        "NAD" to "$",
+        "NPR" to "₨",
+        "ANG" to "ƒ",
+        "NZD" to "$",
+        "NIO" to "C$",
+        "NGN" to "₦",
+        "NOK" to "kr",
+        "OMR" to "﷼",
+        "PKR" to "₨",
+        "PAB" to "B/.",
+        "PYG" to "Gs",
+        "PEN" to "S/.",
+        "PHP" to "₱",
+        "PLN" to "zł",
+        "QAR" to "﷼",
+        "RON" to "lei",
+        "RUB" to "₽",
+        "SHP" to "£",
+        "SAR" to "﷼",
+        "RSD" to "Дин.",
+        "SCR" to "₨",
+        "SGD" to "$",
+        "SBD" to "$",
+        "SOS" to "S",
+        "ZAR" to "R",
+        "LKR" to "₨",
+        "SEK" to "kr",
+        "CHF" to "CHF",
+        "SRD" to "$",
+        "SYP" to "£",
+        "TWD" to "NT$",
+        "THB" to "฿",
+        "TTD" to "TT$",
+        "TVD" to "$",
+        "UAH" to "₴",
         "GBP" to "£",
-        "CAD" to "$"
+        "USD" to "$",
+        "UYU" to "\$U",
+        "UZS" to "лв",
+        "VEF" to "Bs",
+        "VND" to "₫",
+        "YER" to "﷼",
+        "ZWD" to "Z$",
     )
 
 
@@ -107,6 +211,18 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
         if(positioningCriteria == DEFAULT_POSITIONING) {
             val comparator = Comparator { o1: GetAccountList, o2: GetAccountList ->
+                if(roles.containsKey(o1.currency) && roles.containsKey(o2.currency)){
+                    return@Comparator roles[o1.currency]!! - roles[o2.currency]!!
+                }
+                else if(roles.containsKey(o1.currency) && !roles.containsKey(o2.currency)){
+                    return@Comparator roles[o1.currency]!! - 5
+                }
+                else if(!roles.containsKey(o1.currency) && roles.containsKey(o2.currency)){
+                    return@Comparator 5 - roles[o2.currency]!!
+                }
+                else{
+                    return@Comparator 0
+                }
                 return@Comparator roles[o1.currency]!! - roles[o2.currency]!!
             }
 
@@ -212,22 +328,22 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     override fun onBindViewHolder(holder: AllAccountsRecyclerViewHolder, position: Int) {
         when (holder) {
             is AllAccountsRecyclerViewHolder.AccountViewHolder -> {
-                    holder.getBind().bakiyeNoTv.text = allAccounts[position].balance.toString() +" "+ currencySigns[allAccounts[position].currency]
-                    holder.getBind().ibanTv.text = allAccounts[position].iban
-                    holder.getBind().subeIsmiTv.text = allAccounts[position].branch
-                    holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
+                holder.getBind().bakiyeNoTv.text = allAccounts[position].balance.toString() +" "+ currencySigns[allAccounts[position].currency]
+                holder.getBind().ibanTv.text = allAccounts[position].iban
+                holder.getBind().subeIsmiTv.text = allAccounts[position].branch
+                holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
 
-                    if(positioningCriteria != DEFAULT_POSITIONING)
-                    {
-                        if(!allAccounts[position].currency.equals("TRY"))
-                            holder.getBind().bakiyeCevirTl.text = "(" + String.format("%.1f", allAccounts[position].balanceAsTRY) + " ₺)"
-                        else
-                            holder.getBind().bakiyeCevirTl.text = ""
-                    }
+                if(positioningCriteria != DEFAULT_POSITIONING)
+                {
+                    if(!allAccounts[position].currency.equals("TRY"))
+                        holder.getBind().bakiyeCevirTl.text = "(" + String.format("%.1f", allAccounts[position].balanceAsTRY) + " ₺)"
                     else
-                    {
                         holder.getBind().bakiyeCevirTl.text = ""
-                    }
+                }
+                else
+                {
+                    holder.getBind().bakiyeCevirTl.text = ""
+                }
 
             }
             is AllAccountsRecyclerViewHolder.TitleViewHolder -> {
@@ -253,41 +369,41 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                     }
 
 
-                        sortButtonClick+=1
-                        if (sortButtonClick>2){
-                            sortButtonClick=0 //ARTAN
+                    sortButtonClick+=1
+                    if (sortButtonClick>2){
+                        sortButtonClick=0 //ARTAN
+                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
+                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.ascending)
+                        holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.ascending) }
+                    }
+                    if (sortButtonClick<2){ //AZALAN
+                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
+                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.descending)
+                        holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.descending) }
+
+                        if (sortButtonClick==0){ //ARTAN
                             holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
                             holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.ascending)
                             holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.ascending) }
-                        }
-                        if (sortButtonClick<2){ //AZALAN
+
+                            setPositioningCriteria(2)
+                            modifyAccount(currencyStates)
+                        }else{ //AZALAN
                             holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
                             holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.descending)
                             holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.descending) }
 
-                            if (sortButtonClick==0){ //ARTAN
-                                holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                                holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.ascending)
-                                holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.ascending) }
-
-                                setPositioningCriteria(2)
-                                modifyAccount(currencyStates)
-                            }else{ //AZALAN
-                                holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                                holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.descending)
-                                holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.descending) }
-
-                                setPositioningCriteria(1)
-                                modifyAccount(currencyStates)
-                            }
-                        }else{ //DEFAULT
-                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_not_selected)
-                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
-                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
-
-                            setPositioningCriteria(0)
+                            setPositioningCriteria(1)
                             modifyAccount(currencyStates)
                         }
+                    }else{ //DEFAULT
+                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_not_selected)
+                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
+                        holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
+
+                        setPositioningCriteria(0)
+                        modifyAccount(currencyStates)
+                    }
 
 
 
@@ -349,7 +465,6 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             Color.rgb(124, 124, 124),
             Color.rgb(101,73,156),
             Color.rgb(229, 153, 173)
-
         )
         intertechPieChart.setEntryLabelTextSize(18f)
 
@@ -448,4 +563,5 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     fun setPositioningCriteria(criteria: Int){
         positioningCriteria = criteria
     }
+
 }

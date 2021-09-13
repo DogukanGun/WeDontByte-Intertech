@@ -19,14 +19,14 @@
 
     <!--BUTTON RENKLERIYLE ILGILI RENK DEGISIKLIKLERI ICIN-->
     <color name="intertech_button_text_color">#fff4de</color>
-    <color name="intertech_button_back_color">#002171</color>
+    <color name="intertech_button_back_color">#095aa9</color>
 
     <!--BUTTON VE TEXT HARICINDEKI DIGER COMPONENTLERIN RENK DEGISIMLERI ICIN-->
     <color name="intertech_component_text_color">#EFEDE8</color>
     <color name="intertech_component_back_color">#021324</color>
 
     <!--ACTIONBAR VE BOTTOMNAV ICIN RENK DEGISIMLERI-->
-    <color name="intertech_actionbar_bottomnav_back_color">#002171</color>
+    <color name="intertech_actionbar_bottomnav_back_color">#095aa9</color>
     <color name="intertech_bottomnav_item_color">#fff4de</color>
 
     <!--ANA EKRANLAR BU RENKTE OLACAKTIR-->
@@ -37,23 +37,23 @@
 
     <!--RECYCLERVIEW YANINDA ARROW VARSA ONUN RENGİ VE ARKAPLAN RENGİ-->
     <color name="intertech_recyclerview_arrow_textcolor">#cfd8dc</color>
-    <color name="intertech_recyclerview_arrow_backcolor">#002171</color>
+    <color name="intertech_recyclerview_arrow_backcolor">#095aa9</color>
 
-    <color name="intertech_recyclerview_date_textcolor">#002171</color>
+    <color name="intertech_recyclerview_date_textcolor">#021324</color>
     <color name="intertech_recyclerview_date_backcolor">#cfd8dc</color>
 
-    <color name="intertech_swipebutton_backcolor1">#002171</color>
+    <color name="intertech_swipebutton_backcolor1">#095aa9</color>
     <color name="intertech_swipebutton_backcolor2">#cfd8dc</color>
 
     <color name="gradient_starting_color">#e2f1f8</color>
     <color name="gradient_center_color">#c1d5e0</color>
     <color name="gradient_ending_color">#b0bec5</color>
 
-    <color name="intertech_icon_color">#002171</color>
+    <color name="intertech_icon_color">#095aa9</color>
 
     <!--LINE CHART RENKLERI-->
     <color name="intertech_linechart_value_color">#bf360c</color>
     <color name="intertech_linechart_background_color">#F1ECEC</color>
-    <color name="intertech_linechart_label_color">#002171</color>
+    <color name="intertech_linechart_label_color">#095aa9</color>
 
 </resources>
