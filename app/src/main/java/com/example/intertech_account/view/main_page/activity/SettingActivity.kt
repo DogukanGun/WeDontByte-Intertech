@@ -25,6 +25,7 @@ class SettingActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         toolbar.setTitleTextColor(resources.getColor(R.color.intertech_bottomnav_item_color))
         val language=rememberLanguage()
+        val theme = rememberTheme()
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 //        binding.radioButtonTurkish.setOnClickListener{
@@ -62,6 +63,24 @@ class SettingActivity : BaseActivity() {
                  Button.isEnglishLanguageButtonClick=1
                  Button.isTurkishLanguageButtonClick=0
             }
+        }
+        if(Button.isDarkModeButtonClick==-1){
+            if (theme=="Light"){
+                binding.radioButtonLight.background = ContextCompat.getDrawable(binding.radioButtonLight.context, R.drawable.qr_radio_button_selected)
+                binding.radioButtonDark.background = ContextCompat.getDrawable(binding.radioButtonDark.context, R.drawable.qr_radio_button_not_selected)
+                Button.isDarkModeButtonClick=0
+                Button.isLightModeButtonClick=1
+                binding.radioButtonLight.isChecked=true
+                binding.radioButtonDark.isChecked=false
+            }else{
+                binding.radioButtonDark.background = ContextCompat.getDrawable(binding.radioButtonDark.context, R.drawable.qr_radio_button_selected)
+                binding.radioButtonLight.background = ContextCompat.getDrawable(binding.radioButtonLight.context, R.drawable.qr_radio_button_not_selected)
+                Button.isLightModeButtonClick=0
+                Button.isDarkModeButtonClick=1
+                binding.radioButtonLight.isChecked=false
+                binding.radioButtonDark.isChecked=true
+            }
+
         }
 
 //        binding.radioButtonTurkish.setOnClickListener {
@@ -114,6 +133,8 @@ class SettingActivity : BaseActivity() {
                 if (Button.isDarkModeButtonClick==0){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     Button.isDarkModeButtonClick = 1
+                    Button.isLightModeButtonClick=0
+                    saveTheme("Dark")
                 }else{
                     Button.isDarkModeButtonClick = 0
                 }
@@ -124,6 +145,9 @@ class SettingActivity : BaseActivity() {
                 if (Button.isLightModeButtonClick==0){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     Button.isLightModeButtonClick = 1
+                    Button.isDarkModeButtonClick=0
+                    saveTheme("Light")
+
                 }else{
                     Button.isLightModeButtonClick = 0
                 }
@@ -142,15 +166,39 @@ class SettingActivity : BaseActivity() {
         if(Preferences.isLanguageSet==0) {
             if (language != null) {
                 if (language == "Turkish") {
-                    updateLocale(Locales.Turkish)
+//                    updateLocale(Locales.Turkish)
                 } else {
-                    updateLocale(Locale.ENGLISH)
+//                    updateLocale(Locale.ENGLISH)
                 }
             }
             Preferences.isLanguageSet=1
         }
              return language!!
 
+    }
+    @SuppressLint("CommitPrefEdits")
+    private fun rememberTheme():String{
+        val preferences = getSharedPreferences(Preferences.PREFS_FILENAME, Context.MODE_PRIVATE)
+        val theme = preferences.getString("Theme", "Light")
+
+        if(Preferences.isThemeSet==0) {
+            if (theme != null) {
+                if (theme == "Light") {
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                } else {
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+            }
+            Preferences.isThemeSet=1
+        }
+        return theme!!
+
+    }
+    private fun saveTheme(theme:String){
+        val preferences = getSharedPreferences(Preferences.PREFS_FILENAME, Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putString("Theme",theme)
+        editor.apply()
     }
     private fun saveLanguage(language:String){
         val preferences = getSharedPreferences(Preferences.PREFS_FILENAME, Context.MODE_PRIVATE)

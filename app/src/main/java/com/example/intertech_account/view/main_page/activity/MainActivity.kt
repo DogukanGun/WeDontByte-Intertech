@@ -49,6 +49,7 @@ class MainActivity : BaseActivity() {
 
         getCurrency()
         rememberLanguage()
+        rememberTheme()
         setUpNavigation()
         toolBarListen()
         toolBarMenuButtonListen()
@@ -117,6 +118,7 @@ class MainActivity : BaseActivity() {
                 R.id.settingTopBarButton->{
                     val intent = Intent(this,SettingActivity::class.java)
                     Button.isTurkishLanguageButtonClick=-1
+                    Button.isDarkModeButtonClick=-1
                     startActivity(intent)
 
                     true
@@ -175,11 +177,23 @@ class MainActivity : BaseActivity() {
         }
 
     }
-    private fun saveLanguage(language:String){
+    @SuppressLint("CommitPrefEdits")
+    private fun rememberTheme():String{
         val preferences = getSharedPreferences(Preferences.PREFS_FILENAME, Context.MODE_PRIVATE)
-        val editor = preferences.edit()
-        editor.putString("Language",language)
-        editor.apply()
+        val theme = preferences.getString("Theme", "Light")
+
+        if(Preferences.isThemeSet==0) {
+            if (theme != null) {
+                if (theme == "Light") {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+            }
+            Preferences.isThemeSet=1
+        }
+        return theme!!
+
     }
 
 
