@@ -3,6 +3,7 @@
     <style name="Theme.IntertechAccount" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:fontFamily">@font/open_sans</item>
         <!-- Primary brand color. -->
+        <item name="android:homeAsUpIndicator">@drawable/back_icon</item>
         <item name="colorPrimary">@color/intertech_actionbar_bottomnav_back_color</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/intertech_bottomnav_item_color</item>

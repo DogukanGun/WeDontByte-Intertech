@@ -55,6 +55,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/intertech_actionbar_bottomnav_back_color"
                 android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:backgroundTint="@color/intertech_bottomnav_item_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
