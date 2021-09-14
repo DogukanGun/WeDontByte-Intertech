@@ -330,7 +330,7 @@ class SimpleAccountFragment : Fragment() {
     private fun createRecyclerView() {
         val recyclerView = binding.simpleAccountTransactions
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = SimpleAccountAdapter()
+        adapter = SimpleAccountAdapter(requireContext())
         recyclerView.adapter = adapter
 
         getAccountTransactionViewModel.apiRequest()
@@ -370,7 +370,7 @@ class SimpleAccountFragment : Fragment() {
             }
         })
 //
-        adapter = SimpleAccountAdapter()
+        adapter = SimpleAccountAdapter(requireContext())
 //
         recyclerView.adapter = adapter
 //        var arrayList = arrayListOf<GetAccountTransactionList>()

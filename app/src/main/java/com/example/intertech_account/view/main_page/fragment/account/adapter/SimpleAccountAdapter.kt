@@ -1,6 +1,7 @@
 package com.example.intertech_account.view.main_page.fragment.account.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
@@ -23,6 +24,7 @@ import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.resources.common_variables.Receipt
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.SimpleAccountFragment
+import com.example.intertech_account.view_model.repo.DateConvert
 import com.github.mikephil.charting.data.Entry
 import com.itextpdf.text.factories.RomanAlphabetFactory.getString
 import java.security.KeyStore
@@ -33,28 +35,14 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
-class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAccountHolder>() {
+class SimpleAccountAdapter(var context: Context) : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAccountHolder>() {
     private var transactions: Array<GetAccountTransactionList> = emptyArray()
     private var transactionArrayList: ArrayList<GetAccountTransactionList> = arrayListOf()
     var status: SimpleAccountListState = SimpleAccountListState.NO_FILTER
     private lateinit var simpleAccountFragment: SimpleAccountFragment
+    private val dateConvert=DateConvert(context)
 
 
-    //TODO Strings.xml'den çekilecek
-    private var monthMap = hashMapOf<String, String>(
-        "01" to "Ocak",
-        "02" to "Şubat",
-        "03" to "Mart",
-        "04" to "Nisan",
-        "05" to "Mayıs",
-        "06" to "Haziran",
-        "07" to "Temmuz",
-        "08" to "Ağustos",
-        "09" to "Eylül",
-        "10" to "Ekim",
-        "11" to "Kasım",
-        "12" to "Aralık"
-    )
 
     class SimpleAccountHolder(val binding: SimpleAccountRecyclerviewRowBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -179,7 +167,7 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
 
             holder.binding.explanation.text = transactionArrayList[position].explanation
             holder.binding.dateDay.text = day
-            holder.binding.dateMonth.text = monthMap[month]
+            holder.binding.dateMonth.text = dateConvert.convertDate(month)
             holder.binding.dateTime.text = transactionArrayList[position].time
             holder.binding.amountValue.text =
                 Constant.amountFormatter.format(transactionArrayList[position].amount)+ " " + transactionArrayList[position].currencyCode

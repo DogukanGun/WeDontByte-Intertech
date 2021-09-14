@@ -130,7 +130,7 @@ class MainPageFragment : Fragment() {
     private fun createRecyclerView(){
         val recyclerView = binding.transactions
         recyclerView.layoutManager =  LinearLayoutManager(activity)
-        recyclerView.adapter = MainPageAdapter()
+        recyclerView.adapter = MainPageAdapter(requireContext())
         getAccountTransactionViewModel.apiRequest()
         getAccountTransactionViewModel.getAccountTransactionResult.observe(viewLifecycleOwner,{
             getAccountTransactionListModel=it
