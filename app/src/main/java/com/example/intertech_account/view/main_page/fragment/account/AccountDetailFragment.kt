@@ -11,12 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAccountDetailBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.example.intertech_account.model.api_model.main_page.landmark.Landmark
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.resources.common_variables.Constant.amountFormatter
+import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AccountDetailAdapter
 import com.example.intertech_account.view.main_page.fragment.account.adapter.AllAccountsAdapter
 import com.example.intertech_account.view_model.GetAccountViewModel
@@ -87,6 +89,7 @@ class AccountDetailFragment() : Fragment() {
 
         binding = FragmentAccountDetailBinding.inflate(layoutInflater)
         var rawComing = arrayListOf<String>()
+        (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
 
         adapter = AccountDetailAdapter()
         binding.recyclerview.adapter = adapter

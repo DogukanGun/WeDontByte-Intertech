@@ -44,6 +44,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
 import com.example.intertech_account.resources.common_variables.Constant
+import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view_model.GetAccountTransactionViewModel
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.formatter.ValueFormatter
@@ -76,6 +77,7 @@ class SimpleAccountFragment : Fragment() {
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
         createRecyclerView()
         executePopupMenu(inflater)
+        (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
         Receipt.isReceiptButtonClicked.observe(viewLifecycleOwner, {
             if (it == true) {
                 getReceiptViewModel.apiRequest()

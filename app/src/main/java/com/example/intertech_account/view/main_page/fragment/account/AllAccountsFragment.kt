@@ -60,6 +60,7 @@ class AllAccountsFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentAllAccountsBinding.inflate(layoutInflater)
+        (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
 
 //        Constant.currentBottomMenu=1
 //        Button.isUserInformationTopBarButtonClickFromAllAccounts.value=0

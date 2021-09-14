@@ -24,6 +24,7 @@ import com.example.intertech_account.model.api_model.get_account_transaction_lis
 import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.resources.common_variables.QrOperation
+import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.activity.QrReadWithCameraActivity
 import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragmentDirections
 import com.example.intertech_account.view_model.GetAccountViewModel
@@ -42,6 +43,8 @@ class AccountsInformationFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAccountsInformationBinding.inflate(layoutInflater)
+        (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
+
         if (isFragmentUsedByViewPager) {
             updateLabel(0)
             val spinnerList: ArrayList<String> = arrayListOf<String>()

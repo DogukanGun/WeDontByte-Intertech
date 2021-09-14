@@ -30,7 +30,7 @@ import kotlin.collections.ArrayList
 
 
 class MainActivity : BaseActivity() {
-    private lateinit var binding:ActivityMainBinding
+    lateinit var binding:ActivityMainBinding
     private lateinit var navHostFragment:NavHostFragment
     private val getCurrencyViewModel:GetCurrencyViewModel by viewModels()
     private var readToExit:Int=1
@@ -87,17 +87,18 @@ class MainActivity : BaseActivity() {
                 finish()
             }
         })
-        binding.appToolbarMainActivity.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
+        binding.topAppBarToolbar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
         //binding.topAppBar.setTitle(R.string.app_title)
-        setSupportActionBar(binding.appToolbarMainActivity)
-        supportActionBar!!.title=getString(R.string.app_title)
+        binding.topAppBarToolbar.title=getString(R.string.app_title)
+//        setSupportActionBar(binding.topAppBarToolbar)
+//        supportActionBar!!.title=getString(R.string.app_title)
 
-        binding.topAppBar.navigationIcon?.mutate()?.setColorFilter(resources.getColor(R.color.intertech_bottomnav_item_color), PorterDuff.Mode.SRC_IN)
+        binding.topAppBarToolbar.navigationIcon?.mutate()?.setColorFilter(resources.getColor(R.color.intertech_bottomnav_item_color), PorterDuff.Mode.SRC_IN)
     }
 
     private fun toolBarMenuButtonListen(){
         //Topbar button yönlendirmesi.
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+        binding.topAppBarToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 // Topbar Kullanıcı bilgileri buttonu
 

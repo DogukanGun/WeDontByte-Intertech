@@ -165,13 +165,16 @@ class SimpleAccountAdapter(var context: Context) : RecyclerView.Adapter<SimpleAc
             var month = transactionArrayList[position].date.substringBefore("T").substring(5, 7)
             var day = transactionArrayList[position].date.substringBefore("T").substring(8, 10)
 
-            holder.binding.explanation.text = transactionArrayList[position].explanation
-            holder.binding.dateDay.text = day
-            holder.binding.dateMonth.text = dateConvert.convertDate(month)
-            holder.binding.dateTime.text = transactionArrayList[position].time
-            holder.binding.amountValue.text =
-                Constant.amountFormatter.format(transactionArrayList[position].amount)+ " " + transactionArrayList[position].currencyCode
-            holder.binding.aliciIsmi.text = transactionArrayList[position].userCode
+            holder.binding.apply {
+                explanation.text = transactionArrayList[position].explanation
+                dateDay.text = day
+                dateMonth.text = dateConvert.convertDate(month)
+                dateTime.text = year
+                amountValue.text =
+                    Constant.amountFormatter.format(transactionArrayList[position].amount)+ " " + transactionArrayList[position].currencyCode
+                aliciIsmi.text = transactionArrayList[position].userCode
+
+            }
 
             if (transactionArrayList[position].amount > 0) {
                 holder.binding.amountValue.setTextColor(Color.BLACK)

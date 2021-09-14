@@ -39,6 +39,7 @@ class OpenAccountFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentOpenAccountBinding.inflate(layoutInflater)
+        (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
 
         val spinnerListForCurrency: ArrayList<String> = arrayListOf<String>()
 
