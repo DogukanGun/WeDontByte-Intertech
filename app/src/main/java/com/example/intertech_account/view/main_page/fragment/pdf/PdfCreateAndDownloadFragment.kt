@@ -58,7 +58,7 @@ class PdfCreateAndDownloadFragment : Fragment() {
         // initializing our variables.
         binding= FragmentPdfCreateAndDownloadBinding.inflate(layoutInflater)
         generatePDFbtn = binding.createPdf
-        bmp = BitmapFactory.decodeResource(resources, R.drawable.bill);
+        bmp = BitmapFactory.decodeResource(resources, R.drawable.back);
         scaledbmp = Bitmap.createScaledBitmap(bmp!!, 140, 140, false);
 
         // below code is used for

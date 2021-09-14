@@ -146,20 +146,22 @@
 
             <TextView
                 android:id="@+id/accountBalance"
+ 
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginBottom="88dp"
                 android:fontFamily="sans-serif-black"
-                android:gravity="center"
+                 android:gravity="center"
                 android:text="@string/account_balance"
                 android:textAlignment="center"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
+ 
                 app:layout_constraintStart_toEndOf="@+id/textView3" />
-
+ 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -178,7 +180,7 @@
                 android:id="@+id/qrButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/qr"
+                android:background="@drawable/qr_radio_button"
                 app:backgroundTint="@color/intertech_icon_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/billsButton"
@@ -192,7 +194,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="18dp"
-                android:background="@drawable/bill"
+                android:background="@drawable/back"
                 app:backgroundTint="@color/intertech_icon_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -206,9 +208,9 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="18dp"
-                android:background="@drawable/money_transfer"
-                android:textSize="16sp"
+                android:background="@drawable/ic_baseline_add"
                 app:backgroundTint="@color/intertech_icon_color"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/qrButton"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -222,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/money_transfer"
                 android:textColor="@color/intertech_textview_text_color"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:gravity="center"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -238,7 +240,7 @@
                 android:gravity="center"
                 android:text="@string/qr"
                 android:textColor="@color/intertech_textview_text_color"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/qrButton"
@@ -254,7 +256,7 @@
                 android:gravity="center"
                 android:text="@string/payment_button"
                 android:textColor="@color/intertech_textview_text_color"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/billsButton"

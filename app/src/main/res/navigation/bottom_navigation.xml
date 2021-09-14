@@ -14,9 +14,6 @@
         <action
             android:id="@+id/action_allAccountsFragment_to_accountDetailFragment"
             app:destination="@id/accountDetailFragment" />
-        <action
-            android:id="@+id/action_allAccountsFragment_to_openAccountFragment"
-            app:destination="@id/openAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainPageFragment"
@@ -75,12 +72,7 @@
         android:id="@+id/openAccountFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.OpenAccountFragment"
         android:label="fragment_open_account"
-        tools:layout="@layout/fragment_open_account" >
-        <action
-            android:id="@+id/action_openAccountFragment_to_allAccountsFragment"
-            app:destination="@id/allAccountsFragment"
-            app:popUpTo="@id/openAccountFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_open_account" />
     <fragment
         android:id="@+id/accountsInformationFragment"
         android:name="com.example.intertech_account.view.main_page.fragment.account.AccountsInformationFragment"

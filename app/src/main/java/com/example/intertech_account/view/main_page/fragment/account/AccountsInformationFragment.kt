@@ -99,7 +99,7 @@ class AccountsInformationFragment : Fragment() {
         binding.subeText.text = getAccountModel.getAccountData.getAccountList[position].branch
         binding.accountType.text = getAccountModel.getAccountData.getAccountList[position].iban
         binding.accountBalance.text =
-            (getAccountModel.getAccountData.getAccountList[position].availableBalance + 1500.0).toString() + " " + getAccountModel.getAccountData.getAccountList[position].currency.toString()
+            Constant.amountFormatter.format(getAccountModel.getAccountData.getAccountList[position].availableBalance) + " " + getAccountModel.getAccountData.getAccountList[position].currency.toString()
         currentIban = getAccountModel.getAccountData.getAccountList[position].iban
         if (getAccountModel.getAccountData.getAccountList[position].interestRate == 0.0) {
             binding.vadeliText.text =

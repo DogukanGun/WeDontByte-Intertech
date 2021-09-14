@@ -44,6 +44,13 @@ class GetAccountViewModel : ViewModel(){
                 val response = ApiClient.getClient().getAccounts(getAccountGetAccountBodyModel)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
+                        for(i in response.body()!!.getAccountData!!.getAccountList){
+                            var yy = i.iban.chunked(4)
+                            i.iban = ""
+                            for(x in yy){
+                                i.iban+= x+" "
+                            }
+                        }
                         getAccountList.value=(response.body())
                         print(getAccountList.value!!.type)
                         loading.value = false

@@ -19,17 +19,19 @@
             android:id="@+id/simpleAccountLineChart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="6dp"
             android:layout_weight="3.2"/>
 
         <Button
             android:id="@+id/myButton"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_weight="5.3"
-            android:background="@drawable/filter"
+            android:layout_weight="5.1"
+            android:background="@drawable/qr_radio_button_selected"
+            android:foreground="@drawable/filter"
+            android:foregroundTint="@color/intertech_button_back_color"
             android:textStyle="bold"
-            app:backgroundTint="@color/intertech_textview_text_color"/>
+            />
 
         <TextView
             android:layout_width="wrap_content"

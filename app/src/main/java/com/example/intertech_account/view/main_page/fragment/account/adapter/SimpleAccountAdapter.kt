@@ -19,6 +19,7 @@ import com.example.intertech_account.R
 import com.example.intertech_account.databinding.SimpleAccountRecyclerviewRowBinding
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
 import com.example.intertech_account.model.api_model.status.SimpleAccountListState
+import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.resources.common_variables.Receipt
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.fragment.account.SimpleAccountFragment
@@ -26,7 +27,10 @@ import com.github.mikephil.charting.data.Entry
 import com.itextpdf.text.factories.RomanAlphabetFactory.getString
 import java.security.KeyStore
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAccountHolder>() {
@@ -80,23 +84,47 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
         return transactionArrayList
     }
 
+    /*
     @SuppressLint("SimpleDateFormat")
     private fun filterArrayList(dayAmounts: Int): ArrayList<GetAccountTransactionList> {
         return transactionArrayList.filter {
             var transactionArrayListIndexDate = it.date
+            Log.d("Info","${it.date}")
             transactionArrayListIndexDate = transactionArrayListIndexDate.substring(0, 10)
+            Log.d("Info","${transactionArrayListIndexDate}")
             val date = SimpleDateFormat("dd-MM-yyyy").parse(transactionArrayListIndexDate)!!
+            Log.d("Info","${date}")
             val calendar = Calendar.getInstance()
             calendar.add(Calendar.DAY_OF_YEAR, dayAmounts)
-//                        val currentDate = SimpleDateFormat("dd-MM-yyyy").parse((Calendar.DAY_OF_MONTH.toString()+"-"+Calendar.MONTH.toString()+"-"+Calendar.YEAR.toString()))
             date.after(calendar.time)
         } as ArrayList<GetAccountTransactionList>
+    }*/
+
+    private fun filterArrayList(dayAmounts: Int): ArrayList<GetAccountTransactionList> {
+        Log.d("Info:","Gün"+dayAmounts.toString())
+        var orgArr =ArrayList<GetAccountTransactionList>()
+        orgArr.addAll(transactions)
+        orgArr.reverse()
+        var retArr =ArrayList<GetAccountTransactionList>()
+        val calendar = Calendar.getInstance()
+        for(i in 0..orgArr.size-1){
+            val date = SimpleDateFormat("yyyy-MM-dd").parse(orgArr[i].date.substring(0, 10))!!
+            if(calendar.timeInMillis-date.time <= TimeUnit.DAYS.toMillis(dayAmounts.toLong())){
+                retArr.add(orgArr.get(i))
+
+            }
+
+        }
+        return retArr
+
     }
 
     @SuppressLint("SimpleDateFormat", "NotifyDataSetChanged")
     fun changeStatusOfArray() {
+        var backupArray =ArrayList<GetAccountTransactionList>()
+        backupArray.addAll(transactionArrayList)
         transactionArrayList.clear()
-        transactionArrayList.addAll(transactions)
+
         when (status) {
             SimpleAccountListState.LAST_ONE_WEEK -> {
                 transactionArrayList = filterArrayList(SimpleAccountListState.LAST_ONE_WEEK.day)
@@ -114,10 +142,10 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
                 transactionArrayList = filterArrayList(SimpleAccountListState.LAST_ONE_YEAR.day)
             }
             SimpleAccountListState.DETAIL -> {
-//                    transactionArrayList=filterArrayList(transactionArrayList,SimpleAccountListState.DETAIL.day)
+                    transactionArrayList=backupArray
             }
             SimpleAccountListState.NO_FILTER -> {
-//                    transactionArrayList=filterArrayList(transactionArrayList,SimpleAccountListState.NO_FILTER.day)
+//                    transactionArrayList.addAll(transactions)
             }
         }
         notifyDataSetChanged()
@@ -160,7 +188,7 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
             holder.binding.dateMonth.text = monthMap[month]
             holder.binding.dateTime.text = transactionArrayList[position].time
             holder.binding.amountValue.text =
-                transactionArrayList[position].amount.toString() + " " + transactionArrayList[position].currencyCode
+                Constant.amountFormatter.format(transactionArrayList[position].amount)+ " " + transactionArrayList[position].currencyCode
             holder.binding.aliciIsmi.text = transactionArrayList[position].userCode
 
             if (transactionArrayList[position].amount > 0) {

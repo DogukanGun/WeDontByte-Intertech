@@ -3,6 +3,7 @@ package com.example.intertech_account.view.main_page.activity
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.os.SystemClock.sleep
 import android.view.KeyEvent
@@ -49,6 +50,7 @@ class MainActivity : BaseActivity() {
 
         getCurrency()
         rememberLanguage()
+        rememberTheme()
         setUpNavigation()
         toolBarListen()
         toolBarMenuButtonListen()
@@ -76,6 +78,7 @@ class MainActivity : BaseActivity() {
         val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.mainPageFragment,
             R.id.allAccountsFragment,
+            R.id.openAccountFragment,
         ).build()
         Button.qrButtonPressed.observe(this,{
             if (it.intentToCamera){
@@ -84,8 +87,12 @@ class MainActivity : BaseActivity() {
                 finish()
             }
         })
-        binding.topAppBar.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
-        binding.topAppBar.setTitle(R.string.app_title)
+        binding.appToolbarMainActivity.setupWithNavController(Constant.navHostFragment.navController, appBarConfiguration)
+        //binding.topAppBar.setTitle(R.string.app_title)
+        setSupportActionBar(binding.appToolbarMainActivity)
+        supportActionBar!!.title=getString(R.string.app_title)
+
+        binding.topAppBar.navigationIcon?.mutate()?.setColorFilter(resources.getColor(R.color.intertech_bottomnav_item_color), PorterDuff.Mode.SRC_IN)
     }
 
     private fun toolBarMenuButtonListen(){
@@ -117,6 +124,7 @@ class MainActivity : BaseActivity() {
                 R.id.settingTopBarButton->{
                     val intent = Intent(this,SettingActivity::class.java)
                     Button.isTurkishLanguageButtonClick=-1
+                    Button.isDarkModeButtonClick=-1
                     startActivity(intent)
 
                     true
@@ -175,11 +183,23 @@ class MainActivity : BaseActivity() {
         }
 
     }
-    private fun saveLanguage(language:String){
+    @SuppressLint("CommitPrefEdits")
+    private fun rememberTheme():String{
         val preferences = getSharedPreferences(Preferences.PREFS_FILENAME, Context.MODE_PRIVATE)
-        val editor = preferences.edit()
-        editor.putString("Language",language)
-        editor.apply()
+        val theme = preferences.getString("Theme", "Light")
+
+        if(Preferences.isThemeSet==0) {
+            if (theme != null) {
+                if (theme == "Light") {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+            }
+            Preferences.isThemeSet=1
+        }
+        return theme!!
+
     }
 
 
