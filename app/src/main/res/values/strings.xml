@@ -2,7 +2,7 @@
     <string name="app_name">Mobil Cüzdan</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="bottom_navigation_home_button">Ana Sayfa</string>
-    <string name="bottom_navigation_money_transfer_button">Hesap İşlemleri</string>
+    <string name="bottom_navigation_money_transfer_button">Hesaplarım</string>
     <string name="bottom_navigation_user_information">Kullanıcı Bilgileri</string>
     <string name="bottom_navigation_atm">ATM</string>
     <string name="full_name">Ad Soyad</string>
@@ -88,7 +88,7 @@
     <string name="dark_theme">Karanlık Tema</string>
     <string name="light_theme">Aydınlık Tema</string>
     <string name="theme">Tema</string>
-    <string name="create_account">Hesap Aç</string>
+    <string name="create_account">Yeni Hesap</string>
     <string name="filter">Zamana Göre Filtrele</string>
     <string name="vadeli">Vadeli</string>
     <string name="vadesiz">Vadesiz</string>

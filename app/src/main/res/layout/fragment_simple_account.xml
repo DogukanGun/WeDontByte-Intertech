@@ -29,7 +29,7 @@
             android:layout_weight="5.1"
             android:background="@drawable/qr_radio_button_selected"
             android:foreground="@drawable/filter"
-            android:foregroundTint="@color/intertech_button_back_color"
+            android:foregroundTint="@color/intertech_icon_color"
             android:textStyle="bold"
             />
 

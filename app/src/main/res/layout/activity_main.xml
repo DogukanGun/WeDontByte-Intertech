@@ -39,6 +39,9 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/topAppBar"
+            android:background="@color/intertech_actionbar_bottomnav_back_color"
+            app:backgroundTint="@color/intertech_bottomnav_item_color"
+            app:navigationIconTint="@color/intertech_bottomnav_item_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

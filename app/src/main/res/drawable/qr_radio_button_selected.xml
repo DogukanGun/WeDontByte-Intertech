@@ -6,5 +6,5 @@
         android:radius="5dp" />
     <stroke
         android:width="2dp"
-        android:color="@color/intertech_button_back_color"/>
+        android:color="@color/intertech_icon_color"/>
 </shape>

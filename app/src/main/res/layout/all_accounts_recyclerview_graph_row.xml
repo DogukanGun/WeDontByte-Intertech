@@ -23,7 +23,7 @@
             android:button="@drawable/qr_radio_button"
             android:checked="true"
             android:foreground="@drawable/filter"
-            android:foregroundTint="@color/intertech_button_back_color"
+            android:foregroundTint="@color/intertech_icon_color"
             android:textSize="16dp"
             android:textStyle="bold" />
             <TextView
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/intertech_textview_text_color"
-                android:text="@string/descending"/>
+                android:text="@string/default_value"/>
 
     </LinearLayout>
 

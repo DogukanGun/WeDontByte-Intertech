@@ -3,7 +3,7 @@
     <string name="app_name">Mobil Wallet</string>
     <string name="hello_blank_fragment">debeme</string>
     <string name="bottom_navigation_home_button">Home</string>
-    <string name="bottom_navigation_money_transfer_button">Account Activity</string>
+    <string name="bottom_navigation_money_transfer_button">My Accounts</string>
     <string name="bottom_navigation_user_information">User Information</string>
     <string name="bottom_navigation_atm">ATM</string>
     <string name="full_name">Name Surname</string>
@@ -76,7 +76,7 @@
     <string name="dark_theme">Dark Theme</string>
     <string name="light_theme">Light Theme</string>
     <string name="theme">Theme</string>
-    <string name="create_account">Create Account</string>
+    <string name="create_account">New Account</string>
     <string name="filter">Filter by Time</string>
     <string name="vadeli">Demand Deposit</string>
     <string name="vadesiz">Term Deposit</string>
