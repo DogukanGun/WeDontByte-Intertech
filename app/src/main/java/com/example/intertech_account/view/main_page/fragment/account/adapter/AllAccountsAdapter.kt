@@ -330,46 +330,39 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     override fun onBindViewHolder(holder: AllAccountsRecyclerViewHolder, position: Int) {
         when (holder) {
             is AllAccountsRecyclerViewHolder.AccountViewHolder -> {
-                     holder.getBind().bakiyeNoTv.text = amountFormatter.format(allAccounts[position].balance)+" "+ currencySigns[allAccounts[position].currency]
-                    holder.getBind().ibanTv.text = allAccounts[position].iban
-                    holder.getBind().subeIsmiTv.text = allAccounts[position].branch
-                    holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
-
-                    if(positioningCriteria != DEFAULT_POSITIONING)
-                    {
-                        if(!allAccounts[position].currency.equals("TRY"))
-                            holder.getBind().bakiyeCevirTl.text = "(" + String.format("%.1f", allAccounts[position].balanceAsTRY) + " ₺)"
-                        else
-                            holder.getBind().bakiyeCevirTl.text = ""
-                    }
-                    else
-                {
-                    holder.getBind().bakiyeCevirTl.text = ""
-                }
-                 holder.getBind().bakiyeNoTv.text = allAccounts[position].balance.toString() +" "+ currencySigns[allAccounts[position].currency]
+                holder.getBind().bakiyeNoTv.text =
+                    amountFormatter.format(allAccounts[position].balance) + " " + currencySigns[allAccounts[position].currency]
                 holder.getBind().ibanTv.text = allAccounts[position].iban
                 holder.getBind().subeIsmiTv.text = allAccounts[position].branch
                 holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
 
-                
-                
+                if (positioningCriteria != DEFAULT_POSITIONING) {
+                    if (!allAccounts[position].currency.equals("TRY"))
+                        holder.getBind().bakiyeCevirTl.text =
+                            "(" + String.format("%.1f", allAccounts[position].balanceAsTRY) + " ₺)"
+                    else
+                        holder.getBind().bakiyeCevirTl.text = ""
+                } else {
+                    holder.getBind().bakiyeCevirTl.text = ""
+                }
 
             }
             is AllAccountsRecyclerViewHolder.TitleViewHolder -> {
-                holder.getBind().textViewTitleRow.text = "${allAccounts[position+1].currency} Hesaplarım"
+                holder.getBind().textViewTitleRow.text =
+                    "${allAccounts[position + 1].currency} Hesaplarım"
             }
             is AllAccountsRecyclerViewHolder.GraphViewHolder -> {
-                if(!totalBalanceChecker){
+                if (!totalBalanceChecker) {
                     for (pos in 0..pieEntries.size - 1) {
                         pieEntries.get(pos).y += (totalBalanceForPieChart / pieEntries.size).toFloat()
                     }
                 }
-                piechart= drawingPieChart(holder.getBind(),pieEntries)
+                piechart = drawingPieChart(holder.getBind(), pieEntries)
 
                 //SETUP PIE ANIMATION
-                if(graphState == 0) {
+                if (graphState == 0) {
                     piechart.animateXY(1000, 1000)
-                    graphState=1
+                    graphState = 1
                 }
                 holder.getBind().sortingRadioButton.setOnClickListener {
 
@@ -378,65 +371,100 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                     }
 
 
-                         sortButtonClick+=1
-                        if (sortButtonClick>2){
-                            sortButtonClick=0 //ARTAN
-                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_not_selected)
-                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
-                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
-
-                            setPositioningCriteria(0)
-                            modifyAccount(currencyStates)
+                    sortButtonClick += 1
+                    if (sortButtonClick > 2) {
+                        sortButtonClick = 0 //ARTAN
+                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.qr_radio_button_not_selected
+                        )
+                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.filter
+                        )
+                        holder.getBind().sortingTextView.apply {
+                            holder.getBind().sortingTextView.text =
+                                context.getString(R.string.default_value)
                         }
-                        if (sortButtonClick<2){ //AZALAN
- 
-                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.descending)
-                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.descending) }
-
-                             if (sortButtonClick==0){ //ARTAN
-                                holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                                holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.ascending)
-                                holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.ascending) }
-
-                                setPositioningCriteria(2)
-                                modifyAccount(currencyStates)
-                            }else{ //AZALAN
-                                holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                                holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.descending)
-                                holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.descending) }
-
-                                setPositioningCriteria(1)
-                                modifyAccount(currencyStates)
-                            }
-                        }else{ //DEFAULT
-                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
-                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
-
-                            setPositioningCriteria(0)
- 
-                            modifyAccount(currencyStates)
-                        }
-                    }else{ //DEFAULT
-                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_not_selected)
-                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
-                        holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
 
                         setPositioningCriteria(0)
                         modifyAccount(currencyStates)
                     }
+                    if (sortButtonClick < 2) { //AZALAN
+                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.qr_radio_button_selected
+                        )
+                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.descending
+                        )
+                        holder.getBind().sortingTextView.apply {
+                            holder.getBind().sortingTextView.text =
+                                context.getString(R.string.descending)
+                        }
 
+                        if (sortButtonClick == 0) { //ARTAN
+                            holder.getBind().sortingRadioButton.background =
+                                ContextCompat.getDrawable(
+                                    holder.getBind().sortingRadioButton.context,
+                                    R.drawable.qr_radio_button_selected
+                                )
+                            holder.getBind().sortingRadioButton.foreground =
+                                ContextCompat.getDrawable(
+                                    holder.getBind().sortingRadioButton.context,
+                                    R.drawable.ascending
+                                )
+                            holder.getBind().sortingTextView.apply {
+                                holder.getBind().sortingTextView.text =
+                                    context.getString(R.string.ascending)
+                            }
 
+                            setPositioningCriteria(2)
+                            modifyAccount(currencyStates)
+                        } else { //AZALAN
+                            holder.getBind().sortingRadioButton.background =
+                                ContextCompat.getDrawable(
+                                    holder.getBind().sortingRadioButton.context,
+                                    R.drawable.qr_radio_button_selected
+                                )
+                            holder.getBind().sortingRadioButton.foreground =
+                                ContextCompat.getDrawable(
+                                    holder.getBind().sortingRadioButton.context,
+                                    R.drawable.descending
+                                )
+                            holder.getBind().sortingTextView.apply {
+                                holder.getBind().sortingTextView.text =
+                                    context.getString(R.string.descending)
+                            }
 
+                            setPositioningCriteria(1)
+                            modifyAccount(currencyStates)
+                        }
+                    } else { //DEFAULT
+                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.qr_radio_button_selected
+                        )
+                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.filter
+                        )
+                        holder.getBind().sortingTextView.apply {
+                            holder.getBind().sortingTextView.text =
+                                context.getString(R.string.default_value)
+                        }
 
+                        setPositioningCriteria(0)
+                        modifyAccount(currencyStates)
+                    }
                 }
             }
 
         }
-
-
     }
+
+
     override fun getItemViewType(position: Int): Int {
         return if (allAccounts[position].currency == "Title"){
             ITEM_TITLE
@@ -482,11 +510,24 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         //SETUP PIE CHART COLORS
         val pieDataSet = PieDataSet(pieEntries, "")
         pieDataSet.setColors(
-            Color.rgb(9, 83, 153),
-            Color.rgb(200, 29, 71),
-            Color.rgb(124, 124, 124),
-            Color.rgb(101,73,156),
-            Color.rgb(229, 153, 173)
+            Color.rgb(51,86,127),
+            Color.rgb(65, 108, 159),
+            Color.rgb(76, 125, 183),
+            Color.rgb(138, 163, 204),
+            Color.rgb(185, 198, 221),
+            Color.rgb(204, 213, 230),
+            Color.rgb(57, 162, 219),
+            Color.rgb(5,55,66),
+            Color.rgb(39, 102, 120),
+            Color.rgb(121, 163, 177),
+            Color.rgb(147, 181, 198),
+            Color.rgb(162, 219, 250),
+            Color.rgb(73, 84, 100),
+            Color.rgb(181, 191, 202),
+            Color.rgb(147, 181, 198),
+            Color.rgb(158, 158, 158),
+            Color.rgb(129, 212, 250),
+
         )
         intertechPieChart.setEntryLabelTextSize(18f)
 
