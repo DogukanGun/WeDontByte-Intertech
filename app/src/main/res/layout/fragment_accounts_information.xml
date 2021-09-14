@@ -68,10 +68,9 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/accountName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.458"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.073" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/vadeliText"
@@ -86,38 +85,35 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/accountName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.458"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/subeText"
-                app:layout_constraintVertical_bias="0.03" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <Spinner
                 android:id="@+id/accountName"
-                android:layout_width="250sp"
-                android:layout_height="30dp"
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/creditcard_settings"
+                android:popupBackground="@drawable/creditcard_settings"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="16dp"
+                android:maxLines="1"
                 android:autoSizeMaxTextSize="16dp"
                 android:autoSizeMinTextSize="1dp"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/creditcard_settings"
-                android:fontFamily="sans-serif-bold"
-                android:textStyle = "bold"
-                android:gravity="center"
-                android:maxLines="1"
-                android:popupBackground="@drawable/creditcard_settings"
-                android:textAlignment="center"
-                android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.492"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.327" />
+                app:layout_constraintVertical_bias="0.327"  />
+
 
             <TextView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginRight="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
                 android:background="@drawable/arrow"
                 android:backgroundTint="@color/intertech_textview_text_color"
                 android:gravity="center"
@@ -126,11 +122,11 @@
                 app:layout_constraintEnd_toEndOf="@id/accountName"
                 app:layout_constraintTop_toTopOf="@id/accountName" />
 
-
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
                 android:gravity="center"
                 android:text="@string/accountBalance"
                 android:textAlignment="center"
@@ -138,30 +134,28 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.557" />
+                app:layout_constraintVertical_bias="0.56" />
 
             <TextView
                 android:id="@+id/accountBalance"
- 
-                android:layout_width="138dp"
+
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginBottom="88dp"
+                android:layout_marginEnd="40dp"
                 android:fontFamily="sans-serif-black"
-                 android:gravity="center"
+                android:gravity="end"
                 android:text="@string/account_balance"
-                android:textAlignment="center"
+                android:textAlignment="textEnd"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
- 
-                app:layout_constraintStart_toEndOf="@+id/textView3" />
- 
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.56" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -180,7 +174,7 @@
                 android:id="@+id/qrButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/qr_radio_button"
+                android:background="@drawable/qr"
                 app:backgroundTint="@color/intertech_icon_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/billsButton"
@@ -194,7 +188,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="18dp"
-                android:background="@drawable/back"
+                android:background="@drawable/bill"
                 app:backgroundTint="@color/intertech_icon_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -208,7 +202,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="18dp"
-                android:background="@drawable/ic_baseline_add"
+                android:background="@drawable/money_transfer"
                 app:backgroundTint="@color/intertech_icon_color"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -9,12 +9,12 @@
     <item
         android:title="@string/bottom_navigation_money_transfer_button"
         android:id="@+id/allAccountsFragment"
-        android:icon="@drawable/ic_baseline_credit_card"
+        android:icon="@drawable/account_activity"
         />
     <item
         android:title="@string/bottom_menu_add_account"
         android:id="@+id/openAccountFragment"
-        android:icon="@drawable/ic_baseline_add"
+        android:icon="@drawable/new_account"
         />
 
 </menu>
