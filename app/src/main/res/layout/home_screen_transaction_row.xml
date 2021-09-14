@@ -14,14 +14,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1.8">
+            android:layout_weight="2.2"
+            android:orientation="vertical">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.8"
+                android:layout_weight="2.2"
                 android:orientation="vertical">
 
                 <TextView
@@ -29,58 +29,54 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="18dp"
                     android:autoSizeMaxTextSize="16dp"
                     android:autoSizeMinTextSize="1dp"
                     android:autoSizeTextType="uniform"
-                    android:maxLines="1"
+                    android:background="@color/intertech_recyclerview_date_backcolor"
                     android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center"
+                    android:maxLines="1"
                     android:text="@string/date"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/intertech_recyclerview_date_textcolor"
-                    android:background="@color/intertech_recyclerview_date_backcolor"
-                    />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/dateMonth"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textSize="16dp"
-                    android:text="Eylül"
                     android:autoSizeMaxTextSize="13dp"
                     android:autoSizeMinTextSize="1dp"
-                    android:fontFamily="sans-serif-condensed-medium"
                     android:autoSizeTextType="uniform"
-                    android:maxLines="1"
+                    android:background="@color/intertech_recyclerview_date_backcolor"
+                    android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="center"
+                    android:maxLines="1"
+                    android:text="Eylül"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/intertech_recyclerview_date_textcolor"
-                    android:background="@color/intertech_recyclerview_date_backcolor"
-                    />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/dateTime"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textSize="19dp"
-                    android:text="9:0"
                     android:autoSizeMaxTextSize="16dp"
                     android:autoSizeMinTextSize="1dp"
-                    android:fontFamily="sans-serif-condensed-medium"
                     android:autoSizeTextType="uniform"
-                    android:maxLines="1"
+                    android:background="@color/intertech_recyclerview_date_backcolor"
+                    android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="center"
+                    android:maxLines="1"
+                    android:text="9:0"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/intertech_recyclerview_date_textcolor"
-                    android:background="@color/intertech_recyclerview_date_backcolor"
-                    />
+                    android:textSize="19dp" />
 
 
             </LinearLayout>
-
 
 
         </LinearLayout>
