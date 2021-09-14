@@ -26,7 +26,7 @@ class UserInformationActivity : AppCompatActivity() {
     private var processNamesList = mutableListOf<String>()
     private lateinit var getCustomerModel: GetCustomerModel
     private var balanceList = mutableListOf<String>()
-     private val getCustomerViewModel: GetCustomerViewModel by viewModels()
+    private val getCustomerViewModel: GetCustomerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

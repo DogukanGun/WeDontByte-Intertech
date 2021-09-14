@@ -52,9 +52,10 @@ class AccountsInformationFragment : Fragment() {
             }
             val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
                 requireContext(),
-                android.R.layout.simple_spinner_item,
+                R.layout.selected_account_name,
                 spinnerList
             )
+            adapter.setDropDownViewResource(R.layout.account_name_spinner)
             binding.accountName.adapter = adapter
             binding.qrButton.setOnClickListener {
                 val intent = Intent(activity,QrReadWithCameraActivity::class.java)
