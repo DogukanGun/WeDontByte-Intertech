@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="58dp"
+    android:layout_height="80dp"
     android:layout_marginBottom="2dp">
 
     <LinearLayout
@@ -34,7 +34,7 @@
                     android:autoSizeTextType="uniform"
                     android:background="@color/intertech_recyclerview_date_backcolor"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:gravity="center"
+                    android:gravity="bottom|center_horizontal"
                     android:maxLines="1"
                     android:text="@string/date"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -54,6 +54,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="Eylül"
+                    android:maxLength="3"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/intertech_recyclerview_date_textcolor"
                     android:textSize="16dp" />
@@ -68,7 +69,7 @@
                     android:autoSizeTextType="uniform"
                     android:background="@color/intertech_recyclerview_date_backcolor"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:gravity="center"
+                    android:gravity="top|center_horizontal"
                     android:maxLines="1"
                     android:text="9:0"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -98,6 +99,7 @@
                 android:textSize="16dp"
                 android:autoSizeMaxTextSize="16dp"
                 android:autoSizeMinTextSize="1dp"
+                android:paddingTop="10dp"
                 android:autoSizeTextType="uniform"
                 android:maxLines="1"
                 android:text="@string/destination_name"
@@ -112,6 +114,7 @@
                 android:layout_weight="1"
                 android:layout_margin="@dimen/cardview_compat_inset_shadow"
                 android:textSize="16dp"
+                android:paddingBottom="10dp"
                 android:text="@string/explanation"
                 android:maxLines="1"
                 android:gravity="center"

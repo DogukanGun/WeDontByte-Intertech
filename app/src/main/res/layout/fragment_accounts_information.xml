@@ -12,13 +12,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/intertech_screen_color"
         android:orientation="vertical">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="217dp"
             android:layout_margin="20dp"
             android:background="@drawable/creditcard_settings"
             app:layout_constraintEnd_toStartOf="@+id/mainConstraintLayout">
@@ -35,10 +36,10 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.311"
+                app:layout_constraintHorizontal_bias="0.124"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.728" />
+                app:layout_constraintVertical_bias="0.806" />
 
             <Button
                 android:id="@+id/shareButton"
@@ -51,14 +52,53 @@
                 app:layout_constraintHorizontal_bias="0.077"
                 app:layout_constraintStart_toEndOf="@+id/accountType"
                 app:layout_constraintTop_toTopOf="@+id/accountType"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintVertical_bias="0.5" /><![CDATA[
 
+
+
+
+
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.327" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ]]>
 
             <TextView
                 android:id="@+id/subeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:fontFamily="sans-serif-bold"
                 android:gravity="center"
                 android:text="@string/branch"
@@ -66,50 +106,54 @@
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/accountName"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.083"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.09" />
 
             <TextView
                 android:id="@+id/vadeliText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:gravity="center"
                 android:text="Vadeli TRY"
                 android:textAlignment="center"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="12dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/accountName"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.083"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/subeText"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.075" />
 
             <Spinner
                 android:id="@+id/accountName"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/creditcard_settings"
-                android:popupBackground="@drawable/creditcard_settings"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:textSize="16dp"
-                android:maxLines="1"
                 android:autoSizeMaxTextSize="16dp"
                 android:autoSizeMinTextSize="1dp"
                 android:autoSizeTextType="uniform"
+                android:background="@drawable/creditcard_settings"
+                android:fontFamily="sans-serif-bold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:popupBackground="@drawable/creditcard_settings"
+                android:textAlignment="center"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.366"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.327"  />
-
+                app:layout_constraintVertical_bias="0.603" />
 
             <TextView
+                android:id="@+id/textView5"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="4dp"
@@ -134,27 +178,50 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.913"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.56" />
+                app:layout_constraintVertical_bias="0.081" />
 
             <TextView
                 android:id="@+id/accountBalance"
 
-                android:layout_width="wrap_content"
+                android:layout_width="138dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
+                android:layout_marginTop="31dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="end"
                 android:text="@string/account_balance"
                 android:textAlignment="textEnd"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="16dp"
+
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.56" />
+                app:layout_constraintHorizontal_bias="0.927"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView3"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="76dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="28dp"
+                android:text="Hesap Adı"
+                android:textColor="@color/intertech_textview_text_color"
+                app:layout_constraintBottom_toTopOf="@+id/accountName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.088"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vadeliText"
+                app:layout_constraintVertical_bias="0.0" />
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.56" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
