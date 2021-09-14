@@ -24,7 +24,8 @@ import java.text.DecimalFormat
 import kotlin.reflect.full.memberProperties
 
 
-class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsRecyclerViewHolder>()  {
+class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>) :
+    RecyclerView.Adapter<AllAccountsRecyclerViewHolder>() {
     private val ITEM_GRAPH = 0
     private val ITEM_TITLE = 1
     private val ITEM_ACCOUNT = 2
@@ -32,16 +33,18 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     private val DESCENDING_POSITIONING = 1
     private val ASCENDING_POSITIONING = 2
     private var positioningCriteria = 0
-    companion object{
-        private var sortButtonClick=3
+
+    companion object {
+        private var sortButtonClick = 3
     }
+
     private var graphState = 0
     private var totalBalanceForPieChart = 0.0
     private var totalBalanceChecker = true
-    private lateinit var piechart :PieChart
-    private lateinit var pieEntries:ArrayList<PieEntry>
-    private var originalallAccounts:ArrayList<GetAccountList> = ArrayList()
-    private var currencyStates: HashMap<String,Int> =hashMapOf()
+    private lateinit var piechart: PieChart
+    private lateinit var pieEntries: ArrayList<PieEntry>
+    private var originalallAccounts: ArrayList<GetAccountList> = ArrayList()
+    private var currencyStates: HashMap<String, Int> = hashMapOf()
 
 
     //TL Hesaplarının başa gelmesi için Hashmap
@@ -53,7 +56,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         "CAD" to 4
 
     )
-    private val currencySigns:HashMap<String,String> = hashMapOf(
+    private val currencySigns: HashMap<String, String> = hashMapOf(
         "TRY" to "₺",
         "ALL" to "Lek",
         "AFN" to "؋",
@@ -167,24 +170,25 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
 
     //Boş gelen RecyclerView doldurmak için fonksiyon
-    fun addAccount(item:Array<GetAccountList>, pieChartEntries:ArrayList<PieEntry>){
-        val AllAccountsArrayList : ArrayList<GetAccountList> = rearrangeList(item.toCollection(ArrayList()))
+    fun addAccount(item: Array<GetAccountList>, pieChartEntries: ArrayList<PieEntry>) {
+        val AllAccountsArrayList: ArrayList<GetAccountList> =
+            rearrangeList(item.toCollection(ArrayList()))
 
 
         originalallAccounts.clear()
         allAccounts.clear()
         //pieChartEntries.add(PieEntry(1000f,"USD"))
 
-        pieEntries=pieChartEntries
+        pieEntries = pieChartEntries
         originalallAccounts.addAll(AllAccountsArrayList)
         allAccounts.addAll(originalallAccounts)
-        val currencyNames =getCurrencyList()
-        for(i in currencyNames){
+        val currencyNames = getCurrencyList()
+        for (i in currencyNames) {
             currencyStates[i] = 1
         }
-        for (pieChartSlice in pieChartEntries){
-            for(account in allAccounts)
-                if(account.currency.equals(pieChartSlice.label)){
+        for (pieChartSlice in pieChartEntries) {
+            for (account in allAccounts)
+                if (account.currency.equals(pieChartSlice.label)) {
                     pieChartSlice.y += account.balanceAsTRY!!.toFloat()
                 }
         }
@@ -193,10 +197,10 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     }
 
     // Kullanıcının sahip olduğu hesap türler(TL, Dolar, Euro,vs.)
-    fun getCurrencyList():List<String>{
-        val names=ArrayList<String>()
-        for(item in originalallAccounts){
-            if(item.currency !in names)
+    fun getCurrencyList(): List<String> {
+        val names = ArrayList<String>()
+        for (item in originalallAccounts) {
+            if (item.currency !in names)
                 names.add(item.currency)
         }
         names.remove("Title")
@@ -208,21 +212,18 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
     // Başlıkların seçili olan hesaplara göre oluşturulup tekrar sıralanması
 
-    fun rearrangeList(item:ArrayList<GetAccountList>):ArrayList<GetAccountList>{
+    fun rearrangeList(item: ArrayList<GetAccountList>): ArrayList<GetAccountList> {
         val AllAccountsArrayList: ArrayList<GetAccountList> = arrayListOf()
 
-        if(positioningCriteria == DEFAULT_POSITIONING) {
+        if (positioningCriteria == DEFAULT_POSITIONING) {
             val comparator = Comparator { o1: GetAccountList, o2: GetAccountList ->
-                if(roles.containsKey(o1.currency) && roles.containsKey(o2.currency)){
+                if (roles.containsKey(o1.currency) && roles.containsKey(o2.currency)) {
                     return@Comparator roles[o1.currency]!! - roles[o2.currency]!!
-                }
-                else if(roles.containsKey(o1.currency) && !roles.containsKey(o2.currency)){
+                } else if (roles.containsKey(o1.currency) && !roles.containsKey(o2.currency)) {
                     return@Comparator roles[o1.currency]!! - 5
-                }
-                else if(!roles.containsKey(o1.currency) && roles.containsKey(o2.currency)){
+                } else if (!roles.containsKey(o1.currency) && roles.containsKey(o2.currency)) {
                     return@Comparator 5 - roles[o2.currency]!!
-                }
-                else{
+                } else {
                     return@Comparator 0
                 }
                 return@Comparator roles[o1.currency]!! - roles[o2.currency]!!
@@ -248,8 +249,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 }
             }
             return AllAccountsArrayList
-        }
-        else if(positioningCriteria == DESCENDING_POSITIONING){
+        } else if (positioningCriteria == DESCENDING_POSITIONING) {
 
             item.sortWith(compareByDescending { it.balanceAsTRY })
             AllAccountsArrayList.add(createDummyAccount("Graph"))
@@ -257,8 +257,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                 AllAccountsArrayList.add(item[i])
             }
             return AllAccountsArrayList
-        }
-        else{
+        } else {
             item.sortWith(compareBy { it.balance })
             AllAccountsArrayList.add(createDummyAccount("Graph"))
             for (i in 0 until item.size) {
@@ -269,11 +268,10 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     }
 
 
-
     //Seçienleri belirleme
 
-    fun modifyAccount(statesOfCurriencies:HashMap<String,Int>){
-        if(positioningCriteria == DEFAULT_POSITIONING) {
+    fun modifyAccount(statesOfCurriencies: HashMap<String, Int>) {
+        if (positioningCriteria == DEFAULT_POSITIONING) {
             val AllAccountsArrayList: ArrayList<GetAccountList> = arrayListOf()
             allAccounts = ArrayList()
             for (item in originalallAccounts) {
@@ -282,12 +280,11 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             }
             allAccounts = rearrangeList(AllAccountsArrayList)
             notifyDataSetChanged()
-        }
-        else{
+        } else {
             val AllAccountsArrayList: ArrayList<GetAccountList> = arrayListOf()
             allAccounts = ArrayList()
             for (item in originalallAccounts) {
-                if(!item.currency.equals("Title")&& !item.currency.equals("Graph"))
+                if (!item.currency.equals("Title") && !item.currency.equals("Graph"))
                     AllAccountsArrayList.add(item)
             }
             allAccounts = rearrangeList(AllAccountsArrayList)
@@ -296,8 +293,11 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllAccountsRecyclerViewHolder {
-        return when(viewType){
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): AllAccountsRecyclerViewHolder {
+        return when (viewType) {
             ITEM_TITLE -> AllAccountsRecyclerViewHolder.TitleViewHolder(
                 AllAccountsRecyclerviewTitleRowBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -330,46 +330,39 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     override fun onBindViewHolder(holder: AllAccountsRecyclerViewHolder, position: Int) {
         when (holder) {
             is AllAccountsRecyclerViewHolder.AccountViewHolder -> {
-                     holder.getBind().bakiyeNoTv.text = amountFormatter.format(allAccounts[position].balance)+" "+ currencySigns[allAccounts[position].currency]
-                    holder.getBind().ibanTv.text = allAccounts[position].iban
-                    holder.getBind().subeIsmiTv.text = allAccounts[position].branch
-                    holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
-
-                    if(positioningCriteria != DEFAULT_POSITIONING)
-                    {
-                        if(!allAccounts[position].currency.equals("TRY"))
-                            holder.getBind().bakiyeCevirTl.text = "(" + String.format("%.1f", allAccounts[position].balanceAsTRY) + " ₺)"
-                        else
-                            holder.getBind().bakiyeCevirTl.text = ""
-                    }
-                    else
-                {
-                    holder.getBind().bakiyeCevirTl.text = ""
-                }
-                 holder.getBind().bakiyeNoTv.text = allAccounts[position].balance.toString() +" "+ currencySigns[allAccounts[position].currency]
+                holder.getBind().bakiyeNoTv.text =
+                    amountFormatter.format(allAccounts[position].balance) + " " + currencySigns[allAccounts[position].currency]
                 holder.getBind().ibanTv.text = allAccounts[position].iban
                 holder.getBind().subeIsmiTv.text = allAccounts[position].branch
                 holder.getBind().hesapIsmiTv.text = allAccounts[position].accountName
 
-                
-                
+                if (positioningCriteria != DEFAULT_POSITIONING) {
+                    if (!allAccounts[position].currency.equals("TRY"))
+                        holder.getBind().bakiyeCevirTl.text =
+                            "(" + String.format("%.1f", allAccounts[position].balanceAsTRY) + " ₺)"
+                    else
+                        holder.getBind().bakiyeCevirTl.text = ""
+                } else {
+                    holder.getBind().bakiyeCevirTl.text = ""
+                }
 
             }
             is AllAccountsRecyclerViewHolder.TitleViewHolder -> {
-                holder.getBind().textViewTitleRow.text = "${allAccounts[position+1].currency} Hesaplarım"
+                holder.getBind().textViewTitleRow.text =
+                    "${allAccounts[position + 1].currency} Hesaplarım"
             }
             is AllAccountsRecyclerViewHolder.GraphViewHolder -> {
-                if(!totalBalanceChecker){
+                if (!totalBalanceChecker) {
                     for (pos in 0..pieEntries.size - 1) {
                         pieEntries.get(pos).y += (totalBalanceForPieChart / pieEntries.size).toFloat()
                     }
                 }
-                piechart= drawingPieChart(holder.getBind(),pieEntries)
+                piechart = drawingPieChart(holder.getBind(), pieEntries)
 
                 //SETUP PIE ANIMATION
-                if(graphState == 0) {
+                if (graphState == 0) {
                     piechart.animateXY(1000, 1000)
-                    graphState=1
+                    graphState = 1
                 }
                 holder.getBind().sortingRadioButton.setOnClickListener {
 
@@ -378,77 +371,109 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                     }
 
 
-                         sortButtonClick+=1
-                        if (sortButtonClick>2){
-                            sortButtonClick=0 //ARTAN
-                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_not_selected)
-                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
-                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
-
-                            setPositioningCriteria(0)
-                            modifyAccount(currencyStates)
+                    sortButtonClick += 1
+                    if (sortButtonClick > 2) {
+                        sortButtonClick = 0 //ARTAN
+                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.qr_radio_button_not_selected
+                        )
+                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.filter
+                        )
+                        holder.getBind().sortingTextView.apply {
+                            holder.getBind().sortingTextView.text =
+                                context.getString(R.string.default_value)
                         }
-                        if (sortButtonClick<2){ //AZALAN
- 
-                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.descending)
-                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.descending) }
-
-                             if (sortButtonClick==0){ //ARTAN
-                                holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                                holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.ascending)
-                                holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.ascending) }
-
-                                setPositioningCriteria(2)
-                                modifyAccount(currencyStates)
-                            }else{ //AZALAN
-                                holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                                holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.descending)
-                                holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.descending) }
-
-                                setPositioningCriteria(1)
-                                modifyAccount(currencyStates)
-                            }
-                        }else{ //DEFAULT
-                            holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_selected)
-                            holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
-                            holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
-
-                            setPositioningCriteria(0)
- 
-                            modifyAccount(currencyStates)
-                        }
-                    }else{ //DEFAULT
-                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.qr_radio_button_not_selected)
-                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(holder.getBind().sortingRadioButton.context, R.drawable.filter)
-                        holder.getBind().sortingTextView.apply { holder.getBind().sortingTextView.text = context.getString(R.string.default_value) }
 
                         setPositioningCriteria(0)
                         modifyAccount(currencyStates)
                     }
+                    if (sortButtonClick < 2) { //AZALAN
+                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.qr_radio_button_selected
+                        )
+                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.descending
+                        )
+                        holder.getBind().sortingTextView.apply {
+                            holder.getBind().sortingTextView.text =
+                                context.getString(R.string.descending)
+                        }
 
+                        if (sortButtonClick == 0) { //ARTAN
+                            holder.getBind().sortingRadioButton.background =
+                                ContextCompat.getDrawable(
+                                    holder.getBind().sortingRadioButton.context,
+                                    R.drawable.qr_radio_button_selected
+                                )
+                            holder.getBind().sortingRadioButton.foreground =
+                                ContextCompat.getDrawable(
+                                    holder.getBind().sortingRadioButton.context,
+                                    R.drawable.ascending
+                                )
+                            holder.getBind().sortingTextView.apply {
+                                holder.getBind().sortingTextView.text =
+                                    context.getString(R.string.ascending)
+                            }
 
+                            setPositioningCriteria(2)
+                            modifyAccount(currencyStates)
+                        } else { //AZALAN
+                            holder.getBind().sortingRadioButton.background =
+                                ContextCompat.getDrawable(
+                                    holder.getBind().sortingRadioButton.context,
+                                    R.drawable.qr_radio_button_selected
+                                )
+                            holder.getBind().sortingRadioButton.foreground =
+                                ContextCompat.getDrawable(
+                                    holder.getBind().sortingRadioButton.context,
+                                    R.drawable.descending
+                                )
+                            holder.getBind().sortingTextView.apply {
+                                holder.getBind().sortingTextView.text =
+                                    context.getString(R.string.descending)
+                            }
 
+                            setPositioningCriteria(1)
+                            modifyAccount(currencyStates)
+                        }
+                    } else { //DEFAULT
+                        holder.getBind().sortingRadioButton.background = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.qr_radio_button_selected
+                        )
+                        holder.getBind().sortingRadioButton.foreground = ContextCompat.getDrawable(
+                            holder.getBind().sortingRadioButton.context,
+                            R.drawable.filter
+                        )
+                        holder.getBind().sortingTextView.apply {
+                            holder.getBind().sortingTextView.text =
+                                context.getString(R.string.default_value)
+                        }
 
+                        setPositioningCriteria(0)
+                        modifyAccount(currencyStates)
+                    }
                 }
             }
 
         }
-
-
     }
+
+
     override fun getItemViewType(position: Int): Int {
-        return if (allAccounts[position].currency == "Title"){
+        return if (allAccounts[position].currency == "Title") {
             ITEM_TITLE
-        }
-        else if(allAccounts[position].currency == "Graph"){
+        } else if (allAccounts[position].currency == "Graph") {
             ITEM_GRAPH
-        }
-        else{
+        } else {
             ITEM_ACCOUNT
         }
     }
-
 
 
     override fun getItemCount(): Int {
@@ -456,24 +481,26 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         return allAccounts.size
     }
 
-    fun getPositionData(position: Int): String{
+    fun getPositionData(position: Int): String {
         var retString = ""
         for (prop in GetAccountList::class.memberProperties) {
-            retString+="${prop.name}!${prop.get(allAccounts[position])}?"
+            retString += "${prop.name}!${prop.get(allAccounts[position])}?"
         }
 
-        return  retString
+        return retString
 
 
     }
 
     // TODO PirChart içini dinamik olarak seçilen şeye göre dolur veya PieChartta seçilen hesapları altta getir !!!!
 
-    private fun drawingPieChart(binding: AllAccountsRecyclerviewGraphRowBinding,pieEntries:ArrayList<PieEntry>):PieChart
-    {
+    private fun drawingPieChart(
+        binding: AllAccountsRecyclerviewGraphRowBinding,
+        pieEntries: ArrayList<PieEntry>
+    ): PieChart {
 
         //GET PIE CHART COMPONENT FROM XML
-        val intertechPieChart : PieChart = binding.allAccountsPieChart
+        val intertechPieChart: PieChart = binding.allAccountsPieChart
 
         intertechPieChart.description.isEnabled = false
         intertechPieChart.legend.isEnabled = false
@@ -485,7 +512,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             Color.rgb(9, 83, 153),
             Color.rgb(200, 29, 71),
             Color.rgb(124, 124, 124),
-            Color.rgb(101,73,156),
+            Color.rgb(101, 73, 156),
             Color.rgb(229, 153, 173)
         )
         intertechPieChart.setEntryLabelTextSize(18f)
@@ -499,20 +526,19 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         //intertechPieChart.legend.isEnabled = false
 
 
-        intertechPieChart.setOnChartValueSelectedListener(object :OnChartValueSelectedListener{
+        intertechPieChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
             override fun onValueSelected(e: Entry?, h: Highlight?) {
                 for (pos in 0..pieEntries.size - 1) {
                     pieEntries.get(pos).y -= (totalBalanceForPieChart / pieEntries.size).toFloat()
                 }
-                if(e!=null){
-                    val entry=e as PieEntry
+                if (e != null) {
+                    val entry = e as PieEntry
                     //TODO butonlarin tiklanmasi burada olacak
                     //TODO entry.label sana degeri verecek
-                    for(item in currencyStates)
-                        if (item.key.equals(entry.label)){
+                    for (item in currencyStates)
+                        if (item.key.equals(entry.label)) {
                             currencyStates[entry.label] = 1
-                        }
-                        else{
+                        } else {
                             currencyStates[item.key] = 0
                         }
                     modifyAccount(currencyStates)
@@ -525,7 +551,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
                     pieEntries.get(pos).y -= (totalBalanceForPieChart / pieEntries.size).toFloat()
                 }
                 //TODO("Not yet implemented")
-                for(item in currencyStates){
+                for (item in currencyStates) {
                     currencyStates[item.key] = 1
                 }
                 modifyAccount(currencyStates)
@@ -538,17 +564,17 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
         intertechPieChart.data = pieData
 
         pieData.setDrawValues(false)
-        intertechPieChart.transparentCircleRadius=0f
+        intertechPieChart.transparentCircleRadius = 0f
 
         //SET TEXT IN THE MIDDLE OF THE PIECHART
 
-        if(totalBalanceChecker){
+        if (totalBalanceChecker) {
             for (pos in 0..pieEntries.size - 1) {
                 totalBalanceForPieChart += pieEntries.get(pos).y
             }
             totalBalanceForPieChart /= 2
             for (pos in 0..pieEntries.size - 1) {
-                Log.d("Info","Girdiii")
+                Log.d("Info", "Girdiii")
                 pieEntries.get(pos).y += (totalBalanceForPieChart / pieEntries.size).toFloat()
             }
             totalBalanceChecker = false
@@ -556,18 +582,22 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
 
         //val totalBalanceString =totalBalanceForPieChart.toString()
-        val totalBalanceString =amountFormatter.format(totalBalanceForPieChart)
+        val totalBalanceString = amountFormatter.format(totalBalanceForPieChart)
 
         //intertechPieChart.apply { intertechPieChart.centerText = context.getString(R.string.total_balance) + "\n%.2f ".format(totalBalanceForPieChart)+"₺" }
-        intertechPieChart.apply { intertechPieChart.centerText = context.getString(R.string.total_balance) + "\n" + totalBalanceString+"₺" }
+        intertechPieChart.apply {
+            intertechPieChart.centerText =
+                context.getString(R.string.total_balance) + "\n" + totalBalanceString + "₺"
+        }
         intertechPieChart.setCenterTextColor(Color.BLACK)
         intertechPieChart.setCenterTextSize(18f)
 
         return intertechPieChart
     }
 
-    private fun createDummyAccount(typeOfAccount:String):GetAccountList{
-        val x = GetAccountList(isBlocked = false,
+    private fun createDummyAccount(typeOfAccount: String): GetAccountList {
+        val x = GetAccountList(
+            isBlocked = false,
             "maltepe",
             "birinci",
             false,
@@ -580,11 +610,13 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             1850.0,
             "benimHesabım",
             "TR1159465168416516841634623",
-            false,88.50,"","","","","",0.0)
+            false, 88.50, "", "", "", "", "", 0.0
+        )
         return x
 
     }
-    fun setPositioningCriteria(criteria: Int){
+
+    fun setPositioningCriteria(criteria: Int) {
         positioningCriteria = criteria
     }
 

@@ -187,14 +187,5 @@ class AccountDetailFragment() : Fragment() {
         titles.addAll(AllAccountsArrayList)
     } 
 
-        AllAccountsArrayList.sortWith(comparator)
-        for(i in AllAccountsArrayList){
-            values.add(this.values.get(titles.indexOf(i)))
-        }
-        this.values.clear()
-        titles.clear()
-        this.values.addAll(values)
-        titles.addAll(AllAccountsArrayList)
-    }
 
 }
