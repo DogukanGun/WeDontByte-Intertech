@@ -65,7 +65,6 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
     @SuppressLint("NotifyDataSetChanged")
     fun addList(transactions: Array<GetAccountTransactionList>, fragment: SimpleAccountFragment) {
         this.transactions = transactions
-        //this.transactions = this.transactions.toCollection(ArrayList()).sortedByDescending { it.date }.toTypedArray()
 
         transactionArrayList.addAll(transactions)
         val tempTransactionArrayList = lastTenTransactions(transactionArrayList)
@@ -73,12 +72,7 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
         transactionArrayList.addAll(tempTransactionArrayList)
         simpleAccountFragment = fragment
         notifyDataSetChanged()
-/*        var lineChartEntries = ArrayList<Entry>()
-        lineChartEntries.add(Entry(2020F, 1000F))
-        lineChartEntries.add(Entry(2021F, 1500F))
-        lineChartEntries.add(Entry(2023F, 1800F))
-        lineChartEntries.add(Entry(2024F, 1200F))
-        simpleAccountFragment.updateLineChart(lineChartEntries)*/
+
     }
     fun getSorted() : ArrayList<GetAccountTransactionList>{
         return transactionArrayList
@@ -142,7 +136,7 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
                 transactionArrayList = filterArrayList(SimpleAccountListState.LAST_ONE_YEAR.day)
             }
             SimpleAccountListState.DETAIL -> {
-                    transactionArrayList=backupArray
+                    transactionArrayList=lastTenTransactions(backupArray)
             }
             SimpleAccountListState.NO_FILTER -> {
 //                    transactionArrayList.addAll(transactions)
@@ -203,30 +197,14 @@ class SimpleAccountAdapter : RecyclerView.Adapter<SimpleAccountAdapter.SimpleAcc
         return transactionArrayList.size
     }
 
-//    private fun createDummyTransactionList(x: Double, d: String): GetAccountTransactionList {
-//        var x = GetAccountTransactionList("test",d,"test","test",x,122.2,
-//            "t","t","t","t","05-05-2010","t","t",
-//            233.3,"t"
-//        )
-//        return x
-//    }
 
     private fun lastTenTransactions(item: ArrayList<GetAccountTransactionList>): ArrayList<GetAccountTransactionList> {
-        //val allTransactionsArrayList: ArrayList<GetAccountTransactionList> = arrayListOf()
 
         var allTransactionsArrayList = item.sortedByDescending { it.date }.toCollection(ArrayList())
         if (item.size >= 10) {
             allTransactionsArrayList = allTransactionsArrayList.take(10).toCollection(ArrayList())
-            /*for (i in 0 until 10) {
-                allTransactionsArrayList.add(item[i])
-                Log.d("info ", "added ${item[i].date}")
-            }*/
-        } /*else {
-           /* for (i in 0 until item.size) {
-                allTransactionsArrayList.add(item[i])
-                Log.d("info ", "added ${item[i].date}")
-            }*/
-        }*/
+        }
+
 
         return allTransactionsArrayList
 
