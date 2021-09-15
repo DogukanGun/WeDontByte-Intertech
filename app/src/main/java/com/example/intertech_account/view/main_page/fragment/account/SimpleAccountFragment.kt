@@ -41,12 +41,14 @@ import android.provider.MediaStore.Images
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.marginLeft
 import androidx.navigation.fragment.findNavController
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view_model.GetAccountTransactionViewModel
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlin.concurrent.schedule
 
@@ -261,13 +263,8 @@ class SimpleAccountFragment : Fragment() {
     }
 
     private fun drawingLineChart(entries: ArrayList<Entry>, xLabels: ArrayList<String>) {
+        //Line chart'a geçici çözüm
 
-        //SET LINE ENTRIES (YEAR, MONEY)
-        val myArray = ArrayList<Entry>()
-        /*myArray.add(Entry(2010F, 100F))
-        myArray.add(Entry(2011F, 500F))
-        myArray.add(Entry(2013F, 800F))
-        myArray.add(Entry(2014F, 200F))*/
         //GET LINE CHART COMPONENT FROM XML
         var intertechLineChart: LineChart = binding.simpleAccountLineChart
 
@@ -295,14 +292,11 @@ class SimpleAccountFragment : Fragment() {
 
 
         //SETUP LINE CHART COLORS
-        //var lineDataSet = LineDataSet(myArray, "MONEY/YEAR GRAPH")
+
         var lineDataSet = LineDataSet(entries, "MONEY/YEAR GRAPH")
         var colors = ArrayList<Int>()
         //SETUP BAR CHART COLORS
-        /*lineDataSet.setColors(
-            Color.GREEN,
-            Color.RED
-        )*/
+
         for (pos in 0..entries.size - 2) {
             colors.add(
                 if (entries.get(pos + 1).y - entries.get(pos).y > 0) Color.GREEN
@@ -321,10 +315,27 @@ class SimpleAccountFragment : Fragment() {
             resources.getColor(R.color.intertech_linechart_label_color)
         intertechLineChart.axisRight.isEnabled = false
         intertechLineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        intertechLineChart.xAxis.labelRotationAngle = 315F
+        intertechLineChart.setExtraOffsets(50F,0F,50F,0F)
+        intertechLineChart.axisLeft.setDrawLabels(false)
+
 
         var lineData = LineData(lineDataSet)
 
+        //Line üzerindeki değerlerin metinlerini düzenleme
+        lineData.setValueFormatter(object : ValueFormatter() {
+
+            override fun getFormattedValue(value: Float): String {
+                return Constant.amountFormatter.format(value)+" TRY"
+            }
+        })
+
+        //Line chart üzerindeki noktaların büyüklüğünü ve görünürlüğünü ayarlama
         lineData.setDrawValues(true)
+        lineDataSet.circleRadius = 7F
+        lineDataSet.setDrawCircles(true)
+        lineDataSet.setCircleColors(Color.BLUE)
+
         intertechLineChart.data = lineData
     }
 
@@ -354,50 +365,28 @@ class SimpleAccountFragment : Fragment() {
                 var lineChartEntries = ArrayList<Entry>()
                 var lineChartArray = ArrayList<GetAccountTransactionList>()
                 lineChartArray.addAll((recyclerView.adapter as SimpleAccountAdapter).getSorted())
-                lineChartArray.reverse()
+                lineChartArray.sortBy{it.date}
                 if (lineChartArray.size >= 5) {
                     for (i in (lineChartArray.size - 5)..(lineChartArray.size - 1)) {
                         lineChartEntries.add(Entry((i-5).toFloat(),
-                                lineChartArray[i].remainingBalance.toFloat()))
+                            lineChartArray[i].remainingBalance.toFloat()))
                         xLabels.add(lineChartArray[i].date)
                     }
                 } else {
                     for (i in 0..(lineChartArray.size - 1)) {
                         lineChartEntries.add(Entry((i).toFloat(),
-                                lineChartArray[i].remainingBalance.toFloat()))
+                            lineChartArray[i].remainingBalance.toFloat()))
                         xLabels.add(lineChartArray[i].date)
                     }
                 }
+                Log.d("Info",lineChartEntries.size.toString())
                 drawingLineChart(lineChartEntries, xLabels)
             }
         })
-//
         adapter = SimpleAccountAdapter(requireContext())
-//
+
         recyclerView.adapter = adapter
-//        var arrayList = arrayListOf<GetAccountTransactionList>()
-//
-//
-        //val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()
-        //val myarray2: Array<GetAccountTransactionList> = createDummyList(15)
-        //var myarray = arrayOf(GetAccountTransactionList())
-//        adapter.addList(myarray2)
-        var lineChartEntries = ArrayList<Entry>()
-        lineChartEntries.add(Entry(1000F, 200F))
-        lineChartEntries.add(Entry(1001F, 201F))
-        /*      for(i in myarray2){
-                  lineChartEntries.add(Entry(i.date.toFloat(),i.remainingBalance.toFloat()))
 
-              }*/
-
-/*
-        lineChartEntries.add(Entry(2010F, 100F))
-        lineChartEntries.add(Entry(2011F, 500F))
-        lineChartEntries.add(Entry(2013F, 800F))
-        lineChartEntries.add(Entry(2014F, 200F))*/
-
-
-        //drawingLineChart(lineChartEntries)
         val dividerItemDecoration = DividerItemDecoration(
             recyclerView.context, 1
         )
@@ -671,6 +660,7 @@ class SimpleAccountFragment : Fragment() {
                 )
             }
 
+
             lineDataSet.setColors(colors.toIntArray(), 255)
             lineDataSet.valueTextColor = R.color.intertech_actionbar_bottomnav_back_color
             lineDataSet.valueTextSize = 15F
@@ -678,6 +668,22 @@ class SimpleAccountFragment : Fragment() {
 
             var lineData = LineData(lineDataSet)
 
+            binding.simpleAccountLineChart.xAxis.setValueFormatter(object : ValueFormatter() {
+
+                @RequiresApi(Build.VERSION_CODES.N)
+                private val mFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
+
+                @RequiresApi(Build.VERSION_CODES.N)
+                override fun getFormattedValue(value: Float): String {
+                    /*
+                    if(value==Math.ceil(value.toDouble()).toFloat()){
+                        val millis: Long = getDateInMilliSeconds(xLabels[value.toInt()], "yyyy-MM-dd")
+                        return mFormat.format(Date(millis))
+                    }*/
+
+                    return "asdsd"
+                }
+            })
             lineData.setDrawValues(true)
             binding.simpleAccountLineChart.data = lineData
         }

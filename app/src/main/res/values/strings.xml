@@ -48,7 +48,7 @@
     <string name="login">Giriş</string>
     <string name="qr_code_reader">QR Kod Okuyucu</string>
     <string name="help">Yardım</string>
-    <string name="account_name">Hesap İsmi</string>
+    <string name="account_name">Hesap Adı</string>
     <string name="default_value">Dövize göre sıralama aktifleştirildi (Varsayılan)</string>
     <string name="ascending">TRY cinsinden artana göre sıralama aktifleştirildi</string>
     <string name="descending">TRY cinsinden azalana göre sıralama aktifleştirildi</string>

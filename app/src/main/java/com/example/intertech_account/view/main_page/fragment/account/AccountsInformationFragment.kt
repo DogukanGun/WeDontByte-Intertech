@@ -4,16 +4,22 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context.*
 import android.content.Intent
+import android.content.res.AssetManager
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.Layout
 import android.transition.Slide
 import android.transition.TransitionManager
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -29,9 +35,22 @@ import com.example.intertech_account.view.main_page.activity.QrReadWithCameraAct
 import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragmentDirections
 import com.example.intertech_account.view_model.GetAccountViewModel
 import android.content.Context.CLIPBOARD_SERVICE as CLIPBOARD_SERVICE1
+import android.widget.TextView
+import com.example.intertech_account.model.api_model.get_account.GetAccountList
+import kotlinx.android.synthetic.main.fragment_accounts_information.*
+import android.widget.Spinner
+import androidx.core.view.setPadding
+import java.lang.ClassCastException
+import java.lang.reflect.Field
+import android.graphics.Typeface
+
+
+
 
 
 class AccountsInformationFragment : Fragment() {
+    private var spinnerMaxLength = 10
+    private var oldPosition = -1
     private val getAccountViewModel: GetAccountViewModel by viewModels()
     lateinit var getAccountModel: GetAccountModel
     private lateinit var currentIban: String
@@ -39,27 +58,33 @@ class AccountsInformationFragment : Fragment() {
     lateinit var binding: FragmentAccountsInformationBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAccountsInformationBinding.inflate(layoutInflater)
         (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
 
         if (isFragmentUsedByViewPager) {
+            //Material Spinner
             updateLabel(0)
             val spinnerList: ArrayList<String> = arrayListOf<String>()
 
             //Bütün hesapların eklenmesi
             for (index in getAccountModel.getAccountData.getAccountList) {
-                spinnerList.add(index.accountName + " / " + index.balance + " " + index.currency)
+                spinnerList.add(spinnerListItemName(index))
             }
+
+
+
             val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
                 requireContext(),
                 R.layout.selected_account_name,
                 spinnerList
             )
+
             adapter.setDropDownViewResource(R.layout.account_name_spinner)
             binding.accountName.adapter = adapter
+            binding.accountName.gravity= Gravity.CENTER
             binding.qrButton.setOnClickListener {
                 val intent = Intent(activity,QrReadWithCameraActivity::class.java)
                 startActivity(intent)
@@ -79,15 +104,24 @@ class AccountsInformationFragment : Fragment() {
                         parentView: AdapterView<*>?,
                         selectedItemView: View?,
                         position: Int,
-                        id: Long
+                        id: Long,
                     ) {
+
+                        if(oldPosition != -1)
+                        {
+                            spinnerList[oldPosition] = spinnerListItemName(getAccountModel.getAccountData.getAccountList[oldPosition])
+                        }
+
+                        oldPosition = position
+                        spinnerList[position] = getAccountModel.getAccountData.getAccountList[position].accountName
+                        (accountName.adapter as ArrayAdapter<*>).notifyDataSetChanged()
                         updateLabel(position)
 
 
                     }
 
                     override fun onNothingSelected(parentView: AdapterView<*>?) {
-                        // your code here
+
                     }
                 }
         }
@@ -260,6 +294,13 @@ class AccountsInformationFragment : Fragment() {
                 0
             )
         }
+    }
+    private fun spinnerListItemName(input:GetAccountList):String{
+        if(input.accountName.length<spinnerMaxLength)
+            return input.accountName + " / " + Constant.amountFormatter.format(input.balance) + " " + input.currency
+        else
+            return input.accountName.take(spinnerMaxLength) + "... / "+ Constant.amountFormatter.format(input.balance) + " " + input.currency
+
     }
 
 }

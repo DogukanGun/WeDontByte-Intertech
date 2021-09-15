@@ -52,8 +52,8 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/topAppBarToolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/intertech_actionbar_bottomnav_back_color"
+                android:layout_height="40dp"
+                android:background="@drawable/topbar_background"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:backgroundTint="@color/intertech_bottomnav_item_color"

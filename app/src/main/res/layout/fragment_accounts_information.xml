@@ -11,35 +11,38 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:background="@drawable/main_background"
         android:layout_height="match_parent"
-        android:background="@color/intertech_screen_color"
         android:orientation="vertical">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="217dp"
-            android:layout_margin="20dp"
-            android:background="@drawable/creditcard_settings"
+            android:layout_height="250dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toStartOf="@+id/mainConstraintLayout">
+
 
             <TextView
                 android:id="@+id/accountType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/account_type"
+                android:text="@string/iban_text"
                 android:textAlignment="center"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.124"
+                app:layout_constraintHorizontal_bias="0.207"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.806" />
+                app:layout_constraintVertical_bias="0.93" />
 
             <Button
                 android:id="@+id/shareButton"
@@ -49,51 +52,10 @@
                 android:backgroundTint="@color/intertech_textview_text_color"
                 app:layout_constraintBottom_toBottomOf="@+id/accountType"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.077"
+                app:layout_constraintHorizontal_bias="0.586"
                 app:layout_constraintStart_toEndOf="@+id/accountType"
                 app:layout_constraintTop_toTopOf="@+id/accountType"
-                app:layout_constraintVertical_bias="0.5" /><![CDATA[
-
-
-
-
-
-
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.327" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            ]]>
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/subeText"
@@ -108,10 +70,9 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.083"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.09" />
+                app:layout_constraintVertical_bias="0.359" />
 
             <TextView
                 android:id="@+id/vadeliText"
@@ -125,10 +86,26 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.083"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subeText"
-                app:layout_constraintVertical_bias="0.075" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.286" />
+
+            <TextView
+                android:id="@+id/hesap_Adi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/account_name"
+                android:textAlignment="center"
+                android:textColor="@color/intertech_textview_text_color"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/accountName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.082"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
             <Spinner
                 android:id="@+id/accountName"
@@ -137,23 +114,23 @@
                 android:autoSizeMaxTextSize="16dp"
                 android:autoSizeMinTextSize="1dp"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/creditcard_settings"
-                android:fontFamily="sans-serif-bold"
+                android:background="@drawable/spinner_selected"
+                android:dropDownHeight="10dp"
                 android:gravity="center"
                 android:maxLines="1"
                 android:popupBackground="@drawable/creditcard_settings"
                 android:textAlignment="center"
                 android:textSize="16dp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.366"
+                app:layout_constraintHorizontal_bias="0.492"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.603" />
+                app:layout_constraintVertical_bias="0.108" />
+
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView6"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="4dp"
@@ -170,58 +147,38 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
                 android:gravity="center"
                 android:text="@string/accountBalance"
                 android:textAlignment="center"
                 android:textColor="@color/intertech_textview_text_color"
-                android:textSize="16dp"
+                android:textSize="12dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.913"
+                app:layout_constraintEnd_toStartOf="@+id/accountBalance"
+                app:layout_constraintHorizontal_bias="0.474"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.081" />
+                app:layout_constraintVertical_bias="0.65" />
 
             <TextView
                 android:id="@+id/accountBalance"
 
-                android:layout_width="138dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="31dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="end"
                 android:text="@string/account_balance"
                 android:textAlignment="textEnd"
                 android:textColor="@color/intertech_textview_text_color"
-                android:textSize="16dp"
-
+                android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.927"
+                app:layout_constraintHorizontal_bias="0.826"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView3"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.65" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="76dp"
-                android:layout_height="23dp"
-                android:layout_marginTop="28dp"
-                android:text="Hesap Adı"
-                android:textColor="@color/intertech_textview_text_color"
-                app:layout_constraintBottom_toTopOf="@+id/accountName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.088"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vadeliText"
-                app:layout_constraintVertical_bias="0.0" />
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.56" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -229,18 +186,15 @@
             android:id="@+id/shortcutButtons"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/creditcard_settings"
             android:paddingBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            app:layout_constraintVertical_bias="0.035">
+            tools:layout_editor_absoluteY="320dp">
 
             <Button
                 android:id="@+id/qrButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/qr"
                 app:backgroundTint="@color/intertech_icon_color"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -254,6 +208,7 @@
                 android:id="@+id/billsButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="18dp"
                 android:background="@drawable/bill"
                 app:backgroundTint="@color/intertech_icon_color"
@@ -269,9 +224,10 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/money_transfer"
-                app:backgroundTint="@color/intertech_icon_color"
                 android:textSize="16sp"
+                app:backgroundTint="@color/intertech_icon_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/qrButton"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -283,10 +239,10 @@
                 android:id="@+id/sendMoneyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/money_transfer"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="14dp"
-                android:gravity="center"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/sendMoneyButton"
