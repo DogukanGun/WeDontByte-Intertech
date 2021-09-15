@@ -532,6 +532,7 @@ class SimpleAccountFragment : Fragment() {
             val facebookButton =
                 view.findViewById<android.widget.Button>(R.id.ReceiptFacebookButton)
             val smsButton = view.findViewById<android.widget.Button>(R.id.ReceiptSmsButton)
+            val receiptPopupScreenName = view.findViewById<LinearLayout>(R.id.receiptPopupScreenName)
 
 
             //CORRESPONDING BUTTON ONCLICKED EVENT
@@ -609,6 +610,9 @@ class SimpleAccountFragment : Fragment() {
                     )
                 )
                 popupWindowShare.dismiss() //HAVING CLICKED ON THE BUTTON, POPUP MENU IS CLOSED
+            }
+            receiptPopupScreenName.setOnClickListener{
+                popupWindowShare.dismiss()
             }
 
             //WHEN THE POPUP SCREEN IS CLOSED, THIS LISTENER IS EXECUTED

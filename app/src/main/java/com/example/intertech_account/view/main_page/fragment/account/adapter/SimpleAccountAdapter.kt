@@ -170,14 +170,22 @@ class SimpleAccountAdapter(var context: Context) : RecyclerView.Adapter<SimpleAc
                 dateDay.text = day
                 dateMonth.text = dateConvert.convertDate(month)
                 dateTime.text = year
-                amountValue.text =
-                    Constant.amountFormatter.format(transactionArrayList[position].amount)+ " " + transactionArrayList[position].currencyCode
                 aliciIsmi.text = transactionArrayList[position].userCode
 
+                if(transactionArrayList[position].amount < 0)
+                {
+                    amountValue.text =
+                        Constant.amountFormatter.format(transactionArrayList[position].amount)+ " " + transactionArrayList[position].currencyCode
+                }
+                else
+                {
+                    amountValue.text =
+                        "+" + Constant.amountFormatter.format(transactionArrayList[position].amount)+ " " + transactionArrayList[position].currencyCode
+                }
             }
 
             if (transactionArrayList[position].amount > 0) {
-                holder.binding.amountValue.setTextColor(Color.BLACK)
+                holder.binding.amountValue.setTextColor(Color.GREEN)
             } else {
                 holder.binding.amountValue.setTextColor(Color.RED)
             }

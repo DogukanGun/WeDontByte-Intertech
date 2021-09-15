@@ -5,7 +5,7 @@
         android:gravity="end"
         android:left="10dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/intertech_icon_color" />
+            <solid android:color="@color/intertech_actionbar_bottomnav_back_color" />
             <corners android:radius="3dp" />
         </shape>
     </item>

@@ -34,7 +34,6 @@ class MainPageAdapter (var context: Context)
         return MainPageHolder(binding)
     }
 
-
     //Transactionların doldurulması
 
     override fun onBindViewHolder(holder: MainPageHolder, position: Int) {
@@ -46,19 +45,25 @@ class MainPageAdapter (var context: Context)
             holder.binding.apply {
                 aliciIsmi.text = transactions[position].userCode
                 explanation.text =transactions[position].explanation
-                amountValue.text = Constant.amountFormatter.format(transactions[position].amount)+" "+transactions[position].currencyCode
                 dateDay.text=day
                 dateMonth.text=dateConvert.convertDate(month)
                 dateTime.text=year
-            }
-             if(transactions[position].amount < 0){
-                holder.binding.amountValue.setTextColor(Color.RED)
-            }else{
-                holder.binding.amountValue.setTextColor(Color.BLACK)
+
+                if(transactions[position].amount < 0)
+                {
+                    amountValue.text = Constant.amountFormatter.format(transactions[position].amount)+" "+transactions[position].currencyCode
+                }
+                else
+                {
+                    amountValue.text = "+" + Constant.amountFormatter.format(transactions[position].amount)+" "+transactions[position].currencyCode
+                }
             }
         }
-
-
+        if (transactions[position].amount > 0) {
+            holder.binding.amountValue.setTextColor(Color.GREEN)
+        } else {
+            holder.binding.amountValue.setTextColor(Color.RED)
+        }
     }
 
 

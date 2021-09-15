@@ -45,6 +45,9 @@
     <color name="intertech_swipebutton_backcolor1">#095aa9</color>
     <color name="intertech_swipebutton_backcolor2">#cfd8dc</color>
 
+    <color name="intertech_swipe_textcolor1">#095aa9</color>
+    <color name="intertech_swipe_textcolor2">#cfd8dc</color>
+
     <color name="gradient_starting_color">#e2f1f8</color>
     <color name="gradient_center_color">#c1d5e0</color>
     <color name="gradient_ending_color">#b0bec5</color>

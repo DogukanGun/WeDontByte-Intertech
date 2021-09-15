@@ -31,16 +31,16 @@
                 android:id="@+id/accountType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:text="@string/iban_text"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textColor="@color/intertech_textview_text_color"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.207"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.93" />
 
@@ -52,10 +52,10 @@
                 android:backgroundTint="@color/intertech_textview_text_color"
                 app:layout_constraintBottom_toBottomOf="@+id/accountType"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.586"
+                app:layout_constraintHorizontal_bias="0.021"
                 app:layout_constraintStart_toEndOf="@+id/accountType"
                 app:layout_constraintTop_toTopOf="@+id/accountType"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/subeText"
@@ -102,23 +102,25 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/accountName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.082"
+                app:layout_constraintHorizontal_bias="0.111"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
             <Spinner
                 android:id="@+id/accountName"
+                style="@style/spinner_style"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:autoSizeMaxTextSize="16dp"
                 android:autoSizeMinTextSize="1dp"
                 android:autoSizeTextType="uniform"
                 android:background="@drawable/spinner_selected"
+                android:drawSelectorOnTop="true"
                 android:dropDownHeight="10dp"
                 android:gravity="center"
                 android:maxLines="1"
-                android:popupBackground="@drawable/creditcard_settings"
+                android:spinnerMode="dialog"
                 android:textAlignment="center"
                 android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -154,9 +156,7 @@
                 android:textSize="12dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/accountBalance"
-                app:layout_constraintHorizontal_bias="0.474"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/hesap_Adi"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.65" />
 
@@ -291,7 +291,7 @@
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
             android:layout_marginBottom="4dp"
-            android:background="@color/intertech_button_back_color"
+            android:background="@color/intertech_actionbar_bottomnav_back_color"
             android:textColor="@color/intertech_button_text_color"
             android:textSize="18dp"
             android:textStyle="bold" />

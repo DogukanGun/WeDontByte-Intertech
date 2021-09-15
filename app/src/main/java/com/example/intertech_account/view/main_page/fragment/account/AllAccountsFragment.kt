@@ -303,8 +303,8 @@ class AllAccountsFragment : Fragment() {
 
                         })
 
-                    detailsButton.textColor = Color.rgb(0, 33, 113)
-                    activitiesButton.textColor = Color.rgb(207, 216, 220)
+                    detailsButton.textColor = resources.getColor(R.color.intertech_swipe_textcolor1)
+                    activitiesButton.textColor = resources.getColor(R.color.intertech_swipe_textcolor2)
 
 
                     //TODO Buraya istenidiği kadar buton eklenebilir

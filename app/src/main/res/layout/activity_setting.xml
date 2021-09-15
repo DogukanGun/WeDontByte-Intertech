@@ -11,27 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/appToolbarSettingActivity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/topAppBar"
             android:background="@color/intertech_actionbar_bottomnav_back_color"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
+            app:backgroundTint="@color/intertech_bottomnav_item_color"
+            app:navigationIconTint="@color/intertech_bottomnav_item_color"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/appToolbarSettingActivity"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/intertech_actionbar_bottomnav_back_color"
-                app:navigationIconTint = "@color/black"
+                android:layout_height="40dp"
+                android:background="@drawable/topbar_background"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:backgroundTint="@color/intertech_bottomnav_item_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:menu="@menu/top_bar_menu"
+                app:navigationIconTint="@color/intertech_bottomnav_item_color"
                 app:title="@string/app_title" />
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appToolbarSettingActivity">
+            app:layout_constraintTop_toBottomOf="@+id/topAppBar">
 
             <TextView
                 android:id="@+id/textView"
