@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <gradient
+        android:angle="180"
+        android:centerX="60%"
+        android:centerColor="@color/intertech_screen_color"
+        android:startColor="@color/intertech_screen_color"
+        android:endColor="@color/intertech_screen_color"
+        android:type="linear"
+        />
+
+</shape>

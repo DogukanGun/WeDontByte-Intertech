@@ -71,8 +71,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.359" />
+                app:layout_constraintTop_toBottomOf="@+id/vadeliText"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/vadeliText"
@@ -87,8 +87,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.286" />
+                app:layout_constraintTop_toBottomOf="@+id/accountName"
+                app:layout_constraintVertical_bias="0.048" />
 
             <TextView
                 android:id="@+id/hesap_Adi"
@@ -107,7 +107,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <Spinner
+            <com.jaredrummler.materialspinner.MaterialSpinner
                 android:id="@+id/accountName"
                 style="@style/spinner_style"
                 android:layout_width="300sp"
@@ -115,7 +115,7 @@
                 android:autoSizeMaxTextSize="16dp"
                 android:autoSizeMinTextSize="1dp"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/spinner_selected"
+                android:background="@color/black"
                 android:drawSelectorOnTop="true"
                 android:dropDownHeight="10dp"
                 android:gravity="center"
@@ -128,22 +128,10 @@
                 app:layout_constraintHorizontal_bias="0.492"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.108" />
+                app:layout_constraintVertical_bias="0.108"
+                app:ms_background_color="#00000000"
+                app:ms_background_selector="2131492935" />
 
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/arrow"
-                android:backgroundTint="@color/intertech_textview_text_color"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/accountName"
-                app:layout_constraintTop_toTopOf="@id/accountName" />
 
             <TextView
                 android:id="@+id/textView3"

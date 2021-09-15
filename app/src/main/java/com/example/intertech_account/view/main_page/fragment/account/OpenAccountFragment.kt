@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.provider.Settings.Global.getString
+import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +27,7 @@ import com.example.intertech_account.view.main_page.fragment.main_page.MainPageF
 import com.example.intertech_account.view_model.GetAccountViewModel
 import com.example.intertech_account.view_model.GetOpenAccountViewModel
 import com.itextpdf.awt.geom.misc.Messages.getString
+import com.jaredrummler.materialspinner.MaterialSpinner
 
 class OpenAccountFragment : Fragment() {
 
@@ -61,25 +64,27 @@ class OpenAccountFragment : Fragment() {
             spinnerListForCurrency
         )
 
-        binding.accountTypeSpinner.adapter = adapterForAccountType
+        binding.accountTypeSpinner.setAdapter(adapterForAccountType)
+        binding.accountTypeSpinner.setBackgroundResource(R.drawable.qr_radio_button_selected)
+        binding.accountTypeSpinner.popupWindow.setBackgroundDrawable(resources.getDrawable(R.drawable.mainpagespinnerpopupbakcground))
+        binding.accountTypeSpinner.setTextColor(resources.getColor(R.color.intertech_textview_text_color))
+        binding.accountTypeSpinner.setTextAppearance(R.style.myText)
+        binding.accountTypeSpinner.gravity= Gravity.CENTER
 
+        binding.currencySpinner.setAdapter(adapter)
+        binding.currencySpinner.setBackgroundResource(R.drawable.qr_radio_button_selected)
+        binding.currencySpinner.popupWindow.setBackgroundDrawable(resources.getDrawable(R.drawable.mainpagespinnerpopupbakcground))
+        binding.currencySpinner.setTextColor(resources.getColor(R.color.intertech_textview_text_color))
+        binding.currencySpinner.setTextAppearance(R.style.myText)
+        binding.currencySpinner.gravity= Gravity.CENTER
+        binding.currencySpinner.setOnItemSelectedListener(MaterialSpinner.OnItemSelectedListener<String> { view, position, id, item ->
 
-        binding.currencySpinner.adapter = adapter
-        binding.currencySpinner.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parentView: AdapterView<*>?,
-                    selectedItemView: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    accountCurrencyCode = binding.currencySpinner.getItemAtPosition(position).toString()
-                }
+            accountCurrencyCode = item
+            Log.d("Info",accountCurrencyCode+" Seçildi!")
 
-                override fun onNothingSelected(parentView: AdapterView<*>?) {
-                    // your code here
-                }
-            }
+        })
+        binding.currencySpinner.setDropdownHeight(375)
+
         binding.openAccountButton.setOnClickListener{
 
 

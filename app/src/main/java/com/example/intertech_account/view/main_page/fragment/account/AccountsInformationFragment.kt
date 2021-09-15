@@ -2,50 +2,34 @@ package com.example.intertech_account.view.main_page.fragment.account
 
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.Context.*
 import android.content.Intent
-import android.content.res.AssetManager
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.text.Layout
 import android.transition.Slide
 import android.transition.TransitionManager
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.core.view.get
+import android.widget.ArrayAdapter
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.intertech_account.R
 import com.example.intertech_account.databinding.FragmentAccountsInformationBinding
+import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_account.GetAccountModel
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionList
-import com.example.intertech_account.resources.common_variables.Button
 import com.example.intertech_account.resources.common_variables.Constant
-import com.example.intertech_account.resources.common_variables.QrOperation
 import com.example.intertech_account.view.main_page.activity.MainActivity
 import com.example.intertech_account.view.main_page.activity.QrReadWithCameraActivity
-import com.example.intertech_account.view.main_page.fragment.main_page.MainPageFragmentDirections
 import com.example.intertech_account.view_model.GetAccountViewModel
+import com.jaredrummler.materialspinner.MaterialSpinner
+import kotlinx.android.synthetic.main.fragment_all_accounts.*
 import android.content.Context.CLIPBOARD_SERVICE as CLIPBOARD_SERVICE1
-import android.widget.TextView
-import com.example.intertech_account.model.api_model.get_account.GetAccountList
-import kotlinx.android.synthetic.main.fragment_accounts_information.*
-import android.widget.Spinner
-import androidx.core.view.setPadding
-import java.lang.ClassCastException
-import java.lang.reflect.Field
-import android.graphics.Typeface
-
-
-
 
 
 class AccountsInformationFragment : Fragment() {
@@ -74,23 +58,27 @@ class AccountsInformationFragment : Fragment() {
                 spinnerList.add(spinnerListItemName(index))
             }
 
-
-
             val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                requireContext(),
+                activity as MainActivity,
                 R.layout.selected_account_name,
                 spinnerList
             )
 
-            adapter.setDropDownViewResource(R.layout.account_name_spinner)
-            binding.accountName.adapter = adapter
+
+            //adapter.setDropDownViewResource(R.layout.account_name_spinner)
+            binding.accountName.setAdapter(adapter)
+            //Popup ve Selected layoutları
+            binding.accountName.popupWindow.setBackgroundDrawable(resources.getDrawable(R.drawable.mainpagespinnerpopupbakcground))
+            binding.accountName.setBackgroundResource(R.drawable.spinner_selected)
+            binding.accountName.setTextColor(resources.getColor(R.color.intertech_textview_text_color))
+            binding.accountName.setTextAppearance(R.style.myText)
+            binding.accountName.setDropdownHeight(700)
             binding.accountName.gravity= Gravity.CENTER
             binding.qrButton.setOnClickListener {
                 val intent = Intent(activity,QrReadWithCameraActivity::class.java)
                 startActivity(intent)
             }
-
-            binding.accountType.setOnClickListener {
+                binding.accountType.setOnClickListener {
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 intent.putExtra(Intent.EXTRA_TEXT, binding.accountType.text)
@@ -98,32 +86,12 @@ class AccountsInformationFragment : Fragment() {
                 startActivity(intent)
             }
             isFragmentUsedByViewPager = false
-            binding.accountName.onItemSelectedListener =
-                object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parentView: AdapterView<*>?,
-                        selectedItemView: View?,
-                        position: Int,
-                        id: Long,
-                    ) {
+            binding.accountName.setOnItemSelectedListener(MaterialSpinner.OnItemSelectedListener<String> { view, position, id, item ->
 
-                        if(oldPosition != -1)
-                        {
-                            spinnerList[oldPosition] = spinnerListItemName(getAccountModel.getAccountData.getAccountList[oldPosition])
-                        }
+                view.text = getAccountModel.getAccountData.getAccountList[position].accountName
+                updateLabel(position)
+            })
 
-                        oldPosition = position
-                        spinnerList[position] = getAccountModel.getAccountData.getAccountList[position].accountName
-                        (accountName.adapter as ArrayAdapter<*>).notifyDataSetChanged()
-                        updateLabel(position)
-
-
-                    }
-
-                    override fun onNothingSelected(parentView: AdapterView<*>?) {
-
-                    }
-                }
         }
 
         executeSharePopupMenu(inflater)
