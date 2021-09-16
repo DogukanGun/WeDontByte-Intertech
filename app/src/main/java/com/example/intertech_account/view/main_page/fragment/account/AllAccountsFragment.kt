@@ -41,17 +41,10 @@ class AllAccountsFragment : Fragment() {
     private lateinit var binding:FragmentAllAccountsBinding
     private val getAccountViewModel: GetAccountViewModel by viewModels()
     private val getAccountDetailWithChartsViewModel: GetAccountDetailWithChartsViewModel by viewModels()
-    private val getCurrencyViewModel:GetCurrencyViewModel by viewModels()
-    private lateinit var getAccountModel: GetAccountModel
-    private var adapter=AllAccountsAdapter(arrayListOf())
-    //private var checkBoxList: HashMap<String,CheckBox> = hashMapOf()
-    private lateinit var adapter_:AllAccountsAdapter
-    private var currencyStates: HashMap<String,Int> =hashMapOf(
-        "TRY" to 1,
-        "USD" to 1,
-        "EUR" to 1,
-        "GBP" to 1
-    )
+     private lateinit var getAccountModel: GetAccountModel
+    private lateinit var adapter:AllAccountsAdapter
+     private lateinit var adapter_:AllAccountsAdapter
+
 
     private lateinit var pieChartEntries:ArrayList<PieEntry>
     override fun onCreateView(
@@ -59,26 +52,11 @@ class AllAccountsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+
         binding = FragmentAllAccountsBinding.inflate(layoutInflater)
+        adapter=AllAccountsAdapter(arrayListOf(),requireContext())
         (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
 
-//        Constant.currentBottomMenu=1
-//        Button.isUserInformationTopBarButtonClickFromAllAccounts.value=0
-//        Button.isSettingTopBarButtonClickFromAllAccountsFragment.value=0
-//        Button.isUserInformationTopBarButtonClickFromAllAccounts.observe(viewLifecycleOwner,{
-//            if (it==1 && Constant.currentBottomMenu==1){
-//                Button.isUserInformationTopBarButtonClickFromAllAccounts.value=2
-//                val action = AllAccountsFragmentDirections.actionAllAccountsFragmentToUserInformationFragment()
-//                Constant.navHostFragment.findNavController().navigate(action)
-//            }
-//        })
-//        Button.isSettingTopBarButtonClickFromAllAccountsFragment.observe(viewLifecycleOwner,{
-//            if (it==1 && Constant.currentBottomMenu==1){
-//                Button.isSettingTopBarButtonClickFromAllAccountsFragment.value=2
-//                val action =  AllAccountsFragmentDirections.actionAllAccountsFragmentToSettingFragment()
-//                Constant.navHostFragment.findNavController().navigate(action)
-//            }
-//        })
         controlError()
         getData(savedInstanceState)
         createSwipe()
@@ -87,55 +65,7 @@ class AllAccountsFragment : Fragment() {
 
     }
 
-    // Hesap ayrılımları için checkboxlistin gelen para birimlerine göre oluşturulması
-    //TODO buraya her currency için hashmapi default olarak 1 yapan fonksiyon yazılacak
-    /*
-    private fun checkboxCreator(currencyNames:List<String>,savedInstanceState: Bundle?,){
 
-        super.onCreate(savedInstanceState)
-        val linearLayout = binding.linearLayoutAccountSelection as LinearLayout
-        linearLayout.removeAllViews()
-        for (item in currencyNames) {
-            val checkBox = CheckBox(activity)
-            checkBox.text = item
-            checkBox.isChecked = false
-            currencyStates[item] = 0
-            checkBoxList.put(item, checkBox)
-
-            checkBox.buttonTintList = ColorStateList.valueOf(Color.WHITE);
-            checkBox.setTextColor(Color.WHITE)
-            checkBox.setTypeface(checkBox.typeface, Typeface.BOLD)
-            checkBox.textSize = 18F
-
-            linearLayout.addView(checkBox)
-        }
-
-
-    }*/
-
-
-    //Checkboxların basılması kontrolü ve RecyclerViewin yeniden sıralanması
-    /*
-    private fun checkBoxController(currencyString: String) {
-        checkBoxList[currencyString]?.setOnCheckedChangeListener{ compoundButton ,b ->
-            if(compoundButton.isChecked){
-                currencyStates[currencyString] = 1
-                adapter_.modifyAccount(currencyStates)
-                Toast.makeText(activity as MainActivity, "${currencyString} Getirildi", Toast.LENGTH_LONG).show()
-
-            }
-            if(!compoundButton.isChecked){
-                currencyStates[currencyString] = 0
-                adapter_.modifyAccount(currencyStates)
-                Toast.makeText(activity as MainActivity, "${currencyString} Kaldırıldı", Toast.LENGTH_LONG).show()
-            }
-
-
-        }
-    }*/
-
-
-    //Error check
 
     private fun controlError(){
         getAccountViewModel.errorMessage.observe(viewLifecycleOwner,{
@@ -162,48 +92,17 @@ class AllAccountsFragment : Fragment() {
 
                 var arrList = ArrayList<GetAccountList>()
                 arrList.addAll(getAccountModel.getAccountData.getAccountList.toCollection(ArrayList()))
-               // adapter_.addAccount(getAccountModel.getAccountData.getAccountList,pieChartEntries)
 
-
-
-//                arrList.add(createDummyAccount("USD",1500.0))
-//                var asd: Array<GetAccountList> = arrList.toTypedArray()
-//                asd = balanceExchange(asd)
-//                for(i in asd){
-//                    Log.d("Info",i.accountName+" : "+i.balanceAsTRY.toString())
-//                }
                 pieChartEntries=getAccountDetailWithChartsViewModel.createPieChartEntries()
                 adapter_= (binding.allAccounts.adapter as? AllAccountsAdapter)!!
                 adapter_.addAccount(getAccountModel.getAccountData.getAccountList,pieChartEntries)
-                /*val currencyNames :List<String> = adapter_.getCurrencyList()
-                checkboxCreator(currencyNames,savedInstanceState)
-                for(i in currencyStates){
-                    checkBoxController(i.key)
-                }*/
+
 
             }
 
         })
     }
 
-    private fun createDummyAccount(typeOfAccount:String,balance:Double):GetAccountList{
-        val x = GetAccountList(isBlocked = false,
-            "maltepe",
-            "birinci",
-            false,
-            typeOfAccount,
-            0.15,
-            00.10,
-            balance,
-            1800.5,
-            1600.5,
-            1850.0,
-            "benimHesabım",
-            "TR1159465168416516841634623",
-            false,88.50,"","","","","",0.0)
-        return x
-
-    }
 
     private fun findCurrency(destinationCurrency:String):Double{
         for(index in Constant.currencyList){
@@ -311,21 +210,6 @@ class AllAccountsFragment : Fragment() {
                     buffer.add(detailsButton)
                     buffer.add(activitiesButton)
 
-
-                    /*
-                buffer.add(
-                    SwipeButton(activity as MainActivity,
-                    "Update",
-                    30,
-                    0,
-                    Color.parseColor("#FF9502"),
-                    object: SwipeButtonClickListener {
-                        override fun onClick(pos: Int) {
-                            Toast.makeText(activity as MainActivity,"Delete ID"+pos, Toast.LENGTH_SHORT).show()
-                        }
-
-                    })
-                )*/
 
 
                 }

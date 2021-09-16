@@ -1,5 +1,6 @@
 package com.example.intertech_account.view.main_page.fragment.account.adapter
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.Log
@@ -13,6 +14,7 @@ import com.example.intertech_account.databinding.AllAccountsRecyclerviewRowBindi
 import com.example.intertech_account.databinding.AllAccountsRecyclerviewTitleRowBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.resources.common_variables.Constant.amountFormatter
+import com.example.intertech_account.resources.common_variables.adapter.AllAccountsAdapter
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
@@ -24,14 +26,13 @@ import java.text.DecimalFormat
 import kotlin.reflect.full.memberProperties
 
 
-class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerView.Adapter<AllAccountsRecyclerViewHolder>()  {
+class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>,val context:Context): RecyclerView.Adapter<AllAccountsRecyclerViewHolder>()  {
     private val ITEM_GRAPH = 0
     private val ITEM_TITLE = 1
     private val ITEM_ACCOUNT = 2
     private val DEFAULT_POSITIONING = 0
     private val DESCENDING_POSITIONING = 1
-    private val ASCENDING_POSITIONING = 2
-    private var positioningCriteria = 0
+     private var positioningCriteria = 0
     companion object{
         private var sortButtonClick=3
     }
@@ -42,128 +43,11 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
     private lateinit var pieEntries:ArrayList<PieEntry>
     private var originalallAccounts:ArrayList<GetAccountList> = ArrayList()
     private var currencyStates: HashMap<String,Int> =hashMapOf()
-
+    private val roles=AllAccountsAdapter.roles
+    private val currencySigns=AllAccountsAdapter.currencySigns
 
     //TL Hesaplarının başa gelmesi için Hashmap
-    private val roles: HashMap<String, Int> = hashMapOf(
-        "TRY" to 0,
-        "USD" to 1,
-        "EUR" to 2,
-        "GBP" to 3,
-        "CAD" to 4
 
-    )
-    private val currencySigns:HashMap<String,String> = hashMapOf(
-        "TRY" to "₺",
-        "ALL" to "Lek",
-        "AFN" to "؋",
-        "ARS" to "$",
-        "AWG" to "ƒ",
-        "AUD" to "$",
-        "AZN" to "₼",
-        "BSD" to "$",
-        "BBD" to "$",
-        "BYN" to "Br",
-        "BZD" to "BZ$",
-        "BMD" to "$",
-        "BOB" to "\$b",
-        "BAM" to "KM",
-        "BWP" to "P",
-        "BGN" to "лв",
-        "BRL" to "R$",
-        "BND" to "$",
-        "KHR" to "៛",
-        "CAD" to "$",
-        "KYD" to "$",
-        "CLP" to "$",
-        "CNY" to "¥",
-        "COP" to "$",
-        "CRC" to "₡",
-        "HRK" to "kn",
-        "CUP" to "₱",
-        "CZK" to "Kč",
-        "DKK" to "kr",
-        "DOP" to "RD$",
-        "XCD" to "$",
-        "EGP" to "£",
-        "SVC" to "$",
-        "EUR" to "€",
-        "FKP" to "£",
-        "FJD" to "$",
-        "GHS" to "¢",
-        "GIP" to "£",
-        "GTQ" to "Q",
-        "GGP" to "£",
-        "GYD" to "$",
-        "HNL" to "L",
-        "HKD" to "$",
-        "HUF" to "Ft",
-        "ISK" to "kr",
-        "INR" to "",
-        "IDR" to "Rp",
-        "IRR" to "﷼",
-        "IMP" to "£",
-        "ILS" to "₪",
-        "JMD" to "J$",
-        "JPY" to "¥",
-        "JEP" to "£",
-        "KZT" to "лв",
-        "KPW" to "₩",
-        "KRW" to "₩",
-        "KGS" to "лв",
-        "LAK" to "₭",
-        "LBP" to "£",
-        "LRD" to "$",
-        "MKD" to "ден",
-        "MYR" to "RM",
-        "MUR" to "₨",
-        "MXN" to "$",
-        "MNT" to "₮",
-        "MZN" to "MT",
-        "NAD" to "$",
-        "NPR" to "₨",
-        "ANG" to "ƒ",
-        "NZD" to "$",
-        "NIO" to "C$",
-        "NGN" to "₦",
-        "NOK" to "kr",
-        "OMR" to "﷼",
-        "PKR" to "₨",
-        "PAB" to "B/.",
-        "PYG" to "Gs",
-        "PEN" to "S/.",
-        "PHP" to "₱",
-        "PLN" to "zł",
-        "QAR" to "﷼",
-        "RON" to "lei",
-        "RUB" to "₽",
-        "SHP" to "£",
-        "SAR" to "﷼",
-        "RSD" to "Дин.",
-        "SCR" to "₨",
-        "SGD" to "$",
-        "SBD" to "$",
-        "SOS" to "S",
-        "ZAR" to "R",
-        "LKR" to "₨",
-        "SEK" to "kr",
-        "CHF" to "CHF",
-        "SRD" to "$",
-        "SYP" to "£",
-        "TWD" to "NT$",
-        "THB" to "฿",
-        "TTD" to "TT$",
-        "TVD" to "$",
-        "UAH" to "₴",
-        "GBP" to "£",
-        "USD" to "$",
-        "UYU" to "\$U",
-        "UZS" to "лв",
-        "VEF" to "Bs",
-        "VND" to "₫",
-        "YER" to "﷼",
-        "ZWD" to "Z$",
-    )
 
 
     //Boş gelen RecyclerView doldurmak için fonksiyon
@@ -173,7 +57,6 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
 
         originalallAccounts.clear()
         allAccounts.clear()
-        //pieChartEntries.add(PieEntry(1000f,"USD"))
 
         pieEntries=pieChartEntries
         originalallAccounts.addAll(AllAccountsArrayList)
@@ -349,7 +232,7 @@ class AllAccountsAdapter(var allAccounts: ArrayList<GetAccountList>): RecyclerVi
             }
             is AllAccountsRecyclerViewHolder.TitleViewHolder -> {
                 holder.getBind().textViewTitleRow.text =
-                    "${allAccounts[position + 1].currency} Hesaplarım"
+                    "${allAccounts[position + 1].currency} "+context.resources.getString(R.string.my_accounts)
             }
             is AllAccountsRecyclerViewHolder.GraphViewHolder -> {
                 if (!totalBalanceChecker) {

@@ -42,17 +42,79 @@ class OpenAccountFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentOpenAccountBinding.inflate(layoutInflater)
-        (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
+        create()
 
+
+
+
+        return binding.root
+    }
+
+    private fun create() {
+        (requireActivity() as MainActivity).binding.topAppBarToolbar.title =
+            getString(R.string.app_title)
+
+        createSpinner()
+
+        listenSpinner()
+    }
+
+    private fun listenSpinner() {
+        binding.openAccountButton.setOnClickListener {
+
+
+            if (binding.newAccountName.text.isNotEmpty()) {
+                accountName = binding.newAccountName.text.toString()
+                Toast.makeText(
+                    activity as MainActivity,
+                    "Hesap oluşturuluyor...",
+                    Toast.LENGTH_LONG
+                ).show()
+
+                var getNewAccountRequest =
+                    GetNewAccountRequest(accountName, "0", "9190", accountCurrencyCode, "13146677")
+
+                getOpenAccountViewModel.apiRequest(getNewAccountRequest)
+                getOpenAccountViewModel.getOpenAccountList.observe(viewLifecycleOwner, {
+                    if (!it.getOpenAccountData.getNewAccountResponse.iban.equals("")) {
+                        newAccountIban = it.getOpenAccountData.getNewAccountResponse.iban
+                        accountName = it.getOpenAccountData.getNewAccountResponse.accountName
+
+                        Toast.makeText(
+                            context,
+                            "Yeni hesap adınız:\n" + accountName + "\nYeni ibanınız:\n" + newAccountIban,
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                    }
+
+                })
+
+            } else {
+
+                Toast.makeText(activity as MainActivity, "Hesap adı giriniz!", Toast.LENGTH_LONG)
+                    .show()
+            }
+
+
+        }
+    }
+
+    private fun createSpinner() {
         val spinnerListForCurrency: ArrayList<String> = arrayListOf<String>()
 
-        for(index in Constant.currencyList){
+        for (index in Constant.currencyList) {
             spinnerListForCurrency.add(index.currencyCode)
         }
         spinnerListForCurrency.add("TRY")
         val spinnerListForAccountType: ArrayList<String> = arrayListOf<String>()
 
-        spinnerListForAccountType.addAll(arrayListOf(getString(R.string.vadeli),getString(R.string.vadesiz)))
+        spinnerListForAccountType.addAll(
+            arrayListOf(
+                getString(R.string.vadeli),
+                getString(R.string.vadesiz)
+            )
+        )
         val adapterForAccountType: ArrayAdapter<String> = ArrayAdapter<String>(
             requireContext(),
             android.R.layout.simple_spinner_item,
@@ -69,58 +131,21 @@ class OpenAccountFragment : Fragment() {
         binding.accountTypeSpinner.popupWindow.setBackgroundDrawable(resources.getDrawable(R.drawable.mainpagespinnerpopupbakcground))
         binding.accountTypeSpinner.setTextColor(resources.getColor(R.color.intertech_textview_text_color))
         binding.accountTypeSpinner.setTextAppearance(R.style.myText)
-        binding.accountTypeSpinner.gravity= Gravity.CENTER
+        binding.accountTypeSpinner.gravity = Gravity.CENTER
 
         binding.currencySpinner.setAdapter(adapter)
         binding.currencySpinner.setBackgroundResource(R.drawable.qr_radio_button_selected)
         binding.currencySpinner.popupWindow.setBackgroundDrawable(resources.getDrawable(R.drawable.mainpagespinnerpopupbakcground))
         binding.currencySpinner.setTextColor(resources.getColor(R.color.intertech_textview_text_color))
         binding.currencySpinner.setTextAppearance(R.style.myText)
-        binding.currencySpinner.gravity= Gravity.CENTER
+        binding.currencySpinner.gravity = Gravity.CENTER
         binding.currencySpinner.setOnItemSelectedListener(MaterialSpinner.OnItemSelectedListener<String> { view, position, id, item ->
 
             accountCurrencyCode = item
-            Log.d("Info",accountCurrencyCode+" Seçildi!")
+            Log.d("Info", accountCurrencyCode + " Seçildi!")
 
         })
         binding.currencySpinner.setDropdownHeight(375)
-
-        binding.openAccountButton.setOnClickListener{
-
-
-            if(binding.newAccountName.text.isNotEmpty()){
-                accountName = binding.newAccountName.text.toString()
-                Toast.makeText(activity as MainActivity, "Hesap oluşturuluyor...",Toast.LENGTH_LONG).show()
-
-                var getNewAccountRequest= GetNewAccountRequest(accountName,"0","9190",accountCurrencyCode,"13146677")
-
-                getOpenAccountViewModel.apiRequest(getNewAccountRequest)
-                getOpenAccountViewModel.getOpenAccountList.observe(viewLifecycleOwner,{
-                    if(!it.getOpenAccountData.getNewAccountResponse.iban.equals("")){
-                        newAccountIban = it.getOpenAccountData.getNewAccountResponse.iban
-                        accountName = it.getOpenAccountData.getNewAccountResponse.accountName
-
-                        Toast.makeText(context,"Yeni hesap adınız:\n"+accountName + "\nYeni ibanınız:\n" + newAccountIban, Toast.LENGTH_LONG).show()
-
-                    }
-
-                })
-
-            }
-
-            else{
-
-                Toast.makeText(activity as MainActivity,"Hesap adı giriniz!",Toast.LENGTH_LONG).show()
-            }
-
-
-
-        }
-
-
-
-
-        return binding.root
     }
 
 }

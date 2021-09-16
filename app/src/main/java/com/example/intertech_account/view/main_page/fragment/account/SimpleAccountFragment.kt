@@ -43,6 +43,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.marginLeft
 import androidx.navigation.fragment.findNavController
+import com.example.intertech_account.databinding.PopupScreenBinding
+import com.example.intertech_account.databinding.ReceiptPopupScreenBinding
 import com.example.intertech_account.model.api_model.get_account_transaction_list.GetAccountTransactionListModel
 import com.example.intertech_account.resources.common_variables.Constant
 import com.example.intertech_account.view.main_page.activity.MainActivity
@@ -54,19 +56,15 @@ import kotlin.concurrent.schedule
 
 
 class SimpleAccountFragment : Fragment() {
-    private var destinationAccountTitles = mutableListOf<String>()
-    private var transactionNames = mutableListOf<String>()
-    private var amounts = mutableListOf<String>()
+    private lateinit var popupScreenBinding:PopupScreenBinding
     private var times = mutableListOf<String>()
-    private var dates = mutableListOf<String>()
-    private var transaction = arrayListOf<GetAccountTransactionList>()
-    private lateinit var binding: FragmentSimpleAccountBinding
+    private lateinit var receiptPopupScreen:ReceiptPopupScreenBinding
+      private lateinit var binding: FragmentSimpleAccountBinding
     private lateinit var adapter: SimpleAccountAdapter
     private val getReceiptViewModel: GetReceiptViewModel by viewModels()
     private val getAccountTransactionViewModel: GetAccountTransactionViewModel by viewModels()
     private lateinit var getAccountTransactionListModel: GetAccountTransactionListModel
-    var toolbar: Toolbar? = null
-    lateinit var popupWindowShare: PopupWindow
+     lateinit var popupWindowShare: PopupWindow
     lateinit var popupWindowFilter: PopupWindow
 
 
@@ -77,9 +75,18 @@ class SimpleAccountFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSimpleAccountBinding.inflate(layoutInflater)
+        popupScreenBinding= PopupScreenBinding.inflate(layoutInflater)
+        receiptPopupScreen= ReceiptPopupScreenBinding.inflate(layoutInflater)
         createRecyclerView()
         executePopupMenu(inflater)
-        (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
+        createReceipt()
+        return binding.root
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun createReceipt() {
+        (requireActivity() as MainActivity).binding.topAppBarToolbar.title =
+            getString(R.string.app_title)
         Receipt.isReceiptButtonClicked.observe(viewLifecycleOwner, {
             if (it == true) {
                 getReceiptViewModel.apiRequest()
@@ -114,22 +121,15 @@ class SimpleAccountFragment : Fragment() {
                 }
             }
         })
-        return binding.root
     }
 
 
     @RequiresApi(Build.VERSION_CODES.R)
     private fun getOutputMediaFile(): File? {
-        // To be safe, you should check that the SDCard is mounted
-        // using Environment.getExternalStorageState() before doing this.
         val mediaStorageDir = File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath
         )
 
-        // This location works best if you want the created images to be shared
-        // between applications and persist after your app has been uninstalled.
-
-        // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
                 return null
@@ -176,13 +176,13 @@ class SimpleAccountFragment : Fragment() {
 
             // Get the widgets reference from custom view
             //TODO turkce den ingilizceye degisstirilecek
-            val popupMenuBackButton = view.findViewById<Button>(R.id.popupMenuBackButton)
-            val son1HaftaButton = view.findViewById<Button>(R.id.son1HaftaButton)
-            val son1AyButton = view.findViewById<Button>(R.id.son1AyButton)
-            val son3AyButton = view.findViewById<Button>(R.id.son3AyButton)
-            val son6AyButton = view.findViewById<Button>(R.id.son6AyButton)
-            val son1YilButton = view.findViewById<Button>(R.id.son1YilButton)
-            val detayliFiltrelemeButton = view.findViewById<Button>(R.id.detayliFiltrelemeButton)
+            val popupMenuBackButton = popupScreenBinding.popupMenuBackButton
+            val son1HaftaButton = popupScreenBinding.son1HaftaButton
+            val son1AyButton = popupScreenBinding.son1AyButton
+            val son3AyButton = popupScreenBinding.son3AyButton
+            val son6AyButton = popupScreenBinding.son6AyButton
+            val son1YilButton = popupScreenBinding.son1YilButton
+            val detayliFiltrelemeButton = popupScreenBinding.detayliFiltrelemeButton
 
 
             //CORRESPONDING BUTTON ONCLICKED EVENT
@@ -393,92 +393,6 @@ class SimpleAccountFragment : Fragment() {
         recyclerView.addItemDecoration(dividerItemDecoration)
     }
 
-    /*private fun createDummyTransactionList(x: Double, d: String): GetAccountTransactionList {
-        var x = GetAccountTransactionList("test",d,"test","test",x,122.2,
-            "t","t","t","t","t","t","t",
-            233.3,"t"
-        )
-        return x
-    }
-
-     */
-    private fun addToRecyclerView(
-        destinationAccountTitle: String,
-        transactionName: String,
-        amount: String,
-        time: String,
-        date: String
-    ) {
-        destinationAccountTitles.add(destinationAccountTitle)
-        transactionNames.add(transactionName)
-        amounts.add(amount)
-        times.add(time)
-        dates.add(date)
-    }
-
-    private fun createDummyList(size: Int): Array<GetAccountTransactionList> {
-        var dummyOutgoing =
-            arrayListOf("Amazon", "Hepsiburada", "Spotify", "Gittigidiyor", "GooglePlay")
-        var dummyIncoming = arrayListOf(
-            "ALEYNA USTA",
-            "HALİLİBRAHİM KAPAR",
-            "ITIR KURTULUŞ",
-            "FERHAT ATAÇ",
-            "MERJEN SULUOVA",
-            "BARTU GÜNGÜNEŞ",
-            "BERK EGEHAN",
-            "CAHİT MEMİŞ",
-            "BAŞAR SAĞÇOLAK",
-            "YAPRAK KAL"
-        )
-        var dummyIncomingDetail = arrayListOf("Sipariş", "Üyelik", "Hizmet")
-        var dummyOutgoingDetail = arrayListOf("Kira", "Borç", "Gelen Havale")
-        var x = java.util.ArrayList<GetAccountTransactionList>()
-        var date = 0
-        var defaultAmount = 1000.0
-        var dateStr = ""
-        for (i in 0..size) {
-            date += 1
-            var transactionAmout: Double
-            if (i == 0) transactionAmout = 0.0
-            else transactionAmout = (-150..150).random().toDouble()
-            var name: String = ""
-            var detail: String = ""
-            if (transactionAmout > 0) {
-                name = dummyOutgoing[(0..dummyOutgoing.size - 1).random()]
-                detail = dummyOutgoingDetail[(0..dummyOutgoingDetail.size - 1).random()]
-            } else {
-                name = dummyIncoming[(0..dummyIncoming.size - 1).random()]
-                detail = dummyIncomingDetail[(0..dummyIncomingDetail.size - 1).random()]
-            }
-
-            defaultAmount += transactionAmout
-            x.add(
-                GetAccountTransactionList(
-                    name,
-                    date.toString(),
-                    "213",
-                    "1312",
-                    "test",
-                    detail,
-                    transactionAmout,
-                    defaultAmount,
-                    "t",
-                    "t",
-                    "t",
-                    "t",
-                    "9:00",
-                    "t",
-                    "t",
-                    233.3,
-                    "t",
-                    "TRY"
-                )
-            )
-
-        }
-        return x.toTypedArray()
-    }
 
     fun executeSharePopupMenu(
         inflater: LayoutInflater,
@@ -520,19 +434,15 @@ class SimpleAccountFragment : Fragment() {
             }
 
             // Get the widgets reference from custom view
-            val downloadButton =
-                view.findViewById<android.widget.Button>(R.id.ReceiptDownloadButton)
-            val whatsappButton =
-                view.findViewById<android.widget.Button>(R.id.ReceiptWhatsappButton)
-            val wechatButton = view.findViewById<android.widget.Button>(R.id.ReceiptWechatButton)
-            val gmailButton = view.findViewById<android.widget.Button>(R.id.ReceiptGmailButton)
-            val instagramButton =
-                view.findViewById<android.widget.Button>(R.id.ReceiptInstagramButton)
-            val twitterButton = view.findViewById<android.widget.Button>(R.id.ReceiptTwitterButton)
-            val facebookButton =
-                view.findViewById<android.widget.Button>(R.id.ReceiptFacebookButton)
-            val smsButton = view.findViewById<android.widget.Button>(R.id.ReceiptSmsButton)
-            val receiptPopupScreenName = view.findViewById<LinearLayout>(R.id.receiptPopupScreenName)
+            val downloadButton =receiptPopupScreen.ReceiptDownloadButton
+            val whatsappButton =receiptPopupScreen.ReceiptWhatsappButton
+            val wechatButton = receiptPopupScreen.ReceiptWechatButton
+            val gmailButton = receiptPopupScreen.ReceiptGmailButton
+            val instagramButton =receiptPopupScreen.ReceiptInstagramButton
+            val twitterButton = receiptPopupScreen.ReceiptTwitterButton
+            val facebookButton =receiptPopupScreen.ReceiptFacebookButton
+            val smsButton = receiptPopupScreen.ReceiptSmsButton
+            val receiptPopupScreenName = receiptPopupScreen.receiptPopupScreenName
 
 
             //CORRESPONDING BUTTON ONCLICKED EVENT
@@ -650,46 +560,4 @@ class SimpleAccountFragment : Fragment() {
         super.onDestroy()
     }
 
-    public fun updateLineChart(lineChartEntries: ArrayList<Entry>) {
-
-
-        Timer("SettingUp", false).schedule(2000) {
-            var lineDataSet = LineDataSet(lineChartEntries, "MONEY/YEAR GRAPH")
-            var colors = ArrayList<Int>()
-            for (pos in 0..lineChartEntries.size - 2) {
-                colors.add(
-                    if (lineChartEntries.get(pos + 1).y - lineChartEntries.get(pos).y > 0) Color.GREEN
-                    else if (lineChartEntries.get(pos + 1).y - lineChartEntries.get(pos).y < 0) Color.RED
-                    else Color.BLACK
-                )
-            }
-
-
-            lineDataSet.setColors(colors.toIntArray(), 255)
-            lineDataSet.valueTextColor = R.color.intertech_actionbar_bottomnav_back_color
-            lineDataSet.valueTextSize = 15F
-
-
-            var lineData = LineData(lineDataSet)
-
-            binding.simpleAccountLineChart.xAxis.setValueFormatter(object : ValueFormatter() {
-
-                @RequiresApi(Build.VERSION_CODES.N)
-                private val mFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
-
-                @RequiresApi(Build.VERSION_CODES.N)
-                override fun getFormattedValue(value: Float): String {
-                    /*
-                    if(value==Math.ceil(value.toDouble()).toFloat()){
-                        val millis: Long = getDateInMilliSeconds(xLabels[value.toInt()], "yyyy-MM-dd")
-                        return mFormat.format(Date(millis))
-                    }*/
-
-                    return "asdsd"
-                }
-            })
-            lineData.setDrawValues(true)
-            binding.simpleAccountLineChart.data = lineData
-        }
-    }
 }

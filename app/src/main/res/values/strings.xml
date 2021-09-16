@@ -116,5 +116,6 @@
     <string name="open_account_enter_account_name">Yeni hesap adı</string>
     <string name="open_account_currency_type">Para birimi</string>
     <string name="bottom_menu_add_account">Hesap Aç</string>
+    <string name="my_accounts">Hesaplarım</string>
 
 </resources>

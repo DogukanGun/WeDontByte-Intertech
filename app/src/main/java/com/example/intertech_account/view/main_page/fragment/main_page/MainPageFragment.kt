@@ -33,7 +33,6 @@ class MainPageFragment : Fragment() {
     private var transactionNames = mutableListOf<String>()
     private var amounts = mutableListOf<String>()
     private var times = mutableListOf<String>()
-    private var dates = mutableListOf<String>()
 
     private lateinit var binding:FragmentMainPageBinding
     private val getAccountViewModel: GetAccountViewModel by viewModels()
@@ -41,8 +40,7 @@ class MainPageFragment : Fragment() {
 
     private val getAccountTransactionViewModel: GetAccountTransactionViewModel by viewModels()
     private lateinit var getAccountTransactionListModel: GetAccountTransactionListModel
-    lateinit var buttonObserver:Observer<Int>
-    lateinit var buttonObserver2:Observer<QrOperation>
+
 
 
     override fun onCreateView(
@@ -51,66 +49,12 @@ class MainPageFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        binding=
-            DataBindingUtil.inflate(inflater,R.layout.fragment_main_page,container,false)
-        Constant.currentBottomMenu=0
-        Button.isUserInformationTopBarButtonClickFromMainPageFragment.value=0
-        Button.isSettingTopBarButtonClickFromMainPageFragment.value=0
+        binding= FragmentMainPageBinding.inflate(layoutInflater)
         createAccountInformation()
         createRecyclerView()
-        listenAccountsInformationFragmentButtons()
-//        setHasOptionsMenu(true)
-//        buttonObserver= Observer {
-//            if (it==1 && Constant.currentBottomMenu==0){
-//                Button.isUserInformationTopBarButtonClickFromMainPageFragment.value=2
-//                val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
-//                Constant.navHostFragment.findNavController().navigate(action)
-//            }
-//        }
-//        Button.isUserInformationTopBarButtonClickFromMainPageFragment.observe(viewLifecycleOwner,buttonObserver)
-//        Button.isUserInformationTopBarButtonClickFromMainPageFragment.observe(viewLifecycleOwner,object :Observer<Int>{
-//
-//            override fun onChanged(t: Int?) {
-//                if (t==1 && Constant.currentBottomMenu==0){
-//                    Button.isUserInformationTopBarButtonClickFromMainPageFragment.value=2
-//                    val action = MainPageFragmentDirections.actionMainPageFragmentToUserInformationFragment()
-//                    Constant.navHostFragment.findNavController().navigate(action)
-//                }
-//            }
-//        })
-//        Button.isSettingTopBarButtonClickFromMainPageFragment.observe(viewLifecycleOwner,{
-//            if (it==1 && Constant.currentBottomMenu==0){
-//                Button.isSettingTopBarButtonClickFromMainPageFragment.value=2
-//                val action =  MainPageFragmentDirections.actionMainPageFragmentToSettingFragment()
-//                Constant.navHostFragment.findNavController().navigate(action)
-//            }
-//        })
+
 
         return binding.root
-    }
-
-    override fun onPause() {
-//        Button.isUserInformationTopBarButtonClickFromMainPageFragment.removeObserver(buttonObserver)
-//        Button.qrButtonPressed.removeObserver(buttonObserver2)
-        super.onPause()
-
-    }
-    private fun listenAccountsInformationFragmentButtons(){
-//        buttonObserver2 = Observer {
-//            if (it.qrButtonPressed){
-//                Button.qrButtonPressed.value!!.qrButtonPressed=false
-//                val action = MainPageFragmentDirections.actionMainPageFragmentToQRCodeOptionSelectFragment(Button.qrButtonPressed.value!!.qrAccountIban)
-//                Constant.navHostFragment.findNavController().navigate(action)
-//            }
-//        }
-//        Button.qrButtonPressed.observe(viewLifecycleOwner,buttonObserver2)
-//        Button.qrButtonPressed.observe(viewLifecycleOwner,{
-//            if (it.qrButtonPressed){
-//                Button.qrButtonPressed.value!!.qrButtonPressed=false
-//                val action = MainPageFragmentDirections.actionMainPageFragmentToQRCodeOptionSelectFragment(Button.qrButtonPressed.value!!.qrAccountIban)
-//                Constant.navHostFragment.findNavController().navigate(action)
-//            }
-//        })
     }
     private fun createAccountInformation(){
         binding.accountsInformation.adapter=AccountsInformationFragmentAdapter(emptyArray(),
@@ -149,77 +93,6 @@ class MainPageFragment : Fragment() {
 
 
         })
-
-
-
-//        var adapter = recyclerView.adapter as MainPageAdapter
-        /*
-
-        var arrayList = arrayListOf<GetAccountTransactionList>()
-        var x1 = createDummyTransactionList(12.3)
-        var x2 = createDummyTransactionList(45.5)
-        var x3 = createDummyTransactionList(67.7)
-        var x4 = createDummyTransactionList(22.3)
-
-
-        arrayList.add(x1)
-        arrayList.add(x2)
-        arrayList.add(x3)
-        arrayList.add(x4)
-        val myarray2: Array<GetAccountTransactionList> = arrayList.toTypedArray()*/
-        //var myarray = arrayOf(GetAccountTransactionList())
-//        adapter.addList(createDummyTransactionList(15))
-//        val dividerItemDecoration = DividerItemDecoration(
-//            recyclerView.context,1
-//        )
-//        recyclerView.addItemDecoration(dividerItemDecoration)
-
-    }
-
-    private fun createDummyTransactionList(size:Int): Array<GetAccountTransactionList> {
-        var x = ArrayList<GetAccountTransactionList>()
-        for (i in 0..size){
-
-            x.add(GetAccountTransactionList("Kira","02.05.2020","432423","234324","test","test",(-150..150).random().toDouble(),122.2,
-                "t","t","t","t","t","t","t",
-                233.3,"t","TRY"))
-        }
-
-
-        return x.toTypedArray()
-    }
-
-    private fun createDummyTransactionList(x: Double):GetAccountTransactionList{
-        var x = GetAccountTransactionList("test","test","32423","234234","test","test",x,122.2,
-            "t","t","t","t","t","t","t",
-        233.3,"t","TRY"
-        )
-        return x
-    }
-    private fun addToRecyclerView(destinationAccountTitle: String, transactionName: String, amount: String, time: String, date: String)
-    {
-        destinationAccountTitles.add(destinationAccountTitle)
-        transactionNames.add(transactionName)
-        amounts.add(amount)
-        times.add(time)
-        dates.add(date)
-    }
-    private fun updateRecyclerView(_wannaWipeData: Boolean = true)
-    {
-        if(_wannaWipeData)
-        {
-            destinationAccountTitles.clear()
-            transactionNames.clear()
-            amounts.clear()
-            times.clear()
-            dates.clear()
-        }
-
-
-        for(i in 1..25)
-        {
-            addToRecyclerView("Dest. Account $i", "Transaction $i", "\$$i", "$i:$i", "$i/$i/$i")
-        }
 
     }
 
