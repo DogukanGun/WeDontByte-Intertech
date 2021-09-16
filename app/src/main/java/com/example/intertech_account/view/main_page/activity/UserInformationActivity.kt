@@ -18,6 +18,7 @@ import com.example.intertech_account.databinding.ActivityUserInformationBinding
 import com.example.intertech_account.model.api_model.get_account.GetAccountList
 import com.example.intertech_account.model.api_model.get_customer.GetCustomerModel
 import com.example.intertech_account.view.main_page.fragment.user_information.adapter.UserInformationAdapter
+import com.example.intertech_account.view_model.repo.DateConvert
 import com.google.android.material.snackbar.Snackbar
 import kotlin.system.exitProcess
 
@@ -27,6 +28,7 @@ class UserInformationActivity : AppCompatActivity() {
     private lateinit var getCustomerModel: GetCustomerModel
     private var balanceList = mutableListOf<String>()
     private val getCustomerViewModel: GetCustomerViewModel by viewModels()
+    private val dateConvert= DateConvert(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,10 +58,15 @@ class UserInformationActivity : AppCompatActivity() {
             val x = listOf(getString(R.string.userName),getString(R.string.userSurname),
                 getString(R.string.citizenshipID), getString(R.string.birthdate)
                 , getString(R.string.email), getString(R.string.phoneNumber))
+            var dateArr=getCustomerModel.getCustomerData.birthDate.split(" ")
+            var date=""
+            if (!getCustomerModel.getCustomerData.birthDate.isNullOrBlank()){
+                date=dateArr[0]+" "+dateConvert.convertDate(date = dateArr[1])+" "+dateArr[2]
+            }
             val Info = listOf(getCustomerModel.getCustomerData.name ,
                 getCustomerModel.getCustomerData.surname,
                 getCustomerModel.getCustomerData.citizenshipNumber,
-                getCustomerModel.getCustomerData.birthDate,
+                date,
                 getCustomerModel.getCustomerData.email,
                 getCustomerModel.getCustomerData.getMobilePhoneList.number
             )

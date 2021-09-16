@@ -66,22 +66,6 @@ class SimpleAccountAdapter(var context: Context) : RecyclerView.Adapter<SimpleAc
         return transactionArrayList
     }
 
-    /*
-    @SuppressLint("SimpleDateFormat")
-    private fun filterArrayList(dayAmounts: Int): ArrayList<GetAccountTransactionList> {
-        return transactionArrayList.filter {
-            var transactionArrayListIndexDate = it.date
-            Log.d("Info","${it.date}")
-            transactionArrayListIndexDate = transactionArrayListIndexDate.substring(0, 10)
-            Log.d("Info","${transactionArrayListIndexDate}")
-            val date = SimpleDateFormat("dd-MM-yyyy").parse(transactionArrayListIndexDate)!!
-            Log.d("Info","${date}")
-            val calendar = Calendar.getInstance()
-            calendar.add(Calendar.DAY_OF_YEAR, dayAmounts)
-            date.after(calendar.time)
-        } as ArrayList<GetAccountTransactionList>
-    }*/
-
     private fun filterArrayList(dayAmounts: Int): ArrayList<GetAccountTransactionList> {
         Log.d("Info:","Gün"+dayAmounts.toString())
         var orgArr =ArrayList<GetAccountTransactionList>()

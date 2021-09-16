@@ -80,7 +80,7 @@
     <string name="filter">Filter by Time</string>
     <string name="vadeli">Demand Deposit</string>
     <string name="vadesiz">Term Deposit</string>
-
+    <string name="vadesiz_hesabim">Term Deposit Account</string>
     <string name="id_number_invalid">ID number is invalid</string>
     <string name="id_password_correct">ID number and password are correct...</string>
     <string name="successfully_registered">You have successfully registered</string>

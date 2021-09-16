@@ -1,6 +1,7 @@
 package com.example.intertech_account.view.main_page.fragment.account
 
 import android.accounts.Account
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -25,16 +26,16 @@ import com.example.intertech_account.view.main_page.fragment.account.adapter.All
 import com.example.intertech_account.view_model.GetAccountViewModel
 import com.google.gson.annotations.SerializedName
 
-class AccountDetailFragment() : Fragment() {
+class AccountDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentAccountDetailBinding
     private var adapter = AccountDetailAdapter()
     private var adapter_ = AccountDetailAdapter()
      private var titles = arrayListOf<String>()
     private var values = arrayListOf<String>()
-    private val titlesHashMap=AccountDetailFragmentCommonVariables.titlesHashMap
-    private val currencySigns=AccountDetailFragmentCommonVariables.currencySigns
-    private val roles = AccountDetailFragmentCommonVariables.roles
+    private lateinit var titlesHashMap:HashMap<String,String>
+    private lateinit var currencySigns:HashMap<String,String>
+    private lateinit var roles :HashMap<String,Int>
     val args: AccountDetailFragmentArgs by navArgs()
 
     var currency = ""
@@ -45,6 +46,43 @@ class AccountDetailFragment() : Fragment() {
 
 
         binding = FragmentAccountDetailBinding.inflate(layoutInflater)
+        currencySigns=AccountDetailFragmentCommonVariables.currencySigns
+        roles = hashMapOf(
+
+            resources.getString(
+                R.string.name) to 0,
+            resources.getString(
+                R.string.surname) to 1,
+            resources.getString(
+                R.string.account_number) to 2,
+            resources.getString(
+                R.string.account_name) to 3,
+            resources.getString(
+                R.string.branch_name) to 4,
+            resources.getString(
+                R.string.amaount) to 5,
+            resources.getString(
+                R.string.amount_try) to 6,
+            resources.getString(
+                R.string.iban) to 7,
+            resources.getString(
+                R.string.currency) to 8,
+            resources.getString(
+                R.string.account_type) to 9,
+            resources.getString(
+                R.string.interest) to 10,
+            resources.getString(
+                R.string.start_date) to 11,
+            resources.getString(
+                R.string.end_date)  to 12,
+            resources.getString(
+                R.string.block)  to 13,
+            resources.getString(
+                R.string.deleted)  to 14,
+
+
+            )
+        titlesHashMap=AccountDetailFragmentCommonVariables.titlesHashMap
         var rawComing = arrayListOf<String>()
         (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
 
@@ -61,9 +99,11 @@ class AccountDetailFragment() : Fragment() {
             rawComing.removeAt(rawComing.size - 1)
             for (i in 0..rawComing.size - 1) {
                 if (rawComing[i].substringBefore("!").equals("name")) {
-                    titles.add(0, "Ad")
+                    titles.add(0, resources.getString(
+                        R.string.name))
                     values.add(0, rawComing[i].substringAfter("!").substringBefore(" "))
-                    titles.add(1, "Soyad")
+                    titles.add(1, resources.getString(
+                        R.string.surname))
                     values.add(1, rawComing[i].substringAfter("!").substringAfter(" "))
                     continue
                 }
@@ -75,15 +115,18 @@ class AccountDetailFragment() : Fragment() {
                     continue
                 }
 
-                if (title.contains("AsTRY") && currency.equals("TRY")) {
+                if (title.contains(resources.getString(
+                        R.string.amount_try)) && currency.equals("TRY")) {
                     continue
                 }
-                if (title.equals("openingDate")) {
+                if (title.equals(resources.getString(
+                        R.string.start_date))) {
                     titlesHashMap[title]?.let { titles.add(it) }
                     values.add("13 Ekim 2019")
                     continue
                 }
-                if (title.equals("closingDate")) {
+                if (title.equals(resources.getString(
+                        R.string.end_date) )) {
                     titlesHashMap[title]?.let { titles.add(it) }
                     values.add("29 Kasım 2022")
                     continue
@@ -101,12 +144,17 @@ class AccountDetailFragment() : Fragment() {
                 }
 
             }
-            if (values.get(titles.indexOf("Faiz Oranı")).equals("% 0.0")) {
-                titles.add("Hesap Türü")
-                values.add("Vadesiz")
+            if (values.get(titles.indexOf(resources.getString(
+                    R.string.interest))).equals("% 0.0")) {
+                titles.add(resources.getString(
+                    R.string.account_type))
+                values.add(resources.getString(
+                    R.string.vadeli))
             } else {
-                titles.add("Hesap Türü")
-                values.add("Vadeli")
+                titles.add(resources.getString(
+                    R.string.account_type))
+                values.add(resources.getString(
+                    R.string.vadesiz))
             }
 
             rearrange()

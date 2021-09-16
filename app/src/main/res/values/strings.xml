@@ -92,7 +92,7 @@
     <string name="filter">Zamana Göre Filtrele</string>
     <string name="vadeli">Vadeli</string>
     <string name="vadesiz">Vadesiz</string>
-
+    <string name="vadesiz_hesabim">Vadesiz Hesabım</string>
 
     <string name="no_error">İşlem başarıyla gerçekleşti</string>
     <string name="missing_namesurname">Ad veya soyad eksik</string>
