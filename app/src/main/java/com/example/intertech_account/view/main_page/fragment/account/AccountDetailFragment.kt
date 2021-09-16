@@ -82,7 +82,32 @@ class AccountDetailFragment : Fragment() {
 
 
             )
-        titlesHashMap=AccountDetailFragmentCommonVariables.titlesHashMap
+        titlesHashMap = hashMapOf(
+            "isBlocked" to resources.getString(
+                R.string.block),
+            "branch" to resources.getString(
+                R.string.branch_name),
+            "isClosed" to resources.getString(
+                R.string.deleted),
+            "currency" to resources.getString(
+                R.string.currency),
+            "interestRate" to resources.getString(
+                R.string.interest),
+            "balance" to resources.getString(
+                R.string.amaount),
+            "accountName" to resources.getString(
+                R.string.account_name),
+            "iban" to resources.getString(
+                R.string.iban),
+            "balanceAsTRY" to resources.getString(
+                R.string.amount_try),
+            "closingDate" to  resources.getString(
+                R.string.end_date) ,
+            "openingDate" to resources.getString(
+                R.string.start_date),
+            "customerNo" to resources.getString(
+                R.string.account_number),
+        )
         var rawComing = arrayListOf<String>()
         (requireActivity() as MainActivity).binding.topAppBarToolbar.title=getString(R.string.app_title)
 
@@ -144,8 +169,8 @@ class AccountDetailFragment : Fragment() {
                 }
 
             }
-            if (values.get(titles.indexOf(resources.getString(
-                    R.string.interest))).equals("% 0.0")) {
+
+            if (values[9].equals("% 0.0")) {
                 titles.add(resources.getString(
                     R.string.account_type))
                 values.add(resources.getString(

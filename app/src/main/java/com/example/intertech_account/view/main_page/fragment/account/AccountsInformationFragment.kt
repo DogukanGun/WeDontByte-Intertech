@@ -63,6 +63,13 @@ class AccountsInformationFragment : Fragment() {
                 R.layout.selected_account_name,
                 spinnerList
             )
+            if(oldPosition == -1){
+                spinnerList[0] =getAccountModel.getAccountData.getAccountList[0].accountName
+                oldPosition = 0
+            }
+            else{
+                spinnerList[0] = spinnerListItemName(getAccountModel.getAccountData.getAccountList[0])
+            }
 
 
             //adapter.setDropDownViewResource(R.layout.account_name_spinner)
