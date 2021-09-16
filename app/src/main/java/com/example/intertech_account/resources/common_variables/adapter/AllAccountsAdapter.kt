@@ -1,5 +1,11 @@
 package com.example.intertech_account.resources.common_variables.adapter
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.res.Resources
+import com.example.intertech_account.R
+
+@SuppressLint("StaticFieldLeak")
 object AllAccountsAdapter {
 
     val roles: HashMap<String, Int> = hashMapOf(

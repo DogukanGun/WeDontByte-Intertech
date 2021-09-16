@@ -1,5 +1,8 @@
 package com.example.intertech_account.resources.common_variables.fragment
 
+import android.content.res.Resources
+import com.example.intertech_account.R
+
 object AccountDetailFragmentCommonVariables {
      val titlesHashMap = hashMapOf(
         "isBlocked" to "Hesap Bloke mi?",
@@ -16,21 +19,37 @@ object AccountDetailFragmentCommonVariables {
         "customerNo" to "Müşteri Numarası",
     )
     val roles = hashMapOf(
-        "Ad" to 0,
-        "Soyad" to 1,
-        "Müşteri Numarası" to 2,
-        "Hesap Adı" to 3,
-        "Şube Adı" to 4,
-        "Bakiye" to 5,
-        "TRY cinsinden bakiye" to 6,
-        "IBAN" to 7,
-        "Döviz Kodu" to 8,
-        "Hesap Türü" to 9,
-        "Faiz Oranı" to 10,
-        "Hesap açılış Tarihi" to 11,
-        "Hesap Kapanış tarihi" to 12,
-        "Hesap Bloke mi?" to 13,
-        "Hesap Kapalı mı?" to 14,
+
+        Resources.getSystem().getString(
+            R.string.name) to 0,
+        Resources.getSystem().getString(
+            R.string.surname) to 1,
+        Resources.getSystem().getString(
+            R.string.account_number) to 2,
+        Resources.getSystem().getString(
+            R.string.account_name) to 3,
+        Resources.getSystem().getString(
+            R.string.branch_name) to 4,
+        Resources.getSystem().getString(
+            R.string.amaount) to 5,
+        Resources.getSystem().getString(
+            R.string.amount_try) to 6,
+        Resources.getSystem().getString(
+            R.string.iban) to 7,
+        Resources.getSystem().getString(
+            R.string.currency) to 8,
+        Resources.getSystem().getString(
+            R.string.account_type) to 9,
+        Resources.getSystem().getString(
+            R.string.interest) to 10,
+        Resources.getSystem().getString(
+            R.string.start_date) to 11,
+        Resources.getSystem().getString(
+            R.string.end_date)  to 12,
+        Resources.getSystem().getString(
+            R.string.block)  to 13,
+        Resources.getSystem().getString(
+            R.string.deleted)  to 14,
 
 
         )

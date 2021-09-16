@@ -122,4 +122,17 @@
     <string name="Dec">December</string>
 
     <string name="my_accounts">Accounts</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="account_number">Customer Number</string>
+    <string name="branch_name">Branch Name</string>
+    <string name="amaount">Balance</string>
+    <string name="amount_try">TRY balance</string>
+    <string name="iban">IBAN</string>
+    <string name="currency">Currency </string>
+    <string name="interest">Interest Rate</string>
+    <string name="start_date">Expiry Date</string>
+    <string name="end_date">Closing Date</string>
+    <string name="block">Is Account Blocked?</string>
+    <string name="deleted">Is Account Deleted?</string>
 </resources>

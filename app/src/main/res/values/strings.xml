@@ -118,4 +118,18 @@
     <string name="bottom_menu_add_account">Hesap Aç</string>
     <string name="my_accounts">Hesaplarım</string>
 
+    <string name="name">Ad</string>
+    <string name="surname">Soyad</string>
+    <string name="account_number">Müşteri Numarası</string>
+    <string name="branch_name">Şube Adı</string>
+    <string name="amaount">Bakiye</string>
+    <string name="amount_try">TRY cinsinden bakiye</string>
+    <string name="iban">IBAN</string>
+    <string name="currency">Döviz Kodu</string>
+    <string name="interest">Faiz Oranı</string>
+    <string name="start_date">Hesap açılış Tarihi</string>
+    <string name="end_date">Hesap Kapanış tarihi</string>
+    <string name="block">Hesap Bloke mi?</string>
+    <string name="deleted">Hesap Kapalı mı?</string>
+
 </resources>
