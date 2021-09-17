@@ -118,6 +118,7 @@
     <string name="bottom_menu_add_account">Hesap Aç</string>
     <string name="my_accounts">Hesaplarım</string>
 
+    <string name="receipt_downloaded">Dekont başarıyla indirildi.</string>
     <string name="name">Ad</string>
     <string name="surname">Soyad</string>
     <string name="account_number">Müşteri Numarası</string>

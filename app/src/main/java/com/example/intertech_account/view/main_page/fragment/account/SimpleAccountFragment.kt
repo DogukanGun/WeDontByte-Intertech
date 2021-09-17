@@ -434,21 +434,24 @@ class SimpleAccountFragment : Fragment() {
             }
 
             // Get the widgets reference from custom view
-            val downloadButton =receiptPopupScreen.ReceiptDownloadButton
-            val whatsappButton =receiptPopupScreen.ReceiptWhatsappButton
-            val wechatButton = receiptPopupScreen.ReceiptWechatButton
-            val gmailButton = receiptPopupScreen.ReceiptGmailButton
-            val instagramButton =receiptPopupScreen.ReceiptInstagramButton
-            val twitterButton = receiptPopupScreen.ReceiptTwitterButton
-            val facebookButton =receiptPopupScreen.ReceiptFacebookButton
-            val smsButton = receiptPopupScreen.ReceiptSmsButton
-            val receiptPopupScreenName = receiptPopupScreen.receiptPopupScreenName
+            val downloadButton = view.findViewById<android.widget.Button>(R.id.ReceiptDownloadButton)
+            val whatsappButton =
+                view.findViewById<android.widget.Button>(R.id.ReceiptWhatsappButton)
+            val wechatButton = view.findViewById<android.widget.Button>(R.id.ReceiptWechatButton)
+            val gmailButton = view.findViewById<android.widget.Button>(R.id.ReceiptGmailButton)
+            val instagramButton =
+                view.findViewById<android.widget.Button>(R.id.ReceiptInstagramButton)
+            val twitterButton = view.findViewById<android.widget.Button>(R.id.ReceiptTwitterButton)
+            val facebookButton =
+                view.findViewById<android.widget.Button>(R.id.ReceiptFacebookButton)
+            val smsButton = view.findViewById<android.widget.Button>(R.id.ReceiptSmsButton)
+            val receiptPopupScreenName = view.findViewById<LinearLayout>(R.id.receiptPopupScreenName)
 
 
             //CORRESPONDING BUTTON ONCLICKED EVENT
             downloadButton.setOnClickListener {
 
-
+                Toast.makeText(context, getString(R.string.receipt_downloaded),Toast.LENGTH_SHORT).show()
                 popupWindowShare.dismiss()
             }
             //CORRESPONDING BUTTON ONCLICKED EVENT

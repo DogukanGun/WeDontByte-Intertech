@@ -108,6 +108,7 @@
     <string name="open_account_currency_type">Currency Type</string>
     <string name="bottom_menu_add_account">Open Account</string>
 
+    <string name="receipt_downloaded">The receipt is downloaded successfully.</string>
     <string name="Jan">January</string>
     <string name="Feb">February</string>
     <string name="Mar">March</string>
