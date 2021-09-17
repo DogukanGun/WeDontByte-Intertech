@@ -176,13 +176,13 @@ class SimpleAccountFragment : Fragment() {
 
             // Get the widgets reference from custom view
             //TODO turkce den ingilizceye degisstirilecek
-            val popupMenuBackButton = popupScreenBinding.popupMenuBackButton
-            val son1HaftaButton = popupScreenBinding.son1HaftaButton
-            val son1AyButton = popupScreenBinding.son1AyButton
-            val son3AyButton = popupScreenBinding.son3AyButton
-            val son6AyButton = popupScreenBinding.son6AyButton
-            val son1YilButton = popupScreenBinding.son1YilButton
-            val detayliFiltrelemeButton = popupScreenBinding.detayliFiltrelemeButton
+            val popupMenuBackButton = view.findViewById<Button>(R.id.popupMenuBackButton)
+            val son1HaftaButton = view.findViewById<Button>(R.id.son1HaftaButton)
+            val son1AyButton = view.findViewById<Button>(R.id.son1AyButton)
+            val son3AyButton = view.findViewById<Button>(R.id.son3AyButton)
+            val son6AyButton = view.findViewById<Button>(R.id.son6AyButton)
+            val son1YilButton = view.findViewById<Button>(R.id.son1YilButton)
+            val detayliFiltrelemeButton = view.findViewById<Button>(R.id.detayliFiltrelemeButton)
 
 
             //CORRESPONDING BUTTON ONCLICKED EVENT
